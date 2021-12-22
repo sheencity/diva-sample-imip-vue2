@@ -1,7 +1,9 @@
 <template>
   <article class="space-between">
-    <aside class="space-left all">
-      <app-basic-info :data="basicInfoData.content.data"></app-basic-info>
+    <aside v-if="basicInfoData" class="space-left all">
+      <app-dialog :header="basicInfoData.header">
+        <app-basic-info :data="basicInfoData.content.data"></app-basic-info>
+      </app-dialog>
       <!-- <app-card-table :data="cardTableData"></app-card-table> -->
       <!-- <pie-charts :data="pieChartsData"></pie-charts> -->
     </aside>
@@ -13,6 +15,7 @@
 
 <script>
 import AppBasicInfo from 'components/common/basic-info';
+import AppDialog from 'components/common/dialog/dialog';
 // import AppCardTable from '../../components/common/basic-info/index';
 // import PieCharts from '../../components/common/charts/pie/index';
 // import AppCardList from '../../components/common/card-list/index';
@@ -61,6 +64,7 @@ export default {
     // this.setFloorReset(this.floorList)
   },
   components: {
+    AppDialog,
     AppBasicInfo,
     // AppBasicInfo,
     // AppCardTable,
