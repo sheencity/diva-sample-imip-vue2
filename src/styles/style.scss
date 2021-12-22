@@ -1,3 +1,6 @@
+@import url('http://fonts.cdnfonts.com/css/digital-numbers');
+@import url('https://fonts.loli.net/css2?family=Saira:wght@500&display=swap');
+
 :root {
     font-size: 16px;
   }
@@ -11,17 +14,7 @@
     font-size: 14px;
     user-select: none;
   }
-  
-  @font-face {
-    font-family: "Digital Number";
-    src: url("~@/assets/font/digital-number.ttf") format("truetype");
-  }
-  
-  @font-face {
-    font-family: "Saira";
-    src: url("~@/assets/font/Saira-Medium.ttf") format("truetype");
-  }
-  
+
   * {
     box-sizing: border-box;
   }

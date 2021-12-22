@@ -3,6 +3,7 @@ import axios from "axios";
 import App from './App.vue'
 import VueAxios from "vue-axios";
 import router from "./router";
+import "./styles/style.scss";
 
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false
