@@ -1,7 +1,7 @@
 <template>
   <article class="space-between">
     <aside class="space-left all">
-      <app-basic-info :data="basicInfoData"></app-basic-info>
+      <app-basic-info :data="basicInfoData.content.data"></app-basic-info>
       <!-- <app-card-table :data="cardTableData"></app-card-table> -->
       <!-- <pie-charts :data="pieChartsData"></pie-charts> -->
     </aside>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import AppBasicInfo from 'components/basic-info';
+import AppBasicInfo from 'components/common/basic-info';
 // import AppCardTable from '../../components/common/basic-info/index';
 // import PieCharts from '../../components/common/charts/pie/index';
 // import AppCardList from '../../components/common/card-list/index';
