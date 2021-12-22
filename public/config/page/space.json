@@ -24,7 +24,7 @@
   ],
   "panel-right": [
     {
-      "type": "camera-track-panel",
+      "type": "camera-album",
       "content": [
         {
           "header": {
