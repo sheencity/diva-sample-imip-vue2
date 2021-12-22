@@ -8,7 +8,7 @@
           <div class="child-route-button">
             <router-link
               :key="childRoute.title"
-              v-for="childRoute in item.child"
+              v-for="childRoute in item.children"
               :to="childRoute.link"
               active-class="child-route-selected"
               class="child-route"
@@ -28,45 +28,46 @@ export default {
   data() {
     return {
       menuList: [
-        {
-          link: "/introduction",
-          icon: "1.svg",
-          title: "项目介绍",
-          child: [],
-        },
-        {
-          link: "/carbon-neutral",
-          icon: "2.svg",
-          title: "碳中和",
-          child: [{ link: "/carbon-neutral/energy", title: "能源" }],
-        },
-        {
-          link: "/wisdom-operation",
-          icon: "3.svg",
-          title: "智慧运营",
-          child: [
-            { link: "/wisdom-operation/work", title: "办公" },
-            { link: "/wisdom-operation/environment", title: "环境" },
-            { link: "/wisdom-operation/fire-control", title: "消防" },
-            { link: "/wisdom-operation/security", title: "安保" },
-            { link: "/wisdom-operation/park", title: "停车" },
-          ],
-        },
-        {
-          link: "/attract-investment",
-          icon: "4.svg",
-          title: "产业招商",
-          child: [
-            { link: "/attract-investment/achievement", title: "招商成果" },
-            { link: "/attract-investment/space", title: "空间布局" },
-            { link: "/attract-investment/plan", title: "产业规划" },
-          ],
-        },
+        //  {
+        //   link: "/introduction",
+        //   icon: "1.svg",
+        //   title: "项目介绍",
+        //   children: [],
+        // },
+        // {
+        //   link: "/carbon-neutral",
+        //   icon: "2.svg",
+        //   title: "碳中和",
+        //   children: [{ link: "/carbon-neutral/energy", title: "能源" }],
+        // },
+        // {
+        //   link: "/wisdom-operation",
+        //   icon: "3.svg",
+        //   title: "智慧运营",
+        //   children: [
+        //     { link: "/wisdom-operation/work", title: "办公" },
+        //     { link: "/wisdom-operation/environment", title: "环境" },
+        //     { link: "/wisdom-operation/fire-control", title: "消防" },
+        //     { link: "/wisdom-operation/security", title: "安保" },
+        //     { link: "/wisdom-operation/park", title: "停车" },
+        //   ],
+        // },
+        // {
+        //   link: "/attract-investment",
+        //   icon: "4.svg",
+        //   title: "产业招商",
+        //   children: [
+        //     { link: "/attract-investment/achievement", title: "招商成果" },
+        //     { link: "/attract-investment/space", title: "空间布局" },
+        //     { link: "/attract-investment/project", title: "产业规划" },
+        //   ],
+        // },
       ],
     };
   },
   async created(){
-    const { data } = await this.axios.get('../../config/menu/index.json');
+    const { data } = await this.axios.get('config/menu/index.json');
+    this.menuList = data.menu.data;
     console.log(data)
   }
 };
