@@ -1,23 +1,23 @@
 <template>
   <article class="space-between">
     <aside class="space-left all">
-      <app-basic-info :data="basicInfoData"></app-basic-info>
+      123
+      <!-- <app-basic-info :data="basicInfoData"></app-basic-info>
       <app-card-table :data="cardTableData"></app-card-table>
-      <pie-charts :data="pieChartsData"></pie-charts>
+      <pie-charts :data="pieChartsData"></pie-charts> -->
     </aside>
     <aside class="space-right all">
-      <app-card-list :data="cardListData"></app-card-list>
+      <!-- <app-card-list :data="cardListData"></app-card-list> -->
     </aside>
   </article>
 </template>
 
 <script>
-import AppDialog from "../components/dialog/dialog";
-import AppBasicInfo from '../../components/common/basic-info/index';
-import AppCardTable from '../../components/common/basic-info/index';
-import PieCharts from '../../components/common/charts/pie/index';
-import AppCardList from '../../components/common/card-list/index';
-import AppAreaModule from "../components/area-module/area-module";
+// import AppBasicInfo from '../../components/common/basic-info/index';
+// import AppCardTable from '../../components/common/basic-info/index';
+// import PieCharts from '../../components/common/charts/pie/index';
+// import AppCardList from '../../components/common/card-list/index';
+// import AppAreaModule from "../components/area-module/area-module";
 
 export default {
   data() {
@@ -57,12 +57,11 @@ export default {
     this.setFloorReset(this.floorList)
   },
   components: {
-    AppDialog,
-    AppAreaModule,
-    AppBasicInfo,
-    AppCardTable,
-    AppCardList,
-    PieCharts
+    // AppAreaModule,
+    // AppBasicInfo,
+    // AppCardTable,
+    // AppCardList,
+    // PieCharts
   },
 };
 </script>
@@ -133,7 +132,7 @@ export default {
       line-height: 1.38rem;
       text-align: center;
       text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
-      background: url("../assets/route1/title.png") no-repeat 50% 10%;
+      // background: url("../assets/route1/title.png") no-repeat 50% 10%;
     }
   }
   .life-area {

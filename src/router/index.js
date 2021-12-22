@@ -1,17 +1,22 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from '../views/home/index'
+import Main from "views/main/main.vue";
+import Home from 'views/home'
+import Introduction from "views/main/introduction";
 
 Vue.use(VueRouter);
 
 const routes = [
+    { path: "/home", name: "首页", component: Home },
     {
         path: '',
-        component: Home,
+        component: Main,
         redirect: '/home',
-        children: []
+        children: [
+          { path: "/introduction", name: "项目介绍", component: Introduction },
+        ]
     },
-    { path: "/home", name: "首页", component: Home },
+    { path: "*", redirect: "/home"},
 ];
 
 const router = new VueRouter({

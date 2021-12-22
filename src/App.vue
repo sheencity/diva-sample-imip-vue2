@@ -1,11 +1,11 @@
 <template>
   <main>
-    <div ref="backendContainer" class="backend-container"></div>
+    <!-- <div ref="backendContainer" class="backend-container"></div> -->
     <router-view></router-view>
   </main>
 </template>
 <script>
-import { diva, dataService } from './services/global';
+import { diva, dataService } from 'services/global';
 
 export default {
   async mounted() {

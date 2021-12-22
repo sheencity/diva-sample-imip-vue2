@@ -12,8 +12,8 @@
 </template>
 <script>
 // 所有的组件都按照App[组件名]命名规则
-import AppHeader from "../components/header/header.vue";
-import AppFooter from "../components/footer/index.vue";
+import AppHeader from "components/header";
+import AppFooter from "components/footer";
 
 export default {
   components: {

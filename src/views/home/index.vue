@@ -11,7 +11,7 @@
 <script>
 import { RenderingStyleMode, Overlay } from "@sheencity/diva-sdk";
 import { Subscription } from 'rxjs';
-import { diva, dataService } from '../../services/global';
+import { diva, dataService } from 'services/global';
 
 export default {
   data(){
@@ -24,9 +24,6 @@ export default {
     async initHome() {
       const { data } = await this.axios.get('https://diva.sheencity.cn/samples/imip-vue2-embedded/data/home.json');
       this.title = data.title;
-      this.$refs.btn.addEventListener('click',()=>{
-        this.$router.push('/introduction');
-      });
       await diva.client?.applyScene(data.scene);
 
       // 后期将需要重置和解锁的路径配置到 json
@@ -44,6 +41,11 @@ export default {
   created() {
     this.clientSub = dataService.divaClient.subscribe((value) => {
       if (value) this.initHome();
+    });
+  },
+  mounted(){
+    this.$refs.btn.addEventListener('click',()=>{
+      this.$router.push('/introduction');
     });
   },
   destroyed() {
