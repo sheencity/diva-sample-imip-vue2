@@ -1,6 +1,6 @@
 <template>
   <main>
-    <!-- <div ref="backendContainer" class="backend-container"></div> -->
+    <div ref="backendContainer" class="backend-container"></div>
     <router-view></router-view>
   </main>
 </template>

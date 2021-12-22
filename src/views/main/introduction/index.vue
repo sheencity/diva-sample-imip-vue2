@@ -1,10 +1,9 @@
 <template>
   <article class="space-between">
     <aside class="space-left all">
-      123
-      <!-- <app-basic-info :data="basicInfoData"></app-basic-info>
-      <app-card-table :data="cardTableData"></app-card-table>
-      <pie-charts :data="pieChartsData"></pie-charts> -->
+      <app-basic-info :data="basicInfoData"></app-basic-info>
+      <!-- <app-card-table :data="cardTableData"></app-card-table> -->
+      <!-- <pie-charts :data="pieChartsData"></pie-charts> -->
     </aside>
     <aside class="space-right all">
       <!-- <app-card-list :data="cardListData"></app-card-list> -->
@@ -13,7 +12,7 @@
 </template>
 
 <script>
-// import AppBasicInfo from '../../components/common/basic-info/index';
+import AppBasicInfo from 'components/basic-info';
 // import AppCardTable from '../../components/common/basic-info/index';
 // import PieCharts from '../../components/common/charts/pie/index';
 // import AppCardList from '../../components/common/card-list/index';
@@ -42,6 +41,7 @@ export default {
     },
     async getConfig() {
       const { data } = await this.axios.get('config/page/introduction.json');
+      console.log(data)
       this.initDivaData = data.diva;
       this.basicInfoData = data.panel['panel-left'][0];
       this.cardTableData = data.panel['panel-left'][1];
@@ -58,10 +58,10 @@ export default {
     })
   },
   destroyed(){
-    this.setFloorReset(this.floorList)
+    // this.setFloorReset(this.floorList)
   },
   components: {
-    // AppAreaModule,
+    AppBasicInfo,
     // AppBasicInfo,
     // AppCardTable,
     // AppCardList,

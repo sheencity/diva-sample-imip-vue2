@@ -1,10 +1,10 @@
 <template>
-  <main class="home">
+  <main v-if="data" class="home">
     <div class="home-logo">
-      <!-- <img src="../assets/home.png" alt="logo"> -->
+      <img :src="require('../../assets/' + data.logo)" alt="logo">
     </div>
-    <h1 class="home-title">智能制造产业园数字孪生平台</h1>
-    <button ref="btn" class="home-button">进入系统</button>
+    <h1 class="home-title">{{ data.title }}</h1>
+    <button @click="login" class="home-button">{{ data.button.text }}</button>
   </main>
 </template>
 
@@ -16,38 +16,43 @@ import { diva, dataService } from 'services/global';
 export default {
   data(){
     return{
-      title: '',
+      initDivaData: null,
+      data: null,
       clientSub: new Subscription(),
     }
   },
   methods: {
-    async initHome() {
-      const { data } = await this.axios.get('https://diva.sheencity.cn/samples/imip-vue2-embedded/data/home.json');
-      this.title = data.title;
-      await diva.client?.applyScene(data.scene);
-
-      // 后期将需要重置和解锁的路径配置到 json
-      await diva.setEntityVisibleByGroup('功能辅助', false);
-      await diva.client?.request("UpdateEntityStatusByGroup", {
-        group: '产业园区',
-        locked: false,
-      });
-      const modelGroup = await diva.client?.getEntitiesByGroupPath('产业园区/楼栋');
-      modelGroup
-        .filter((model) => !(model instanceof Overlay))
-        .forEach((model) => model.setRenderingStyleMode(RenderingStyleMode.Default));
+    async init(){
+      await this.getConfig();
+      this.initScene();
     },
+    /**
+     * 获取json数据
+     */
+    async getConfig(){
+      const { data } = await this.axios.get('config/page/home.json');
+      this.initDivaData = data.diva;
+      this.data = data.panel['panel-center'];
+    },
+    /**
+     * 初始化场景
+     */
+    async initScene() {
+      await diva.client?.applyScene(this.initDivaData.init.scene_name);
+    },
+    /**
+     * 进入系统
+     */
+    login(){
+      this.$router.push('/introduction');
+    }
   },
   created() {
     this.clientSub = dataService.divaClient.subscribe((value) => {
-      if (value) this.initHome();
+      if (value) this.init();
     });
   },
-  mounted(){
-    this.$refs.btn.addEventListener('click',()=>{
-      this.$router.push('/introduction');
-    });
-  },
+  mounted(){},
   destroyed() {
     this.clientSub.unsubscribe();
   },

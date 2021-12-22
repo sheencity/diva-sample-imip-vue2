@@ -7,7 +7,7 @@
   "panel": {
     "panel-center": {
       "type": "coverpage",
-      "logo": "https://XXXXXXX/XXX.png",
+      "logo": "images/home.png",
       "title": "智能制造产业园数字孪生平台",
       "button" : {
         "text" : "进入系统"
