@@ -59,7 +59,7 @@ export default {
           child: [
             { link: "/attract-investment/achievement", title: "招商成果" },
             { link: "/attract-investment/space", title: "空间布局" },
-            { link: "/attract-investment/project", title: "产业规划" },
+            { link: "/attract-investment/plan", title: "产业规划" },
           ],
         },
       ],

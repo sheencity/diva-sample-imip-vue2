@@ -3,6 +3,9 @@ import VueRouter from "vue-router";
 import Main from "views/main/main.vue";
 import Home from 'views/home'
 import Introduction from "views/main/introduction";
+import Achievement from "views/main/investment/achievement";
+import Space from "views/main/investment/space";
+import Plan from "views/main/investment/plan";
 
 Vue.use(VueRouter);
 
@@ -40,12 +43,12 @@ const routes = [
           {
             path: "/attract-investment",
             name: "产业招商",
-            component: Introduction,
+            component: Achievement,
             redirect: "/attract-investment/achievement",
           },
-          { path: "/attract-investment/achievement", component: Introduction },
-          { path: "/attract-investment/space", component: Introduction },
-          { path: "/attract-investment/project", component: Introduction },
+          { path: "/attract-investment/achievement", component: Achievement },
+          { path: "/attract-investment/space", component: Space },
+          { path: "/attract-investment/plan", component: Plan },
         ]
     },
     // { path: "*", redirect: "/home"},
