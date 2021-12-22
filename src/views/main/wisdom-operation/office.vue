@@ -84,29 +84,8 @@
       </div>
     </aside>
     <aside class="space-right all">
-      <div class="top10">
-        <app-dialog :header-key="header_5">
-          <template v-slot:dialog-article>
-            <div class="module-5">
-              <div class="statistics">
-                <div
-                  :key="item.icon"
-                  v-for="item in statistics_data"
-                  class="item"
-                >
-                  <img :src="require('../assets/route3-1/' + item.icon)" />
-                  <div>
-                    <p>{{ item.title }}</p>
-                    <p :style="{ color: item.fontColor ? item.fontColor : '' }">
-                      {{ item.number }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </template>
-        </app-dialog>
-      </div>
+          <!-- 入楼人员统计 -->
+        <app-statistics-panel class="top10" :dataSource="statisticsData"></app-statistics-panel>
       <div class="top10">
         <app-dialog :header-key="header_6">
           <template v-slot:dialog-article>
@@ -127,11 +106,12 @@
 
 <script>
 import * as echarts from "echarts";
-import AppDialog from "../components/dialog/dialog";
-import AppSwitcher from "../components/switcher/switcher";
-import AppTableCol3 from "../components/table/table-col3";
-import AppTableCol2 from "../components/table/table-col2";
-import { diva, echartService } from "../global";
+import AppDialog from "../../../components/common/dialog/dialog.vue";
+import AppSwitcher from "../../../components/common/switcher/switcher";
+import AppTableCol3 from "../../../components/common/table/table-col3";
+import AppTableCol2 from "../../../components/common/table/table-col2";
+import AppStatisticsPanel from "../../../components/common/statistics-panel";
+import { diva, echartService } from "../../../services/global";
 import { RenderingStyleMode, Vector3 } from "@sheencity/diva-sdk";
 
 export default {
@@ -439,8 +419,9 @@ export default {
   components: {
     AppDialog,
     AppSwitcher,
+    AppStatisticsPanel,
     AppTableCol3,
-    AppTableCol2
+    AppTableCol2,
   }
 };
 </script>
