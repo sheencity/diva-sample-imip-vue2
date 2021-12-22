@@ -68,7 +68,6 @@ export default {
   async created(){
     const { data } = await this.axios.get('config/menu/index.json');
     this.menuList = data.menu.data;
-    console.log(data)
   }
 };
 </script>

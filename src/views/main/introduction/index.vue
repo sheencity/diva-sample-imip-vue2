@@ -22,6 +22,7 @@
 export default {
   data() {
     return {
+      initDivaData: null,
       basicInfoData: null,
       cardTableData: null,
       pieChartsData: null,
@@ -29,23 +30,26 @@ export default {
     };
   },
   created() {
-    
+    this.init();
   },
   async mounted() {
     
   },
   methods: {
-    init() {
-      this.getConfig()
-      this.initScene()
+    async init() {
+      await this.getConfig()
+      this.initScene(this.initDivaData.init.scene_name)
     },
-    getConfig() {
-      // const config = axios.get(url)
-      // this.basicInfoData = config.basicInfoData;
-      // this.cardTableData = config.cardTableData;
+    async getConfig() {
+      const { data } = await this.axios.get('config/page/introduction.json');
+      this.initDivaData = data.diva;
+      this.basicInfoData = data.panel['panel-left'][0];
+      this.cardTableData = data.panel['panel-left'][1];
+      this.pieChartsData = data.panel['panel-left'][2];
+      this.cardListData = data.panel['panel-right'][0];
     },
     initScene(name) {
-
+      console.log(name)
     }
   },
   beforeDestroy(){
