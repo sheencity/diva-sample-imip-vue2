@@ -31,60 +31,72 @@
             "title": "一轴",
             "icon": "space/2.svg"
           },
-          "content": [
-            {
-              "text": "南北景观中轴",
-              "diva": {
-                "camera_track_name": "南北景观中轴"
+          "content": {
+            "data": [
+              {
+                "text": "南北景观中轴",
+                "picture": "space/1.png",
+                "diva": {
+                  "camera_track_name": "南北景观中轴"
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         {
           "header": {
             "title": "三点",
             "icon": "space/3.svg"
           },
-          "content": [
-            {
-              "text": "厂前区中心开敞空间",
-              "diva": {
-                "camera_track_name": "厂前区节点"
+          "content": {
+            "data": [
+              {
+                "text": "厂前区中心开敞空间",
+                "picture": "space/1.png",
+                "diva": {
+                  "camera_track_name": "厂前区节点"
+                }
+              },
+              {
+                "text": "厂区中心广场",
+                "picture": "space/1.png",
+                "diva": {
+                  "camera_track_name": "中心广场节点"
+                }
+              },
+              {
+                "text": "东广场入口",
+                "picture": "space/1.png",
+                "diva": {
+                  "camera_track_name": "东广场入口节点"
+                }
               }
-            },
-            {
-              "text": "厂区中心广场",
-              "diva": {
-                "camera_track_name": "中心广场节点"
-              }
-            },
-            {
-              "text": "东广场入口",
-              "diva": {
-                "camera_track_name": "东广场入口节点"
-              }
-            }
-          ]
+            ]
+          }
         },
         {
           "header": {
             "title": "三点",
             "icon": "space/3.svg"
           },
-          "content": [
-            {
-              "text": "生产区车流闭环",
-              "diva": {
-                "camera_track_name": "生产区车流闭环"
+          "content": {
+            "data": [
+              {
+                "text": "生产区车流闭环",
+                "picture": "space/1.png",
+                "diva": {
+                  "camera_track_name": "生产区车流闭环"
+                }
+              },
+              {
+                "text": "厂前区车流闭环",
+                "picture": "space/1.png",
+                "diva": {
+                  "camera_track_name": "厂前区车流闭环"
+                }
               }
-            },
-            {
-              "text": "厂前区车流闭环",
-              "diva": {
-                "camera_track_name": "厂前区车流闭环"
-              }
-            }
-          ]
+            ]
+          }
         }
       ]
     }
