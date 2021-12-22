@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import axios from "axios";
 import App from './App.vue'
 import VueAxios from "vue-axios";
 import router from "./router";

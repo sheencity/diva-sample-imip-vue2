@@ -5,6 +5,7 @@
   </main>
 </template>
 <script>
+import { diva, dataService } from './services/global';
 
 export default {
   async mounted() {
