@@ -1,0 +1,203 @@
+{
+  "device_thead": [
+    { "name": "id", "title": "编号" },
+    { "name": "category", "title": "类别" },
+    { "name": "status", "title": "状态" },
+    { "name": "name", "title": "资源名称" }
+  ],
+  "traffic_info": {
+    "model_group_path": "功能辅助/交通流线",
+    "static_data": [
+      {
+        "color": "#FFA499",
+        "content": "货运/卡车流线规划",
+        "name": "货运卡车流线",
+        "checked": true
+      },
+      {
+        "color": "#4FDAFF",
+        "content": "办公/小车流线规划",
+        "name": "办公小型汽车流线",
+        "checked": true
+      },
+      {
+        "color": "#B4DE86",
+        "content": "人行流线规划",
+        "name": "人行流线",
+        "checked": true
+      }
+    ]
+  },
+  "resource_info": {
+    "camera_group_path": "/功能辅助/实时监控/摄像机",
+    "poi_group_path": "/功能辅助/实时监控/POI摄像机",
+    "devices": [
+      {
+        "id": "CA001",
+        "name": "球式摄像机01",
+        "category": "球式摄像机",
+        "status": "正常",
+        "icon": "POI摄像机01",
+        "videoPath": "device/monitoring/CA001.mp4"
+      },
+      {
+        "id": "CA002",
+        "name": "球式摄像机04",
+        "category": "球式摄像机",
+        "status": "正常",
+        "icon": "POI摄像机04",
+        "videoPath": "device/monitoring/CA002.mp4"
+      },
+      {
+        "id": "CA003",
+        "name": "球式摄像机07",
+        "category": "球式摄像机",
+        "status": "正常",
+        "icon": "POI摄像机07",
+        "videoPath": "device/monitoring/CA003.mp4"
+      },
+      {
+        "id": "CA004",
+        "name": "球式摄像机12",
+        "category": "球式摄像机",
+        "status": "正常",
+        "icon": "POI摄像机12",
+        "videoPath": "device/monitoring/CA004.mp4"
+      },
+      {
+        "id": "CA005",
+        "name": "球式摄像机15",
+        "category": "球式摄像机",
+        "status": "正常",
+        "icon": "POI摄像机15",
+        "videoPath": "device/monitoring/CA005.mp4"
+      },
+      {
+        "id": "CA006",
+        "name": "枪式摄像机05",
+        "category": "枪式摄像机",
+        "status": "正常",
+        "icon": "POI摄像机05",
+        "videoPath": "device/monitoring/CA006.mp4"
+      },
+      {
+        "id": "CA007",
+        "name": "枪式摄像机09",
+        "category": "枪式摄像机",
+        "status": "正常",
+        "icon": "POI摄像机09",
+        "videoPath": "device/monitoring/CA007.mp4"
+      }
+    ]
+  },
+  "echarts_data": {
+    "abnormal_events_analysis": [
+      {
+        "type": "安保相关",
+        "color": "#66CCFF",
+        "data": [
+          { "x_axis": "一月", "value": 0 },
+          { "x_axis": "二月", "value": 4 },
+          { "x_axis": "三月", "value": 8 },
+          { "x_axis": "四月", "value": 6 },
+          { "x_axis": "五月", "value": 12 },
+          { "x_axis": "六月", "value": 7 },
+          { "x_axis": "七月", "value": 8 },
+          { "x_axis": "八月", "value": 9 },
+          { "x_axis": "九月", "value": 6 },
+          { "x_axis": "十月", "value": 4 },
+          { "x_axis": "十一月", "value": 2 },
+          { "x_axis": "十二月", "value": 1 }
+        ]
+      },
+      {
+        "type": "人员违规",
+        "color": "#6699FF",
+        "data": [
+          { "x_axis": "一月", "value": 10 },
+          { "x_axis": "二月", "value": 12 },
+          { "x_axis": "三月", "value": 14 },
+          { "x_axis": "四月", "value": 12 },
+          { "x_axis": "五月", "value": 15 },
+          { "x_axis": "六月", "value": 12 },
+          { "x_axis": "七月", "value": 10 },
+          { "x_axis": "八月", "value": 18 },
+          { "x_axis": "九月", "value": 12 },
+          { "x_axis": "十月", "value": 11 },
+          { "x_axis": "十一月", "value": 6 },
+          { "x_axis": "十二月", "value": 4 }
+        ]
+      },
+      {
+        "type": "高空抛物",
+        "color": "#6666FF",
+        "data": [
+          { "x_axis": "一月", "value": 0 },
+          { "x_axis": "二月", "value": 0 },
+          { "x_axis": "三月", "value": 0 },
+          { "x_axis": "四月", "value": 0 },
+          { "x_axis": "五月", "value": 0 },
+          { "x_axis": "六月", "value": 0 },
+          { "x_axis": "七月", "value": 0 },
+          { "x_axis": "八月", "value": 0 },
+          { "x_axis": "九月", "value": 1 },
+          { "x_axis": "十月", "value": 2 },
+          { "x_axis": "十一月", "value": 1 },
+          { "x_axis": "十二月", "value": 0 }
+        ]
+      },
+      {
+        "type": "其他事件",
+        "color": "#CCFFFF",
+        "data": [
+          { "x_axis": "一月", "value": 0 },
+          { "x_axis": "二月", "value": 2 },
+          { "x_axis": "三月", "value": 3 },
+          { "x_axis": "四月", "value": 2 },
+          { "x_axis": "五月", "value": 4 },
+          { "x_axis": "六月", "value": 2 },
+          { "x_axis": "七月", "value": 4 },
+          { "x_axis": "八月", "value": 6 },
+          { "x_axis": "九月", "value": 4 },
+          { "x_axis": "十月", "value": 4 },
+          { "x_axis": "十一月", "value": 4 },
+          { "x_axis": "十二月", "value": 2 }
+        ]
+      }
+    ],
+    "abnormal_events_area": [
+      { "value": 9, "name": "自动机械产品智造区" },
+      { "value": 5, "name": "医疗器械设备智造区" },
+      { "value": 20, "name": "工业创意产品生产区" },
+      { "value": 16, "name": "工业互联网研发区" },
+      { "value": 13, "name": "人工智能研发区" },
+      { "value": 13, "name": "配套住宿区" },
+      { "value": 24, "name": "餐饮休闲区" }
+    ]
+  },
+  "display_options": {
+    "initial_scene": "鸟瞰",
+    "camera_web_widget_options": {
+      "width": 380,
+      "height": 365,
+      "position": "left",
+      "angle": 25,
+      "transparent": true,
+      "closable": true,
+      "dismissable": false,
+      "mouseInput": false,
+      "keyboardInput": false,
+      "line": {
+        "visible": true,
+        "color": [0, 60, 62],
+        "horizontalLineLength": 50,
+        "verticalLineLength": 250,
+        "connectorVisible": true
+      }
+    },
+    "camera_focus_options": {
+      "pitch": 15.0,
+      "distance": 500.0
+    }
+  }
+}

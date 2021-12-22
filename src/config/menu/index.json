@@ -1,0 +1,62 @@
+{
+    "menu": {
+      "type": "menu-group-bottom",
+      "data": [
+        {
+          "title": "项目介绍",
+          "data": "introduction.json"
+        },
+        {
+          "title": "碳中和",
+          "data": [
+            {
+              "title": "能源",
+              "data": "energy.json"
+            }
+          ]
+        },
+        {            
+          "title": "智慧运营",
+          "data": [
+            {
+              "title": "办公",
+              "data": "office.json"
+            },
+            {
+              "title": "环境",
+              "data": "environment.json"
+            },
+            {
+              "title": "消防",
+              "data": "firecontrol.json"
+            },
+            {
+              "title": "安保",
+              "data": "security.json"
+            },
+            {
+              "title": "停车",
+              "data": "park.json"
+            }
+          ]
+        },
+        {            
+          "title": "产业招商",
+          "data": [
+            {
+              "title": "招商成果",
+              "data": "achivement.json"
+            },
+            {
+              "title": "空间布局",
+              "data": "space.json"
+            },
+            {
+              "title": "产业规划",
+              "data": "plan.json"
+            }
+          ]
+        }
+      ]
+    }
+  }

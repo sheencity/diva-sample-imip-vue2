@@ -1,0 +1,138 @@
+{
+	"diva": {
+		"init": {
+			"scene_name": "鸟瞰"
+		}
+	},
+	"panel": {
+    "panel-left": [
+      {
+        "header": {
+          "title": "项目介绍",
+          "icon": "../img/1.svg"
+        },
+        "content": {
+          "type": "basic-info",
+          "data": {
+            "image": {
+             "url": "../img/scene.png"
+            },
+            "text": "智能制造产业园是智能化、科技化，管理成本更低，生产自动化程度更高的制造类园区。"
+          }
+        }
+      },
+      {
+        "header": {
+          "title": "基本信息",
+          "icon": "../img/2.svg"
+        },
+        "content": {
+          "type": "card-table",
+          "column": 2,
+          "data": [
+            { "title": "总建筑面积", "value": "328,190", "unit": "m²" },
+            { "title": "总用地面积", "value": "200,292", "unit": "m²" },
+            { "title": "总计容建筑面积", "value": "336,150", "unit": "m²" },
+            { "title": "地上建筑面积", "value": "305,170", "unit": "m²" },
+            { "title": "基底建筑面积", "value": "80,625",	"unit": "m²" },
+            { "title": "容积率", "value": "1.62" },
+            { "title": "建筑密度", "value": "40.2", "unit": "%" },
+            { "title": "绿地率", "value": "15",	"unit": "%"	}
+          ]
+        }
+      },
+      {
+        "header": {
+					"title": "建筑分区",
+					"icon": "../img/3.svg"
+        },
+        "content": {
+          "type": "echarts-rose",
+          "option": {
+            "series": [
+              {
+                "color": ["#E3F2FD", "#90CAF9", "#42A5F5", "#1E88E5", "#1565C0", "#0D47A1","#5C6BC0"],
+                "label": {
+                  "color": "#fff",
+                  "show": true
+                },
+                "data": [
+                  { "value": 29550, "name": "自动机械产品智造区" },
+                  { "value": 38520, "name": "医疗器械设备智造区" },
+                  { "value": 90140, "name": "工业创意产品生产区" },
+                  { "value": 50310, "name": "工业互联网研发区" },
+                  { "value": 27050, "name": "人工智能研发区" },
+                  { "value": 60000, "name": "配套住宿区" },
+                  { "value": 8300, "name": "餐饮休闲区" }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "panel-right": [
+      {
+        "header": {
+            "title": "产业布局",
+            "icon": "../img/4.svg"
+        },
+        "content": {
+          "type": "card-list",
+          "diva": {
+            "action": [
+              {
+                "name": "highlight",
+                "description": "点击后目标物体高亮显示",
+                "param": {
+                  "color": [255,0,0,80], 
+                  "borderColor": [255,255,255],  
+                  "borderSize": 1
+                }
+              },
+              {
+                "name": "focus",
+                "description": "点击后聚焦至目标物体",
+                "param": {
+                  "distance": 30000,
+                  "pitch": -45
+                }
+              }
+            ]
+          },
+          "data": [
+            {
+              "title": "生产区",
+              "list": [
+                {
+                  "type": "card-two-info",
+                  "content": {
+                    "title": "自动机械产品制造区",
+                    "icon": "../img/automaton.png",
+                    "info_left": { 
+                      "title": "建筑面积", "value": "60,000", "unit": "m²"
+                    },
+                    "info_right": {
+                      "title": "计容建筑面积", "value": "42,840", "unit": "m²"
+                    }
+                  },
+                  "diva": {
+                    "model": [
+                      { "name": "13#" },
+                      { "group": "产业园区/楼栋/5#" }
+                    ],
+                    "poi": [
+                      { "name": "POI配套住宿" }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
+

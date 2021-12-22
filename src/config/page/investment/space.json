@@ -1,0 +1,49 @@
+{
+  "default_scene": "鸟瞰",
+  "traffic_line_group": "功能辅助/交通流线",
+  "space_info": "园区布局结构呈“一轴三点两环”。整个园区由南北景观中轴一分为二，优化制造空间和研发区域。三点，厂前区中心开敞空间，东入口广场，厂区中心广场，三个广场点阵结合，加强休闲区域的联系。两环，生产区车流闭环和厂前区车流闭环，减少园区内交通安全隐患，规范园区管理，优化用户体验。",
+  "scene_data": {
+    "one": [
+      {
+        "img": "1.png",
+        "title": "南北景观中轴",
+        "type": "video",
+        "scene_name": "南北景观中轴"
+      }
+    ],
+    "two": [
+      {
+        "img": "5.png",
+        "title": "生产区车流闭环",
+        "type": "video",
+        "scene_name": "生产区车流闭环"
+      },
+      {
+        "img": "6.png",
+        "title": "厂前区车流闭环",
+        "type": "video",
+        "scene_name": "厂前区车流闭环"
+      }
+    ],
+    "three": [
+      {
+        "img": "2.png",
+        "title": "厂前区中心开敞空间",
+        "type": "video",
+        "scene_name": "厂前区节点"
+      },
+      {
+        "img": "3.png",
+        "title": "厂区中心广场",
+        "type": "video",
+        "scene_name": "中心广场节点"
+      },
+      {
+        "img": "4.png",
+        "title": "东广场入口",
+        "type": "video",
+        "scene_name": "东广场入口节点"
+      }
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "equipment_table": {
+    "thead": [
+      {
+        "name": "id",
+        "title": "编号"
+      },
+      {
+        "name": "category",
+        "title": "类别"
+      },
+      {
+        "name": "status",
+        "title": "状态"
+      },
+      {
+        "name": "name",
+        "title": "资源名称"
+      }
+    ],
+    "resource_data": [
+      { "id": "MEF901", "name": "环境监测设备", "category": "监测设备", "status": "正常"},
+      { "id": "MEF902", "name": "环境监测引导文字", "category": "监测设备", "status": "检修"}
+    ]
+  },
+  "monitoring_data": {
+      "data": [
+        {
+          "CH2O": 0.008,
+          "CO2": 435,
+          "DeviceID": "MEF901",
+          "HUMI": 55.5,
+          "ID": "83222",
+          "PM25": 52,
+          "TEMP": 16.2,
+          "VOC": 0.296
+        }
+      ]
+  },
+  "device_frame_info": {
+    "width": 380,
+    "height": 420,
+    "position": "left",
+    "angle": 25,
+    "transparent": true,
+    "closable": true,
+    "dismissable": false,
+    "mouseInput": false,
+    "keyboardInput": false,
+    "line": {
+      "visible": true,
+      "color": [0, 60, 62],
+      "horizontalLineLength": 50,
+      "verticalLineLength": 250,
+      "connectorVisible": true
+    }
+  },
+  "display_options": {
+    "initial_scene": "主楼分析A"
+  },
+  "echarts_data": {
+    "CH2OData": [
+      { "average": 0.016, "max": 0.025, "min": 0.01 },
+      { "average": 0.02, "max": 0.031, "min": 0.009 },
+      { "average": 0.014, "max": 0.023, "min": 0.003 },
+      { "average": 0.011, "max": 0.018, "min": 0.0 },
+      { "average": 0.01, "max": 0.018, "min": 0.0 },
+      { "average": 0.009, "max": 0.018, "min": 0.0 },
+      { "average": 0.01, "max": 0.018, "min": 0.0 }
+    ],
+    "CO2Data": [
+      { "average": 454.448, "max": 625.0, "min": 422.0 },
+      { "average": 443.221, "max": 956.0, "min": 386.0 },
+      { "average": 420.696, "max": 585.0, "min": 352.0 },
+      { "average": 406.69, "max": 590.0, "min": 386.0 },
+      { "average": 460.549, "max": 584.0, "min": 403.0 },
+      { "average": 455.971, "max": 669.0, "min": 406.0 },
+      { "average": 425.875, "max": 450.0, "min": 414.0 }
+    ],
+    "PM25Data": [
+      { "average": 31.204, "max": 37.0, "min": 21.0 },
+      { "average": 35.281, "max": 52.0, "min": 22.0 },
+      { "average": 18.085, "max": 45.0, "min": 1.0 },
+      { "average": 15.662, "max": 35.0, "min": 0.0 },
+      { "average": 35.963, "max": 44.0, "min": 25.0 },
+      { "average": 41.743, "max": 64.0, "min": 34.0 },
+      { "average": 43.687, "max": 195.0, "min": 25.0 }
+    ],
+    "VOCData": [
+      { "average": 0.31, "max": 1.271, "min": 0.073 },
+      { "average": 0.886, "max": 4.143, "min": 0.098 },
+      { "average": 0.465, "max": 1.184, "min": 0.056 },
+      { "average": 0.348, "max": 0.978, "min": 0.041 },
+      { "average": 1.6, "max": 3.516, "min": 0.309 },
+      { "average": 2.645, "max": 5.897, "min": 0.785 },
+      { "average": 1.006, "max": 1.567, "min": 0.454 }
+    ],
+    "humidityData": [
+      { "average": 55.418, "max": 58.7, "min": 53.6 },
+      { "average": 55.272, "max": 64.7, "min": 46.9 },
+      { "average": 56.078, "max": 61.9, "min": 49.2 },
+      { "average": 53.062, "max": 62.7, "min": 47.7 },
+      { "average": 61.752, "max": 64.2, "min": 59.5 },
+      { "average": 63.773, "max": 68.6, "min": 61.0 },
+      { "average": 69.096, "max": 70.8, "min": 66.3 }
+    ],
+    "temperatureData": [
+      { "average": 25.621, "max": 27.7, "min": 23.5 },
+      { "average": 25.452, "max": 26.3, "min": 23.0 },
+      { "average": 24.564, "max": 25.6, "min": 23.0 },
+      { "average": 22.571, "max": 23.3, "min": 18.6 },
+      { "average": 22.569, "max": 23.6, "min": 20.8 },
+      { "average": 22.523, "max": 24.8, "min": 21.3 },
+      { "average": 22.437, "max": 23.7, "min": 20.2 }
+    ]
+  }
+}
