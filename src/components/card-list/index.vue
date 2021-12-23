@@ -25,7 +25,6 @@ export default {
     return{}
   },
   created(){
-    console.log(this.header,this.dataSource)
     this.init();
   },
   methods: {
