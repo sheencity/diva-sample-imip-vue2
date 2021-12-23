@@ -28,7 +28,7 @@
 <script>
 import AppDialog from '../common/dialog/dialog'
 export default {
-  props: ['header', 'contentData'],
+  props: ['header', 'dataSource'],
   data(){
     return{
       basicData: []
@@ -40,7 +40,7 @@ export default {
   methods: {
     getStructuredData(){
       let param = {};
-      this.contentData.forEach((item,index) => {
+      this.dataSource.forEach((item,index) => {
         switch(index%2){
           case 0: {
             const { title, value, unit } = item;

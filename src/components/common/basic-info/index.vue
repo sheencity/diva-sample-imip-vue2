@@ -1,18 +1,18 @@
 <template>
   <app-dialog :header="header">
     <div class="main">
-      <div v-if="contentData.image" class="image">
+      <div v-if="dataSource.image" class="image">
         <img
           style="width: 100%;height: 100%;"
-          v-if="contentData.image.url"
-          :src="require('../../../assets/' + contentData.image.url)"
+          v-if="dataSource.image.url"
+          :src="require('../../../assets/' + dataSource.image.url)"
         />
       </div>
-      <p v-if="contentData.text.length === 1">
-        {{ contentData.text[0] }}
+      <p v-if="dataSource.text.length === 1">
+        {{ dataSource.text[0] }}
       </p>
       <template v-else>
-        <ul v-for="item in contentData.text" :key="item" class="list">
+        <ul v-for="item in dataSource.text" :key="item" class="list">
           <li>{{ item }}</li>
         </ul>
       </template>
@@ -26,7 +26,7 @@
 import AppDialog from '../dialog/dialog';
 
 export default {
-  props: ['contentData','header'],
+  props: ['dataSource','header'],
   components: {
     AppDialog
   }

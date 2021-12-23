@@ -1,18 +1,20 @@
 <template>
   <article v-if="initDivaData" class="space-between">
     <aside class="space-left all">
-      <app-basic-info class="top10" :header="basicInfoData.header" :contentData="basicInfoData.content.data"></app-basic-info>
-      <app-card-table class="top10" :header="cardTableData.header" :contentData="cardTableData.content.data"></app-card-table>
-      <!-- <app-card-table :data="cardTableData"></app-card-table> -->
+      <app-basic-info class="top10" :header="basicInfoData.header" :dataSource="basicInfoData.content.data"></app-basic-info>
+      <app-card-table class="top10" :header="cardTableData.header" :dataSource="cardTableData.content.data"></app-card-table>
       <!-- <pie-charts :data="pieChartsData"></pie-charts> -->
     </aside>
     <aside class="space-right all">
-      <app-card-list class="top10" :header="cardListData.header" :contentData="cardListData.content.data"></app-card-list>
+      <app-card-list class="top10" :header="cardListData.header" :dataSource="cardListData.content.data"
+        @select="selectArea"
+      ></app-card-list>
     </aside>
   </article>
 </template>
 
 <script>
+import { diva } from 'services/global';
 import AppBasicInfo from 'components/common/basic-info';
 import AppCardTable from 'components/card-table'
 import AppCardList from 'components/card-list'
@@ -26,6 +28,7 @@ export default {
       cardTableData: null,
       pieChartsData: null,
       cardListData: null,
+
     };
   },
   created() {
@@ -47,7 +50,18 @@ export default {
       this.pieChartsData = data.panel['panel-left'][2];
       this.cardListData = data.panel['panel-right'][0];
     },
+    /**
+     * 初始化场景
+     */
     initScene(name) {
+      diva.client?.applyScene(name);
+    },
+    /**
+     * 选择区域聚焦
+     * @param e 区域信息
+     */
+    selectArea(e){
+      console.log(e)
     }
   },
   beforeDestroy(){

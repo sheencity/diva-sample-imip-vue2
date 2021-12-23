@@ -2,30 +2,30 @@
   <main class="area-bg">
     <div style="pointer-events: none;">
       <header>
-        <p>{{ contentData.title }}</p>
+        <p>{{ dataSource.title }}</p>
         <div></div>
       </header>
       <aside>
         <div class="area-content">
           <div class="content">
-            <img :src="require('../../../assets/' + contentData.icon)" />
+            <img :src="require('../../../assets/' + dataSource.icon)" />
           </div>
           <div class="content">
-            <p>{{ contentData.info_left.title }}</p>
+            <p>{{ dataSource.info_left.title }}</p>
             <div>
               <span>
-                {{ contentData.info_left.value }}
+                {{ dataSource.info_left.value }}
               </span>
-              {{ contentData.info_left.unit }}
+              {{ dataSource.info_left.unit }}
             </div>
           </div>
-          <div v-if="contentData.info_right" class="content">
-            <p>{{ contentData.info_right.title }}</p>
+          <div v-if="dataSource.info_right" class="content">
+            <p>{{ dataSource.info_right.title }}</p>
             <div>
               <span>
-                {{ contentData.info_right.value }}
+                {{ dataSource.info_right.value }}
               </span>
-              {{ contentData.info_right.unit }}
+              {{ dataSource.info_right.unit }}
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
 // 项目介绍模块的生产区和生活区组件
 
 export default {
-  props: ["contentData",],
+  props: ["dataSource",],
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <app-dialog :header="header">
-    <div :key="item.title" v-for="(item,index) in contentData">
+    <div :key="item.title" v-for="(item,index) in dataSource">
       <div class="prod-area">
         <h3>{{ item.title }}</h3>
       </div>
@@ -9,7 +9,7 @@
         v-for="(childItem,index) in item.list"
         class="area-module"
         :class="{ 'item-selected': childItem.checked }"
-        :contentData="childItem.content"
+        :dataSource="childItem.content"
         @click.native="selectItem(childItem)"
       ></app-card-two-info>
     </div>
@@ -20,30 +20,30 @@
 import AppDialog from '../common/dialog/dialog';
 import AppCardTwoInfo from '../common/card-two-info'
 export default {
-  props: ['header', 'contentData'],
+  props: ['header', 'dataSource'],
   data(){
     return{}
   },
   created(){
-    console.log(this.header,this.contentData)
+    console.log(this.header,this.dataSource)
     this.init();
   },
   methods: {
     init(){
-      this.contentData.forEach((area) => {
+      this.dataSource.forEach((area) => {
         area.list.forEach((ele) => {
           this.$set(ele,'checked',false)
         })
       });
     },
     selectItem(e){
-      this.contentData.forEach((area) => {
+      this.dataSource.forEach((area) => {
         area.list.forEach((ele) => {
           ele.checked = false;
         })
       });
       e.checked = true;
-      console.log(e)
+      this.$emit('select',e);
     }
   },
   components: {
