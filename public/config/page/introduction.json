@@ -24,7 +24,7 @@
       {
         "header": {
           "title": "基本信息",
-          "icon": "assets/images/"
+          "icon": "images/common/dialog/route1/2.svg"
         },
         "content": {
           "type": "card-table",
