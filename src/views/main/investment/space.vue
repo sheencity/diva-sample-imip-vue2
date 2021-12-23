@@ -8,6 +8,14 @@
         >
         </echarts>
       </template>
+      <template v-if="basicInfoData">
+        <app-basic-info
+          class="top10"
+          :header="basicInfoData.header"
+          :dataSource="basicInfoData.content.data"
+        >
+        </app-basic-info>
+      </template>
     </aside>
     <aside class="space-right all">
       <template v-if="cameraAlbumData">
