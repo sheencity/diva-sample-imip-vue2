@@ -2,10 +2,10 @@
     <app-dialog :header="header">
       <div class="main">
         <button
-          :key="item.content"
-          v-for="(item, index) in dataSource"
           class="resource"
           :class="{ 'item-selected': selectItem === index }"
+          :key="item.content"
+          v-for="(item, index) in dataSource"
           @click="select(item,index)"
         >
           <div class="content">

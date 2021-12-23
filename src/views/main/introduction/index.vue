@@ -2,7 +2,8 @@
   <article class="space-between">
     <aside v-if="basicInfoData && buttonTestData" class="space-left all">
       <app-basic-info class="top10" :header="basicInfoData.header" :dataSource="basicInfoData.content.data"></app-basic-info>
-      <app-button-tab class="top10" :header="basicInfoData.header" :dataSource="buttonTestData.content.data" @select="swit" ></app-button-tab>
+      <app-button-tab class="top10" :header="basicInfoData.header" :dataSource="buttonTestData.content.data" @select="switbtn" ></app-button-tab>
+      <app-table-col3 class="top10" :header="basicInfoData.header" :dataSource="tableCol3TestData" @select="swit" @unselect="unswit"></app-table-col3>
       <!-- <app-card-table :data="cardTableData"></app-card-table> -->
       <!-- <pie-charts :data="pieChartsData"></pie-charts> -->
     </aside>
@@ -16,6 +17,7 @@
 import AppBasicInfo from 'components/common/basic-info';
 import AppDialog from 'components/common/dialog/dialog';
 import AppButtonTab from 'components/common/button-tab';
+import AppTableCol3 from 'components/common/table/table-col3'
 // import AppCardTable from '../../components/common/basic-info/index';
 // import PieCharts from '../../components/common/charts/pie/index';
 // import AppCardList from '../../components/common/card-list/index';
@@ -29,7 +31,29 @@ export default {
       cardTableData: null,
       pieChartsData: null,
       cardListData: null,
-      buttonTestData: null
+
+      buttonTestData: null,
+      tableCol3TestData: {
+        thead: [
+          { name: "id", title: "编号" },
+          { name: "category", title: "类别" },
+          { name: "status", title: "状态" },
+        ],
+        tbody: [
+           {
+            id: "WF171",
+            name: "POI卫生间17F01",
+            category: "卫生间",
+            status: "正常"
+          },
+          {
+            id: "WF172",
+            name: "POI卫生间17F02",
+            category: "卫生间",
+            status: "检修"
+          },
+        ]
+      }
     };
   },
   created() {
@@ -57,22 +81,29 @@ export default {
     initScene(name) {
       console.log(name)
     },
-    swit(e){
+    switbtn(e){
       console.log(e);
+    },
+    swit(resourceName,item){
+      console.log("选中");
+      console.log({resourceName,item});
+    },
+    unswit(resourceName,item){
+      console.log("取消选中");
+      console.log({resourceName,item});
     }
   },
   beforeDestroy(){
-    this.modelEventList?.forEach((model)=>{
-      model.removeEventListener('click',this.addEvent);
-    })
+   
   },
   destroyed(){
-    // this.setFloorReset(this.floorList)
+    
   },
   components: {
     AppDialog,
     AppBasicInfo,
-    AppButtonTab
+    AppButtonTab,
+    AppTableCol3
     // AppBasicInfo,
     // AppCardTable,
     // AppCardList,

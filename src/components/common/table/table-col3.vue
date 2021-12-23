@@ -1,92 +1,78 @@
 <template>
-  <main v-if="thead.length > 0 && tbody.length > 0">
-    <div class="thead">
-      <span class="col-1">{{ thead[0].title }}</span>
-      <span class="col-2">{{ thead[1].title }}</span>
-      <span class="col-3">{{ thead[2].title }}</span>
-    </div>
-    <div class="container">
-      <div class="main" :style="{ maxHeight: maxItem * 40 + 'px' }">
-         <div
-          v-for="(item, index) in tbody"
-          :ref="'row' + index"
-          :key="item[thead[0].name]"
-          class="tbody"
-          :class="{ 'item-selected': selectId === item.id }"
-          :style="{ opacity: item[thead[2].name] === '检修' ? 0.3 : 1}"
-        >
-          <span class="col-1">{{ item[thead[0].name] }}</span>
-          <span class="col-2">{{ item[thead[1].name] }}</span>
-          <span
-            class="col-3"
-            :class="{ 'disabled': item[thead[2].name] === '检修' }"
-            >{{ item[thead[2].name] }}</span
+  <app-dialog :header="header">
+    <div v-if="thead.length > 0 && tbody.length > 0">
+      <div class="thead">
+        <span class="col-1">{{ thead[0].title }}</span>
+        <span class="col-2">{{ thead[1].title }}</span>
+        <span class="col-3">{{ thead[2].title }}</span>
+      </div>
+      <div class="container">
+        <div class="main" :style="{ maxHeight: maxItem * 40 + 'px' }">
+          <div
+            class="tbody"
+            :class="{ 'item-selected': selectId === index }"
+            :style="{ opacity: item[thead[2].name] === '检修' ? 0.3 : 1}"
+            :key="item[thead[0].name]"
+            v-for="(item, index) in tbody"
+            @click="select(item,index)"
           >
+            <span class="col-1">{{ item[thead[0].name] }}</span>
+            <span class="col-2">{{ item[thead[1].name] }}</span>
+            <span
+              class="col-3"
+              :class="{ 'disabled': item[thead[2].name] === '检修' }"
+              >{{ item[thead[2].name] }}</span
+            >
+          </div>
         </div>
       </div>
     </div>
-  </main>
+  </app-dialog>
+  
 </template>
 
 <script>
-// 智慧运营里面的类似表格的组件
+import AppDialog from '../dialog/dialog'
+
 export default {
-  props: ["thead", "tbody", "maxItem"],
+  props: ['dataSource', 'maxItem', 'header'],
   data() {
     return {
       selectId: -1,
-
-      clickListener: (e) => {
-        const dom = e.target.classList.contains("tbody")
-          ? e.target
-          : e.target.parentNode;
-        const index = dom.getAttribute("listIndex");
-        if (!index) throw new Error("未获取到事件 DOM");
-        this.selectItem(this.tbody[index]);
-      },
-    };
+      thead: [],
+      tbody: []
+    }
+  },
+  created(){
+    if(this.dataSource){
+      this.thead = this.dataSource.thead;
+      this.tbody = this.dataSource.tbody;
+    }
   },
   methods: {
-    selectItem(e) {
-      if (e[this.thead[2].name] === "检修") {
-        return;
-      }
-      const targetName = e[this.thead[3].name];
-      this.unselectItem(targetName);
-      this.selectId = e.id;
+    select(e,index) {
+      if (e[this.thead[2].name] === "检修") return;
+      const targetName = e.name;
+      this.unselect();
+      this.selectId = index;
       this.$emit("select", targetName, e);
     },
-    unselectItem(targetName) {
-      this.tbody?.forEach((obj) => {
+    unselect() {
+      this.tbody?.forEach((obj,index) => {
         // 将其他选中的取消
-        const otherName = obj[this.thead[3].name];
-        if (
-          this.selectId === obj[this.thead[0].name] &&
-          targetName !== otherName
-        ) {
+        const otherName = obj.name;
+        if (this.selectId === index){
           this.$emit("unselect", otherName, obj);
         }
       });
     },
   },
-  watch: {
-    tbody: function(value, old) {
-      if (old.length) this.selectId = -1;
-    }
-  },
-  updated() {
-    if (Object.keys(this.$refs)?.length) {
-      this.tbody?.forEach((e, index) => {
-        const domName = "row" + index;
-        const dom = this.$refs[domName][0];
-        dom.setAttribute("listIndex", index);
-        dom.addEventListener("click", this.clickListener);
-      });
-    }
-  },
   beforeDestroy() {
-    this.unselectItem();
+    this.unselect();
   },
+  components: {
+    AppDialog
+  }
 };
 </script>
 
@@ -113,6 +99,7 @@ export default {
     line-height: 19px;
     text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
     letter-spacing: 0px;
+    pointer-events: none;
   }
   .col-1 {
     text-align: left;
