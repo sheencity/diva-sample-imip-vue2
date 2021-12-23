@@ -14,28 +14,6 @@
         "icon": "images/common/dialog/route4/2-1.svg"
       },
       "content": {
-        "type": "echarts-basic-bar",
-        "option": {
-          "dataset": {
-            "source": [
-              ["周一", 138075],
-              ["周二", 121562],
-              ["周三", 102451],
-              ["周四", 121457],
-              ["周五", 134125],
-              ["周六", 62712],
-              ["周日", 56271]
-            ]
-          }
-        }
-      }
-    },
-    {
-      "header": {
-        "title": "空间布局",
-        "icon": "images/common/dialog/route4/2-1.svg"
-      },
-      "content": {
         "type": "basic-info",
         "data": {
           "text": [

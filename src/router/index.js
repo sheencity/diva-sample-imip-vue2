@@ -6,6 +6,7 @@ import Introduction from "views/main/introduction";
 import Achievement from "views/main/investment/achievement";
 import Space from "views/main/investment/space";
 import Plan from "views/main/investment/plan";
+import Park from "views/main/wisdom-operation/park";
 
 Vue.use(VueRouter);
 
@@ -39,7 +40,7 @@ const routes = [
           { path: "/wisdom-operation/fire-control", component: Introduction },
           { path: "/wisdom-operation/production", component: Introduction },
           { path: "/wisdom-operation/security", component: Introduction },
-          { path: "/wisdom-operation/park", component: Introduction },
+          { path: "/wisdom-operation/park", component: Park },
           {
             path: "/attract-investment",
             name: "产业招商",

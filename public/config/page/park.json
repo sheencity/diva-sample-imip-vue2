@@ -7,12 +7,12 @@
 	},
   "panel-left": [
     {
-      "type": "parking-panel",
       "header": {
         "title": "车位概况",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route3/6-1.svg"
 			},
 			"content": {
+        "type": "parking-panel",
         "general": {
           "total": 551,
           "power_rest": 38,
@@ -76,7 +76,7 @@
     {
       "header": {
         "title": "停车时长",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route3/6-2.svg"
 			},
 			"content": {
         "type": "echarts-pie",
@@ -95,7 +95,7 @@
     {
       "header": {
         "title": "车位使用饱和率",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route3/6-3.svg"
 			},
 			"content": {
         "type": "echarts-line",
@@ -112,7 +112,7 @@
     {
       "header": {
         "title": "车辆出入记录",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route3/6-4.svg"
 			},
       "content": {
         "type": "text-list",
