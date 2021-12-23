@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import AppDialog from "components/common/dialog/dialog";
 import AppBasicInfo from "components/common/basic-info";
 import AppCameraAlbum from "components/common/camera-album";
 import Echarts from "components/common/echarts";
@@ -47,7 +46,6 @@ export default {
     });
   },
   components: {
-    AppDialog,
     AppBasicInfo,
     AppCameraAlbum,
     Echarts,

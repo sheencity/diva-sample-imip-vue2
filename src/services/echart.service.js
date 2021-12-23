@@ -1,9 +1,8 @@
 export class EchartService {
-  echartsMap = new Map();
-  constructor() {
-    this.echartsMap.set('echarts-basic-bar', this.getBasicBarOption());
-    this.echartsMap.set('echarts-bar', this.getUniBarOption());
-  }
+  echartsMap = new Map([
+    ['echarts-basic-bar', this.getBasicBarOption()],
+    ['echarts-bar', this.getUniBarOption()],
+  ]);
 
   /**
    * 获取基本柱状图配置

@@ -1,85 +1,85 @@
 <template>
-    <app-dialog :header="header">
-      <div class="main">
-        <button
-          class="resource"
-          :class="{ 'item-selected': selectItem === index }"
-          :key="item.content"
-          v-for="(item, index) in dataSource"
-          @click="select(item,index)"
-        >
-          <div class="content">
-            <div v-if="item.icon">
-              <img v-show="selectItem === index" :src="require('../../../assets/' + item.icon.selectUrl)" />
-              <img v-show="selectItem !== index" :src="require('../../../assets/' + item.icon.unselectUrl)" />
-            </div>
-            {{ item.title }}
+  <app-dialog :header="header">
+    <div class="main">
+      <button
+        class="resource"
+        :class="{ 'item-selected': selectItem === index }"
+        :key="item.content"
+        v-for="(item, index) in dataSource"
+        @click="select(item, index)"
+      >
+        <div class="content">
+          <div v-if="item.icon">
+            <img v-show="selectItem === index" :src="require('../../../assets/' + item.icon.selectUrl)" />
+            <img v-show="selectItem !== index" :src="require('../../../assets/' + item.icon.unselectUrl)" />
           </div>
-        </button>
-      </div>
-    </app-dialog>
+          {{ item.title }}
+        </div>
+      </button>
+    </div>
+  </app-dialog>
 </template>
 
 <script>
-import AppDialog from '../dialog/dialog.vue'
+import AppDialog from '../dialog/dialog';
+
 export default {
   props: {
     dataSource: {
       type: Array,
-      default: []
+      default: [],
     },
-    header: {}
+    header: {},
   },
   data(){
     return{
-      selectItem: -1,
-    }
+      selectItem: 0,
+    };
   },
-
   methods: {
-    select(item,index){
+    select(item, index) {
       this.selectItem = index;
-      this.$emit('select',item);
+      this.$emit('select', index);
     }
   },
   components: {
-    AppDialog
-  }
+    AppDialog,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-  .main{
-    display: flex;
-    justify-content: space-between;
-    .resource {
-      width: 100%;
-      height: 2.25rem;
-      margin-right: 10px;
-      border: 1px solid rgba(5, 205, 157, 0.3);
-      border-radius: 4px;
-      background: transparent;
-      font-weight: 500;
-      font-size: .88rem;
-      color: #ffffff;
-      vertical-align: middle;
-      &:last-child{
-        margin-right: 0;
-      }
-      .content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: none;
-        img {
-          width: 1.13rem;
-          height: 1.13rem;
-          margin-right: 6px;
-        }
-      }
-      &:hover {
-        background: rgba(255, 255, 255, 0.1);
+.main{
+  display: flex;
+  justify-content: space-between;
+  .resource {
+    width: 100%;
+    height: 2.25rem;
+    margin-right: 10px;
+    border: 1px solid rgba(5, 205, 157, 0.3);
+    border-radius: 4px;
+    background: transparent;
+    font-weight: 500;
+    font-size: .88rem;
+    color: #ffffff;
+    vertical-align: middle;
+    &:last-child{
+      margin-right: 0;
+    }
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      img {
+        width: 1.13rem;
+        height: 1.13rem;
+        margin-right: 6px;
       }
     }
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
   }
+}
 </style>>
