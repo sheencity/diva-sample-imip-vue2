@@ -16,6 +16,8 @@
           <li>{{ item }}</li>
         </ul>
       </template>
+
+      <slot></slot>
     </div>
   </app-dialog>
 </template>

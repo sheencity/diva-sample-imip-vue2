@@ -4,13 +4,20 @@
       <template v-if="buttonTabData">
         <app-button-tab
           :header="buttonTabData.header"
-          :dataSource="buttonTabData.content.data"
+          :dataSource="buttonTabData.content"
           @select="buttonTabChange"
         >
         </app-button-tab>
       </template>
       <template v-if="rowListData">
-
+        <app-row-list
+          class="top10"
+          :header="rowListData.header"
+          :dataSource="rowListData.content"
+          :key="rowListData.header.title"
+          @select="rowItemChange"
+        >
+        </app-row-list>
       </template>
     </aside>
     <aside class="space-right all">
@@ -23,6 +30,7 @@
 
 <script>
 import AppButtonTab from "components/common/button-tab";
+import AppRowList from "components/common/row-list";
 
 export default {
   data() {
@@ -44,9 +52,14 @@ export default {
       this.rowListData = this.buttonTabData.content.data[index]['target-panel'];
       // TODO diva action
     },
+    rowItemChange(index) {
+      console.log(index);
+      // TODO diva action
+    }
   },
   components: {
     AppButtonTab,
+    AppRowList,
   }
 };
 </script>

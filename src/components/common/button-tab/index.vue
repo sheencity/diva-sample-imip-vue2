@@ -4,14 +4,20 @@
       <button
         class="resource"
         :class="{ 'item-selected': selectItem === index }"
-        :key="item.content"
-        v-for="(item, index) in dataSource"
+        v-for="(item, index) in dataSource.data"
+        :key="item.title"
         @click="select(item, index)"
       >
         <div class="content">
           <div v-if="item.icon">
-            <img v-show="selectItem === index" :src="require('../../../assets/' + item.icon.selectUrl)" />
-            <img v-show="selectItem !== index" :src="require('../../../assets/' + item.icon.unselectUrl)" />
+            <img
+              v-show="selectItem === index"
+              :src="require('../../../assets/' + item.icon.selectUrl)"
+            />
+            <img
+              v-show="selectItem !== index"
+              :src="require('../../../assets/' + item.icon.unselectUrl)"
+            />
           </div>
           {{ item.title }}
         </div>
@@ -21,26 +27,20 @@
 </template>
 
 <script>
-import AppDialog from '../dialog/dialog';
+import AppDialog from "../dialog/dialog";
 
 export default {
-  props: {
-    dataSource: {
-      type: Array,
-      default: [],
-    },
-    header: {},
-  },
-  data(){
-    return{
+  props: ["header", "dataSource"],
+  data() {
+    return {
       selectItem: 0,
     };
   },
   methods: {
     select(item, index) {
       this.selectItem = index;
-      this.$emit('select', index);
-    }
+      this.$emit("select", index);
+    },
   },
   components: {
     AppDialog,
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main{
+.main {
   display: flex;
   justify-content: space-between;
   .resource {
@@ -60,10 +60,10 @@ export default {
     border-radius: 4px;
     background: transparent;
     font-weight: 500;
-    font-size: .88rem;
+    font-size: 0.88rem;
     color: #ffffff;
     vertical-align: middle;
-    &:last-child{
+    &:last-child {
       margin-right: 0;
     }
     .content {
@@ -82,4 +82,4 @@ export default {
     }
   }
 }
-</style>>
+</style>
