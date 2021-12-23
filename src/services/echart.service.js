@@ -1,34 +1,43 @@
 export class EchartService {
+  echartsMap = new Map();
+  constructor() {
+    this.echartsMap.set('echarts-basic-bar', this.getBasicBarOption());
+    this.echartsMap.set('echarts-bar', this.getUniBarOption());
+  }
+
   /**
    * 获取基本柱状图配置
    * @param dataSource 数据源
    * @param xAixsRotate x 轴的文本标签是否旋转，当文本内容显示不下的时候启用此项
    */
-  getBasicBarOption(dataSource, xAixsRotate = false) {
-    const xAxisLabel = xAixsRotate
-      ? {
-          color: '#fff',
-          interval: 0,
-          rotate: 10,
-          fontSize: 10,
-          margin: 14,
-          align: 'center',
-        }
-      : {
-          color: '#fff',
-          interval: 0,
-        };
+  getBasicBarOption() {
+    // const xAxisLabel = xAixsRotate
+    //   ? {
+    //       color: '#fff',
+    //       interval: 0,
+    //       rotate: 10,
+    //       fontSize: 10,
+    //       margin: 14,
+    //       align: 'center',
+    //     }
+    //   : {
+    //       color: '#fff',
+    //       interval: 0,
+    //     };
     return {
       grid: { bottom: 0, left: 0, right: 10, top: 10, containLabel: true },
       tooltip: {
         show: true,
       },
-      dataset: {
-        source: dataSource,
-      },
+      // dataset: {
+      //   source: dataSource,
+      // },
       xAxis: {
         type: 'category',
-        axisLabel: xAxisLabel,
+        axisLabel: {
+          color: '#fff',
+          interval: 0,
+        },
         axisTick: {
           show: false,
         },
@@ -85,12 +94,12 @@ export class EchartService {
    * @param showValue 是否在柱子顶部显示值
    * @param showXaxis 是否显示 x 轴的文本
    */
-  getUniBarOption(dataSource, showValue = true, showXaxis = true) {
+  getUniBarOption() {
     return {
       grid: { height: 140, bottom: 20, top: 20, right: 10 },
-      dataset: {
-        source: dataSource,
-      },
+      // dataset: {
+      //   source: dataSource,
+      // },
       tooltip: {
         trigger: 'axis',
       },
@@ -104,7 +113,7 @@ export class EchartService {
           show: false,
         },
         axisLabel: {
-          show: showXaxis,
+          // show: showXaxis,
         }
       },
       yAxis: {
@@ -124,7 +133,7 @@ export class EchartService {
           type: 'bar',
           name: '平均值',
           label: {
-            show: showValue,
+            // show: showValue,
             position: 'top',
             color: '#fff',
           },
