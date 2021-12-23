@@ -1,0 +1,77 @@
+<template>
+  <app-dialog :header="header">
+    <div :key="item.title" v-for="(item,index) in contentData">
+      <div class="prod-area">
+        <h3>{{ item.title }}</h3>
+      </div>
+      <app-card-two-info
+        :key="index"
+        v-for="(childItem,index) in item.list"
+        class="area-module"
+        :class="{ 'item-selected': childItem.checked }"
+        :contentData="childItem.content"
+        @click.native="selectItem(childItem)"
+      ></app-card-two-info>
+    </div>
+  </app-dialog>
+</template>
+
+<script>
+import AppDialog from '../common/dialog/dialog';
+import AppCardTwoInfo from '../common/card-two-info'
+export default {
+  props: ['header', 'contentData'],
+  data(){
+    return{}
+  },
+  created(){
+    console.log(this.header,this.contentData)
+    this.init();
+  },
+  methods: {
+    init(){
+      this.contentData.forEach((area) => {
+        area.list.forEach((ele) => {
+          this.$set(ele,'checked',false)
+        })
+      });
+    },
+    selectItem(e){
+      this.contentData.forEach((area) => {
+        area.list.forEach((ele) => {
+          ele.checked = false;
+        })
+      });
+      e.checked = true;
+      console.log(e)
+    }
+  },
+  components: {
+    AppDialog,
+    AppCardTwoInfo
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+  .prod-area,
+  .life-area {
+    h3 {
+      padding-bottom: 0.6rem;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.38rem;
+      text-align: center;
+      text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+      background: url("assets/images/router/introduction/title.png") no-repeat 50% 10%;
+    }
+  }
+  .life-area {
+    margin-top: 1rem;
+  }
+  .area-module:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #00f7ff;
+  }
+</style>>
+

@@ -1,24 +1,22 @@
 <template>
   <article v-if="initDivaData" class="space-between">
     <aside class="space-left all">
-      <app-basic-info class="top10" :header="basicInfoData.header" :dataSource="basicInfoData.content.data"></app-basic-info>
-      <app-card-table class="top10" :header="cardTableData.header" :dataSource="cardTableData.content.data"></app-card-table>
+      <app-basic-info class="top10" :header="basicInfoData.header" :contentData="basicInfoData.content.data"></app-basic-info>
+      <app-card-table class="top10" :header="cardTableData.header" :contentData="cardTableData.content.data"></app-card-table>
       <!-- <app-card-table :data="cardTableData"></app-card-table> -->
       <!-- <pie-charts :data="pieChartsData"></pie-charts> -->
     </aside>
     <aside class="space-right all">
-      <!-- <app-card-list :data="cardListData"></app-card-list> -->
+      <app-card-list class="top10" :header="cardListData.header" :contentData="cardListData.content.data"></app-card-list>
     </aside>
   </article>
 </template>
 
 <script>
 import AppBasicInfo from 'components/common/basic-info';
-import AppCardTable from 'components/card-table/index'
-// import AppCardTable from '../../components/common/basic-info/index';
+import AppCardTable from 'components/card-table'
+import AppCardList from 'components/card-list'
 // import PieCharts from '../../components/common/charts/pie/index';
-// import AppCardList from '../../components/common/card-list/index';
-// import AppAreaModule from "../components/area-module/area-module";
 
 export default {
   data() {
@@ -60,10 +58,8 @@ export default {
   },
   components: {
     AppBasicInfo,
-    AppCardTable
-    // AppBasicInfo,
-    // AppCardTable,
-    // AppCardList,
+    AppCardTable,
+    AppCardList
     // PieCharts
   },
 };
