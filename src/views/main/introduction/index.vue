@@ -1,9 +1,8 @@
 <template>
   <article class="space-between">
-    <aside v-if="basicInfoData" class="space-left all">
-      <app-dialog :header="basicInfoData.header">
-        <app-basic-info :data="basicInfoData.content.data"></app-basic-info>
-      </app-dialog>
+    <aside v-if="basicInfoData && buttonTestData" class="space-left all">
+      <app-basic-info class="top10" :header="basicInfoData.header" :dataSource="basicInfoData.content.data"></app-basic-info>
+      <app-button-tab class="top10" :header="basicInfoData.header" :dataSource="buttonTestData.content.data" @select="swit" ></app-button-tab>
       <!-- <app-card-table :data="cardTableData"></app-card-table> -->
       <!-- <pie-charts :data="pieChartsData"></pie-charts> -->
     </aside>
@@ -16,6 +15,7 @@
 <script>
 import AppBasicInfo from 'components/common/basic-info';
 import AppDialog from 'components/common/dialog/dialog';
+import AppButtonTab from 'components/common/button-tab';
 // import AppCardTable from '../../components/common/basic-info/index';
 // import PieCharts from '../../components/common/charts/pie/index';
 // import AppCardList from '../../components/common/card-list/index';
@@ -29,13 +29,16 @@ export default {
       cardTableData: null,
       pieChartsData: null,
       cardListData: null,
+      buttonTestData: null
     };
   },
   created() {
     this.init();
   },
   async mounted() {
-    
+    const { data } = await this.axios.get('config/page/energy.json');
+    this.buttonTestData = data.panel['panel-left'][0];
+    console.log(this.buttonTestData)
   },
   methods: {
     async init() {
@@ -53,6 +56,9 @@ export default {
     },
     initScene(name) {
       console.log(name)
+    },
+    swit(e){
+      console.log(e);
     }
   },
   beforeDestroy(){
@@ -66,6 +72,7 @@ export default {
   components: {
     AppDialog,
     AppBasicInfo,
+    AppButtonTab
     // AppBasicInfo,
     // AppCardTable,
     // AppCardList,

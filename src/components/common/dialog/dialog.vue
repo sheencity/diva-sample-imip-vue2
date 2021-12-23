@@ -19,11 +19,6 @@ export default {
       icon: this.header.icon,
     };
   },
-
-  created() {
-    console.log(this.icon);
-  },
-
   mounted() {},
 
   components: {

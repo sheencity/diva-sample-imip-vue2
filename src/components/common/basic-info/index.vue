@@ -1,22 +1,25 @@
 <template>
-  <div class="main">
-    <div v-if="data.image" class="image">
-      <img v-if="data.image.url" style="width: 100%;height: 100%;" :src="require('../../../assets/' + data.image.url)" />
+  <app-dialog :header="header">
+    <div class="main">
+      <div v-if="dataSource.image" class="image">
+        <img v-if="dataSource.image.url" style="width: 100%;height: 100%;" :src="require('../../../assets/' + dataSource.image.url)" />
+      </div>
+      <p v-if="dataSource.text.length === 1">
+        {{ dataSource.text[0] }}
+      </p>
+      <ul v-if="dataSource.text.length !== 1" v-for="item in dataSource.text" :key="item" class="list">
+        <li>{{ item }}</li>
+      </ul>
     </div>
-    <p v-if="data.text.length === 1">
-      {{ data.text[0] }}
-    </p>
-    <ul v-if="data.text.length !== 1" v-for="item in data.text" :key="item" class="list">
-      <li>{{ item }}</li>
-    </ul>
-  </div>
+  </app-dialog>
 </template>
 
 <script>
+import AppDialog from '../dialog/dialog.vue'
 export default {
-  props: ['data'],
-  created(){
-    console.log(this.data)
+  props: ['dataSource','header'],
+  components: {
+    AppDialog
   }
 }
 </script>

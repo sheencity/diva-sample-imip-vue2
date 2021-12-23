@@ -1,274 +1,118 @@
 {
-  "display_options": {
-    "initial_scene": "鸟瞰"
+  "diva": {
+    "init": {
+			"scene_name": "鸟瞰"
+		}
   },
-  "resource_data": {
-    "electric_resources": {
-      "maxValue": 25000,
-      "minValue": 0,
-      "opacity": 0.9,
-      "1#": {
-        "POI": {
-          "title": "",
-          "content": " 5,019 kW·h "
-        }
-      },
-      "2#": {
-        "POI": {
-          "title": "",
-          "content": " 8,628 kW·h "
-        }
-      },
-      "3#": {
-        "POI": {
-          "title": "",
-          "content": " 60,44 kW·h "
-        }
-      },
-      "4#": {
-        "POI": {
-          "title": "",
-          "content": " 21,571 kW·h "
-        }
-      },
-      "5#": {
-        "POI": {
-          "title": "",
-          "content": " 4,625 kW·h "
-        }
-      },
-      "6#": {
-        "POI": {
-          "title": "",
-          "content": " 4,131 kW·h "
-        }
-      },
-      "7#": {
-        "POI": {
-          "title": "",
-          "content": " 11,431 kW·h "
-        }
-      },
-      "8#": {
-        "POI": {
-          "title": "",
-          "content": " 9,147 kW·h "
-        }
-      },
-      "9#": {
-        "POI": {
-          "title": "",
-          "content": " 9,625 kW·h "
-        }
-      },
-      "10#": {
-        "POI": {
-          "title": "",
-          "content": " 10,579 kW·h "
-        }
-      },
-      "11#": {
-        "POI": {
-          "title": "",
-          "content": " 20,587 kW·h "
-        }
-      },
-      "12#": {
-        "POI": {
-          "title": "",
-          "content": " 3,564 kW·h "
-        }
-      },
-      "13#": {
-        "POI": {
-          "title": "",
-          "content": " 3,083 kW·h "
+  "panel": {
+    "panel-left": [
+      {
+        "header": {
+          "title": "能耗类型",
+          "icon": ""
+        },
+        "content": {
+          "type": "",
+          "data": [
+            {
+              "title": "电资源",
+              "icon": {
+                "unselectUrl": "images/router/energy/white_button_electricity.svg",
+                "selectUrl": "images/router/energy/button_electricity.svg"
+              },
+              "data": [
+                { "name": "1#", "value": " 5,019 kW·h " },
+                { "name": "2#", "value": " 8,628 kW·h " },
+                { "name": "3#", "value": " 60,44 kW·h " },
+                { "name": "4#", "value": " 21,571 kW·h " },
+                { "name": "5#", "value": " 4,625 kW·h " },
+                { "name": "6#", "value": " 4,131 kW·h " },
+                { "name": "7#", "value": " 11,431 kW·h " },
+                { "name": "8#", "value": " 9,147 kW·h " },
+                { "name": "9#", "value": " 9,625 kW·h " },
+                { "name": "10#", "value": " 10,579 kW·h " },
+                { "name": "11#", "value": " 20,587 kW·h " },
+                { "name": "12#", "value": " 3,564 kW·h " },
+                { "name": "13#", "value": " 3,083 kW·h " }
+              ],
+              "diva": {
+                "action":[
+                  { 
+                    "name": "",
+                    "description": "切换POI类别",
+                    "param": {
+                      "maxValue": 25000,
+                      "minValue": 0,
+                      "opacity": 0.9
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "水资源",
+              "icon": {
+                "unselectUrl": "images/router/energy/white_button_water.svg",
+                "selectUrl": "images/router/energy/button_water.svg"
+              },
+              "data": [
+                { "name": "1#", "value": " 33 m³" },
+                { "name": "2#", "value": " 57 m³" },
+                { "name": "3#", "value": " 40 m³" },
+                { "name": "4#", "value": " 258 m³" },
+                { "name": "5#", "value": " 121 m³" },
+                { "name": "6#", "value": " 62 m³" },
+                { "name": "7#", "value": " 134 m³" },
+                { "name": "8#", "value": " 130 m³" },
+                { "name": "9#", "value": " 182 m³" },
+                { "name": "10#", "value": " 137 m³" },
+                { "name": "11#", "value": " 342 m³" },
+                { "name": "12#", "value": " 31 m³" },
+                { "name": "13#", "value": " 278 m³" }
+              ],
+              "diva": {
+                "action":[
+                  { 
+                    "name": "",
+                    "description": "切换POI类别",
+                    "param": {
+                      "maxValue": 400,
+                      "minValue": 0,
+                      "opacity": 0.9
+                    }
+                  }
+                ]
+              }
+            }
+          ]
         }
       }
-    },
-    "water_resources": {
-      "maxValue": 400,
-      "minValue": 0,
-      "opacity": 0.9,
-      "1#": {
-        "POI": {
-          "title": "",
-          "content": " 33 m³"
-        }
-      },
-      "2#": {
-        "POI": {
-          "title": "",
-          "content": " 57 m³"
-        }
-      },
-      "3#": {
-        "POI": {
-          "title": "",
-          "content": " 40 m³"
-        }
-      },
-      "4#": {
-        "POI": {
-          "title": "",
-          "content": " 258 m³"
-        }
-      },
-      "5#": {
-        "POI": {
-          "title": "",
-          "content": " 121 m³"
-        }
-      },
-      "6#": {
-        "POI": {
-          "title": "",
-          "content": " 62 m³"
-        }
-      },
-      "7#": {
-        "POI": {
-          "title": "",
-          "content": " 134 m³"
-        }
-      },
-      "8#": {
-        "POI": {
-          "title": "",
-          "content": " 130 m³"
-        }
-      },
-      "9#": {
-        "POI": {
-          "title": "",
-          "content": " 182 m³"
-        }
-      },
-      "10#": {
-        "POI": {
-          "title": "",
-          "content": " 137 m³"
-        }
-      },
-      "11#": {
-        "POI": {
-          "title": "",
-          "content": " 342 m³"
-        }
-      },
-      "12#": {
-        "POI": {
-          "title": "",
-          "content": " 31 m³"
-        }
-      },
-      "13#": {
-        "POI": {
-          "title": "",
-          "content": " 278 m³"
+    ],
+    "panel-right": [
+      {
+        "header": {
+          "title": "POI数值",
+          "icon": ""
+        },
+        "content": {
+          "type": "switcher-list-panel",
+          "data": [
+            {
+              "title": "POI",
+              "description": "场景内通过覆盖物叠加样式呈现数据， DIVA 支持多种覆盖物组合使用，根据数据类型，通过不同的覆盖物组合搭配呈现。",
+              "diva": {
+                "action": {
+                  "name": "visible",
+                  "description": "显示/隐藏对应资源"
+                },
+                "resource": {
+                  "group": "功能辅助/楼栋标签"
+                }
+              }
+            }
+          ]
         }
       }
-    }
-  },
-  "analysis_data": [{
-      "title": "POI数值",
-      "content": "场景内通过覆盖物叠加样式呈现数据， DIVA 支持多种覆盖物组合使用，根据数据类型，通过不同的覆盖物组合搭配呈现。"
-    }
-  ],
-  "powerBarData": [
-    [
-      "周一",
-      138075
-    ],
-    [
-      "周二",
-      121562
-    ],
-    [
-      "周三",
-      102451
-    ],
-    [
-      "周四",
-      121457
-    ],
-    [
-      "周五",
-      134125
-    ],
-    [
-      "周六",
-      62712
-    ],
-    [
-      "周日",
-      56271
     ]
-  ],
-  "powerPieData": [
-    {
-      "value": 23400,
-      "name": "空调"
-    },
-    {
-      "value": 8002,
-      "name": "照明"
-    },
-    {
-      "value": 74200,
-      "name": "生产设备"
-    },
-    {
-      "value": 5150,
-      "name": "其他"
-    }
-  ],
-  "waterBarData": [
-    [
-      "周一",
-      1736
-    ],
-    [
-      "周二",
-      1792
-    ],
-    [
-      "周三",
-      1725
-    ],
-    [
-      "周四",
-      1858
-    ],
-    [
-      "周五",
-      1757
-    ],
-    [
-      "周六",
-      1159
-    ],
-    [
-      "周日",
-      1273
-    ]
-  ],
-  "waterPieData": [
-    {
-      "value": 952,
-      "name": "灌溉"
-    },
-    {
-      "value": 207,
-      "name": "饮用"
-    },
-    {
-      "value": 518,
-      "name": "清洁"
-    },
-    {
-      "value": 231,
-      "name": "其他"
-    }
-  ]
+  }
 }
