@@ -1,46 +1,47 @@
 <template>
   <app-dialog :header="header">
-    <template v-slot:dialog-article>
-      <div class="statistic-panel">
-        <div v-if="rankingData.length" class="ranking">
-          <div v-for="item in rankingData" :key="item.title" class="item">
-            <p>{{ item.title }}</p>
-            <span :style="{ color: item.fontColor }">{{ item.number }}</span>
-            <img src="/assets/images/route4-1/1.png" />
-          </div>
+    <div class="statistic-panel">
+      <div v-if="rankingData" class="ranking">
+        <div v-for="item in rankingData" :key="item.title" class="item">
+          <p>{{ item.title }}</p>
+          <span :style="{ color: item.fontColor }">{{ item.number }}</span>
+          <img src="../../../assets/images/router/investment/achievement/1.png" />
         </div>
-        <div v-if="statisticData.length" class="statistic">
-          <div :key="item.icon" v-for="item in statisticData" class="item">
-            <img :src="'/assets/images/route3-1/' + item.icon" />
-            <div>
-              <p>{{ item.title }}</p>
-              <p :style="{ color: item.fontColor || '' }">
-                {{ item.number }}
-              </p>
-            </div>
+      </div>
+      <div v-if="statisticData" class="statistic">
+        <div :key="item.icon" v-for="item in statisticData" class="item">
+          <img :src="require('../../../assets/' + item.icon)" />
+          <div>
+            <p>{{ item.title }}</p>
+            <p :style="{ color: item.fontColor || '' }">
+              {{ item.number }}
+            </p>
           </div>
         </div>
       </div>
-    </template>
+    </div>
   </app-dialog>
 </template>
 
 <script>
-import AppDialog from "../dialog/dialog.vue";
+import AppDialog from "../dialog/dialog";
+
 export default {
   props: ["dataSource"],
   data() {
     return {
       header: this.dataSource.header,
-      rankingData: [],
-      statisticData: [],
+      rankingData: null,
+      statisticData: null,
     };
   },
   created() {
     this.rankingData = this.dataSource.content.data.filter((v) => !v.icon);
     this.statisticData = this.dataSource.content.data.filter((v) => !!v.icon);
   },
-  component: [AppDialog]
+  components: {
+    AppDialog,
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -52,6 +53,7 @@ export default {
     .item {
       width: 148px;
       position: relative;
+      margin-bottom: 12px;
       p {
         text-align: center;
         font-size: 14px;
@@ -79,6 +81,7 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-bottom: -12px;
     .item {
       width: 148px;
       height: 40px;

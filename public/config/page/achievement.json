@@ -8,7 +8,7 @@
     {
       "header": {
         "title": "园区企业",
-        "icon": "achivement/1.svg"
+        "icon": "images/common/dialog/route4/1-1.svg"
       },
       "content": {
         "type": "statistic-panel",
@@ -24,12 +24,12 @@
             "fontColor": "#04CD98"
           },
           {
-            "icon": "m-1.svg",
+            "icon": "images/router/investment/achievement/1.svg",
             "title": "企业总数",
             "number": "493"
           },
           {
-            "icon": "m-1.svg",
+            "icon": "images/router/investment/achievement/2.svg",
             "title": "人员总数",
             "number": "11,384"
           }
@@ -39,21 +39,23 @@
     {
       "header": {
         "title": "扶持政策",
-        "icon": "achivement/1.svg"
+        "icon": "images/common/dialog/route4/1-2.svg"
       },
       "content": {
-        "type": "ul-list",
-        "data": [
-          "入驻园区，享地方税收优惠政策，专项产业发展扶持政策。",
-          "园区支持力度大，政策长期稳定，多年企业服务经验，申报流程快捷。",
-          "入园流程一步到位，为企业提供“保姆式”落户服务，线上企业操作+线下园区代办，免费提供注册地址，办公场地，企业落户无忧。"
-        ]
+        "type": "basic-info",
+        "data": {
+          "text": [
+            "入驻园区，享地方税收优惠政策，专项产业发展扶持政策。",
+            "园区支持力度大，政策长期稳定，多年企业服务经验，申报流程快捷。",
+            "入园流程一步到位，为企业提供“保姆式”落户服务，线上企业操作+线下园区代办，免费提供注册地址，办公场地，企业落户无忧。"
+          ]
+        }
       }
     },
     {
       "header": {
         "title": "知名企业",
-        "icon": "achivement/1.svg"
+        "icon": "images/common/dialog/route4/1-3.svg"
       },
       "content": {
         "type": "text-list",
@@ -79,7 +81,7 @@
     {
       "header": {
         "title": "企业规模",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route4/1-4.svg"
       },
       "content": {
         "type": "echarts-pie",
@@ -98,10 +100,10 @@
     {
       "header": {
         "title": "入驻企业行业类别",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route4/1-5.svg"
       },
       "content": {
-        "type": "echarts-line",
+        "type": "echarts-basic-bar",
         "option": {
           "dataset": {
             "source": [
@@ -119,7 +121,7 @@
     {
       "header": {
         "title": "人才引进",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route4/1-6.svg"
       },
       "content": {
         "type": "echarts-hor-line",
