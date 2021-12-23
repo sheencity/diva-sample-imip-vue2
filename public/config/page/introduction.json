@@ -9,7 +9,7 @@
       {
         "header": {
           "title": "项目介绍",
-          "icon": "images/dialog/route1/1.svg"
+          "icon": "images/common/dialog/route1/1.svg"
         },
         "content": {
           "type": "basic-info",

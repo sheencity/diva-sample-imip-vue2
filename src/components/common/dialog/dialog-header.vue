@@ -18,9 +18,9 @@ export default {
       imgURL: this.icon ? require("../../../assets/" + this.icon) : "",
       lineURL: !this.width
         ? this.icon
-        ? require("../../../assets/images/dialog/dialog-line.png")
-        : require("../../../assets/images/dialog/dialog-line-double.png")
-        : require("../../../assets/images/dialog/dialog-line-short.png"),
+        ? require("../../../assets/images/common/dialog/dialog-line.png")
+        : require("../../../assets/images/common/dialog/dialog-line-double.png")
+        : require("../../../assets/images/common/dialog/dialog-line-short.png"),
     };
   },
 };
