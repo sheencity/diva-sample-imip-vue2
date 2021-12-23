@@ -11,14 +11,28 @@
         "icon": "achivement/1.svg"
       },
       "content": {
-        "type": "company-panel",
-        "company_info": [
-          { "title": "国家高新技术企业", "counts": "108", "color": "#00F7FF" },
-          { "title": "通过ISO认证企业", "counts": "232", "color": "#04CD98" }
-        ],
-        "general": [
-          { "title": "企业总数", "counts": "493", "icon": "achivement/1.svg" },
-          { "title": "人员总数", "counts": "11,384", "icon": "achivement/2.svg" }
+        "type": "statistic-panel",
+        "data": [
+          {
+            "title": "国家高新技术企业",
+            "number": "108",
+            "fontColor": "#00F7FF"
+          },
+          {
+            "title": "通过ISO认证企业",
+            "number": "232",
+            "fontColor": "#04CD98"
+          },
+          {
+            "icon": "m-1.svg",
+            "title": "企业总数",
+            "number": "493"
+          },
+          {
+            "icon": "m-1.svg",
+            "title": "人员总数",
+            "number": "11,384"
+          }
         ]
       }
     },
