@@ -1,18 +1,21 @@
 <template>
-  <div ref="echarts" :style="customStyle"></div>
+  <app-dialog :header="header">
+    <div ref="echarts" :style="customStyle"></div>
+  </app-dialog>
 </template>
 
 <script>
 import * as echarts from "echarts";
+import AppDialog from "components/common/dialog/dialog";
 import { echartService } from 'services/global';
 
 export default {
-  props: ["width", "height", "dataSource"],
+  props: ["header", "dataSource"],
   data() {
     return {
       customStyle: {
-        width: (this.width || '320') + 'px',
-        height: (this.height || '180') + 'px',
+        width: "320px",
+        height: "180px",
       },
       type: this.dataSource.type,
     };
@@ -27,6 +30,9 @@ export default {
     chart.setOption(options);
   },
   methods: {},
+  components: {
+    AppDialog,
+  }
 };
 </script>
 

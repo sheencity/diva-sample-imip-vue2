@@ -15,7 +15,7 @@
           :key='camera.text'
           @click="playCameraTrack(camera.diva)"
         >
-          <img :src="require('../../../assets/' + camera.picture)" />
+          <!-- <img :src="require('../../../assets/' + camera.picture)" /> -->
           <span>{{ camera.text }}</span>
         </div>
       </aside>
@@ -24,16 +24,11 @@
 </template>
 
 <script>
-import AppDialogHeader from "./dialog-header";
+import AppDialogHeader from "../dialog/dialog-header";
 import { diva } from 'services/global';
 
 export default {
   props: ["dataSource"],
-  data() {
-    return {
-
-    };
-  },
   methods: {
     playCameraTrack(camera) {
       diva.client.playCameraTrack(camera.camera_track_name);
