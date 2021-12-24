@@ -1,56 +1,62 @@
 <template>
-  <main :class="'column' + column || '2'">
-    <div v-if="thead && thead.length > 1" class="thead">
-      <span v-for="(head, index) in thead" :key="index" :class="'col-' + index">
-        {{ head.title }}
-      </span>
-    </div>
-    <app-scroller
-      :dataLength="dataLength"
-      :height="height"
-      :contentHeight="contentHeight"
-    >
-      <div v-for="(item, index) in dataSource" :key="index" class="tbody">
-        <span
-          v-for="(key, index) in Object.keys(item)"
-          :key="index"
-          :class="'col-' + index"
-        >
-          {{ item.key }}
+  <app-dialog :header="header">
+    <main :class="'column' + thead.length">
+      <div v-if="thead && thead.length > 1" class="thead">
+        <span v-for="(head, index) in thead" :key="index" :class="'col-' + index">
+          {{ head.title }}
         </span>
       </div>
-      <div
-        v-for="(item, index) in dataDataSource"
-        :key="index + 999"
-        class="tbody"
+      <app-scroller
+        :dataLength="dataLength"
+        :height="height"
+        :contentHeight="contentHeight"
+        :scroll="autoScroll"
       >
-        <span
-          v-for="(key, index) in Object.keys(item)"
-          :key="index"
-          :class="'col-' + index"
+        <div v-for="(item, index) in dataSource" :key="index" class="tbody">
+          <span
+            v-for="(key, index) in Object.keys(item)"
+            :key="index"
+            :class="'col-' + index"
+          >
+            {{ item[key] }}
+          </span>
+        </div>
+        <div
+          v-for="(item, index) in dataSource"
+          :key="index + 999"
+          class="tbody"
         >
-          {{ item.key }}
-        </span>
-      </div>
-    </app-scroller>
-  </main>
+          <span
+            v-for="(key, index) in Object.keys(item)"
+            :key="index"
+            :class="'col-' + index"
+          >
+            {{ item[key] }}
+          </span>
+        </div>
+      </app-scroller>
+    </main>
+  </app-dialog>
 </template>
 
 <script>
-import AppScroller from "../scroller/index";
+import AppDialog from "../dialog/dialog";
+import AppScroller from "../scroller";
+
 export default {
   props: [
+    "header",
     "dataSource",
     "contentHeight",
     "dataLength",
     "height",
     "thead",
-    "column",
+    "autoScroll",
   ],
-
   methods: {},
   mounted() {},
   components: {
+    AppDialog,
     AppScroller,
   },
 };
@@ -58,23 +64,23 @@ export default {
 
 <style lang="scss" scoped>
 .column2 {
-  .col-1 {
+  .col-0 {
     width: 45px;
   }
-  .col-2 {
+  .col-1 {
     width: 180px;
   }
 }
 .column3 {
-  .col-1 {
+  .col-0 {
     width: 140px;
     text-align: left;
   }
-  .col-2 {
+  .col-1 {
     width: 100px;
     text-align: left;
   }
-  .col-3 {
+  .col-2 {
     width: 40px;
   }
 }

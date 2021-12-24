@@ -12,6 +12,19 @@
         >
         </app-basic-info>
       </template>
+      <template v-if="textListData">
+        <app-scroller-table
+          class="top10"
+          :header="textListData.header"
+          :dataSource="textListData.content.data"
+          :thead="textListData.content.header"
+          :dataLength="textListData.content.data.length"
+          :autoScroll="textListData.content.scroll"
+          :height="36"
+          :contentHeight="220"
+        >
+        </app-scroller-table>
+      </template>
     </aside>
     <aside class="space-right all">
 
@@ -20,46 +33,42 @@
 </template>
 
 <script>
+import AppDialog from "components/common/dialog/dialog";
 import AppBasicInfo from "components/common/basic-info";
 import AppStatisticsPanel from "components/common/statistics-panel";
+import AppScrollerTable from "components/common/table/scroller-table";
+import Echarts from "components/common/echarts";
 
 export default {
   data() {
     return {
       statisticsData: null,
       basicInfoData: null,
+      textListData: null,
+      ringPieData: null,
+      basicBarData: null,
+      horBarData: null
     };
   },
   methods: {
-    async initCharts() {
-      const barChart = echarts.init(this.$refs.barChart);
-      const pieChart = echarts.init(this.$refs.pieChart);
-      const recordChart = echarts.init(this.$refs.recordChart);
 
-      const barOption = echartService.getBasicBarOption(
-        this.echartsData.company_prof,
-        true,
-      );
-      const pieOption = echartService.getBasicNightingaleOption(
-        this.echartsData.company_counts,
-        false,
-      );
-      const recordOption = echartService.getHorizonBarOption(this.echartsData.record_data);
-      
-      barChart.setOption(barOption);
-      pieChart.setOption(pieOption);
-      recordChart.setOption(recordOption);
-    },
   },
   created() {
     this.axios.get("/config/page/achievement.json").then((res) => {
       this.statisticsData = res.data['panel-left'][0];
       this.basicInfoData = res.data['panel-left'][1];
+      this.textListData = res.data['panel-left'][2];
+      this.ringPieData = res.data['panel-right'][0];
+      this.basicBarData = res.data['panel-right'][1];
+      this.horBarData = res.data['panel-right'][2];
     });
   },
   components: {
+    AppDialog,
     AppBasicInfo,
     AppStatisticsPanel,
+    AppScrollerTable,
+    Echarts,
   },
 };
 </script>

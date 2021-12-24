@@ -2,7 +2,7 @@
   <main>
     <div
       class="content"
-      :style="{ height: contentHeight + 'px' }"
+      :style="{ height: contentHeight + 'px', overflowY: scroll ? 'hidden' : 'scroll' }"
       @mouseenter="mouseEnterScroll()"
       @mouseleave="mouseLeaveScroll()"
     >
@@ -20,7 +20,7 @@
 // 自动滚动组件
 export default {
   // dataLength: 数据条数  height:每条数据所占高度  contentHeight: 可滚动视区域高度
-  props: ["dataLength", "height", "contentHeight"],
+  props: ["dataLength", "height", "contentHeight", "scroll"],
   data() {
     return {
       hasTransform: true,
@@ -36,7 +36,7 @@ export default {
       this.isOverHeight();
     },
     isOverHeight() {
-      if (this.height * this.dataLength >= this.contentHeight) {
+      if (this.height * this.dataLength >= this.contentHeight && this.scroll) {
         this.autoScroll();
       }
     },
