@@ -21,8 +21,12 @@
       </template>
     </aside>
     <aside class="space-right all">
-      <template>
-
+      <template v-if="switcherListData">
+        <app-switcher-list
+          :header="switcherListData.header"
+          :dataSource="switcherListData.content.data"
+        >
+        </app-switcher-list>
       </template>
     </aside>
   </article>
@@ -31,6 +35,7 @@
 <script>
 import AppButtonTab from "components/common/button-tab";
 import AppRowList from "components/common/row-list";
+import AppSwitcherList from "components/common/switcher-list-panel";
 
 export default {
   data() {
@@ -60,6 +65,7 @@ export default {
   components: {
     AppButtonTab,
     AppRowList,
+    AppSwitcherList,
   }
 };
 </script>
