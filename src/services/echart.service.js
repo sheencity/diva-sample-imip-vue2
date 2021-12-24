@@ -2,6 +2,8 @@ export class EchartService {
   echartsMap = new Map([
     ['echarts-basic-bar', this.getBasicBarOption()],
     ['echarts-bar', this.getUniBarOption()],
+    ['echarts-pie', this.getPieOption()],
+    ['echarts-line', this.getLineOption()],
   ]);
 
   /**
@@ -650,40 +652,26 @@ export class EchartService {
    * @param showLegend 是否显示分类
    * @param isPercent 显示百分比或数值
    */
-   getPieOption(dataSource, center = true, showLegend = true, isPercent = true) {
-    const legend = center
-      ? {
-          show: showLegend,
-          bottom: 0,
-          padding: 0,
-          itemGap: 10,
-          itemWidth: 14,
-          textStyle: {
-            color: '#fff',
-          },
-        }
-      : {
-          show: showLegend,
-          orient: 'vertical',
-          top: 20,
-          right: 10,
-          itemGap: 10,
-          itemWidth: 14,
-          textStyle: {
-            color: '#fff',
-          },
-        };
+   getPieOption() {
     return {
-      legend: legend,
+      legend: {
+        show: false,
+        bottom: 0,
+        padding: 0,
+        itemGap: 10,
+        itemWidth: 14,
+        textStyle: {
+          color: '#fff',
+        },
+      },
       tooltip: {
         trigger: 'item',
-        formatter: isPercent ? '{b} : {d}%' : null,
+        formatter: '{b} : {d}%',
       },
       series: [
         {
           type: 'pie',
-          center: center ? ['50%', '50%'] : ['30%', '50%'],
-          bottom: center ? showLegend ? 20 : null : null,
+          center: ['50%', '50%'],
           color: ['#B2EBF2', '#4DD0E1', '#6699FF', '#115DF3', '#7ea8f9', '#ffd078', '#9a80fa'],
           itemStyle: {
             opacity: 0.9,
@@ -691,7 +679,6 @@ export class EchartService {
           label: {
             color: '#fff',
           },
-          data: dataSource,
         },
       ],
     };
@@ -738,28 +725,21 @@ export class EchartService {
    * @param dataSource 数据源
    * @param isPercent y 轴是否表示比例
    */
-  getTimeLineOption(dataSource, isPercent = true) {
+  getLineOption() {
     return {
       tooltip: {
-        trigger: 'axis',
-        formatter: function (params) {
-          let relVal = params[0].name;
-          for (var i = 0, l = params.length; i < l; i++) {
-            const percent = isPercent ? '%' : '';
-            relVal += '<br/>' + params[i].marker + params[i].seriesName + ': ' + params[i].value[1] + percent;
-          }
-          return relVal;
-        }
+        trigger: 'axis'
       },
       grid: {
         top: 10,
-        left: 30,
+        left: 0,
         right: 15,
-        bottom: 20,
+        bottom: 0,
+        containLabel: true
       },
-      dataset: {
-        source: dataSource,
-      },
+      // dataset: {
+      //   source: dataSource,
+      // },
       xAxis: {
         type: 'category',
         boundaryGap: false,
@@ -797,7 +777,7 @@ export class EchartService {
       series: [
         {
           type: 'line',
-          name: isPercent ? '饱和率' : '数量',
+          name: '数值',
           smooth: true,
           showSymbol: false,
           symbolSize: 6,

@@ -22,11 +22,10 @@ export default {
   },
   mounted() {
     const chart = echarts.init(this.$refs.echarts);
-    console.log(echartService.echartsMap.get(this.type));
-
     const option = echartService.echartsMap.get(this.type);
 
     const options = {...option, ...this.dataSource.option};
+    console.log(options);
     chart.setOption(options);
   },
   methods: {},

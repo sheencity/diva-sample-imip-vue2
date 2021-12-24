@@ -13,7 +13,21 @@
       </template>
     </aside>
     <aside class="space-right all">
-
+      <template v-if="echartsPieData">
+        <echarts
+          :header="echartsPieData.header"
+          :dataSource="echartsPieData.content"
+        >
+        </echarts>
+      </template>
+      <template v-if="echartsLineData">
+        <echarts
+          class="top10"
+          :header="echartsLineData.header"
+          :dataSource="echartsLineData.content"
+        >
+        </echarts>
+      </template>
     </aside>
   </article>
 </template>
@@ -26,11 +40,17 @@ export default {
   data() {
     return {
       parkingPanelData: null,
+      echartsPieData: null,
+      echartsLineData: null,
+      textListData: null,
     };
   },
   created() {
     this.axios.get('/config/page/park.json').then((res) => {
       this.parkingPanelData = res.data['panel-left'][0];
+      this.echartsPieData = res.data['panel-right'][0];
+      this.echartsLineData = res.data['panel-right'][1];
+      this.textListData = res.data['panel-right'][2];
     });
   },
   methods: {
