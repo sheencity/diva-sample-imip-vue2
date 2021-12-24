@@ -2,6 +2,8 @@
   <article v-if="initDivaData" class="space-between">
     <aside class="space-left all">
       <app-button-tab class="top10" :header="buttonTabData.header" :dataSource="buttonTabData.content" @select="selectResources"></app-button-tab>
+      <app-echarts class="top10" :header="barChartsData.header" :dataSource="barChartsData.content"></app-echarts>
+      <!-- <app-echarts class="top10" :header="pieChartsData.header" :dataSource="pieChartsData.content"></app-echarts> -->
     </aside>
     <aside class="space-right all">
       <app-switcher-list-panel class="top10" :header="switchPanelData.header" :dataSource="switchPanelData.content.data"
@@ -13,10 +15,11 @@
 
 
 <script>
-import { Vector3 } from "@sheencity/diva-sdk";
+import { Vector3 } from "@sheencity/diva-sdk"
 import { diva } from 'services/global'
 import AppButtonTab from 'components/common/button-tab'
 import AppSwitcherListPanel from 'components/common/switcher-list-panel'
+import AppEcharts from 'components/common/echarts'
 export default {
    data() {
     return {
@@ -195,7 +198,8 @@ export default {
   },
   components: {
     AppButtonTab,
-    AppSwitcherListPanel
+    AppSwitcherListPanel,
+    AppEcharts
   }
 
 }

@@ -86,6 +86,57 @@
             }
           ]
         }
+      },
+      {
+        "header": {
+          "title": "耗电量（kW·h）",
+          "icon": "images/common/dialog/route2/3.svg"
+        },
+        "content": {
+          "type": "echarts-basic-bar",
+          "option": {
+            "xAxis": {
+              "axisLabel": {
+                "color": "#fff",
+                "interval": 0
+              }
+            },
+            "dataset": {
+              "source": [
+                ["周一", 138075],
+                ["周二", 121562],
+                ["周三", 102451],
+                ["周四", 121457],
+                ["周五", 134125],
+                ["周六", 62712],
+                ["周日", 56271]
+              ]
+            }       
+          }
+        }
+      },
+      {
+        "header": {
+          "title": "能耗占比",
+          "icon": "images/common/dialog/route2/3.svg"
+        },
+        "content": {
+          "type": "echarts-pie",
+          "option": {
+            "tooltip": {
+              "formatter": "{b} : {c} (个)"
+            },
+            "series": [{
+              "radius": [60, 80],
+              "data": [
+                { "value": 32, "name": "大型" },
+                { "value": 87, "name": "中型" },
+                { "value": 133, "name": "小型" },
+                { "value": 244, "name": "微型" }
+              ]
+            }]
+          }
+        }
       }
     ],
     "panel-right": [
