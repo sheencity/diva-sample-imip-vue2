@@ -46,26 +46,29 @@
 					"icon": "images/common/dialog/route1/3.svg"
         },
         "content": {
-          "type": "echarts-rose",
+          "type": "echarts-pie",
           "option": {
-            "series": [
-              {
-                "color": ["#E3F2FD", "#90CAF9", "#42A5F5", "#1E88E5", "#1565C0", "#0D47A1","#5C6BC0"],
-                "label": {
-                  "color": "#fff",
-                  "show": true
-                },
-                "data": [
-                  { "value": 29550, "name": "自动机械产品智造区" },
-                  { "value": 38520, "name": "医疗器械设备智造区" },
-                  { "value": 90140, "name": "工业创意产品生产区" },
-                  { "value": 50310, "name": "工业互联网研发区" },
-                  { "value": 27050, "name": "人工智能研发区" },
-                  { "value": 60000, "name": "配套住宿区" },
-                  { "value": 8300, "name": "餐饮休闲区" }
-                ]
-              }
-            ]
+            "tooltip": {
+              "position": "right",
+              "formatter": "{b} : {c} (㎡)"
+            },
+            "series": [{
+              "color": ["#E3F2FD", "#90CAF9", "#42A5F5", "#1E88E5", "#1565C0", "#0D47A1","#5C6BC0"],
+              "radius": [20, 80],
+              "roseType": "area",
+              "itemStyle": {
+                "borderRadius": 4
+              },
+              "data": [
+                { "value": 8300, "name": "餐饮休闲区" },
+                { "value": 27050, "name": "人工智能研发区" },
+                { "value": 29550, "name": "自动机械产品智造区" },
+                { "value": 38520, "name": "医疗器械设备智造区" },
+                { "value": 50310, "name": "工业互联网研发区" },
+                { "value": 60000, "name": "配套住宿区" },
+                { "value": 90140, "name": "工业创意产品生产区" }
+              ]
+            }]
           }
         }
       }

@@ -3,7 +3,7 @@
     <aside class="space-left all">
       <app-basic-info class="top10" :header="basicInfoData.header" :dataSource="basicInfoData.content.data"></app-basic-info>
       <app-card-table class="top10" :header="cardTableData.header" :dataSource="cardTableData.content.data"></app-card-table>
-      <!-- <app-echarts class="top10" :header="roseChartsData.header" ></app-echarts> -->
+      <app-echarts class="top10" :header="roseChartsData.header" :dataSource="roseChartsData.content"></app-echarts>
     </aside>
     <aside class="space-right all">
       <app-card-list class="top10" :header="cardListData.header" :dataSource="cardListData.content.data" @select="selectArea"></app-card-list>

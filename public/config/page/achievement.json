@@ -86,14 +86,18 @@
       "content": {
         "type": "echarts-pie",
         "option": {
-          "dataset": {
-            "source": [
+          "tooltip": {
+            "formatter": "{b} : {c} (个)"
+          },
+          "series": [{
+            "radius": [60, 80],
+            "data": [
               { "value": 32, "name": "大型" },
               { "value": 87, "name": "中型" },
               { "value": 133, "name": "小型" },
               { "value": 244, "name": "微型" }
             ]
-          }       
+          }]
         }
       }
     },
