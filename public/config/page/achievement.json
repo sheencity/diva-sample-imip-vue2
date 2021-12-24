@@ -105,6 +105,14 @@
       "content": {
         "type": "echarts-basic-bar",
         "option": {
+          "xAxis": {
+            "axisLabel": {
+              "rotate": 10,
+              "fontSize": 10,
+              "margin": 14,
+              "align": "center"
+            }
+          },
           "dataset": {
             "source": [
               ["工业互联网", 227],
@@ -124,14 +132,14 @@
         "icon": "images/common/dialog/route4/1-6.svg"
       },
       "content": {
-        "type": "echarts-hor-line",
+        "type": "echarts-hor-bar",
         "option": {
           "dataset": {
             "source": [
-              { "value": 569, "name": "博士" },
-              { "value": 1708, "name": "硕士" },
-              { "value": 5692, "name": "本科" },
-              { "value": 3415, "name": "其他" }
+              ["博士", 569],
+              ["硕士", 1708],
+              ["本科", 5692],
+              ["其他", 3415]
             ]
           }
         }

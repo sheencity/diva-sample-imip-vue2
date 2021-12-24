@@ -84,6 +84,11 @@ export default {
     width: 40px;
   }
 }
+.column4 {
+  .col-0 {
+    width: 80px;
+  }
+}
 .thead {
   display: flex;
   justify-content: space-between;

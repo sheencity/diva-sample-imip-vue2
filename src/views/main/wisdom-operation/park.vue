@@ -28,6 +28,19 @@
         >
         </echarts>
       </template>
+      <template v-if="textListData">
+        <app-scroller-table
+          class="top10"
+          :header="textListData.header"
+          :dataSource="textListData.content.data"
+          :thead="textListData.content.header"
+          :dataLength="textListData.content.data.length"
+          :autoScroll="textListData.content.scroll"
+          :height="36"
+          :contentHeight="220"
+        >
+        </app-scroller-table>
+      </template>
     </aside>
   </article>
 </template>
@@ -35,6 +48,7 @@
 <script>
 import Echarts from "components/common/echarts";
 import AppParkingPanel from "components/common/parking-panel";
+import AppScrollerTable from "components/common/table/scroller-table";
 
 export default {
   data() {
@@ -63,6 +77,7 @@ export default {
   },
   components: {
     AppParkingPanel,
+    AppScrollerTable,
     Echarts,
   }
 };

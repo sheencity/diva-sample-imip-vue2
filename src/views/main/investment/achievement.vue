@@ -27,7 +27,29 @@
       </template>
     </aside>
     <aside class="space-right all">
-
+      <template v-if="ringPieData">
+        <echarts
+          :header="ringPieData.header"
+          :dataSource="ringPieData.content"
+        >
+        </echarts>
+      </template>
+      <template v-if="basicBarData">
+        <echarts
+          class="top10"
+          :header="basicBarData.header"
+          :dataSource="basicBarData.content"
+        >
+        </echarts>
+      </template>
+      <template v-if="horBarData">
+        <echarts
+          class="top10"
+          :header="horBarData.header"
+          :dataSource="horBarData.content"
+        >
+        </echarts>
+      </template>
     </aside>
   </article>
 </template>

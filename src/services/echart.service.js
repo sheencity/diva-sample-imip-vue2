@@ -1,6 +1,7 @@
 export class EchartService {
   echartsMap = new Map([
     ['echarts-basic-bar', this.getBasicBarOption()],
+    ['echarts-hor-bar', this.getHorizonBarOption()],
     ['echarts-bar', this.getUniBarOption()],
     ['echarts-pie', this.getPieOption()],
     ['echarts-line', this.getLineOption()],
@@ -12,27 +13,11 @@ export class EchartService {
    * @param xAixsRotate x 轴的文本标签是否旋转，当文本内容显示不下的时候启用此项
    */
   getBasicBarOption() {
-    // const xAxisLabel = xAixsRotate
-    //   ? {
-    //       color: '#fff',
-    //       interval: 0,
-    //       rotate: 10,
-    //       fontSize: 10,
-    //       margin: 14,
-    //       align: 'center',
-    //     }
-    //   : {
-    //       color: '#fff',
-    //       interval: 0,
-    //     };
     return {
       grid: { bottom: 0, left: 0, right: 10, top: 10, containLabel: true },
       tooltip: {
         show: true,
       },
-      // dataset: {
-      //   source: dataSource,
-      // },
       xAxis: {
         type: 'category',
         axisLabel: {
@@ -166,9 +151,7 @@ export class EchartService {
    * 横向柱状图
    * @param {{value: number, name: string}[]} dataSource 
    */
-  getHorizonBarOption(dataSource) {
-    const yAxisLabel = dataSource.map((data) => data.name);
-    const data = dataSource.map((data) => data.value);
+  getHorizonBarOption() {
     return {
       grid: { height: 140, bottom: 20, top: 10, right: 20 },
       tooltip: {
@@ -179,6 +162,7 @@ export class EchartService {
         fontSize: 12,
       },
       xAxis: {
+        type: 'value',
         axisTick: {
           show: false,
         },
@@ -193,14 +177,12 @@ export class EchartService {
       },
       yAxis: {
         type: 'category',
-        data: yAxisLabel,
         axisTick: {
           show: false,
         },
       },
       series: [
         {
-          data: data,
           type: 'bar',
           barMaxWidth: 14,
           label: {
