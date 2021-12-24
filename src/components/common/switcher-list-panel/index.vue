@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     switcher(e){
-      console.log(e);
+      this.$emit('checked',e)
     }
   },
   components: {

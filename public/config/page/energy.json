@@ -9,7 +9,7 @@
       {
         "header": {
           "title": "能耗类型",
-          "icon": ""
+          "icon": "images/common/dialog/route2/1.svg"
         },
         "content": {
           "type": "",
@@ -92,7 +92,7 @@
       {
         "header": {
           "title": "POI数值",
-          "icon": "assets/images/common/dialog/route2/4.svg"
+          "icon": "images/common/dialog/route2/4.svg"
         },
         "content": {
           "type": "switcher-list-panel",

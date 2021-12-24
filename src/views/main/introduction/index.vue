@@ -3,13 +3,10 @@
     <aside class="space-left all">
       <app-basic-info class="top10" :header="basicInfoData.header" :dataSource="basicInfoData.content.data"></app-basic-info>
       <app-card-table class="top10" :header="cardTableData.header" :dataSource="cardTableData.content.data"></app-card-table>
-      <app-switcher-list-panel class="top10" :header="cardTableData.header" :dataSource="testData"></app-switcher-list-panel>
-      <!-- <pie-charts :data="pieChartsData"></pie-charts> -->
+      <!-- <app-echarts class="top10" :header="roseChartsData.header" ></app-echarts> -->
     </aside>
     <aside class="space-right all">
-      <app-card-list class="top10" :header="cardListData.header" :dataSource="cardListData.content.data"
-        @select="selectArea"
-      ></app-card-list>
+      <app-card-list class="top10" :header="cardListData.header" :dataSource="cardListData.content.data" @select="selectArea"></app-card-list>
     </aside>
   </article>
 </template>
@@ -20,10 +17,7 @@ import { RenderingStyleMode } from "@sheencity/diva-sdk"
 import AppBasicInfo from 'components/common/basic-info'
 import AppCardTable from 'components/card-table'
 import AppCardList from 'components/card-list'
-import AppSwitcherListPanel from 'components/common/switcher-list-panel'
-
-
-// import PieCharts from '../../components/common/charts/pie/index';
+import AppEcharts from 'components/common/echarts'
 
 export default {
   data() {
@@ -31,7 +25,7 @@ export default {
       initDivaData: null,
       basicInfoData: null,
       cardTableData: null,
-      pieChartsData: null,
+      roseChartsData: null,
       cardListData: null,
 
       cardListAction: [],
@@ -39,7 +33,6 @@ export default {
       floorList: [],
       modelEventList: [],
 
-      testData: []
     };
   },
   created() {
@@ -57,12 +50,9 @@ export default {
       this.initDivaData = data.diva;
       this.basicInfoData = data.panel['panel-left'][0];
       this.cardTableData = data.panel['panel-left'][1];
-      this.pieChartsData = data.panel['panel-left'][2];
+      this.roseChartsData = data.panel['panel-left'][2];
       this.cardListData = data.panel['panel-right'][0];
       this.cardListAction = this.cardListData.content.diva.action;
-
-      const { data: testData }  = await this.axios.get('config/page/energy.json');
-      this.testData = testData.panel['panel-right'][0].content.data;
     },
     /**
      * 初始化场景
@@ -243,8 +233,7 @@ export default {
     AppBasicInfo,
     AppCardTable,
     AppCardList,
-    AppSwitcherListPanel
-    // PieCharts
+    AppEcharts
   },
 };
 </script>

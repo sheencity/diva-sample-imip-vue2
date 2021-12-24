@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Main from "views/main/main.vue";
 import Home from 'views/home'
 import Introduction from "views/main/introduction";
+import Energy from 'views/main/carbon-neutral/energy'
 import Achievement from "views/main/investment/achievement";
 import Space from "views/main/investment/space";
 import Plan from "views/main/investment/plan";
@@ -21,13 +22,13 @@ const routes = [
           {
             path: "/carbon-neutral",
             name: "碳中和",
-            component: Introduction,
+            component: Energy,
             redirect: "/carbon-neutral/energy",
           },
           {
             path: "/carbon-neutral/energy",
             name: "碳中和/能源",
-            component: Introduction,
+            component: Energy,
           },
           {
             path: "/wisdom-operation",
