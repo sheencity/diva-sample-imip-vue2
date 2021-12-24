@@ -101,8 +101,7 @@ export default {
         return { value: item.rest, name: item.title };
       });
       const parkPieChart = echarts.init(this.$refs.parkPieChart);
-      // TODO 单独写一个获取车位分析表配置的方法
-      const parkPieOption = echartService.getRangePieOption(parkData, true, false, false);
+      const parkPieOption = echartService.getParkingPanelPieChart(parkData);
       parkPieChart.setOption(parkPieOption);
     }
   },

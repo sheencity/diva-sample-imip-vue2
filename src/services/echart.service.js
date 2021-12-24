@@ -851,4 +851,56 @@ export class EchartService {
       ],
     };
   }
+
+  /**
+   * 剩余车位分析图表配置
+   * @param dataSource 
+   */
+  getParkingPanelPieChart(dataSource) {
+    return {
+      legend: {
+        show: false,
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: ['55%', '75%'],
+          center: ['50%', '50%'],
+          avoidLabelOverlap: false,
+          legendHoverLink: false,
+          color: ['#E3F2FD', '#90CAF9', '#42A5F5', '#1E88E5', '#1565C0', '#0D47A1'],
+          itemStyle: {
+            opacity: 0.9,
+          },
+          label: {
+            show: false,
+            position: 'center',
+          },
+          emphasis: {
+            label: {
+              show: true,
+              formatter: [`{a|{c}}`, `{b|{b}}`].join("\n"),
+              rich: {
+                a: {
+                  fontSize: 12,
+                  color: '#fff',
+                  verticalAlign: 'top',
+                  padding: 4,
+                },
+                b: {
+                  fontSize: 12,
+                  color: '#fff',
+                  verticalAlign: 'bottom',
+                },
+              },
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          data: dataSource,
+        },
+      ],
+    };
+  }
 }
