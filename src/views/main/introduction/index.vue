@@ -3,6 +3,7 @@
     <aside class="space-left all">
       <app-basic-info class="top10" :header="basicInfoData.header" :dataSource="basicInfoData.content.data"></app-basic-info>
       <app-card-table class="top10" :header="cardTableData.header" :dataSource="cardTableData.content.data"></app-card-table>
+      <app-switcher-list-panel class="top10" :header="cardTableData.header" :dataSource="testData"></app-switcher-list-panel>
       <!-- <pie-charts :data="pieChartsData"></pie-charts> -->
     </aside>
     <aside class="space-right all">
@@ -14,12 +15,14 @@
 </template>
 
 <script>
-import { diva, dataService } from 'services/global'
+import { diva } from 'services/global'
 import { RenderingStyleMode } from "@sheencity/diva-sdk"
 import AppBasicInfo from 'components/common/basic-info'
 import AppCardTable from 'components/card-table'
 import AppCardList from 'components/card-list'
-import { Subscription } from 'rxjs';
+import AppSwitcherListPanel from 'components/common/switcher-list-panel'
+
+
 // import PieCharts from '../../components/common/charts/pie/index';
 
 export default {
@@ -35,13 +38,12 @@ export default {
       POIList: [],
       floorList: [],
       modelEventList: [],
-      clientSub: new Subscription(),
+
+      testData: []
     };
   },
   created() {
-    this.clientSub = dataService.divaClient.subscribe((value) => {
-      if (value) this.init();
-    });
+      this.init();
   },
   methods: {
     async init() {
@@ -52,13 +54,15 @@ export default {
     },
     async getConfig() {
       const { data } = await this.axios.get('config/page/introduction.json');
-      console.log(data)
       this.initDivaData = data.diva;
       this.basicInfoData = data.panel['panel-left'][0];
       this.cardTableData = data.panel['panel-left'][1];
       this.pieChartsData = data.panel['panel-left'][2];
       this.cardListData = data.panel['panel-right'][0];
       this.cardListAction = this.cardListData.content.diva.action;
+
+      const { data: testData }  = await this.axios.get('config/page/energy.json');
+      this.testData = testData.panel['panel-right'][0].content.data;
     },
     /**
      * 初始化场景
@@ -234,12 +238,12 @@ export default {
     this.setFloorReset();
   },
   destroyed(){
-    this.clientSub.unsubscribe();
   },
   components: {
     AppBasicInfo,
     AppCardTable,
-    AppCardList
+    AppCardList,
+    AppSwitcherListPanel
     // PieCharts
   },
 };

@@ -92,13 +92,14 @@
       {
         "header": {
           "title": "POI数值",
-          "icon": ""
+          "icon": "assets/images/common/dialog/route2/4.svg"
         },
         "content": {
           "type": "switcher-list-panel",
           "data": [
             {
               "title": "POI",
+              "border": true,
               "description": "场景内通过覆盖物叠加样式呈现数据， DIVA 支持多种覆盖物组合使用，根据数据类型，通过不同的覆盖物组合搭配呈现。",
               "diva": {
                 "action": {

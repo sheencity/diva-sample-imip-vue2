@@ -68,7 +68,7 @@
 <script>
 import * as echarts from "echarts";
 import AppDialog from "../dialog/dialog";
-import AppSwitcher from "../switcher/switcher";
+import AppSwitcher from "../switcher";
 import { echartService } from "services/global";
 
 export default {
