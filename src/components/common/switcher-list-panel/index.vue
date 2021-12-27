@@ -1,19 +1,23 @@
 <template>
   <app-dialog :header="header">
     <div
-      :style="{borderColor: item.checked?'#00F7FF':'',borderStyle: item.border?'solid':'unset'}"
       class="analyse" 
+      v-for="item in dataSource"
       :key="item.title" 
-      v-for="item in dataSource">
+      :style="{
+        borderColor: item.default ? '#00F7FF' : '',
+        borderStyle: item.border ? 'solid' : 'unset'
+      }"
+    >
       <div class="content">
         <span v-if="item.color" class="color" :style="{ background: item.color }"></span>
         <span class="title">{{ item.title }}</span>
       </div>
       <app-switcher
-        v-model="item.checked"
+        v-model="item.default"
         @switch="switcher(item)"
       ></app-switcher>
-      <p v-if="item.checked" class="explain">
+      <p v-if="item.default && item.description" class="explain">
         {{ item.description }}
       </p>
     </div>
