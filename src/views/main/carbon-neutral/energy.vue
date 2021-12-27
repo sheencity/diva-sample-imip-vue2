@@ -2,8 +2,8 @@
   <article v-if="initDivaData" class="space-between">
     <aside class="space-left all">
       <app-button-tab class="top10" :header="buttonTabData.header" :dataSource="buttonTabData.content" @select="selectResources"></app-button-tab>
-      <app-echarts class="top10" :header="barChartsData.header" :dataSource="barChartsData.content"></app-echarts>
-      <!-- <app-echarts class="top10" :header="pieChartsData.header" :dataSource="pieChartsData.content"></app-echarts> -->
+      <app-echarts :key="currCategoryIndex+'bar'" class="top10" :header="barChartsData[currCategoryIndex].header" :dataSource="barChartsData[currCategoryIndex].content"></app-echarts>
+      <app-echarts :key="currCategoryIndex+'pie'" class="top10" :header="pieChartsData[currCategoryIndex].header" :dataSource="pieChartsData[currCategoryIndex].content"></app-echarts>
     </aside>
     <aside class="space-right all">
       <app-switcher-list-panel class="top10" :header="switchPanelData.header" :dataSource="switchPanelData.content.data"
