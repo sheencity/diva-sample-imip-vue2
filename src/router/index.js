@@ -9,6 +9,7 @@ import Space from "views/main/investment/space";
 import Plan from "views/main/investment/plan";
 import Office from "views/main/wisdom-operation/office";
 import Park from "views/main/wisdom-operation/park";
+import Environment from "views/main/wisdom-operation/environment";
 
 Vue.use(VueRouter);
 
@@ -38,9 +39,8 @@ const routes = [
             redirect: "/wisdom-operation/office",
           },
           { path: "/wisdom-operation/office", component: Office },
-          { path: "/wisdom-operation/environment", component: Introduction },
+          { path: "/wisdom-operation/environment", component: Environment },
           { path: "/wisdom-operation/fire-control", component: Introduction },
-          { path: "/wisdom-operation/production", component: Introduction },
           { path: "/wisdom-operation/security", component: Introduction },
           { path: "/wisdom-operation/park", component: Park },
           {

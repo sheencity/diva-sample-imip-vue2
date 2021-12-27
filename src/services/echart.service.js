@@ -5,6 +5,7 @@ export class EchartService {
     ['echarts-bar', this.getUniBarOption],
     ['echarts-pie', this.getPieOption],
     ['echarts-line', this.getLineOption],
+    ['echarts-bar-line', this.getBarLineOption],
   ]);
 
   /**
@@ -83,9 +84,6 @@ export class EchartService {
   getUniBarOption() {
     return {
       grid: { height: 140, bottom: 20, top: 20, right: 10 },
-      // dataset: {
-      //   source: dataSource,
-      // },
       tooltip: {
         trigger: 'axis',
       },
@@ -98,9 +96,6 @@ export class EchartService {
         axisTick: {
           show: false,
         },
-        axisLabel: {
-          // show: showXaxis,
-        }
       },
       yAxis: {
         type: 'value',
@@ -119,7 +114,7 @@ export class EchartService {
           type: 'bar',
           name: '平均值',
           label: {
-            // show: showValue,
+            show: true,
             position: 'top',
             color: '#fff',
           },
@@ -413,7 +408,7 @@ export class EchartService {
    * 折柱混合图
    * @param dataSource 数据源
    */
-  getBarLineOption(dataSource) {
+  getBarLineOption() {
     return {
       grid: { height: 120, top: 25 },
       textStyle: {
@@ -441,7 +436,6 @@ export class EchartService {
       xAxis: [
         {
           type: 'category',
-          data: dataSource[0],
           axisPointer: {
             type: 'shadow',
           },
@@ -481,9 +475,8 @@ export class EchartService {
       series: [
         {
           barMaxWidth: 14,
-          name: '平均湿度',
+          name: '平均值',
           type: 'bar',
-          data: dataSource[1],
           label: {
             show: false,
           },
@@ -508,10 +501,9 @@ export class EchartService {
           },
         },
         {
-          name: '最低温度',
+          name: '最低值',
           type: 'line',
           yAxisIndex: 1,
-          data: dataSource[2],
           lineStyle: {
             color: '#FF8422',
           },
@@ -520,10 +512,9 @@ export class EchartService {
           },
         },
         {
-          name: '平均温度',
+          name: '平均值',
           type: 'line',
           yAxisIndex: 1,
-          data: dataSource[3],
           lineStyle: {
             color: '#FFF822',
           },
@@ -532,10 +523,9 @@ export class EchartService {
           },
         },
         {
-          name: '最高温度',
+          name: '最高值',
           type: 'line',
           yAxisIndex: 1,
-          data: dataSource[4],
           lineStyle: {
             color: '#FF4522',
           },
@@ -762,6 +752,7 @@ export class EchartService {
           name: '数值',
           smooth: true,
           showSymbol: false,
+          symbol: 'circle',
           symbolSize: 6,
           itemStyle: {
             color: '#00F7FF',
