@@ -3,7 +3,7 @@
     <table class="content-table">
       <tr :key="index" v-for="(item,index) in basicData">
         <td>
-          <div class="content-each">
+          <div  v-if="item.left" class="content-each">
             <p>{{ item.left.title }}</p>
             <div>
               <span>{{ item.left.value }}</span>
@@ -12,11 +12,11 @@
           </div>
         </td>
         <td>
-          <div class="content-each">
+          <div v-if="item.right" class="content-each">
             <p>{{ item.right.title }}</p>
             <div>
-              <span>{{ item.left.value }}</span>
-              {{ item.left.unit }}
+              <span>{{ item.right.value }}</span>
+              {{ item.right.unit }}
             </div>
           </div>
         </td>
@@ -62,6 +62,7 @@ export default {
         this.basicData.push(param);
         param = {};
       }
+      console.log(this.basicData)
     }
   },
   components: {
