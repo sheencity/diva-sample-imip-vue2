@@ -36,7 +36,7 @@ export class DivaService {
    * @param {boolean} visible
    */
   async setEntityVisibleByGroup(group, visible) {
-    await this.client.request("UpdateEntityStatusByGroup", {
+    await this.client?.request("UpdateEntityStatusByGroup", {
       group: group,
       visible: visible,
     });

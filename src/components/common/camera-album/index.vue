@@ -13,7 +13,7 @@
           class='pic-container'
           v-for='camera in item.content.data'
           :key='camera.text'
-          @click="playCameraTrack(camera.diva)"
+          @click="playCameraTrack(camera)"
         >
           <img :src="require('../../../assets/' + camera.image)" />
           <span>{{ camera.text }}</span>
@@ -25,13 +25,12 @@
 
 <script>
 import AppDialogHeader from "../dialog/dialog-header";
-import { diva } from 'services/global';
 
 export default {
   props: ["dataSource"],
   methods: {
-    playCameraTrack(camera) {
-      diva.client.playCameraTrack(camera.camera_track_name);
+    playCameraTrack(e) {
+      this.$emit("check", e);
     }
   },
   components: {

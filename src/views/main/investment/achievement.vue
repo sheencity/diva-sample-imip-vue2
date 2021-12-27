@@ -60,10 +60,12 @@ import AppBasicInfo from "components/common/basic-info";
 import AppStatisticsPanel from "components/common/statistics-panel";
 import AppScrollerTable from "components/common/table/scroller-table";
 import Echarts from "components/common/echarts";
+import { diva } from "services/global";
 
 export default {
   data() {
     return {
+      divaData: null,
       statisticsData: null,
       basicInfoData: null,
       textListData: null,
@@ -73,16 +75,21 @@ export default {
     };
   },
   methods: {
-
+    initScene() {
+      diva?.client?.applyScene(this.divaData.init.scene_name);
+    }
   },
   created() {
     this.axios.get("/config/page/achievement.json").then((res) => {
+      this.divaData = res.data.diva;
       this.statisticsData = res.data['panel-left'][0];
       this.basicInfoData = res.data['panel-left'][1];
       this.textListData = res.data['panel-left'][2];
       this.ringPieData = res.data['panel-right'][0];
       this.basicBarData = res.data['panel-right'][1];
       this.horBarData = res.data['panel-right'][2];
+
+      this.initScene();
     });
   },
   components: {
