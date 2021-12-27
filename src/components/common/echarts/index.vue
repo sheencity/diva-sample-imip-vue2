@@ -6,7 +6,7 @@
 
 <script>
 import * as echarts from "echarts";
-import { merge, cloneDeep } from "lodash";
+import { merge } from "lodash";
 import AppDialog from "components/common/dialog/dialog";
 import { echartService } from 'services/global';
 
@@ -23,8 +23,13 @@ export default {
   },
   mounted() {
     const chart = echarts.init(this.$refs.echarts);
-    const option = echartService.echartsMap.get(this.type);
-    const mergeOpt = merge(cloneDeep(option), this.dataSource.option);
+    let mergeOpt;
+    if (this.type) {
+      const option = echartService.echartsMap.get(this.type)();
+      mergeOpt = merge(option, this.dataSource.option);
+    } else {
+      mergeOpt = this.dataSource.option;
+    }
     console.log({mergeOpt});
     chart.setOption(mergeOpt);
   },

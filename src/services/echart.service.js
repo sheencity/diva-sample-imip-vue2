@@ -1,10 +1,10 @@
 export class EchartService {
   echartsMap = new Map([
-    ['echarts-basic-bar', this.getBasicBarOption()],
-    ['echarts-hor-bar', this.getHorizonBarOption()],
-    ['echarts-bar', this.getUniBarOption()],
-    ['echarts-pie', this.getPieOption()],
-    ['echarts-line', this.getLineOption()],
+    ['echarts-basic-bar', this.getBasicBarOption],
+    ['echarts-hor-bar', this.getHorizonBarOption],
+    ['echarts-bar', this.getUniBarOption],
+    ['echarts-pie', this.getPieOption],
+    ['echarts-line', this.getLineOption],
   ]);
 
   /**
