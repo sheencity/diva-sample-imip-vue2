@@ -1,11 +1,11 @@
 <template>
   <article v-if="initDivaData" class="space-between">
     <aside class="space-left all">
-      
+      <app-floor-panel class="top10" :dataSource="floorPanelData"></app-floor-panel>
     </aside>
     <aside class="space-right all">
       <app-statistics-panel class="top10" :dataSource="staPanelData"></app-statistics-panel>
-      
+
       <app-echarts 
         class="top10" 
         :header="basicPieData.header"
@@ -23,6 +23,7 @@
 
 <script>
 import { diva } from 'services/global'
+import AppFloorPanel from 'components/floor-panel'
 import AppStatisticsPanel from 'components/common/statistics-panel'
 import AppEcharts from 'components/common/echarts'
 
@@ -31,7 +32,7 @@ export default {
     return {
       initDivaData: null,
 
-
+      floorPanelData: null,
       staPanelData: null,
       basicPieData: null,
       basicLineData: null,
@@ -48,7 +49,7 @@ export default {
     async getConfig() {
       const { data } = await this.axios.get('config/page/office.json');
       this.initDivaData = data.diva;
-
+      this.floorPanelData = data['panel-left'][0];
       this.staPanelData = data['panel-right'][0];
       this.basicPieData = data['panel-right'][1];
       this.basicLineData = data['panel-right'][2];
@@ -67,7 +68,8 @@ export default {
   },
   components: {
     AppStatisticsPanel,
-    AppEcharts
+    AppEcharts,
+    AppFloorPanel
   },
 };
 </script>
