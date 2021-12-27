@@ -26,6 +26,7 @@
         <app-switcher-list
           :header="switcherListData.header"
           :dataSource="switcherListData.content.data"
+          @checked="switcherChange"
         >
         </app-switcher-list>
       </template>
@@ -89,6 +90,15 @@ export default {
         .forEach((item) => item.default = false);
     },
 
+    // 开关切换
+    switcherChange(e) {
+      diva.client.applyScene(this.switcherListData.content.diva.init.scene_name, {
+        camera: true,
+        visibility: false,
+      });
+      diva.setEntityVisibleByName(e.diva.name, e.default);
+    },
+
     // 按钮组切换
     async buttonTabChange(index) {
       await this.reset();
@@ -102,7 +112,6 @@ export default {
 
     // 条目点击切换，聚焦至对应体块
     rowItemChange(item, index) {
-      console.log(item, index);
       if (this.selectedBtnTabIndex === 2) {
         this.rowDisabled = true;
         this.animeDuration = this.rowListData.content.diva.action

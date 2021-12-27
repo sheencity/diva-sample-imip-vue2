@@ -25,20 +25,14 @@
 </template>
 
 <script>
-import AppDialog from '../dialog/dialog'
-import AppSwitcher from '../switcher'
+import AppDialog from '../dialog/dialog';
+import AppSwitcher from '../switcher';
+
 export default {
-  props: ['header','dataSource'],
-  data(){
-    return{
-    }
-  },
-  creat(){
-    
-  },
+  props: ['header', 'dataSource'],
   methods: {
-    switcher(e){
-      this.$emit('checked',e)
+    switcher(e) {
+      this.$emit('checked', e);
     }
   },
   components: {
