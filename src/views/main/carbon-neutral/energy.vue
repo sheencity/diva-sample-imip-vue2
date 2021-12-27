@@ -97,7 +97,7 @@ export default {
         this.getCurrCategoryData();
         this.currCategoryData = this.buttonTabData.content.data[this.currCategoryIndex].data;
         this.POIList = await this.getPOI(e.diva.resource.group);
-        if(e.checked){
+        if(e.default){
           this.POIChecked = true;
           const { opacity } = this.divaParam;
           const { minValue, maxValue } = this.ruleNum(this.divaParam);
