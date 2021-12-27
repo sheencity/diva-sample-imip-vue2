@@ -11,6 +11,7 @@ import Office from "views/main/wisdom-operation/office";
 import Park from "views/main/wisdom-operation/park";
 import Environment from "views/main/wisdom-operation/environment";
 import Security from "views/main/wisdom-operation/security";
+import FireControl from 'views/main/wisdom-operation/fire-control'
 
 Vue.use(VueRouter);
 
@@ -41,7 +42,7 @@ const routes = [
           },
           { path: "/wisdom-operation/office", component: Office },
           { path: "/wisdom-operation/environment", component: Environment },
-          { path: "/wisdom-operation/fire-control", component: Introduction },
+          { path: "/wisdom-operation/fire-control", component: FireControl },
           { path: "/wisdom-operation/security", component: Security },
           { path: "/wisdom-operation/park", component: Park },
           {
