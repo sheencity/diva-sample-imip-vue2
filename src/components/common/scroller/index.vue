@@ -58,13 +58,11 @@ export default {
   watch: {
     dataLength() {
       if (this.timer) {
-        clearInterval(this.timer);
-      } else {
-        this.isOverHeight();
+        clearInterval(this.timer); 
       }
+      this.isOverHeight();
     },
   },
-
   mounted() {
     this.isOverHeight();
   },
