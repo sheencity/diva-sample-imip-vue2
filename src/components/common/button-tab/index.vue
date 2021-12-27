@@ -12,11 +12,11 @@
           <div v-if="item.icon">
             <img
               v-show="selectItem === index"
-              :src="require('../../../assets/' + item.icon.selectUrl)"
+              :src="require('../../../assets/' + item.icon.select)"
             />
             <img
               v-show="selectItem !== index"
-              :src="require('../../../assets/' + item.icon.unselectUrl)"
+              :src="require('../../../assets/' + item.icon.unselect)"
             />
           </div>
           {{ item.title }}

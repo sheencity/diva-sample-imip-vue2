@@ -6,6 +6,7 @@ export class EchartService {
     ['echarts-pie', this.getPieOption],
     ['echarts-line', this.getLineOption],
     ['echarts-bar-line', this.getBarLineOption],
+    ['echarts-multi-line', this.getMutiLineOption],
   ]);
 
   /**
@@ -210,27 +211,37 @@ export class EchartService {
   }
 
   /**
-   * 曲线面积图配置
-   * @param data 数据源
-   * @param smooth 是否为平滑曲线
-   * @param area 是否显示曲线面积
+   * 多曲线面积图
+   * @param {[]} data 
    */
-  getAreaOption(data, smooth = true, area = true) {
+  getMutiLineOption() {
     return {
+      grid: { height: 130, top: 15, right: 10 },
+      textStyle: {
+        color: '#fff',
+        fontSize: 10,
+      },
       tooltip: {
         trigger: 'axis',
+        axisPointer: {
+          type: 'cross',
+          crossStyle: {
+            color: '#999',
+          },
+        },
       },
-      grid: {
-        top: 10,
-        left: 30,
-        right: 20,
-        bottom: 20,
-      },
-      dataset: {
-        source: data,
+      legend: {
+        align: 'auto',
+        padding: 0,
+        bottom: 0,
+        itemWidth: 10,
+        textStyle: {
+          color: '#fff',
+        },
       },
       xAxis: {
         type: 'category',
+        data: [],
         boundaryGap: false,
         axisLabel: {
           color: '#fff',
@@ -266,141 +277,53 @@ export class EchartService {
       series: [
         {
           type: 'line',
-          name: '平均值',
-          smooth: smooth,
-          symbol: 'circle',
-          symbolSize: 6,
+          data: [],
+          showSymbol: false,
+          smooth: true,
+          lineStyle: {
+            color: '#66CCFF'
+          },
           itemStyle: {
-            color: '#00F7FF',
-            borderWidth: 0,
-            opacity: 0.8,
-          },
-          lineStyle: {
-            color: {
-              type: 'linear',
-              x: 0,
-              y: 1,
-              x2: 1,
-              y2: 1,
-              colorStops: [
-                {
-                  offset: 0,
-                  color: '#09D099',
-                },
-                {
-                  offset: 1,
-                  color: 'rgb(38, 203, 250)',
-                },
-              ],
-            },
-            opacity: 0.6,
-          },
-          areaStyle: area
-            ? {
-                color: {
-                  type: 'linear',
-                  x: 0,
-                  y: 0,
-                  x2: 0,
-                  y2: 1,
-                  colorStops: [
-                    {
-                      offset: 0,
-                      color: '#09D099',
-                    },
-                    {
-                      offset: 1,
-                      color: 'rgba(38, 203, 250, 0.2)',
-                    },
-                  ],
-                  global: false,
-                },
-                opacity: 0.3,
-              }
-            : null,
+            color: '#66CCFF'
+          }
         },
+        {
+          type: 'line',
+          data: [],
+          showSymbol: false,
+          smooth: true,
+          lineStyle: {
+            color: '#6699FF'
+          },
+          itemStyle: {
+            color: '#6699FF'
+          }
+        },
+        {
+          type: 'line',
+          data: [],
+          showSymbol: false,
+          smooth: true,
+          lineStyle: {
+            color: '#6666FF'
+          },
+          itemStyle: {
+            color: '#6666FF'
+          }
+        },
+        {
+          type: 'line',
+          data: [],
+          showSymbol: false,
+          smooth: true,
+          lineStyle: {
+            color: '#CCFFFF'
+          },
+          itemStyle: {
+            color: '#CCFFFF'
+          }
+        }
       ],
-    };
-  }
-
-  /**
-   * 多曲线面积图
-   * @param {[]} data 
-   */
-  getMutiLineAreaOption(data) {
-    const series = [];
-    const xAxisLabel = data[0].data.map((item) => item.x_axis);
-    data.forEach((item) => {
-      const _series = {};
-      _series.data = item.data.map((i) => i.value);
-      _series.name = item.type;
-      _series.type = 'line';
-      _series.showSymbol = false;
-      _series.smooth = true;
-      _series.lineStyle = { color: item.color };
-      _series.itemStyle = { color: item.color };
-      series.push(_series);
-    });
-    return {
-      grid: { height: 130, top: 15, right: 20 },
-      textStyle: {
-        color: '#fff',
-        fontSize: 10,
-      },
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'cross',
-          crossStyle: {
-            color: '#999',
-          },
-        },
-      },
-      legend: {
-        align: 'auto',
-        padding: 0,
-        bottom: 0,
-        itemWidth: 10,
-        textStyle: {
-          color: '#fff',
-        },
-      },
-      xAxis: {
-        type: 'category',
-        data: xAxisLabel,
-        boundaryGap: false,
-        axisLabel: {
-          color: '#fff',
-          fontSize: 10,
-        },
-        axisTick: {
-          show: false,
-        },
-        axisLine: {
-          show: false,
-        },
-      },
-      yAxis: {
-        type: 'value',
-        splitNumber: 2,
-        splitLine: {
-          show: true,
-          lineStyle: {
-            color: 'rgba(255, 255, 255, 0.1)',
-          },
-        },
-        axisLabel: {
-          color: '#fff',
-          fontSize: 12,
-        },
-        axisLine: {
-          onZero: false,
-          lineStyle: {
-            color: '#888',
-          },
-        },
-      },
-      series: series,
     };
   }
 
