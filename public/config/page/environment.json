@@ -18,8 +18,8 @@
               "name": "focus",
               "description": "点击后聚焦至监测设备",
               "param": {
-                "distance": 2500,
-                "pitch": -60
+                "distance": 200,
+                "pitch": -20
               }
             },
             {
@@ -56,13 +56,17 @@
             "id": "MEF901",
             "category": "监测设备",
             "status": "正常",
-            "name": "环境监测设备"
+            "diva": {
+              "name": "环境监测设备"
+            }
           },
           {
             "id": "MEF902",
             "category": "监测设备",
             "status": "检修",
-            "name": "环境监测引导文字"
+            "diva": {
+              "name": "环境监测引导文字"
+            }
           }
         ]
       }

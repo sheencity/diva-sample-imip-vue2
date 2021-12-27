@@ -2,7 +2,14 @@
   <article class="space-between">
     <aside class="space-left all">
       <template v-if="deviceListData">
-        
+        <app-table-col3
+          :maxItem="2"
+          :header="deviceListData.header"
+          :thead="deviceListData.content.head"
+          :dataSource="deviceListData.content.data"
+          @select="deviceChange"
+        >
+        </app-table-col3>
       </template>
       <template v-if="CH2OData">
         <echarts
@@ -51,6 +58,7 @@
 
 <script>
 import Echarts from "components/common/echarts";
+import AppTableCol3 from "components/common/table/table-col3";
 
 export default {
   data() {
@@ -73,8 +81,14 @@ export default {
       this.VOCData = res.data['panel-right'][2];
     });
   },
+  methods: {
+    deviceChange(name, e) {
+      console.log(name, e);
+    }
+  },
   components: {
     Echarts,
+    AppTableCol3,
   }
 };
 </script>

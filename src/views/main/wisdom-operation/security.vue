@@ -9,11 +9,20 @@
         >
         </app-button-tab>
       </template>
-      <template v-if="monitorListData && selectedIndex === 0">
 
-      </template>
+      <app-table-col3
+        v-if="monitorListData && selectedIndex === 0"
+        class="top10"
+        :maxItem="7"
+        :header="monitorListData.header"
+        :thead="monitorListData.content.head"
+        :dataSource="monitorListData.content.data"
+        @select="monitorChange"
+      >
+      </app-table-col3>
+
       <app-switcher-list
-        v-show="trafficListData && selectedIndex === 1"
+        v-if="trafficListData && selectedIndex === 1"
         class="top10"
         :header="trafficListData.header"
         :dataSource="trafficListData.content.data"
@@ -44,6 +53,7 @@
 import Echarts from "components/common/echarts";
 import AppButtonTab from "components/common/button-tab";
 import AppSwitcherList from "components/common/switcher-list-panel";
+import AppTableCol3 from "components/common/table/table-col3";
 
 export default {
   data() {
@@ -70,11 +80,15 @@ export default {
       this.selectedIndex = index;
       // TODO diva action
     },
+    monitorChange(name, e) {
+      console.log(name, e);
+    }
   },
   components: {
     Echarts,
     AppButtonTab,
     AppSwitcherList,
+    AppTableCol3,
   }
 };
 </script>
