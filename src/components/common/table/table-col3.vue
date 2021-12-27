@@ -1,6 +1,6 @@
 <template>
   <app-dialog :header="header">
-    <div v-if="thead.length > 0 && tbody.length > 0">
+    <div v-if="thead.length > 0 && dataSource.length > 0">
       <div class="thead">
         <span class="col-1">{{ thead[0].title }}</span>
         <span class="col-2">{{ thead[1].title }}</span>
@@ -13,7 +13,7 @@
             :class="{ 'item-selected': selectId === index }"
             :style="{ opacity: item[thead[2].name] === '检修' ? 0.3 : 1}"
             :key="item[thead[0].name]"
-            v-for="(item, index) in tbody"
+            v-for="(item, index) in dataSource"
             @click="select(item,index)"
           >
             <span class="col-1">{{ item[thead[0].name] }}</span>
@@ -35,19 +35,13 @@
 import AppDialog from '../dialog/dialog'
 
 export default {
-  props: ['dataSource', 'maxItem', 'header'],
+  props: ['thead', 'dataSource', 'maxItem', 'header'],
   data() {
     return {
       selectId: -1,
-      thead: [],
-      tbody: []
     }
   },
   created(){
-    if(this.dataSource){
-      this.thead = this.dataSource.thead;
-      this.tbody = this.dataSource.tbody;
-    }
   },
   methods: {
     select(e,index) {
@@ -58,7 +52,7 @@ export default {
       this.$emit("select", targetName, e);
     },
     unselect() {
-      this.tbody?.forEach((obj,index) => {
+      this.dataSource?.forEach((obj,index) => {
         // 将其他选中的取消
         const otherName = obj.name;
         if (this.selectId === index){
