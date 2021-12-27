@@ -17,7 +17,6 @@
             "title": "产业链条",
             "diva": {
               "init": {
-                "scene_name": "标线鸟瞰",
                 "group": "功能辅助/产业链条"
               }
             },
@@ -108,8 +107,7 @@
             "title": "建筑用途",
             "diva": {
               "init": {
-                "scene_name": "标线鸟瞰",
-                "group": "功能辅助/产业链条"
+                "group": "功能辅助/建筑用途"
               }
             },
             "target-panel": {
@@ -279,7 +277,6 @@
             "title": "分期规划",
             "diva": {
               "init": {
-                "scene_name": "鸟瞰",
                 "group": "功能辅助/分期规划"
               }
             },

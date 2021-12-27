@@ -5,7 +5,7 @@
         class="rows"
         v-for="(item, index) in rowList"
         :key="item.title"
-        :class="{ 'row-selected': selectedIndex === index, 'disabled': rowDisabled }"
+        :class="{ 'row-selected': selectedIndex === index, 'disabled': disabled }"
         @click="select(item, index)"
       >
         <span
@@ -41,15 +41,11 @@ import AppDialog from '../dialog/dialog';
 import AppBasicInfo from '../basic-info';
 
 export default {
-  props: ["header", "dataSource"],
+  props: ["header", "dataSource", "disabled"],
   data() {
     return {
       rowList: [],
       selectedIndex: -1,
-      rowDisabled: false,
-      // 是否需要设置定时器
-      needSetTimeout: false,
-      delay: null,
     };
   },
   created() {
@@ -58,12 +54,7 @@ export default {
   methods: {
     select(item, index) {
       this.selectedIndex = index;
-      this.$emit('select', index);
-
-      if (this.needSetTimeout) {
-        this.rowDisabled = true;
-        setTimeout(() => this.rowDisabled = false, this.delay);
-      }
+      this.$emit('select', item, index);
     },
     closeTopframe() {
       this.selectedIndex = -1;
