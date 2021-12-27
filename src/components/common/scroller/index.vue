@@ -58,6 +58,7 @@ export default {
   watch: {
     dataLength() {
       if (this.timer) {
+        this.step = 0;
         clearInterval(this.timer); 
       }
       this.isOverHeight();
