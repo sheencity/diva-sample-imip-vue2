@@ -4,269 +4,267 @@
 			"scene_name": "鸟瞰"
 		}
 	},
-	"panel": {
-    "panel-left": [
-      {
-        "header": {
-          "title": "项目介绍",
-          "icon": "images/common/dialog/route1/1.svg"
-        },
-        "content": {
-          "type": "basic-info",
-          "data": {
-            "image": {
-             "url": "images/router/introduction/home.png"
-            },
-            "text": ["智能制造产业园是智能化、科技化，管理成本更低，生产自动化程度更高的制造类园区。"]
-          }
-        }
+  "panel-left": [
+    {
+      "header": {
+        "title": "项目介绍",
+        "icon": "images/common/dialog/route1/1.svg"
       },
-      {
-        "header": {
-          "title": "基本信息",
-          "icon": "images/common/dialog/route1/2.svg"
-        },
-        "content": {
-          "type": "card-table",
-          "data": [
-            { "title": "总建筑面积", "value": "328,190", "unit": "m²" },
-            { "title": "总用地面积", "value": "200,292", "unit": "m²" },
-            { "title": "总计容建筑面积", "value": "336,150", "unit": "m²" },
-            { "title": "地上建筑面积", "value": "305,170", "unit": "m²" },
-            { "title": "基底建筑面积", "value": "80,625",	"unit": "m²" },
-            { "title": "容积率", "value": "1.62" },
-            { "title": "建筑密度", "value": "40.2", "unit": "%" },
-            { "title": "绿地率", "value": "15",	"unit": "%"	}
-          ]
-        }
-      },
-      {
-        "header": {
-					"title": "建筑分区",
-					"icon": "images/common/dialog/route1/3.svg"
-        },
-        "content": {
-          "type": "echarts-pie",
-          "option": {
-            "tooltip": {
-              "position": "right",
-              "formatter": "{b} : {c} (㎡)"
-            },
-            "series": [{
-              "color": ["#E3F2FD", "#90CAF9", "#42A5F5", "#1E88E5", "#1565C0", "#0D47A1","#5C6BC0"],
-              "radius": [20, 80],
-              "roseType": "area",
-              "itemStyle": {
-                "borderRadius": 4
-              },
-              "data": [
-                { "value": 8300, "name": "餐饮休闲区" },
-                { "value": 27050, "name": "人工智能研发区" },
-                { "value": 29550, "name": "自动机械产品智造区" },
-                { "value": 38520, "name": "医疗器械设备智造区" },
-                { "value": 50310, "name": "工业互联网研发区" },
-                { "value": 60000, "name": "配套住宿区" },
-                { "value": 90140, "name": "工业创意产品生产区" }
-              ]
-            }]
-          }
+      "content": {
+        "type": "basic-info",
+        "data": {
+          "image": {
+            "url": "images/router/introduction/home.png"
+          },
+          "text": ["智能制造产业园是智能化、科技化，管理成本更低，生产自动化程度更高的制造类园区。"]
         }
       }
-    ],
-    "panel-right": [
-      {
-        "header": {
-            "title": "产业布局",
-            "icon": "images/common/dialog/route1/4.svg"
+    },
+    {
+      "header": {
+        "title": "基本信息",
+        "icon": "images/common/dialog/route1/2.svg"
+      },
+      "content": {
+        "type": "card-table",
+        "data": [
+          { "title": "总建筑面积", "value": "328,190", "unit": "m²" },
+          { "title": "总用地面积", "value": "200,292", "unit": "m²" },
+          { "title": "总计容建筑面积", "value": "336,150", "unit": "m²" },
+          { "title": "地上建筑面积", "value": "305,170", "unit": "m²" },
+          { "title": "基底建筑面积", "value": "80,625",	"unit": "m²" },
+          { "title": "容积率", "value": "1.62" },
+          { "title": "建筑密度", "value": "40.2", "unit": "%" },
+          { "title": "绿地率", "value": "15",	"unit": "%"	}
+        ]
+      }
+    },
+    {
+      "header": {
+        "title": "建筑分区",
+        "icon": "images/common/dialog/route1/3.svg"
+      },
+      "content": {
+        "type": "echarts-pie",
+        "option": {
+          "tooltip": {
+            "position": "right",
+            "formatter": "{b} : {c} (㎡)"
+          },
+          "series": [{
+            "color": ["#E3F2FD", "#90CAF9", "#42A5F5", "#1E88E5", "#1565C0", "#0D47A1","#5C6BC0"],
+            "radius": [20, 80],
+            "roseType": "area",
+            "itemStyle": {
+              "borderRadius": 4
+            },
+            "data": [
+              { "value": 8300, "name": "餐饮休闲区" },
+              { "value": 27050, "name": "人工智能研发区" },
+              { "value": 29550, "name": "自动机械产品智造区" },
+              { "value": 38520, "name": "医疗器械设备智造区" },
+              { "value": 50310, "name": "工业互联网研发区" },
+              { "value": 60000, "name": "配套住宿区" },
+              { "value": 90140, "name": "工业创意产品生产区" }
+            ]
+          }]
+        }
+      }
+    }
+  ],
+  "panel-right": [
+    {
+      "header": {
+          "title": "产业布局",
+          "icon": "images/common/dialog/route1/4.svg"
+      },
+      "content": {
+        "type": "card-list",
+        "diva": {
+          "action": [
+            {
+              "name": "highlight",
+              "description": "点击后目标物体高亮显示",
+              "param": {
+                "color": [255,0,0,80], 
+                "borderColor": [255,255,255],  
+                "borderSize": 1
+              }
+            },
+            {
+              "name": "focus",
+              "description": "点击后聚焦至目标物体",
+              "param": {
+                "distance": 30000,
+                "pitch": -45
+              }
+            }
+          ]
         },
-        "content": {
-          "type": "card-list",
-          "diva": {
-            "action": [
+        "data": [
+          {
+            "title": "生产区",
+            "list": [
               {
-                "name": "highlight",
-                "description": "点击后目标物体高亮显示",
-                "param": {
-                  "color": [255,0,0,80], 
-                  "borderColor": [255,255,255],  
-                  "borderSize": 1
+                "type": "card-two-info",
+                "content": {
+                  "title": "自动机械产品制造区",
+                  "icon": "images/router/introduction/area1.svg",
+                  "info_left": { 
+                    "title": "建筑面积", "value": "60,000", "unit": "m²"
+                  },
+                  "info_right": {
+                    "title": "计容建筑面积", "value": "42,840", "unit": "m²"
+                  }
+                },
+                "diva": {
+                  "models": [
+                    { "name": "4#" }
+                  ],
+                  "poi": [
+                    { "name": "POI自动机械" }
+                  ]
                 }
               },
               {
-                "name": "focus",
-                "description": "点击后聚焦至目标物体",
-                "param": {
-                  "distance": 30000,
-                  "pitch": -45
+                "type": "card-two-info",
+                "content": {
+                  "title": "医疗器械设备智造区",
+                  "icon": "images/router/introduction/area2.svg",
+                  "info_left": { 
+                    "title": "建筑面积", "value": "38,520", "unit": "m²"
+                  },
+                  "info_right": {
+                    "title": "计容建筑面积", "value": "56,210", "unit": "m²"
+                  }
+                },
+                "diva": {
+                  "models": [
+                    { "name": "11#" },
+                    { "name": "12#" }
+                  ],
+                  "poi": [
+                    { "name": "POI医疗器械" }
+                  ]
+                }
+              },
+              {
+                "type": "card-two-info",
+                "content": {
+                  "title": "工业创意产品生产区",
+                  "icon": "images/router/introduction/area3.svg",
+                  "info_left": { 
+                    "title": "建筑面积", "value": "90,140", "unit": "m²"
+                  },
+                  "info_right": {
+                    "title": "计容建筑面积", "value": "90,140", "unit": "m²"
+                  }
+                },
+                "diva": {
+                  "models": [
+                    { "name": "7#" },
+                    { "name": "8#" },
+                    { "name": "9#" },
+                    { "name": "10#" },
+                    { "group": "产业园区/楼栋/5#" },
+                    { "group": "产业园区/楼栋/6#" }
+                  ],
+                  "poi": [
+                    { "name": "POI工业创意" }
+                  ]
+                }
+              },
+              {
+                "type": "card-two-info",
+                "content": {
+                  "title": "工业互联网研发区",
+                  "icon": "images/router/introduction/area4.svg",
+                  "info_left": { 
+                    "title": "建筑面积", "value": "50,310", "unit": "m²"
+                  },
+                  "info_right": {
+                    "title": "计容建筑面积", "value": "50,310", "unit": "m²"
+                  }
+                },
+                "diva": {
+                  "models": [
+                    { "name": "2#" },
+                    { "name": "3#" }
+                  ],
+                  "poi": [
+                    { "name": "POI互联网" }
+                  ]
+                }
+              },
+              {
+                "type": "card-two-info",
+                "content": {
+                  "title": "人工智能研发区",
+                  "icon": "images/router/introduction/area5.svg",
+                  "info_left": { 
+                    "title": "建筑面积", "value": "27,050", "unit": "m²"
+                  },
+                  "info_right": {
+                    "title": "计容建筑面积", "value": "27,050", "unit": "m²"
+                  }
+                },
+                "diva": {
+                  "models": [
+                    { "group": "产业园区/楼栋/1#" }
+                  ],
+                  "poi": [
+                    { "name": "POI人工智能" }
+                  ]
                 }
               }
             ]
           },
-          "data": [
-            {
-              "title": "生产区",
-              "list": [
-                {
-                  "type": "card-two-info",
-                  "content": {
-                    "title": "自动机械产品制造区",
-                    "icon": "images/router/introduction/area1.svg",
-                    "info_left": { 
-                      "title": "建筑面积", "value": "60,000", "unit": "m²"
-                    },
-                    "info_right": {
-                      "title": "计容建筑面积", "value": "42,840", "unit": "m²"
-                    }
-                  },
-                  "diva": {
-                    "models": [
-                      { "name": "4#" }
-                    ],
-                    "poi": [
-                      { "name": "POI自动机械" }
-                    ]
+          {
+            "title": "生活区",
+            "list": [
+              {
+                "type": "card-two-info",
+                "content": {
+                  "title": "配套住宿区",
+                  "icon": "images/router/introduction/area6.svg",
+                  "info_left": { 
+                    "title": "建筑面积", "value": "60,000", "unit": "m²"
                   }
                 },
-                {
-                  "type": "card-two-info",
-                  "content": {
-                    "title": "医疗器械设备智造区",
-                    "icon": "images/router/introduction/area2.svg",
-                    "info_left": { 
-                      "title": "建筑面积", "value": "38,520", "unit": "m²"
-                    },
-                    "info_right": {
-                      "title": "计容建筑面积", "value": "56,210", "unit": "m²"
-                    }
-                  },
-                  "diva": {
-                    "models": [
-                      { "name": "11#" },
-                      { "name": "12#" }
-                    ],
-                    "poi": [
-                      { "name": "POI医疗器械" }
-                    ]
-                  }
-                },
-                {
-                  "type": "card-two-info",
-                  "content": {
-                    "title": "工业创意产品生产区",
-                    "icon": "images/router/introduction/area3.svg",
-                    "info_left": { 
-                      "title": "建筑面积", "value": "90,140", "unit": "m²"
-                    },
-                    "info_right": {
-                      "title": "计容建筑面积", "value": "90,140", "unit": "m²"
-                    }
-                  },
-                  "diva": {
-                    "models": [
-                      { "name": "7#" },
-                      { "name": "8#" },
-                      { "name": "9#" },
-                      { "name": "10#" },
-                      { "group": "产业园区/楼栋/5#" },
-                      { "group": "产业园区/楼栋/6#" }
-                    ],
-                    "poi": [
-                      { "name": "POI工业创意" }
-                    ]
-                  }
-                },
-                {
-                  "type": "card-two-info",
-                  "content": {
-                    "title": "工业互联网研发区",
-                    "icon": "images/router/introduction/area4.svg",
-                    "info_left": { 
-                      "title": "建筑面积", "value": "50,310", "unit": "m²"
-                    },
-                    "info_right": {
-                      "title": "计容建筑面积", "value": "50,310", "unit": "m²"
-                    }
-                  },
-                  "diva": {
-                    "models": [
-                      { "name": "2#" },
-                      { "name": "3#" }
-                    ],
-                    "poi": [
-                      { "name": "POI互联网" }
-                    ]
-                  }
-                },
-                {
-                  "type": "card-two-info",
-                  "content": {
-                    "title": "人工智能研发区",
-                    "icon": "images/router/introduction/area5.svg",
-                    "info_left": { 
-                      "title": "建筑面积", "value": "27,050", "unit": "m²"
-                    },
-                    "info_right": {
-                      "title": "计容建筑面积", "value": "27,050", "unit": "m²"
-                    }
-                  },
-                  "diva": {
-                    "models": [
-                      { "group": "产业园区/楼栋/1#" }
-                    ],
-                    "poi": [
-                      { "name": "POI人工智能" }
-                    ]
-                  }
+                "diva": {
+                  "models": [
+                    { "name": "13#" }
+                  ],
+                  "poi": [
+                    { "name": "POI配套住宿" }
+                  ]
                 }
-              ]
-            },
-            {
-              "title": "生活区",
-              "list": [
-                {
-                  "type": "card-two-info",
-                  "content": {
-                    "title": "配套住宿区",
-                    "icon": "images/router/introduction/area6.svg",
-                    "info_left": { 
-                      "title": "建筑面积", "value": "60,000", "unit": "m²"
-                    }
-                  },
-                  "diva": {
-                    "models": [
-                      { "name": "13#" }
-                    ],
-                    "poi": [
-                      { "name": "POI配套住宿" }
-                    ]
+              },
+              {
+                "type": "card-two-info",
+                "content": {
+                  "title": "餐饮休闲区",
+                  "icon": "images/router/introduction/area7.svg",
+                  "info_left": { 
+                    "title": "建筑面积", "value": "8,300", "unit": "m²"
                   }
                 },
-                {
-                  "type": "card-two-info",
-                  "content": {
-                    "title": "餐饮休闲区",
-                    "icon": "images/router/introduction/area7.svg",
-                    "info_left": { 
-                      "title": "建筑面积", "value": "8,300", "unit": "m²"
-                    }
-                  },
-                  "diva": {
-                    "models": [
-                      { "block": "宿舍餐厅体块" },
-                      { "block": "主楼餐厅体块" }
-                    ],
-                    "poi": [
-                      { "name": "POI餐饮休闲" }
-                    ]
-                  }
+                "diva": {
+                  "models": [
+                    { "block": "宿舍餐厅体块" },
+                    { "block": "主楼餐厅体块" }
+                  ],
+                  "poi": [
+                    { "name": "POI餐饮休闲" }
+                  ]
                 }
-              ]
-            }
-          ]
-        }
+              }
+            ]
+          }
+        ]
       }
-    ]
-  }
+    }
+  ]
 }
 
 

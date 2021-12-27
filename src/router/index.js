@@ -7,6 +7,7 @@ import Energy from 'views/main/carbon-neutral/energy'
 import Achievement from "views/main/investment/achievement";
 import Space from "views/main/investment/space";
 import Plan from "views/main/investment/plan";
+import Office from "views/main/wisdom-operation/office";
 import Park from "views/main/wisdom-operation/park";
 
 Vue.use(VueRouter);
@@ -33,10 +34,10 @@ const routes = [
           {
             path: "/wisdom-operation",
             name: "智慧运营",
-            component: Introduction,
-            redirect: "/wisdom-operation/work",
+            component: Office,
+            redirect: "/wisdom-operation/office",
           },
-          { path: "/wisdom-operation/work", component: Introduction },
+          { path: "/wisdom-operation/office", component: Office },
           { path: "/wisdom-operation/environment", component: Introduction },
           { path: "/wisdom-operation/fire-control", component: Introduction },
           { path: "/wisdom-operation/production", component: Introduction },

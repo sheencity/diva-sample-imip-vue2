@@ -2,11 +2,26 @@
   <article v-if="initDivaData" class="space-between">
     <aside class="space-left all">
       <app-button-tab class="top10" :header="buttonTabData.header" :dataSource="buttonTabData.content" @select="selectResources"></app-button-tab>
-      <app-echarts :key="currCategoryIndex+'bar'" class="top10" :header="barChartsData[currCategoryIndex].header" :dataSource="barChartsData[currCategoryIndex].content"></app-echarts>
-      <app-echarts :key="currCategoryIndex+'pie'" class="top10" :header="pieChartsData[currCategoryIndex].header" :dataSource="pieChartsData[currCategoryIndex].content"></app-echarts>
+      
+      <app-echarts 
+        class="top10" 
+        :key="currCategoryIndex+'bar'" 
+        :header="barChartsData[currCategoryIndex].header" 
+        :dataSource="barChartsData[currCategoryIndex].content"
+      ></app-echarts>
+
+      <app-echarts 
+        class="top10" 
+        :key="currCategoryIndex+'pie'" 
+        :header="pieChartsData[currCategoryIndex].header" 
+        :dataSource="pieChartsData[currCategoryIndex].content"
+      ></app-echarts>
     </aside>
     <aside class="space-right all">
-      <app-switcher-list-panel class="top10" :header="switchPanelData.header" :dataSource="switchPanelData.content.data"
+      <app-switcher-list-panel 
+        class="top10" 
+        :header="switchPanelData.header" 
+        :dataSource="switchPanelData.content.data"
         @checked="checked"
       ></app-switcher-list-panel>
     </aside>
@@ -49,10 +64,10 @@ export default {
       const { data } = await this.axios.get('config/page/energy.json');
       console.log(data)
       this.initDivaData = data.diva;
-      this.buttonTabData = data.panel['panel-left'][0];
-      this.barChartsData = data.panel['panel-left'][1];
-      this.pieChartsData = data.panel['panel-left'][2];
-      this.switchPanelData = data.panel['panel-right'][0];
+      this.buttonTabData = data['panel-left'][0];
+      this.barChartsData = data['panel-left'][1];
+      this.pieChartsData = data['panel-left'][2];
+      this.switchPanelData = data['panel-right'][0];
     },
     /**
      * 初始化场景

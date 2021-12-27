@@ -662,29 +662,29 @@
     {
       "header": {
         "title": "入楼人员统计",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route3/5.svg"
 			},
 			"content": {
         "type": "statistic-panel",
         "data": [
           {
-            "icon": "m-2.svg",
+            "icon": "images/router/wisdom-operation/office/m-1.svg",
             "title": "当前楼内",
             "number": "1,425"
           },
       
           {
-            "icon": "m-1.svg",
+            "icon": "images/router/wisdom-operation/office/m-2.svg",
             "title": "今日入楼",
             "number": "1,256"
           },
           {
-            "icon": "m-3.svg",
+            "icon": "images/router/wisdom-operation/office/m-3.svg",
             "title": "今日访客",
             "number": "127"
           },
           {
-            "icon": "m-6.svg",
+            "icon": "images/router/wisdom-operation/office/m-6.svg",
             "title": "防疫检测异常",
             "number": "3",
             "fontColor": "#ff4848"
@@ -695,7 +695,7 @@
     {
       "header": {
         "title": "入楼人员分析",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route3/5-4.svg"
 			},
 			"content": {
         "type": "echarts-pie",
@@ -713,7 +713,7 @@
     {
       "header": {
         "title": "入楼分时统计",
-        "icon": "2.svg"
+        "icon": "images/common/dialog/route3/6-2.svg"
 			},
 			"content": {
         "type": "echarts-line",

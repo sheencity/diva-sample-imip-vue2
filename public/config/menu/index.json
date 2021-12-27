@@ -28,7 +28,7 @@
           "children": [
             {
               "title": "办公",
-              "link": "/wisdom-operation/work",
+              "link": "/wisdom-operation/office",
               "data": "office.json"
             },
             {

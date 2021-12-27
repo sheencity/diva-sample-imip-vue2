@@ -4,223 +4,221 @@
 			"scene_name": "鸟瞰"
 		}
   },
-  "panel": {
-    "panel-left": [
+  "panel-left": [
+    {
+      "header": {
+        "title": "能耗类型",
+        "icon": "images/common/dialog/route2/1.svg"
+      },
+      "content": {
+        "type": "",
+        "data": [
+          {
+            "title": "电资源",
+            "icon": {
+              "unselectUrl": "images/router/energy/white_button_electricity.svg",
+              "selectUrl": "images/router/energy/button_electricity.svg"
+            },
+            "data": [
+              { "name": "1#", "value": " 5,019 kW·h " },
+              { "name": "2#", "value": " 8,628 kW·h " },
+              { "name": "3#", "value": " 60,44 kW·h " },
+              { "name": "4#", "value": " 21,571 kW·h " },
+              { "name": "5#", "value": " 4,625 kW·h " },
+              { "name": "6#", "value": " 4,131 kW·h " },
+              { "name": "7#", "value": " 11,431 kW·h " },
+              { "name": "8#", "value": " 9,147 kW·h " },
+              { "name": "9#", "value": " 9,625 kW·h " },
+              { "name": "10#", "value": " 10,579 kW·h " },
+              { "name": "11#", "value": " 20,587 kW·h " },
+              { "name": "12#", "value": " 3,564 kW·h " },
+              { "name": "13#", "value": " 3,083 kW·h " }
+            ],
+            "diva": {
+              "action":[
+                { 
+                  "name": "",
+                  "description": "切换POI类别",
+                  "param": {
+                    "maxValue": 25000,
+                    "minValue": 0,
+                    "opacity": 0.9
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "水资源",
+            "icon": {
+              "unselectUrl": "images/router/energy/white_button_water.svg",
+              "selectUrl": "images/router/energy/button_water.svg"
+            },
+            "data": [
+              { "name": "1#", "value": " 33 m³" },
+              { "name": "2#", "value": " 57 m³" },
+              { "name": "3#", "value": " 40 m³" },
+              { "name": "4#", "value": " 258 m³" },
+              { "name": "5#", "value": " 121 m³" },
+              { "name": "6#", "value": " 62 m³" },
+              { "name": "7#", "value": " 134 m³" },
+              { "name": "8#", "value": " 130 m³" },
+              { "name": "9#", "value": " 182 m³" },
+              { "name": "10#", "value": " 137 m³" },
+              { "name": "11#", "value": " 342 m³" },
+              { "name": "12#", "value": " 31 m³" },
+              { "name": "13#", "value": " 278 m³" }
+            ],
+            "diva": {
+              "action":[
+                { 
+                  "name": "",
+                  "description": "切换POI类别",
+                  "param": {
+                    "maxValue": 400,
+                    "minValue": 0,
+                    "opacity": 0.9
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    [
       {
         "header": {
-          "title": "能耗类型",
-          "icon": "images/common/dialog/route2/1.svg"
+          "title": "耗电量（kW·h）",
+          "icon": "images/common/dialog/route2/3.svg"
         },
         "content": {
-          "type": "",
-          "data": [
-            {
-              "title": "电资源",
-              "icon": {
-                "unselectUrl": "images/router/energy/white_button_electricity.svg",
-                "selectUrl": "images/router/energy/button_electricity.svg"
-              },
-              "data": [
-                { "name": "1#", "value": " 5,019 kW·h " },
-                { "name": "2#", "value": " 8,628 kW·h " },
-                { "name": "3#", "value": " 60,44 kW·h " },
-                { "name": "4#", "value": " 21,571 kW·h " },
-                { "name": "5#", "value": " 4,625 kW·h " },
-                { "name": "6#", "value": " 4,131 kW·h " },
-                { "name": "7#", "value": " 11,431 kW·h " },
-                { "name": "8#", "value": " 9,147 kW·h " },
-                { "name": "9#", "value": " 9,625 kW·h " },
-                { "name": "10#", "value": " 10,579 kW·h " },
-                { "name": "11#", "value": " 20,587 kW·h " },
-                { "name": "12#", "value": " 3,564 kW·h " },
-                { "name": "13#", "value": " 3,083 kW·h " }
-              ],
-              "diva": {
-                "action":[
-                  { 
-                    "name": "",
-                    "description": "切换POI类别",
-                    "param": {
-                      "maxValue": 25000,
-                      "minValue": 0,
-                      "opacity": 0.9
-                    }
-                  }
-                ]
+          "type": "echarts-basic-bar",
+          "option": {
+            "xAxis": {
+              "axisLabel": {
+                "color": "#fff",
+                "interval": 0
               }
             },
-            {
-              "title": "水资源",
-              "icon": {
-                "unselectUrl": "images/router/energy/white_button_water.svg",
-                "selectUrl": "images/router/energy/button_water.svg"
-              },
-              "data": [
-                { "name": "1#", "value": " 33 m³" },
-                { "name": "2#", "value": " 57 m³" },
-                { "name": "3#", "value": " 40 m³" },
-                { "name": "4#", "value": " 258 m³" },
-                { "name": "5#", "value": " 121 m³" },
-                { "name": "6#", "value": " 62 m³" },
-                { "name": "7#", "value": " 134 m³" },
-                { "name": "8#", "value": " 130 m³" },
-                { "name": "9#", "value": " 182 m³" },
-                { "name": "10#", "value": " 137 m³" },
-                { "name": "11#", "value": " 342 m³" },
-                { "name": "12#", "value": " 31 m³" },
-                { "name": "13#", "value": " 278 m³" }
-              ],
-              "diva": {
-                "action":[
-                  { 
-                    "name": "",
-                    "description": "切换POI类别",
-                    "param": {
-                      "maxValue": 400,
-                      "minValue": 0,
-                      "opacity": 0.9
-                    }
-                  }
-                ]
-              }
-            }
-          ]
+            "dataset": {
+              "source": [
+                ["周一", 138075],
+                ["周二", 121562],
+                ["周三", 102451],
+                ["周四", 121457],
+                ["周五", 134125],
+                ["周六", 62712],
+                ["周日", 56271]
+              ]
+            }       
+          }
         }
       },
-      [
-        {
-          "header": {
-            "title": "耗电量（kW·h）",
-            "icon": "images/common/dialog/route2/3.svg"
-          },
-          "content": {
-            "type": "echarts-basic-bar",
-            "option": {
-              "xAxis": {
-                "axisLabel": {
-                  "color": "#fff",
-                  "interval": 0
-                }
-              },
-              "dataset": {
-                "source": [
-                  ["周一", 138075],
-                  ["周二", 121562],
-                  ["周三", 102451],
-                  ["周四", 121457],
-                  ["周五", 134125],
-                  ["周六", 62712],
-                  ["周日", 56271]
-                ]
-              }       
-            }
-          }
-        },
-        {
-          "header": {
-            "title": "耗水量（m³）",
-            "icon": "images/common/dialog/route2/3-water.svg"
-          },
-          "content": {
-            "type": "echarts-basic-bar",
-            "option": {
-              "xAxis": {
-                "axisLabel": {
-                  "color": "#fff",
-                  "interval": 0
-                }
-              },
-              "dataset": {
-                "source": [
-                  ["周一", 1736],
-                  ["周二", 1792],
-                  ["周三", 1725],
-                  ["周四", 1858],
-                  ["周五", 1757],
-                  ["周六", 1159],
-                  ["周日", 1273]
-                ]
-              }       
-            }
-          }
-        }
-      ],
-      [
-        {
-          "header": {
-            "title": "能耗占比",
-            "icon": "images/common/dialog/route2/3.svg"
-          },
-          "content": {
-            "type": "echarts-pie",
-            "option": {
-              "tooltip": {
-                "formatter": "{b} : {c} (个)"
-              },
-              "series": [{
-                "radius": [60, 80],
-                "data": [
-                  { "value": 32, "name": "大型" },
-                  { "value": 87, "name": "中型" },
-                  { "value": 133, "name": "小型" },
-                  { "value": 244, "name": "微型" }
-                ]
-              }]
-            }
-          }
-        },
-        {
-          "header": {
-            "title": "能耗占比",
-            "icon": "images/common/dialog/route2/3-water.svg"
-          },
-          "content": {
-            "type": "echarts-pie",
-            "option": {
-              "tooltip": {
-                "formatter": "{b} : {c} (个)"
-              },
-              "series": [{
-                "radius": [60, 80],
-                "data": [
-                  { "value": 32, "name": "大型" },
-                  { "value": 87, "name": "中型" },
-                  { "value": 133, "name": "小型" },
-                  { "value": 244, "name": "微型" }
-                ]
-              }]
-            }
-          }
-        }
-      ]
-      
-    ],
-    "panel-right": [
       {
         "header": {
-          "title": "POI数值",
-          "icon": "images/common/dialog/route2/4.svg"
+          "title": "耗水量（m³）",
+          "icon": "images/common/dialog/route2/3-water.svg"
         },
         "content": {
-          "type": "switcher-list-panel",
-          "data": [
-            {
-              "title": "POI",
-              "border": true,
-              "description": "场景内通过覆盖物叠加样式呈现数据， DIVA 支持多种覆盖物组合使用，根据数据类型，通过不同的覆盖物组合搭配呈现。",
-              "diva": {
-                "action": {
-                  "name": "visible",
-                  "description": "显示/隐藏对应资源"
-                },
-                "resource": {
-                  "group": "功能辅助/楼栋标签"
-                }
+          "type": "echarts-basic-bar",
+          "option": {
+            "xAxis": {
+              "axisLabel": {
+                "color": "#fff",
+                "interval": 0
               }
-            }
-          ]
+            },
+            "dataset": {
+              "source": [
+                ["周一", 1736],
+                ["周二", 1792],
+                ["周三", 1725],
+                ["周四", 1858],
+                ["周五", 1757],
+                ["周六", 1159],
+                ["周日", 1273]
+              ]
+            }       
+          }
+        }
+      }
+    ],
+    [
+      {
+        "header": {
+          "title": "能耗占比",
+          "icon": "images/common/dialog/route2/3.svg"
+        },
+        "content": {
+          "type": "echarts-pie",
+          "option": {
+            "tooltip": {
+              "formatter": "{b} : {c} (个)"
+            },
+            "series": [{
+              "radius": [60, 80],
+              "data": [
+                { "value": 32, "name": "大型" },
+                { "value": 87, "name": "中型" },
+                { "value": 133, "name": "小型" },
+                { "value": 244, "name": "微型" }
+              ]
+            }]
+          }
+        }
+      },
+      {
+        "header": {
+          "title": "能耗占比",
+          "icon": "images/common/dialog/route2/3-water.svg"
+        },
+        "content": {
+          "type": "echarts-pie",
+          "option": {
+            "tooltip": {
+              "formatter": "{b} : {c} (个)"
+            },
+            "series": [{
+              "radius": [60, 80],
+              "data": [
+                { "value": 32, "name": "大型" },
+                { "value": 87, "name": "中型" },
+                { "value": 133, "name": "小型" },
+                { "value": 244, "name": "微型" }
+              ]
+            }]
+          }
         }
       }
     ]
-  }
+    
+  ],
+  "panel-right": [
+    {
+      "header": {
+        "title": "POI数值",
+        "icon": "images/common/dialog/route2/4.svg"
+      },
+      "content": {
+        "type": "switcher-list-panel",
+        "data": [
+          {
+            "title": "POI",
+            "border": true,
+            "description": "场景内通过覆盖物叠加样式呈现数据， DIVA 支持多种覆盖物组合使用，根据数据类型，通过不同的覆盖物组合搭配呈现。",
+            "diva": {
+              "action": {
+                "name": "visible",
+                "description": "显示/隐藏对应资源"
+              },
+              "resource": {
+                "group": "功能辅助/楼栋标签"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
 }
