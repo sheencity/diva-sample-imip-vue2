@@ -9,24 +9,27 @@
       class="top10"
       :header="leftModuleA.header"
       :dataSource="leftModuleA.content"
+      @select="switchFloorRendering"
     ></app-button-tab>
 
     <app-table-col3
       class="top10"
-      v-show="currFloorTableData.length"
+      v-show="currentFloor.currFloorTableData.length"
       :maxItem="4"
       :header="leftModuleB.header"
       :thead="leftModuleB.content.head"
-      :dataSource="currFloorTableData"
+      :dataSource="currentFloor.currFloorTableData"
+      @select="selectFloor"
+      @unselect="unselectFloor"
     ></app-table-col3>
 
     <app-scroller-table
       class="top10"
-      v-show="currFloorScrollTableData.length"
+      v-show="currentFloor.currFloorScrollTableData.length"
       :header="leftModuleC.header"
       :thead="leftModuleC.content.header"
-      :dataSource="currFloorScrollTableData"
-      :dataLength="currFloorScrollTableData.length"
+      :dataSource="currentFloor.currFloorScrollTableData"
+      :dataLength="currentFloor.currFloorScrollTableData.length"
       :autoScroll="leftModuleC.content.scroll"
       :height="36"
       :contentHeight="180"
@@ -36,6 +39,7 @@
       class="top10"
       :header="leftModuleD.header"
       :dataSource="leftModuleD.content.data"
+      @checked="explodeFloor"
     ></app-switcher-list-panel>
   </main>
   
@@ -60,17 +64,41 @@ export default {
       leftModuleC: this.dataSource['panel-left'][2],
       leftModuleD: this.dataSource['panel-left'][3],
 
-      currFloorScrollTableData: [],
-      currFloorTableData: [],
+      currentFloor: {
+        currFloorScrollTableData: [],
+        currFloorTableData: [],
+      } 
     }
   },
   created(){
-    console.log(this.dataSource);
   }, 
   methods: {
     selectElevator(e){
-      this.currFloorScrollTableData = e.item.companies;
-      this.currFloorTableData = e.item.devices;
+      this.currentFloor.currFloorScrollTableData = e.item.companies;
+      this.currentFloor.currFloorTableData = e.item.devices;
+    },
+    /**
+     * 切换楼梯渲染模式
+     * @param i [number] 按钮索引值
+     */
+    switchFloorRendering(i){
+      // console.log(i)
+      this.$emit('switchMode', i)
+    },
+    /**
+     * 炸开楼层
+     */
+    explodeFloor(e){
+      this.$emit('explode',e)
+    },
+    /**
+     * 选择楼层内对应设备
+     */
+    selectFloor(name,obj){
+      this.$emit('selectFloor',name,obj);
+    },
+    unselectFloor(name,obj){
+      this.$emit('unselectFloor',name,obj);
     }
   },
   components: {

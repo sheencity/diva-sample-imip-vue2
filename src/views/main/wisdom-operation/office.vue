@@ -1,10 +1,20 @@
 <template>
   <article v-if="initDivaData" class="space-between">
     <aside class="space-left all">
-      <app-floor-panel class="top10" :dataSource="floorPanelData"></app-floor-panel>
+      <app-floor-panel 
+        class="top10" 
+        :dataSource="floorPanelData"
+        @explode="explodeFloor"
+        @switchMode="switchFloorRendering"
+        @selectFloor="selectFloor"
+        @unselectFloor="unselectFloor"
+      ></app-floor-panel>
     </aside>
     <aside class="space-right all">
-      <app-statistics-panel class="top10" :dataSource="staPanelData"></app-statistics-panel>
+      <app-statistics-panel 
+        class="top10" 
+        :dataSource="staPanelData"
+      ></app-statistics-panel>
 
       <app-echarts 
         class="top10" 
@@ -60,7 +70,30 @@ export default {
     initScene(name) {
       diva.client?.applyScene(name);
     },
-    
+    /**
+     * 炸开楼层
+     */
+    explodeFloor(e){
+      console.log(e)
+    },
+    /**
+     * 切换楼梯渲染模式
+     */
+    switchFloorRendering(i){
+      console.log(i)
+    },
+    /**
+     * 选择楼层对应设备
+     */
+    selectFloor(name,item){
+      console.log({name,item})
+    },
+    /**
+     * 取消上次选择的设备
+     */
+    unselectFloor(oldName,item){
+      console.log({oldName,item})
+    }
   },
   beforeDestroy(){
   },

@@ -10,7 +10,7 @@
         <div class="main" :style="{ maxHeight: maxItem * 40 + 'px' }">
           <div
             class="tbody"
-            :class="{ 'item-selected': selectId === index }"
+            :class="{ 'item-selected': selectId === item[thead[0].name] }"
             :style="{ opacity: item[thead[2].name] === '检修' ? 0.3 : 1}"
             :key="item[thead[0].name]"
             v-for="(item, index) in dataSource"
@@ -47,15 +47,17 @@ export default {
     select(e,index) {
       if (e[this.thead[2].name] === "检修") return;
       const targetName = e.name;
-      this.unselect();
-      this.selectId = index;
+      if(e.id !== this.selectId){
+        this.unselect();
+      }
+      this.selectId = e.id;
       this.$emit("select", targetName, e);
     },
     unselect() {
       this.dataSource?.forEach((obj,index) => {
         // 将其他选中的取消
         const otherName = obj.name;
-        if (this.selectId === index){
+        if (this.selectId === obj.id){
           this.$emit("unselect", otherName, obj);
         }
       });
