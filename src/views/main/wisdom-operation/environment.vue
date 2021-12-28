@@ -113,7 +113,6 @@ export default {
       this.deviceListData.content.data.forEach(async (item) => {
         const model = await diva.getEntityByName(item.diva.model[0].name);
         this.deviceMap.set(model.id, item.id);
-        console.log(this.deviceMap);
         model?.addEventListener('click', this.popDevice);
       });
     },
@@ -125,7 +124,7 @@ export default {
         .filter((action) => action.name === 'set_web_widget')[0]
         .param;
       
-      const url = `${window.location.origin}/#/pop-up/environment/device/${equipmentId}`;
+      const url = `${window.location.origin}/#/pop-up/environment/widget/${equipmentId}`;
       diva.client.request('CreateWebWidget', {
         entityId: e.target,
         widget: {

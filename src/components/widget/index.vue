@@ -78,30 +78,24 @@ export default {
           { type:'VOC', name: 'VOC', value: '', unit: 'mg/m³', state: '', fontColor: ''},
         ]
       },
-      monData: {
-        id: '',
-        name: '',
-        category: '',
-        status: '',
-        icon: '',
-        videoPath: ''
-      }
+      // 监控数据
+      monData: null
     };
   },
   methods: {
     // 获取环境设备数据
-    getEnvData(){
-      const url = 'https://diva.sheencity.cn/samples/imip-vue2-embedded/data/environment.json';
-      this.axios.get(url).then(res=>{
-        const result = res.data.monitoring_data;
-        const data = result.data.filter((ele)=>{
-          return ele.DeviceID === this.$route.params.id;
-        })[0];
-        this.envData.num = data.DeviceID;
-        this.envData.updateTime = data.CreateTime;
-        this.envData.data.forEach((ele)=>{
-          ele.value = data[ele.type];
-          switch(ele.type){
+    getEnvData() {
+      const url = '/config/page/environment.json';
+      this.axios.get(url).then((res) => {
+        const deviceList = res.data['panel-left'][0].content.data;
+        const deviceData = deviceList
+          .filter((ele) => ele.id === this.$route.params.id)[0]
+          .data;
+        this.envData.num = deviceData.DeviceID;
+        this.envData.updateTime = deviceData?.CreateTime;
+        this.envData.data.forEach((ele) => {
+          ele.value = deviceData[ele.type];
+          switch (ele.type) {
             case 'CH2O':{
               ele.state =
                 ele.value > 2.001 ? '重度污染' :
@@ -187,31 +181,26 @@ export default {
       })
     },
     // 获取监控数据
-    getMonData(){
-      const url = 'https://diva.sheencity.cn/samples/imip-vue2-embedded/data/security.json';
-      this.axios.get(url).then((res)=>{
-        const result = res.data.resource_info.devices;
-        this.monData = result.filter((mon)=>{
-          return mon.id === this.$route.params.id;
-        })[0];
+    getMonData() {
+      const url = '/config/page/security.json';
+      this.axios.get(url).then((res) => {
+        const monitorList = res.data['panel-left'][1].content.data;
+        this.monData = monitorList
+          .filter((mon) => mon.id === this.$route.params.id)[0];
         this.title = this.monData.id + '号摄像头';
-      })
+      });
     }
   },
-
-  created() {
-  },
-
   mounted() {
     const url = this.$route.path;
-    if(this.$route.params.id){
-      console.log(this.$route.params.id)
+    if (this.$route.params.id) {
+      console.log(this.$route.params.id);
       const pathList =  url.split('/');
       const len = pathList.length;
       // 获取倒数第二个路径名
       this.type = pathList[len-3];
-      console.log(this.type)
-      switch(this.type){
+      console.log(this.type);
+      switch (this.type) {
         case 'environment':{     //  【环境】设备弹框
           this.title = '监测数据';
           this.getEnvData();
@@ -219,16 +208,16 @@ export default {
         }
         case 'monitoring':{    //    【监控】设备弹框
           this.getMonData();
-          this.icon = 'images/common/dialog/device-dialog/monitoring.svg'
+          this.icon = 'images/common/dialog/device-dialog/monitoring.svg';
           break;
         }
       };
-    }else{
+    } else {
       const pathList =  url.split('/');
       const len = pathList.length;
       // 获取倒数第二个路径名
       this.type = pathList[len-2];
-      switch(this.type){
+      switch (this.type) {
         case 'environment':{     //  【环境】设备弹框
           this.title = '监测数据';
           this.getEnvData();
@@ -236,7 +225,7 @@ export default {
         }
         case 'monitoring':{    //    【监控】设备弹框
           this.title = 'XXXX号摄像头';
-          this.icon = 'images/common/dialog/device-dialog/monitoring.svg'
+          this.icon = 'images/common/dialog/device-dialog/monitoring.svg';
           break;
         }
       };

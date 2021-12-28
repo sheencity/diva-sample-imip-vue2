@@ -95,7 +95,7 @@
             "id": "CA001",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "device/monitoring/CA001.mp4",
+            "videoPath": "videos/monitoring/CA001.mp4",
             "diva": {
               "name": "球式摄像机01",
               "poi": "POI摄像机01"
@@ -105,7 +105,7 @@
             "id": "CA002",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "device/monitoring/CA002.mp4",
+            "videoPath": "videos/monitoring/CA002.mp4",
             "diva": {
               "name": "球式摄像机04",
               "poi": "POI摄像机04"
@@ -115,7 +115,7 @@
             "id": "CA003",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "device/monitoring/CA003.mp4",
+            "videoPath": "videos/monitoring/CA003.mp4",
             "diva": {
               "name": "球式摄像机07",
               "poi": "POI摄像机07"
@@ -125,7 +125,7 @@
             "id": "CA004",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "device/monitoring/CA004.mp4",
+            "videoPath": "videos/monitoring/CA004.mp4",
             "diva": {
               "name": "球式摄像机12",
               "poi": "POI摄像机12"
@@ -135,7 +135,7 @@
             "id": "CA005",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "device/monitoring/CA005.mp4",
+            "videoPath": "videos/monitoring/CA005.mp4",
             "diva": {
               "name": "球式摄像机15",
               "poi": "POI摄像机15"
@@ -145,7 +145,7 @@
             "id": "CA006",
             "category": "枪式摄像机",
             "status": "正常",
-            "videoPath": "device/monitoring/CA006.mp4",
+            "videoPath": "videos/monitoring/CA006.mp4",
             "diva": {
               "name": "枪式摄像机05",
               "poi": "POI摄像机05"
@@ -155,7 +155,7 @@
             "id": "CA007",
             "category": "枪式摄像机",
             "status": "正常",
-            "videoPath": "device/monitoring/CA007.mp4",
+            "videoPath": "videos/monitoring/CA007.mp4",
             "diva": {
               "name": "枪式摄像机09",
               "poi": "POI摄像机09"
