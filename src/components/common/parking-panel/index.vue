@@ -39,7 +39,7 @@
       <div class="switch">
         <p>车位使用透视</p>
         <app-switcher
-          v-model="switchValue"
+          v-model="checked"
           @switch="swit"
         ></app-switcher>
       </div>
@@ -72,7 +72,7 @@ import AppSwitcher from "../switcher";
 import { echartService } from "services/global";
 
 export default {
-  props: ["header", "dataSource", "switchValue"],
+  props: ["header", "dataSource", "checked"],
   data() {
     return {
       totalCars: 0,

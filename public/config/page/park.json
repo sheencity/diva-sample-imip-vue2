@@ -27,13 +27,27 @@
             "model": [{ "group": "停车场/分区" }]
           }
         },
+        "diva": {
+          "action": [
+            {
+              "name": "focus",
+              "param": {
+                "distance": 25000,
+                "pitch": -60
+              }
+            }
+          ]
+        },
         "data": [
           {
             "title": "主楼停车区",
             "rest": 37,
             "total": 102,
             "diva": {
-              "model": [{ "group": "停车场/分区/主楼停车区" }]
+              "model": [
+                { "name": "主楼停车区" },
+                { "group": "停车场/分区/主楼停车区" }
+              ]
             }
           },
           {
