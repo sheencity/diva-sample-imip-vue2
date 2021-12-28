@@ -1,7 +1,10 @@
 {
   "diva": {
     "init": {
-      "scene_name": "鸟瞰"
+      "scene_name": "鸟瞰",
+      "locked": {
+        "group": ["产业园区"]
+      }
     }
   },
   "panel-left": [
@@ -66,7 +69,7 @@
               "description": "点击摄像头后设置弹窗",
               "param": {
                 "width": 380,
-                "height": 420,
+                "height": 365,
                 "position": "left",
                 "angle": 25,
                 "transparent": true,
@@ -97,8 +100,8 @@
             "status": "正常",
             "videoPath": "videos/monitoring/CA001.mp4",
             "diva": {
-              "name": "球式摄像机01",
-              "poi": "POI摄像机01"
+              "model": [{ "name": "球式摄像机01" }],
+              "poi": [{ "name": "POI摄像机01" }]
             }
           },
           {
@@ -107,8 +110,8 @@
             "status": "正常",
             "videoPath": "videos/monitoring/CA002.mp4",
             "diva": {
-              "name": "球式摄像机04",
-              "poi": "POI摄像机04"
+              "model": [{ "name": "球式摄像机04" }],
+              "poi": [{ "name": "POI摄像机04" }]
             }
           },
           {
@@ -117,8 +120,8 @@
             "status": "正常",
             "videoPath": "videos/monitoring/CA003.mp4",
             "diva": {
-              "name": "球式摄像机07",
-              "poi": "POI摄像机07"
+              "model": [{ "name": "球式摄像机07" }],
+              "poi": [{ "name": "POI摄像机07" }]
             }
           },
           {
@@ -127,8 +130,8 @@
             "status": "正常",
             "videoPath": "videos/monitoring/CA004.mp4",
             "diva": {
-              "name": "球式摄像机12",
-              "poi": "POI摄像机12"
+              "model": [{ "name": "球式摄像机12" }],
+              "poi": [{ "name": "POI摄像机12" }]
             }
           },
           {
@@ -137,8 +140,8 @@
             "status": "正常",
             "videoPath": "videos/monitoring/CA005.mp4",
             "diva": {
-              "name": "球式摄像机15",
-              "poi": "POI摄像机15"
+              "model": [{ "name": "球式摄像机15" }],
+              "poi": [{ "name": "POI摄像机15" }]
             }
           },
           {
@@ -147,8 +150,8 @@
             "status": "正常",
             "videoPath": "videos/monitoring/CA006.mp4",
             "diva": {
-              "name": "枪式摄像机05",
-              "poi": "POI摄像机05"
+              "model": [{ "name": "枪式摄像机05" }],
+              "poi": [{ "name": "POI摄像机05" }]
             }
           },
           {
@@ -157,8 +160,8 @@
             "status": "正常",
             "videoPath": "videos/monitoring/CA007.mp4",
             "diva": {
-              "name": "枪式摄像机09",
-              "poi": "POI摄像机09"
+              "model": [{ "name": "枪式摄像机09" }],
+              "poi": [{ "name": "POI摄像机09" }]
             }
           }
         ]
@@ -177,7 +180,7 @@
             "title": "货运/卡车流线规划",
             "default": true,
             "diva": {
-              "name": "货运卡车流线"
+              "model": [{ "name": "货运卡车流线" }]
             }
           },
           {
@@ -185,7 +188,7 @@
             "title": "办公/小车流线规划",
             "default": true,
             "diva": {
-              "name": "办公小型汽车流线"
+              "model": [{ "name": "办公小型汽车流线" }]
             }
           },
           {
@@ -193,7 +196,7 @@
             "title": "人行流线规划",
             "default": true,
             "diva": {
-              "name": "人行流线"
+              "model": [{ "name": "人行流线" }]
             }
           }
         ]

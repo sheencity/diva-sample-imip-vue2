@@ -113,11 +113,11 @@ export default {
       this.deviceListData.content.data.forEach(async (item) => {
         const model = await diva.getEntityByName(item.diva.model[0].name);
         this.deviceMap.set(model.id, item.id);
-        model?.addEventListener('click', this.popDevice);
+        model?.addEventListener('click', this.setWebWidget);
       });
     },
     // 点击设备弹出弹窗
-    async popDevice(e) {
+    async setWebWidget(e) {
       this.deviceId = e.target;
       const equipmentId = this.deviceMap.get(e.target);
       const widgetOption = this.deviceListData.content.diva.action

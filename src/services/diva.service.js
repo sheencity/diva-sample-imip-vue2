@@ -31,6 +31,18 @@ export class DivaService {
   }
 
   /**
+   * 根据模型组更新模型
+   * @param {string} group 
+   * @param {{}} option 
+   */
+  async updateEntityPropertyByGroup(group, option) {
+    await this.client?.request("UpdateEntityStatusByGroup", {
+      group: group,
+      ...option,
+    });
+  }
+
+  /**
    * 根据模型组设置显示隐藏
    * @param {string} group
    * @param {boolean} visible

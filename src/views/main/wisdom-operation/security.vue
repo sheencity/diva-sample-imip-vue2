@@ -12,6 +12,7 @@
 
       <app-table-col3
         v-if="monitorListData && selectedIndex === 0"
+        ref="monitorTable"
         class="top10"
         :maxItem="7"
         :header="monitorListData.header"
@@ -26,6 +27,7 @@
         class="top10"
         :header="trafficListData.header"
         :dataSource="trafficListData.content.data"
+        @checked="switchChange"
       >
       </app-switcher-list>
     </aside>
@@ -54,35 +56,186 @@ import Echarts from "components/common/echarts";
 import AppButtonTab from "components/common/button-tab";
 import AppSwitcherList from "components/common/switcher-list-panel";
 import AppTableCol3 from "components/common/table/table-col3";
+import { diva } from "services/global";
 
 export default {
   data() {
     return {
+      divaData: null,
       buttonTabData: null,
       monitorListData: null,
       trafficListData: null,
       abnormalEventsData: null,
       abnormalAreaData: null,
       selectedIndex: 0,
+      // 摄像机模型组
+      monitors: null,
+      // 摄像机 POI 模型组
+      monitorsPoi: null,
+      // 摄像机与其 POI 的对应关系
+      monitorsPoiMap: new Map(),
+      // 摄像机与数据项 id 的对应关系
+      monitorsIdMap: new Map(),
+      // 存在弹窗的设备 id
+      deviceId: null,
+      // 聚焦和弹窗的参数信息
+      options: {
+        focus: null,
+        widget: null,
+      },
+      // 摄像机点击事件
+      monitorClickListener: (e) => {
+        console.log('创建窗口', e);
+        this.deviceId = e.target;
+        const equipmentId = this.monitorsIdMap.get(e.target);
+        const url = `${window.location.origin}/#/pop-up/monitoring/widget/${equipmentId}`;
+        diva.client.request('CreateWebWidget', {
+          entityId: e.target,
+          widget: {
+            url,
+            ...this.options.widget,
+          },
+        });
+      },
+      // 摄像机POI 点击事件
+      monitorPoiClickListener: (e) => {
+        console.log("点击摄像机 POI", e);
+        const name = this.monitorsPoiMap.get(e.target);
+        if (!name) return;
+        this.focusMonitor(name);
+      },
     };
   },
   created() {
     this.axios.get('/config/page/security.json').then((res) => {
+      this.divaData = res.data.diva;
       this.buttonTabData = res.data['panel-left'][0];
       this.monitorListData = res.data['panel-left'][1];
       this.trafficListData = res.data['panel-left'][2];
       this.abnormalEventsData = res.data['panel-right'][0];
       this.abnormalAreaData = res.data['panel-right'][1];
+
+      this.initScene();
     });
   },
+  async destroyed() {
+    this.destroyWidget();
+    this.setMonitorPoiVisibility(false);
+    this.monitorsPoi?.forEach((poi) => {
+      poi.removeEventListener("click", this.monitorPoiClickListener);
+    });
+    this.monitors?.forEach((model) => {
+      model.removeEventListener("click", this.monitorClickListener);
+    });
+    await Promise.all(this.divaData.init.locked.group
+      .map((group) => diva.updateEntityPropertyByGroup(group, { locked: false })));
+  },
   methods: {
+    // 初始化场景
+    async initScene() {
+      await diva.client?.applyScene(this.divaData.init.scene_name);
+      await Promise.all(this.divaData.init.locked.group
+        .map((group) => diva.updateEntityPropertyByGroup(group, { locked: true })));
+      await this.getBasicInfo();
+      this.buttonTabChange(0);
+      this.getOptions();
+    },
+    // 获取聚焦和弹窗的参数信息
+    getOptions() {
+      this.monitorListData.content.diva.action.forEach((action) => {
+        if (action.name === 'focus') this.options.focus = action.param;
+        if (action.name === 'set_web_widget') this.options.widget = action.param;
+      });
+      console.log(this.options);
+    },
+    // 获取摄像机和摄像机POI的对应信息
+    async getBasicInfo() {
+      const monitorList = this.monitorListData.content.data;
+      const { group, poi } = this.monitorListData.content.diva.init;
+      console.log(group, poi);
+      this.monitors = await diva.client?.getModelGroupByGroupPath(group);
+      this.monitorsPoi = await diva.client?.getModelGroupByGroupPath(poi);
+
+      Array.from(this.monitorsPoi).map((poi) => {
+        const modelName = monitorList.find((data) => data.diva.poi[0].name === poi.name).diva.model[0].name;
+        this.monitorsPoiMap.set(poi.id, modelName);
+        poi.addEventListener("click", this.monitorPoiClickListener);
+      });
+      this.monitors.forEach((model) => {
+        const data = monitorList.find((data) => data.diva.model[0].name === model.name);
+        this.monitorsIdMap.set(model.id, data?.id || null);
+      });
+    },
+    // 聚焦至摄像机
+    async focusMonitor(name) {
+      this.destroyWidget();
+      const camera = diva.getEntityFromGroup(this.monitors, name);
+      if (!camera) throw new Error("未获取到当前摄像机模型");
+      this.setSelectedMonitor(camera);
+      await diva.focusOnModelByName(camera.name, this.options.focus.distance, this.options.focus.pitch);
+      await this.setMonitorPoiVisibility(false);
+
+      camera?.addEventListener("click", this.monitorClickListener);
+    },
+    setSelectedMonitor(model) {
+      this.deviceId = model.id;
+      const name = model.name || "";
+      const selected = this.monitorListData.content.data.find((data) => data.diva.model[0].name === name);
+      const selectedId = selected?.id || -1;
+      this.$refs.monitorTable.selectId = selectedId;
+    },
+
+    // 设置摄像机显示/隐藏
+    async setMonitorVisibility(visible) {
+      await this.monitors.setVisibility(visible);
+    },
+    // 设置摄像机 POI 显示/隐藏
+    async setMonitorPoiVisibility(visible) {
+      if (this.monitorsPoi) {
+        await this.monitorsPoi?.setVisibility(visible);
+      }
+    },
+    // 销毁弹窗
+    async destroyWidget() {
+      if (this.deviceId) {
+        try {
+          await diva.client.request('DestroyWebWidget', { entityId: this.deviceId });
+        } catch (err) {
+          console.warn(err);
+        }
+      }
+    },
+    // 交通流线
+    async setTrafficVisibility() {
+      await Promise.all(
+        this.trafficListData.content.data.map((item) =>
+          diva.setEntityVisibleByName(item.diva.model[0].name, item.default)
+        )
+      );
+    },
+    // 信息类型按钮切换
     buttonTabChange(index) {
       this.selectedIndex = index;
-      // TODO diva action
+      const sceneName = this.buttonTabData.content.data[index].diva.init.scene_name;
+      diva.client?.applyScene(sceneName);
+      if (index === 0) {
+        this.setMonitorVisibility(true);
+        this.setMonitorPoiVisibility(true);
+        this.destroyWidget();
+      } else if (index === 1) {
+        this.setTrafficVisibility();
+      }
     },
+    // 摄像机列表点击切换
     monitorChange(name, e) {
       console.log(name, e);
-    }
+      this.focusMonitor(e.diva.model[0].name);
+    },
+    // 交通流线开关
+    switchChange(e) {
+      console.log(e);
+      diva.setEntityVisibleByName(e.diva.model[0].name, e.default);
+    },
   },
   components: {
     Echarts,
