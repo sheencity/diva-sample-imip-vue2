@@ -85,6 +85,9 @@ export default {
       this.getCurrCategoryData();
       this.divaParam = this.getDivaParam();
       if(this.POIChecked){
+        const { minValue, maxValue } = this.ruleNum(this.divaParam);
+        this.divaParam.minValue = minValue;
+        this.divaParam.maxValue = maxValue;
         this.showPOI(this.divaParam)
       }
     },
