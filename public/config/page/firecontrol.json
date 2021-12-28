@@ -2,7 +2,16 @@
   "diva": {
 		"init": {
 			"scene_name": "主楼分析C"
-		}
+		},
+    "common": {
+      "resource_group_name": "/产业园区/楼栋/1#/9F",
+      "default_floor_index": 9,
+      "default_translate_distance": 3500,
+      "floor_focus_param": {
+        "pitch": -45,
+        "distance": 8000
+      }
+    }
 	},
   "panel-left": [
     {
@@ -199,39 +208,6 @@
       }
     }
   ],
-  "route_name": "消防",
-  "group_name": "/产业园区/楼栋/1#",
-  "default_floor_index": 9,
-  "default_floor_name": "9F",
-  "floor_default_pitch": 18,
-  "floor_focus_param": {
-    "pitch": -45,
-    "distance": 8000
-  },
-  "default_translate_distance": 3500,
-  "entity_config": {
-    "options_schema": [
-      {
-        "name": "focus_param",
-        "description": "实体聚焦参数"
-      },
-      {
-        "name": "render_mode",
-        "description": "实体渲染模式"
-      },
-      {
-        "name": "type",
-        "description": "实体类型"
-      },
-      {
-        "name": "category",
-        "description": "实体类别"
-      }
-    ],
-    "options": [
-    ]
-  },
-  "resource_group_name": "/产业园区/楼栋/1#/9F",
   "echarts_data": {
     "fire_alarm": [
       { "value": 1, "name": "处理中" },
