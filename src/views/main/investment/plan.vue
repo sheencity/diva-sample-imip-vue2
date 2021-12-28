@@ -96,7 +96,7 @@ export default {
         camera: true,
         visibility: false,
       });
-      diva.setEntityVisibleByName(e.diva.name, e.default);
+      diva.setEntityVisibleByName(e.diva.model[0].name, e.default);
     },
 
     // 按钮组切换

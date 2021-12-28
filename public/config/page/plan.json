@@ -366,7 +366,7 @@
             "title": "建筑退让线",
             "default": false,
             "diva": {
-              "name": "建筑退让线"
+              "model": [{ "name": "建筑退让线" }]
             }
           },
           {
@@ -374,7 +374,7 @@
             "title": "出让土地红线",
             "default": false,
             "diva": {
-              "name": "出让土地红线"
+              "model": [{ "name": "出让土地红线" }]
             }
           },
           {
@@ -382,7 +382,7 @@
             "title": "规划用地红线",
             "default": false,
             "diva": {
-              "name": "规划用地红线"
+              "model": [{ "name": "规划用地红线" }]
             }
           }
         ]
