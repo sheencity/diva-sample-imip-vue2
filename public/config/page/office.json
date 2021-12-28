@@ -2,7 +2,11 @@
   "diva": {
 		"init": {
 			"scene_name": "主楼分析B"
-		}
+		},
+    "common": {
+      "group_name": "/产业园区/楼栋/1#",
+      "default_mode": "高亮"
+    }
 	},
 	"panel-left": [
     {
@@ -40,7 +44,7 @@
                     "description": "高亮孤立，被选中物体不高亮",
                     "param": {
                       "color": "#001D77",
-                      "emission": 3,
+                      "strength": 3,
                       "speed": 0.0
                     }
                   }]

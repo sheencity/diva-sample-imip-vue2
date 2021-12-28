@@ -76,14 +76,14 @@ export default {
     selectElevator(e){
       this.currentFloor.currFloorScrollTableData = e.item.companies;
       this.currentFloor.currFloorTableData = e.item.devices;
+      this.$emit('changeElevator',e)
     },
     /**
      * 切换楼梯渲染模式
      * @param i [number] 按钮索引值
      */
     switchFloorRendering(i){
-      // console.log(i)
-      this.$emit('switchMode', i)
+      this.$emit('switchMode', this.leftModuleA.content.data[i]);
     },
     /**
      * 炸开楼层

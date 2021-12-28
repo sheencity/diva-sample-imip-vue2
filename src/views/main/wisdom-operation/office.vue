@@ -4,6 +4,7 @@
       <app-floor-panel 
         class="top10" 
         :dataSource="floorPanelData"
+        @changeElevator="changeElevator"
         @explode="explodeFloor"
         @switchMode="switchFloorRendering"
         @selectFloor="selectFloor"
@@ -36,16 +37,35 @@ import { diva } from 'services/global'
 import AppFloorPanel from 'components/floor-panel'
 import AppStatisticsPanel from 'components/common/statistics-panel'
 import AppEcharts from 'components/common/echarts'
+import { RenderingStyleMode } from "@sheencity/diva-sdk";
 
 export default {
   data() {
     return {
+      /**
+       * @type {import("@sheencity/diva-sdk").TypedGroup}
+       */
+      floorsModelGroup: null,
       initDivaData: null,
-
       floorPanelData: null,
       staPanelData: null,
       basicPieData: null,
       basicLineData: null,
+      groupName: "",
+
+      explodeState: false,  // 楼层是否炸开
+      currentFloor: {       // 当前楼层信息
+        mode: '',           // 当前楼层的分析模式
+        name: null,         // 当前楼层的名称
+        index: null,        // 当前楼层的索引
+        /**
+         * @type {import("@sheencity/diva-sdk").TypedGroup}
+         */
+        modelGroup: null, // 当前楼层的实体
+      },
+      emissionOptions: null, // 自发光参数
+      floorConfig: null,     // 楼层动作参数
+      deviceConfig: null,     // 设备动作参数
     };
   },
   created() {
@@ -55,6 +75,8 @@ export default {
     async init() {
       await this.getConfig()
       this.initScene(this.initDivaData.init.scene_name)
+      this.switchFloorRendering(this.floorPanelData['panel-left'][0].content.data[0]);
+      this.floorConfig = this.floorPanelData['floor-btn-group'].diva.action[0].param;
     },
     async getConfig() {
       const { data } = await this.axios.get('config/page/office.json');
@@ -63,6 +85,9 @@ export default {
       this.staPanelData = data['panel-right'][0];
       this.basicPieData = data['panel-right'][1];
       this.basicLineData = data['panel-right'][2];
+      this.groupName = data.diva.common.group_name;
+      this.currentFloor.mode = data.diva.common.default_mode;
+      this.floorsModelGroup = await diva.client?.getModelGroupByGroupPath(this.groupName);
     },
     /**
      * 初始化场景
@@ -71,33 +96,156 @@ export default {
       diva.client?.applyScene(name);
     },
     /**
-     * 炸开楼层
+     * 切换电梯按钮楼层
      */
-    explodeFloor(e){
-      console.log(e)
+    async changeElevator({index, item: floor}){
+      if (this.currentFloor.name === floor.name) {
+        return;
+      };
+      if (
+        this.currentFloor.modelGroup &&
+        this.currentFloor.index
+      ) {
+        await this.currentFloor.modelGroup.setRenderingStyleMode(RenderingStyleMode.Default);
+      }
+      this.currentFloor.name === floor.name;
+      this.currentFloor.modelGroup = await this.getFloorInfoByName(floor.name);
+      this.currentFloor.index = index;
+      await this.displayFloorByMode(
+        this.currentFloor.modelGroup,
+        this.currentFloor.mode
+      );
+      const floorBoundingInfo =
+        await this.currentFloor.modelGroup.getBoundingInfo();
+      const floorCoord = floorBoundingInfo.boundingBox.center;
+       await diva.client.request("FocusOnCoord", {
+        coord: floorCoord.tuple,
+        ...this.floorConfig
+      });
     },
     /**
      * 切换楼梯渲染模式
      */
-    switchFloorRendering(i){
-      console.log(i)
+    async switchFloorRendering(e){
+      const sceneName = e.diva.init.scene_name;
+      const { param } = e.diva.action[0];
+      if(e.title === '高亮'){
+        this.emissionOptions = param;
+      }
+      await this.resetFloorMode();
+      this.clearCurrentFloorInfo();
+      this.currentFloor.mode = e.title;
+      await diva.client?.applyScene(sceneName, { camera: true, visibility: false });
+      this.floorsModelGroup.forEach(model => {
+        if (new RegExp('POI卫生间').test(model.name)) {
+          diva.setEntityVisibleByName(model.name, true);
+        }
+      })
+    },
+     /**
+     * 聚焦到指定实体目标上
+     */
+    async selectFloor(name,device) {
+      this.deviceConfig = this.floorPanelData['panel-left'][1].content.diva.action;
+      const mode = this.deviceConfig[0].name;
+      const { distance, pitch } = this.deviceConfig[1].param;
+      if (device.category === "楼梯") {
+        await diva.renderAndFocusOnModelByName(name, distance, pitch, mode);
+      }
+      if (device.category === "卫生间") {
+        await diva.focusOnModelByName(name, distance, pitch);
+      }
     },
     /**
-     * 选择楼层对应设备
+     * 取消实体的聚焦状态
      */
-    selectFloor(name,item){
-      console.log({name,item})
+    async unselectFloor(name) {
+      await diva.setModelDefaultRenderModel(name);
     },
     /**
-     * 取消上次选择的设备
+     * 炸开楼层
      */
-    unselectFloor(oldName,item){
-      console.log({oldName,item})
-    }
+    async explodeFloor(e){
+      if(e.default){
+        await this.floorsModelGroup?.disassemble(e.diva.action[0].param);
+      }else{
+        await this.floorsModelGroup?.assemble();
+      }
+      this.explodeState = e.default;
+    },
+    /**
+     * 根据模式来切换功能
+     */
+    async displayFloorByMode(floorModelGroup, mode) {
+      if (mode === "独立") {
+        // 隐藏除当前楼层外所有楼层
+        await this.floorsModelGroup.setVisibility(false);
+        await floorModelGroup.setVisibility(true);
+        return;
+      }
+      if (mode === "高亮") {
+        // 当前层默认其他楼层半透明
+        this.setHighlightMode(floorModelGroup);
+        return;
+      }
+    },
+    /**
+     * 设置高亮效果
+     */
+    async setHighlightMode(floorModelGroup) {
+      this.floorsModelGroup.forEach(async (modelGroup) => {
+        await modelGroup.setRenderingStyleMode(
+          RenderingStyleMode.Emission,
+          this.emissionOptions
+        );
+      });
+      await floorModelGroup.setRenderingStyleMode(RenderingStyleMode.Default);
+    },
+    /**
+     * 重置楼层模式
+     */
+    async resetFloorMode() {
+      const { mode, modelGroup } = this.currentFloor;
+      if (mode === "独立" && modelGroup) {
+        this.floorsModelGroup.forEach(async (modelGroup) => {
+          await modelGroup.setRenderingStyleMode(RenderingStyleMode.Default);
+        });
+        await this.floorsModelGroup.setVisibility(true);
+        return;
+      }
+      if (mode === "高亮" && modelGroup) {
+        this.floorsModelGroup.forEach(async (modelGroup) => {
+          await modelGroup.setRenderingStyleMode(RenderingStyleMode.Default);
+        });
+      }
+    },
+    /**
+     * 重置当前楼层信息
+     */
+    clearCurrentFloorInfo() {
+      this.currentFloor = {
+        mode: null,
+        name: null,
+        index: null,
+        modelGroup: null,
+      };
+    },
+    /**
+     * 根据名称获取楼层
+     */
+     async getFloorInfoByName(floorName) {
+      const name = this.groupName + "/" + floorName;
+      const result = await diva.getFloorInfoByName(name);
+      return result;
+    },
   },
   beforeDestroy(){
   },
-  destroyed(){
+  async destroyed(){
+    if (this.explodeState) {
+      await this.floorsModelGroup?.assemble();
+    }
+    await this.resetFloorMode();
   },
   components: {
     AppStatisticsPanel,
