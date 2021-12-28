@@ -57,12 +57,13 @@ export default {
   data(){
     return{
       elevatorData: this.dataSource.data,
-      DIVA: null,
 
       leftModuleA: this.dataSource['panel-left'][0],
       leftModuleB: this.dataSource['panel-left'][1],
       leftModuleC: this.dataSource['panel-left'][2],
       leftModuleD: this.dataSource['panel-left'][3],
+      
+      modeIndex: 0,
 
       currentFloor: {
         currFloorScrollTableData: [],
@@ -79,10 +80,15 @@ export default {
       this.$emit('changeElevator',e)
     },
     /**
-     * 切换楼梯渲染模式
+     * 切换模式按钮
      * @param i [number] 按钮索引值
      */
     switchFloorRendering(i){
+      if(i !== this.modeIndex){
+        this.currentFloor.currFloorScrollTableData = [];
+        this.currentFloor.currFloorTableData = [];
+      }
+      this.modeIndex = i;
       this.$emit('switchMode', this.leftModuleA.content.data[i]);
     },
     /**
