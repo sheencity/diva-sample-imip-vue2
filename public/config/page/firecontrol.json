@@ -208,34 +208,86 @@
       }
     }
   ],
-  "echarts_data": {
-    "fire_alarm": [
-      { "value": 1, "name": "处理中" },
-      { "value": 2, "name": "待处理" },
-      { "value": 12, "name": "已处理" }
-    ],
-    "alarm_trend": [
-      ["一月", 4],
-      ["二月", 10],
-      ["三月", 6],
-      ["四月", 12],
-      ["五月", 18],
-      ["六月", 20],
-      ["七月", 14],
-      ["八月", 10],
-      ["九月", 12],
-      ["十月", 7],
-      ["十一月", 9],
-      ["十二月", 6]
-    ],
-    "area_alarm": [
-      ["自动机械产品智造区", 9],
-      ["医疗器械设备智造区", 5],
-      ["工业创意产品生产区", 20],
-      ["工业互联网研发区", 16],
-      ["人工智能研发区", 13],
-      ["配套住宿区", 13],
-      ["餐饮休闲区", 24]
-    ]
-  }
+  "panel-right": [
+    {
+      "header": {
+        "title": "消防警报",
+        "icon": "images/common/dialog/route3/3-4.svg"
+      },
+      "content": {
+        "type": "echarts-pie",
+        "option": {
+          "tooltip": {
+            "formatter": "{b} : {c} (个)"
+          },
+          "series": [{
+            "radius": [60, 80],
+            "data": [
+              { "name": "处理中", "value": 1 },
+              { "name": "待处理", "value": 2 },
+              { "name": "已处理", "value": 12 }
+            ]
+          }]
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "报警趋势分析",
+        "icon": "images/common/dialog/route3/3-4.svg"
+      },
+      "content": {
+        "type": "echarts-line",
+        "option": {
+          "dataset": {
+            "source": [
+              ["一月", 4],
+              ["二月", 10],
+              ["三月", 6],
+              ["四月", 12],
+              ["五月", 18],
+              ["六月", 20],
+              ["七月", 14],
+              ["八月", 10],
+              ["九月", 12],
+              ["十月", 7],
+              ["十一月", 9],
+              ["十二月", 6]
+            ]
+          },
+          "series": [{
+            "smooth": false,
+            "showSymbol": true
+          }]
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "区域报警分析",
+        "icon": "images/common/dialog/route3/3-4.svg"
+      },
+      "content": {
+        "type": "echarts-bar",
+        "option": {
+          "dataset": {
+            "source": [
+              ["自动机械产品智造区", 9],
+              ["医疗器械设备智造区", 5],
+              ["工业创意产品生产区", 20],
+              ["工业互联网研发区", 16],
+              ["人工智能研发区", 13],
+              ["配套住宿区", 13],
+              ["餐饮休闲区", 24]
+            ]
+          },
+          "xAxis": {
+            "axisLabel": {
+              "show": false
+            }
+          }
+        }
+      }
+    }
+  ]
 }

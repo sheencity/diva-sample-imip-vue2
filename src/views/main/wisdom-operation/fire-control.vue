@@ -10,17 +10,30 @@
       ></app-table-mulit-col3>
     </aside>
     <aside class="space-right all">
-      
+      <echarts
+        :header="pieChartData.header"
+        :dataSource="pieChartData.content"
+      ></echarts>
+      <echarts
+        class="top10"
+        :header="lineChartData.header"
+        :dataSource="lineChartData.content"
+      ></echarts>
+      <echarts
+        class="top10"
+        :header="barChartData.header"
+        :dataSource="barChartData.content"
+      ></echarts>
     </aside>
   </article>
 </template>
 
-
 <script>
-import { diva } from 'services/global'
-import AppTableMulitCol3 from 'components/common/table/table-mulit-col3'
 import { Vector3 } from "@sheencity/diva-sdk-math";
 import { POI } from "@sheencity/diva-sdk";
+import { diva } from 'services/global';
+import AppTableMulitCol3 from 'components/common/table/table-mulit-col3';
+import Echarts from "components/common/echarts";
 
 export default {
    data() {
@@ -28,7 +41,9 @@ export default {
       initDivaData: null,
       commonConfig: null,
       tablePanelData: null,
-
+      pieChartData: null,
+      lineChartData: null,
+      barChartData: null,
       /**
        * @type {import("@sheencity/diva-sdk").TypedGroup}
        */
@@ -50,6 +65,9 @@ export default {
       const { data } = await this.axios.get('config/page/firecontrol.json');
       this.initDivaData = data.diva;
       this.tablePanelData = data['panel-left'][0];
+      this.pieChartData = data['panel-right'][0];
+      this.lineChartData = data['panel-right'][1];
+      this.barChartData = data['panel-right'][2];
     },
     /**
      * 初始化场景
@@ -91,9 +109,6 @@ export default {
       return result;
     },
 
-
-
-
     /**
      * 点击列表事件
      * @param name 点击设备名
@@ -133,9 +148,9 @@ export default {
     clearTimeout(this.cameraSubscription);
   },
   components: {
-    AppTableMulitCol3
+    AppTableMulitCol3,
+    Echarts,
   }
-
 }
 </script>
 
