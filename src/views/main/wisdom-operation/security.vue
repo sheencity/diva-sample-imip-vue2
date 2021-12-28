@@ -133,12 +133,11 @@ export default {
   methods: {
     // 初始化场景
     async initScene() {
-      await diva.client?.applyScene(this.divaData.init.scene_name);
-      await Promise.all(this.divaData.init.locked.group
-        .map((group) => diva.updateEntityPropertyByGroup(group, { locked: true })));
       await this.getBasicInfo();
       this.buttonTabChange(0);
       this.getOptions();
+      await Promise.all(this.divaData.init.locked.group
+        .map((group) => diva.updateEntityPropertyByGroup(group, { locked: true })));
     },
     // 获取聚焦和弹窗的参数信息
     getOptions() {
