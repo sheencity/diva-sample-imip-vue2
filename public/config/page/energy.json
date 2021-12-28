@@ -153,16 +153,20 @@
         "content": {
           "type": "echarts-pie",
           "option": {
-            "tooltip": {
-              "formatter": "{b} : {c} (个)"
+            "legend": {
+              "show": true
             },
             "series": [{
-              "radius": [60, 80],
+              "radius": ["55%", "75%"],
+              "bottom": 10,
+              "label": {
+                "show": false
+              },
               "data": [
-                { "value": 32, "name": "大型" },
-                { "value": 87, "name": "中型" },
-                { "value": 133, "name": "小型" },
-                { "value": 244, "name": "微型" }
+                { "value": 23400, "name": "空调" },
+                { "value": 8002, "name": "照明" },
+                { "value": 74200, "name": "生产设备" },
+                { "value": 5150, "name": "其他" }
               ]
             }]
           }
@@ -176,16 +180,20 @@
         "content": {
           "type": "echarts-pie",
           "option": {
-            "tooltip": {
-              "formatter": "{b} : {c} (个)"
+            "legend": {
+              "show": true
             },
             "series": [{
-              "radius": [60, 80],
+              "radius": ["55%", "75%"],
+              "bottom": 10,
+              "label": {
+                "show": false
+              },
               "data": [
-                { "value": 32, "name": "大型" },
-                { "value": 87, "name": "中型" },
-                { "value": 133, "name": "小型" },
-                { "value": 244, "name": "微型" }
+                { "value": 952, "name": "灌溉" },
+                { "value": 207, "name": "饮用" },
+                { "value": 518, "name": "清洁" },
+                { "value": 231, "name": "其他" }
               ]
             }]
           }
