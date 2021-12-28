@@ -1,14 +1,32 @@
 <template>
   <a class="select">
     <p :class="{'select-disabled':disabled}" style="margin: 0;user-select: none;">
-      <input type="text" class="placeholder" :disabled="disabled" :value="initial.placeholder" readonly
-        @blur="onBlur($event)" @keydown='$event.preventDefault();' @click="onClick()">
-      <img class="arrow-down" :class="{'activity':!hideOptions}" width="9" height="6"
-        :src="disabled? require('../../assets/dropdown/arrow-down-disabled.svg') : require('../../assets/dropdown/arrow-down.svg')" />
+      <input 
+        readonly
+        type="text" 
+        class="placeholder" 
+        :disabled="disabled" 
+        :value="initial.placeholder" 
+        @blur="onBlur($event)" 
+        @keydown="$event.preventDefault();"
+        @click="onClick()"
+      >
+        <img 
+          class="arrow-down" 
+          :class="{'activity':!hideOptions}" 
+          width="9" 
+          height="6"
+          :src="disabled? require('../../../assets/images/common/dropdown/arrow-down-disabled.svg') : require('../../../assets/images/common/dropdown/arrow-down.svg')" 
+        />
     </p>
     <ul class="option" :style="{height: (!hideOptions ? 'auto':'0px')}">
-      <li v-for="item in options" :key="item.value" class="dropdown-item" :title="item.placeholder"
-        @mousedown="menuClick(item)">{{item.placeholder}}</li>
+      <li 
+        class="dropdown-item"
+        :key="item.value"  
+        :title="item.placeholder"
+        v-for="item in options" 
+        @mousedown="menuClick(item)"
+      >{{item.placeholder}}</li>
     </ul>
   </a>
 </template>

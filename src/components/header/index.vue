@@ -5,8 +5,10 @@
       <p>智能制造产业园数字孪生平台</p>
     </div>
     <div class="tool">
-      <router-link style="height: 20px;" to="/home"><img to style="margin-right: 25px" src="../../assets/images/header/home.svg" /></router-link>
-      <img @click="showGuide = true" style="margin-right: 25px" src="../../assets/images/header/help.svg" />
+      <router-link style="height: 20px;" to="/home">
+        <img style="margin-right: 25px" src="../../assets/images/header/home.svg" />
+      </router-link>
+      <img style="margin-right: 25px" src="../../assets/images/header/help.svg" @click="showGuide = true"/>
       <img v-if="weatherUrl" style="margin-right: 10px" :src="require('assets/images/header/weather/' + weatherUrl + '.svg')"/>
       <span style="margin-right: 18px">{{ weatherInfo.temp }} ℃</span>
       <img style="margin-right: 8px" src="../../assets/images/header/time.svg" />
@@ -14,13 +16,13 @@
       <img style="margin-right: 9px" src="../../assets/images/header/date.svg" />
       <span>{{ time }}</span>
     </div>
-    <!-- <app-guide v-if="showGuide" @close="closeDialog"></app-guide> -->
+    <app-guide v-if="showGuide" @close="closeDialog"></app-guide>
   </header>
 </template>
 
 <script>
 import { utilService, weatherService } from "services/global";
-// import AppGuide from './guide';
+import AppGuide from 'components/guide';
 
 export default {
   data() {
@@ -98,7 +100,7 @@ export default {
     }, 1000);
   },
   components: {
-    // AppGuide,
+    AppGuide,
   },
 };
 </script>
