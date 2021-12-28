@@ -3,6 +3,7 @@
     <app-button-group 
       :items="elevatorData"
       @change="selectElevator"
+      ref="elevatorBtn"
     ></app-button-group>
 
     <app-button-tab 
@@ -88,6 +89,7 @@ export default {
         this.currentFloor.currFloorScrollTableData = [];
         this.currentFloor.currFloorTableData = [];
       }
+      this.$refs.elevatorBtn.currentIndex = null;
       this.modeIndex = i;
       this.$emit('switchMode', this.leftModuleA.content.data[i]);
     },
