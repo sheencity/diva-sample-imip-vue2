@@ -42,42 +42,6 @@ export class UtilService {
   }
 
   /**
-   * 将数组转换成带有日期的图表数据源
-   * @param data
-   */
-  getChartDataSource(data) {
-    const dataSource = [];
-    data.forEach((item, index) => {
-      const temp = [];
-      temp[0] = this.lastSevenDate[index];
-      temp[1] = item.average;
-      dataSource.push(temp);
-    });
-    return dataSource;
-  }
-
-  /**
-   * 获取折柱混合图的数据源
-   * @param humidityData 湿度数据源
-   * @param tempData 温度数据源
-   */
-  getBarLineDataSource(humidityData, tempData) {
-    const dataSource = [];
-    const humidityAver = humidityData.map((item) => item.average),
-      tempAver = tempData.map((item) => item.average),
-      tempMin = tempData.map((item) => item.min),
-      tempMax = tempData.map((item) => item.max);
-    dataSource.push(
-      this.lastSevenDate,
-      humidityAver,
-      tempMin,
-      tempAver,
-      tempMax
-    );
-    return dataSource;
-  }
-
-  /**
    * 2 秒获取一个随机数
    * @param data
    */
