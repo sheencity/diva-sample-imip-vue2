@@ -15,7 +15,7 @@
           :key='camera.text'
           @click="playCameraTrack(camera)"
         >
-          <img :src="require('../../../assets/' + camera.image)" />
+          <img :src="camera.image" />
           <span>{{ camera.text }}</span>
         </div>
       </aside>

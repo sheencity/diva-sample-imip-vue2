@@ -9,7 +9,7 @@
         <img style="margin-right: 25px" src="../../assets/images/header/home.svg" />
       </router-link>
       <img style="margin-right: 25px" src="../../assets/images/header/help.svg" @click="showGuide = true"/>
-      <img v-if="weatherUrl" style="margin-right: 10px" :src="require('assets/images/header/weather/' + weatherUrl + '.svg')"/>
+      <img v-if="weatherUrl" style="margin-right: 10px" :src="'assets/images/header/weather/' + weatherUrl + '.svg'"/>
       <span style="margin-right: 18px">{{ weatherInfo.temp }} ℃</span>
       <img style="margin-right: 8px" src="../../assets/images/header/time.svg" />
       <span style="margin-right: 19px">{{ date }}</span>

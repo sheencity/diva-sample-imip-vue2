@@ -15,12 +15,12 @@ export default {
   props: ["icon", "title", "width"],
   data() {
     return {
-      imgURL: this.icon ? require("../../../assets/" + this.icon) : "",
+      imgURL: this.icon ? this.icon : "",
       lineURL: !this.width
         ? this.icon
-        ? require("../../../assets/images/common/dialog/dialog-line.png")
-        : require("../../../assets/images/common/dialog/dialog-line-double.png")
-        : require("../../../assets/images/common/dialog/dialog-line-short.png"),
+        ? "assets/images/common/dialog/dialog-line.png"
+        : "assets/images/common/dialog/dialog-line-double.png"
+        : "assets/images/common/dialog/dialog-line-short.png",
     };
   },
 };

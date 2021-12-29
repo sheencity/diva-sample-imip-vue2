@@ -3,7 +3,7 @@
     <footer>
       <div class="route-button">
         <router-link :key="item.title" v-for="item in menuList" :to="item.link" class="route all" active-class="route-selected" >
-          <img class="logo" :src="require('assets/images/footer/' + item.icon)" />
+          <img class="logo" :src="'assets/images/footer/' + item.icon" />
           <p>{{ item.title }}</p>
           <div class="child-route-button">
             <router-link

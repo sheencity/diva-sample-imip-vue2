@@ -8,7 +8,7 @@
     {
       "header": {
         "title": "产业配置",
-        "icon": "images/common/dialog/route4/3-1.svg"
+        "icon": "assets/images/common/dialog/route4/3-1.svg"
       },
       "content": {
         "type": "button-tab",
@@ -23,7 +23,7 @@
             "target-panel": {
               "header": {
                 "title": "产业链条",
-                "icon": "images/common/dialog/route4/3-3.svg"
+                "icon": "assets/images/common/dialog/route4/3-3.svg"
               },
               "content": {
                 "type": "row-list",
@@ -113,7 +113,7 @@
             "target-panel": {
               "header": {
                 "title": "建筑用途",
-                "icon": "images/common/dialog/route4/3-4.svg"
+                "icon": "assets/images/common/dialog/route4/3-4.svg"
               },
               "content": {
                 "type": "row-list",
@@ -283,7 +283,7 @@
             "target-panel": {
               "header": {
                 "title": "分期规划",
-                "icon": "images/common/dialog/route4/3-5.svg"
+                "icon": "assets/images/common/dialog/route4/3-5.svg"
               },
               "content": {
                 "type": "row-list",
@@ -351,7 +351,7 @@
     {
       "header": {
         "title": "建筑红线",
-        "icon": "images/common/dialog/route4/3-2.svg"
+        "icon": "assets/images/common/dialog/route4/3-2.svg"
       },
       "content": {
         "type": "switch-list",

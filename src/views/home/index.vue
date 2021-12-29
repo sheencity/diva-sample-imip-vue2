@@ -1,7 +1,7 @@
 <template>
   <main v-if="data" class="home">
     <div class="home-logo">
-      <img :src="require('../../assets/' + data.logo)" alt="logo">
+      <img :src="data.logo" alt="logo">
     </div>
     <h1 class="home-title">{{ data.title }}</h1>
     <button @click="login" class="home-button">{{ data.button.text }}</button>

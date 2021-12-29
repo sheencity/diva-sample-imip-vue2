@@ -5,12 +5,12 @@
         <div v-for="item in rankingData" :key="item.title" class="item">
           <p>{{ item.title }}</p>
           <span :style="{ color: item.fontColor }">{{ item.number }}</span>
-          <img src="../../../assets/images/router/investment/achievement/1.png" />
+          <img src="assets/images/router/investment/achievement/1.png" />
         </div>
       </div>
       <div v-if="statisticData" class="statistic">
         <div :key="item.icon" v-for="item in statisticData" class="item">
-          <img :src="require('../../../assets/' + item.icon)" />
+          <img :src="item.icon" />
           <div>
             <p>{{ item.title }}</p>
             <p :style="{ color: item.fontColor || '' }">

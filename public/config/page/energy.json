@@ -8,7 +8,7 @@
     {
       "header": {
         "title": "能耗类型",
-        "icon": "images/common/dialog/route2/1.svg"
+        "icon": "assets/images/common/dialog/route2/1.svg"
       },
       "content": {
         "type": "",
@@ -16,8 +16,8 @@
           {
             "title": "电资源",
             "icon": {
-              "unselect": "images/router/energy/white_button_electricity.svg",
-              "select": "images/router/energy/button_electricity.svg"
+              "unselect": "assets/images/router/energy/white_button_electricity.svg",
+              "select": "assets/images/router/energy/button_electricity.svg"
             },
             "data": [
               { "name": "1#", "value": " 5,019 kW·h " },
@@ -51,8 +51,8 @@
           {
             "title": "水资源",
             "icon": {
-              "unselect": "images/router/energy/white_button_water.svg",
-              "select": "images/router/energy/button_water.svg"
+              "unselect": "assets/images/router/energy/white_button_water.svg",
+              "select": "assets/images/router/energy/button_water.svg"
             },
             "data": [
               { "name": "1#", "value": " 33 m³" },
@@ -90,7 +90,7 @@
       {
         "header": {
           "title": "耗电量（kW·h）",
-          "icon": "images/common/dialog/route2/3.svg"
+          "icon": "assets/images/common/dialog/route2/3.svg"
         },
         "content": {
           "type": "echarts-basic-bar",
@@ -118,7 +118,7 @@
       {
         "header": {
           "title": "耗水量（m³）",
-          "icon": "images/common/dialog/route2/3-water.svg"
+          "icon": "assets/images/common/dialog/route2/3-water.svg"
         },
         "content": {
           "type": "echarts-basic-bar",
@@ -148,7 +148,7 @@
       {
         "header": {
           "title": "能耗占比",
-          "icon": "images/common/dialog/route2/3.svg"
+          "icon": "assets/images/common/dialog/route2/3.svg"
         },
         "content": {
           "type": "echarts-pie",
@@ -175,7 +175,7 @@
       {
         "header": {
           "title": "能耗占比",
-          "icon": "images/common/dialog/route2/3-water.svg"
+          "icon": "assets/images/common/dialog/route2/3-water.svg"
         },
         "content": {
           "type": "echarts-pie",
@@ -206,7 +206,7 @@
     {
       "header": {
         "title": "POI数值",
-        "icon": "images/common/dialog/route2/4.svg"
+        "icon": "assets/images/common/dialog/route2/4.svg"
       },
       "content": {
         "type": "switcher-list-panel",

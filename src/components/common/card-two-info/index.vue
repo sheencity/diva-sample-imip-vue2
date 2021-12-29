@@ -8,7 +8,7 @@
       <aside>
         <div class="area-content">
           <div class="content">
-            <img :src="require('../../../assets/' + dataSource.icon)" />
+            <img :src="dataSource.icon" />
           </div>
           <div class="content">
             <p>{{ dataSource.info_left.title }}</p>

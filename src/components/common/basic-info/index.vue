@@ -5,7 +5,7 @@
         <img
           style="width: 100%;height: 100%;"
           v-if="dataSource.image.url"
-          :src="require('../../../assets/' + dataSource.image.url)"
+          :src="dataSource.image.url"
         />
       </div>
       <p v-if="dataSource.text.length === 1">

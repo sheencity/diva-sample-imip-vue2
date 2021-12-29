@@ -11,7 +11,7 @@
     {
       "header": {
         "title": "空间布局",
-        "icon": "images/common/dialog/route4/2-1.svg"
+        "icon": "assets/images/common/dialog/route4/2-1.svg"
       },
       "content": {
         "type": "basic-info",
@@ -30,13 +30,13 @@
         {
           "header": {
             "title": "一轴",
-            "icon": "images/common/dialog/route4/2-2.svg"
+            "icon": "assets/images/common/dialog/route4/2-2.svg"
           },
           "content": {
             "data": [
               {
                 "text": "南北景观中轴",
-                "image": "images/router/investment/space/1.png",
+                "image": "assets/images/router/investment/space/1.png",
                 "diva": {
                   "camera_track_name": "南北景观中轴"
                 }
@@ -47,27 +47,27 @@
         {
           "header": {
             "title": "三点",
-            "icon": "images/common/dialog/route4/2-3.svg"
+            "icon": "assets/images/common/dialog/route4/2-3.svg"
           },
           "content": {
             "data": [
               {
                 "text": "厂前区中心开敞空间",
-                "image": "images/router/investment/space/2.png",
+                "image": "assets/images/router/investment/space/2.png",
                 "diva": {
                   "camera_track_name": "厂前区节点"
                 }
               },
               {
                 "text": "厂区中心广场",
-                "image": "images/router/investment/space/3.png",
+                "image": "assets/images/router/investment/space/3.png",
                 "diva": {
                   "camera_track_name": "中心广场节点"
                 }
               },
               {
                 "text": "东广场入口",
-                "image": "images/router/investment/space/4.png",
+                "image": "assets/images/router/investment/space/4.png",
                 "diva": {
                   "camera_track_name": "东广场入口节点"
                 }
@@ -78,20 +78,20 @@
         {
           "header": {
             "title": "两环",
-            "icon": "images/common/dialog/route4/2-4.svg"
+            "icon": "assets/images/common/dialog/route4/2-4.svg"
           },
           "content": {
             "data": [
               {
                 "text": "生产区车流闭环",
-                "image": "images/router/investment/space/5.png",
+                "image": "assets/images/router/investment/space/5.png",
                 "diva": {
                   "camera_track_name": "生产区车流闭环"
                 }
               },
               {
                 "text": "厂前区车流闭环",
-                "image": "images/router/investment/space/6.png",
+                "image": "assets/images/router/investment/space/6.png",
                 "diva": {
                   "camera_track_name": "厂前区车流闭环"
                 }
