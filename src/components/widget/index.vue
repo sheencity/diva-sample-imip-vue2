@@ -206,7 +206,7 @@ export default {
         }
         case 'monitoring':{    //    【监控】设备弹框
           this.getMonData();
-          this.icon = 'images/common/dialog/device-dialog/monitoring.svg';
+          this.icon = 'assets/images/common/dialog/device-dialog/monitoring.svg';
           break;
         }
       };
@@ -223,7 +223,7 @@ export default {
         }
         case 'monitoring':{    //    【监控】设备弹框
           this.title = 'XXXX号摄像头';
-          this.icon = 'images/common/dialog/device-dialog/monitoring.svg';
+          this.icon = 'assets/images/common/dialog/device-dialog/monitoring.svg';
           break;
         }
       };

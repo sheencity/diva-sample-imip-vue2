@@ -98,7 +98,7 @@
             "id": "CA001",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "videos/monitoring/CA001.mp4",
+            "videoPath": "assets/videos/monitoring/CA001.mp4",
             "diva": {
               "model": [{ "name": "球式摄像机01" }],
               "poi": [{ "name": "POI摄像机01" }]
@@ -108,7 +108,7 @@
             "id": "CA002",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "videos/monitoring/CA002.mp4",
+            "videoPath": "assets/videos/monitoring/CA002.mp4",
             "diva": {
               "model": [{ "name": "球式摄像机04" }],
               "poi": [{ "name": "POI摄像机04" }]
@@ -118,7 +118,7 @@
             "id": "CA003",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "videos/monitoring/CA003.mp4",
+            "videoPath": "assets/videos/monitoring/CA003.mp4",
             "diva": {
               "model": [{ "name": "球式摄像机07" }],
               "poi": [{ "name": "POI摄像机07" }]
@@ -128,7 +128,7 @@
             "id": "CA004",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "videos/monitoring/CA004.mp4",
+            "videoPath": "assets/videos/monitoring/CA004.mp4",
             "diva": {
               "model": [{ "name": "球式摄像机12" }],
               "poi": [{ "name": "POI摄像机12" }]
@@ -138,7 +138,7 @@
             "id": "CA005",
             "category": "球式摄像机",
             "status": "正常",
-            "videoPath": "videos/monitoring/CA005.mp4",
+            "videoPath": "assets/videos/monitoring/CA005.mp4",
             "diva": {
               "model": [{ "name": "球式摄像机15" }],
               "poi": [{ "name": "POI摄像机15" }]
@@ -148,7 +148,7 @@
             "id": "CA006",
             "category": "枪式摄像机",
             "status": "正常",
-            "videoPath": "videos/monitoring/CA006.mp4",
+            "videoPath": "assets/videos/monitoring/CA006.mp4",
             "diva": {
               "model": [{ "name": "枪式摄像机05" }],
               "poi": [{ "name": "POI摄像机05" }]
@@ -158,7 +158,7 @@
             "id": "CA007",
             "category": "枪式摄像机",
             "status": "正常",
-            "videoPath": "videos/monitoring/CA007.mp4",
+            "videoPath": "assets/videos/monitoring/CA007.mp4",
             "diva": {
               "model": [{ "name": "枪式摄像机09" }],
               "poi": [{ "name": "POI摄像机09" }]
