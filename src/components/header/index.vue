@@ -1,19 +1,19 @@
 <template>
   <header class="all">
-    <img class="sheentity-logo" src="../../assets/images/logo.svg">
+    <img class="sheentity-logo" src="assets/images/logo.svg">
     <div class="title">
       <p>智能制造产业园数字孪生平台</p>
     </div>
     <div class="tool">
       <router-link style="height: 20px;" to="/home">
-        <img style="margin-right: 25px" src="../../assets/images/header/home.svg" />
+        <img style="margin-right: 25px" src="assets/images/header/home.svg" />
       </router-link>
-      <img style="margin-right: 25px" src="../../assets/images/header/help.svg" @click="showGuide = true"/>
+      <img style="margin-right: 25px" src="assets/images/header/help.svg" @click="showGuide = true"/>
       <img v-if="weatherUrl" style="margin-right: 10px" :src="'assets/images/header/weather/' + weatherUrl + '.svg'"/>
       <span style="margin-right: 18px">{{ weatherInfo.temp }} ℃</span>
-      <img style="margin-right: 8px" src="../../assets/images/header/time.svg" />
+      <img style="margin-right: 8px" src="assets/images/header/time.svg" />
       <span style="margin-right: 19px">{{ date }}</span>
-      <img style="margin-right: 9px" src="../../assets/images/header/date.svg" />
+      <img style="margin-right: 9px" src="assets/images/header/date.svg" />
       <span>{{ time }}</span>
     </div>
     <app-guide v-if="showGuide" @close="closeDialog"></app-guide>
@@ -112,7 +112,7 @@ header {
   margin-bottom: 1.88rem;
   display: flex;
   justify-content: center;
-  background: url("assets/images/header/header.png") no-repeat bottom;
+  background: url("/public/assets/images/header/header.png") no-repeat bottom;
   background-size: contain;
   .sheentity-logo {
     position: absolute;

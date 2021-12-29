@@ -41,7 +41,7 @@
     </article>
     <article class="mon" v-if="this.type === 'monitoring' && monData.id">
       <div class="video">
-        <video width="100%" :src="require('../../assets/' + monData.videoPath)" autoplay="autoplay" muted="muted"></video>
+        <video width="100%" :src="monData.videoPath" autoplay="autoplay" muted="muted"></video>
       </div>
       <p class="introduce">
         <span>监控类型：</span>

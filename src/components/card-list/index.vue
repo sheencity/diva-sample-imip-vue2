@@ -62,7 +62,7 @@ export default {
       line-height: 1.38rem;
       text-align: center;
       text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
-      background: url("assets/images/router/introduction/title.png") no-repeat 50% 10%;
+      background: url("/public/assets/images/router/introduction/title.png") no-repeat 50% 10%;
     }
   }
   .life-area {

@@ -16,7 +16,7 @@
         <div v-if="selectedIndex === index && item['child-panel']" class="topFrame-absolute">
           <img
             class="topFrame-line"
-            src="../../../assets/images/common/row-list/left-line.png"
+            src="assets/images/common/row-list/left-line.png"
           />
           <app-basic-info
             class="topHeader"
@@ -26,7 +26,7 @@
             <div class="closeBtn">
               <img
                 @click.stop="closeTopframe()"
-                src="../../../assets/images/common/row-list/close.svg"
+                src="assets/images/common/row-list/close.svg"
               />
             </div>
           </app-basic-info>

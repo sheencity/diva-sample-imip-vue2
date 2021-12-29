@@ -20,7 +20,7 @@
           <div class="item">
             <p class="digital">{{ parkGeneralData.power_rest }}<span>/{{ parkGeneralData.power_total }}</span></p>
             <p>
-              <img src="../../../assets/images/common/parking-panel/charge-park.svg" />
+              <img src="assets/images/common/parking-panel/charge-park.svg" />
               充电桩停车位
             </p>
           </div>
@@ -28,7 +28,7 @@
           <div class="item">
             <p class="digital">{{ parkGeneralData.common_rest }}<span>/{{ parkGeneralData.common_total }}</span></p>
             <p>
-              <img src="../../../assets/images/common/parking-panel/common-park.svg" />
+              <img src="assets/images/common/parking-panel/common-park.svg" />
               普通停车位
             </p>
           </div>
