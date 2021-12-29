@@ -39,7 +39,7 @@
       <div class="switch">
         <p>车位使用透视</p>
         <app-switcher
-          v-model="checked"
+          v-model="check"
           @switch="swit"
         ></app-switcher>
       </div>
@@ -79,6 +79,7 @@ export default {
       parkGeneralData: this.dataSource.general,
       parkAreaData: this.dataSource.data,
       selectedIndex: -1,
+      check: this.checked
     };
   },
   mounted() {
@@ -212,6 +213,9 @@ export default {
     margin-bottom: 6px;
     padding: 8px;
     border: 1px solid rgba(235, 235, 235, 0.2);
+    div{
+      pointer-events: none;
+    }
     &:hover {
       background: rgba(255, 255, 255, 0.1);
     }
