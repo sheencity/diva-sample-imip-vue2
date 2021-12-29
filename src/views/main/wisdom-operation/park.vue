@@ -104,7 +104,6 @@ export default {
     },
     // 车位使用透视开关
     switchChange(v) {
-      console.log(v);
       diva.client?.applyScene(this.divaData.init.scene_name, {
         camera: true,
         visibility: false,
@@ -113,7 +112,6 @@ export default {
     },
     // 停车区点击聚焦和显示对应体块
     async areaChange(e) {
-      console.log(e);
       await diva.setEntityVisibleByGroup(this.currentShowPath.get('areaPath'), false);
       const focusOption = this.parkingPanelData.content.diva.action
         .filter((action) => action.name === 'focus')[0]

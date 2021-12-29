@@ -172,7 +172,6 @@ export default {
                 break;
               }
               case 'group': {
-                console.log(floor[key])
                 const typedGroup = await diva.client.getModelGroupByGroupPath(floor.group);
                 this.modelEventList.push(typedGroup);
                 typedGroup.addEventListener('click',this.addEvent);

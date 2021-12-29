@@ -62,7 +62,6 @@ export default {
     },
     async getConfig() {
       const { data } = await this.axios.get('config/page/energy.json');
-      console.log(data)
       this.initDivaData = data.diva;
       this.buttonTabData = data['panel-left'][0];
       this.barChartsData = data['panel-left'][1];

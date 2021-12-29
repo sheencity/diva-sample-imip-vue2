@@ -126,7 +126,7 @@ export default {
      * @param e 点击对象
      */
     unselect(oldName,e){
-      console.log({ oldName, e })
+      
     }
   },
   async beforeDestroy(){

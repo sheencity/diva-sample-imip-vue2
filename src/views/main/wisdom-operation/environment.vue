@@ -135,7 +135,6 @@ export default {
     },
     // 点击设备列表聚焦至设备
     deviceChange(name, e) {
-      console.log(name, e);
       const focusOption = this.deviceListData.content.diva.action
         .filter((action) => action.name === 'focus')[0]
         .param;

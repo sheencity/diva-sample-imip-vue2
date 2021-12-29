@@ -85,7 +85,6 @@ export default {
       },
       // 摄像机点击事件
       monitorClickListener: (e) => {
-        console.log('创建窗口', e);
         this.deviceId = e.target;
         const equipmentId = this.monitorsIdMap.get(e.target);
         const url = `${window.location.origin}/#/pop-up/monitoring/widget/${equipmentId}`;
@@ -99,7 +98,6 @@ export default {
       },
       // 摄像机POI 点击事件
       monitorPoiClickListener: (e) => {
-        console.log("点击摄像机 POI", e);
         const name = this.monitorsPoiMap.get(e.target);
         if (!name) return;
         this.focusMonitor(name);
@@ -145,13 +143,11 @@ export default {
         if (action.name === 'focus') this.options.focus = action.param;
         if (action.name === 'set_web_widget') this.options.widget = action.param;
       });
-      console.log(this.options);
     },
     // 获取摄像机和摄像机POI的对应信息
     async getBasicInfo() {
       const monitorList = this.monitorListData.content.data;
       const { group, poi } = this.monitorListData.content.diva.init;
-      console.log(group, poi);
       this.monitors = await diva.client?.getModelGroupByGroupPath(group);
       this.monitorsPoi = await diva.client?.getModelGroupByGroupPath(poi);
 
@@ -227,12 +223,10 @@ export default {
     },
     // 摄像机列表点击切换
     monitorChange(name, e) {
-      console.log(name, e);
       this.focusMonitor(e.diva.model[0].name);
     },
     // 交通流线开关
     switchChange(e) {
-      console.log(e);
       diva.setEntityVisibleByName(e.diva.model[0].name, e.default);
     },
   },

@@ -30,7 +30,6 @@ export default {
     } else {
       mergeOpt = this.dataSource.option;
     }
-    console.log({mergeOpt});
     chart.setOption(mergeOpt);
   },
   methods: {},

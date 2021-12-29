@@ -62,7 +62,6 @@ export default {
         this.basicData.push(param);
         param = {};
       }
-      console.log(this.basicData)
     }
   },
   components: {

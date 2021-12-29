@@ -194,12 +194,10 @@ export default {
   mounted() {
     const url = this.$route.path;
     if (this.$route.params.id) {
-      console.log(this.$route.params.id);
       const pathList =  url.split('/');
       const len = pathList.length;
       // 获取倒数第二个路径名
       this.type = pathList[len-3];
-      console.log(this.type);
       switch (this.type) {
         case 'environment':{     //  【环境】设备弹框
           this.title = '监测数据';

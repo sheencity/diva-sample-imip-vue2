@@ -24,7 +24,6 @@ export default {
     },
   },
   mounted(){
-    console.log(this.$refs.switch)
     this.$refs.switch?.addEventListener('click',()=>{
       this.onClick();
     })
