@@ -2,7 +2,14 @@
   <div class="footer-container">
     <footer>
       <div class="route-button">
-        <router-link :key="item.title" v-for="item in menuList" :to="item.link" class="route all" active-class="route-selected" >
+        <router-link 
+          :to="item.link"
+          class="route all"
+          :class="{'route-selected': currRoute === item.link}"
+          :key="item.title" 
+          v-for="item in menuList"  
+          @click.native="selectRoute(item.link)"
+        >
           <img class="logo" :src="'assets/images/footer/' + item.icon" />
           <p>{{ item.title }}</p>
           <div class="child-route-button">
@@ -63,11 +70,17 @@ export default {
         //   ],
         // },
       ],
+      currRoute: ''
     };
   },
   async created(){
     const { data } = await this.axios.get('config/menu/index.json');
     this.menuList = data.menu.data;
+  },
+  methods: {
+    selectRoute(v){
+      this.currRoute = v;
+    }
   }
 };
 </script>
@@ -111,14 +124,15 @@ footer {
       p {
         font-weight: 500;
         font-size: 1rem;
+        pointer-events: none;
       }
       .logo {
         width: 1.25rem;
         height: 1.25rem;
         display: block;
         margin-right: .25rem;
+        pointer-events: none;
       }
-
       &:hover {
         &::before {
           background: url("/public/assets/images/footer/button-hover.png");
