@@ -10,7 +10,7 @@
           v-for="item in menuList"  
           @click.native="selectRoute(item.link)"
         >
-          <img class="logo" :src="'assets/images/footer/' + item.icon" />
+          <img class="logo" :src="item.icon" />
           <p>{{ item.title }}</p>
           <div class="child-route-button">
             <router-link
