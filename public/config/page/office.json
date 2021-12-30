@@ -10,7 +10,7 @@
 	},
 	"panel-left": [
     {
-      "type": "floor-panal",
+      "type": "floor-panel",
       "floor-btn-group": {
         "type": "btn-group",
         "diva": {

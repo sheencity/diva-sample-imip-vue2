@@ -70,7 +70,7 @@ export default {
         //   ],
         // },
       ],
-      currRoute: ''
+      currRoute: '/introduction'
     };
   },
   async created(){
