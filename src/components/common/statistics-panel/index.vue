@@ -5,7 +5,7 @@
         <div v-for="item in rankingData" :key="item.title" class="item">
           <p>{{ item.title }}</p>
           <span :style="{ color: item.fontColor }">{{ item.number }}</span>
-          <img src="assets/images/router/investment/achievement/1.png" />
+          <img src="assets/images/router/achievement/1.png" />
         </div>
       </div>
       <div v-if="statisticData" class="statistic">

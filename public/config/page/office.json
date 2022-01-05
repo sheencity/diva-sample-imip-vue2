@@ -676,23 +676,23 @@
         "type": "statistic-panel",
         "data": [
           {
-            "icon": "assets/images/router/wisdom-operation/office/m-1.svg",
+            "icon": "assets/images/router/office/m-1.svg",
             "title": "当前楼内",
             "number": "1,425"
           },
       
           {
-            "icon": "assets/images/router/wisdom-operation/office/m-2.svg",
+            "icon": "assets/images/router/office/m-2.svg",
             "title": "今日入楼",
             "number": "1,256"
           },
           {
-            "icon": "assets/images/router/wisdom-operation/office/m-3.svg",
+            "icon": "assets/images/router/office/m-3.svg",
             "title": "今日访客",
             "number": "127"
           },
           {
-            "icon": "assets/images/router/wisdom-operation/office/m-6.svg",
+            "icon": "assets/images/router/office/m-6.svg",
             "title": "防疫检测异常",
             "number": "3",
             "fontColor": "#ff4848"

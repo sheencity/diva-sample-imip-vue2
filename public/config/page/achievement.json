@@ -24,12 +24,12 @@
             "fontColor": "#04CD98"
           },
           {
-            "icon": "assets/images/router/investment/achievement/1.svg",
+            "icon": "assets/images/router/achievement/1.svg",
             "title": "企业总数",
             "number": "493"
           },
           {
-            "icon": "assets/images/router/investment/achievement/2.svg",
+            "icon": "assets/images/router/achievement/2.svg",
             "title": "人员总数",
             "number": "11,384"
           }
