@@ -5,10 +5,10 @@
         <router-link 
           :to="item.link"
           class="route all"
-          :class="{'route-selected': currRoute === item.link}"
+          :class="{'route-selected': currId === index}"
           :key="item.title" 
-          v-for="item in menuList"  
-          @click.native="selectRoute(item.link)"
+          v-for="(item, index) in menuList"  
+          @click.native="selectRoute(index)"
         >
           <img class="logo" :src="item.icon" />
           <p>{{ item.title }}</p>
@@ -34,52 +34,39 @@
 export default {
   data() {
     return {
-      menuList: [
-        //  {
-        //   link: "/introduction",
-        //   icon: "1.svg",
-        //   title: "项目介绍",
-        //   children: [],
-        // },
-        // {
-        //   link: "/carbon-neutral",
-        //   icon: "2.svg",
-        //   title: "碳中和",
-        //   children: [{ link: "/carbon-neutral/energy", title: "能源" }],
-        // },
-        // {
-        //   link: "/wisdom-operation",
-        //   icon: "3.svg",
-        //   title: "智慧运营",
-        //   children: [
-        //     { link: "/wisdom-operation/work", title: "办公" },
-        //     { link: "/wisdom-operation/environment", title: "环境" },
-        //     { link: "/wisdom-operation/fire-control", title: "消防" },
-        //     { link: "/wisdom-operation/security", title: "安保" },
-        //     { link: "/wisdom-operation/park", title: "停车" },
-        //   ],
-        // },
-        // {
-        //   link: "/attract-investment",
-        //   icon: "4.svg",
-        //   title: "产业招商",
-        //   children: [
-        //     { link: "/attract-investment/achievement", title: "招商成果" },
-        //     { link: "/attract-investment/space", title: "空间布局" },
-        //     { link: "/attract-investment/project", title: "产业规划" },
-        //   ],
-        // },
-      ],
-      currRoute: '/introduction'
+      menuList: [],
+      currId: 0,
+      filterMap: new Map([
+        ['introduction.vue','/introduction'],
+        ['energy.vue','/carbon-neutral/energy'],
+        ['office.vue','/wisdom-operation/office'],
+        ['environment.vue','/wisdom-operation/environment'],
+        ['fire-control.vue','/wisdom-operation/fire-control'],
+        ['security.vue','/wisdom-operation/security'],
+        ['parking.vue','/wisdom-operation/parking'],
+        ['achievement.vue','/attract-investment/achievement'],
+        ['space.vue','/attract-investment/space'],
+        ['planing.vue','/attract-investment/planing'],
+      ])
     };
   },
   async created(){
     const { data } = await this.axios.get('config/menu/index.json');
-    this.menuList = data.menu.data;
+    const menuList = data.menu.data;
+    this.filterRoute(menuList);
+    this.menuList = menuList;
   },
   methods: {
     selectRoute(v){
-      this.currRoute = v;
+      this.currId = v;
+    },
+    filterRoute(list){
+      list.forEach(item => {
+        const route = this.filterMap.get(item.file);
+        if(route) item.link = route;
+        else item.link = '/not-found'
+        if(item.children?.length > 0) return this.filterRoute(item.children)
+      });
     }
   }
 };

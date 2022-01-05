@@ -5,18 +5,18 @@
         {
           "title": "项目介绍",
           "icon": "assets/images/footer/1.svg",
-          "link": "/introduction",
+          "file": "introduction.vue",
           "data": "config/page/introduction.json",
           "children": []
         },
         {
           "title": "碳中和",
           "icon": "assets/images/footer/2.svg",
-          "link": "/carbon-neutral",
+          "file": "energy.vue",
           "children": [
             {
               "title": "能源",
-              "link": "/carbon-neutral/energy",
+              "file": "energy.vue",
               "data": "config/page/energy.json"
             }
           ]
@@ -24,31 +24,31 @@
         {            
           "title": "智慧运营",
           "icon": "assets/images/footer/3.svg",
-          "link": "/wisdom-operation",
+          "file": "office.vue",
           "children": [
             {
               "title": "办公",
-              "link": "/wisdom-operation/office",
+              "file": "office.vue",
               "data": "config/page/office.json"
             },
             {
               "title": "环境",
-              "link": "/wisdom-operation/environment",
+              "file": "environment.vue",
               "data": "config/page/environment.json"
             },
             {
               "title": "消防",
-              "link": "/wisdom-operation/fire-control",
+              "file": "fire-control.vue",
               "data": "config/page/firecontrol.json"
             },
             {
               "title": "安保",
-              "link": "/wisdom-operation/security",
+              "file": "security.vue",
               "data": "config/page/security.json"
             },
             {
               "title": "停车",
-              "link": "/wisdom-operation/park",
+              "file": "parking.vue",
               "data": "config/page/park.json"
             }
           ]
@@ -56,21 +56,21 @@
         {            
           "title": "产业招商",
           "icon": "assets/images/footer/4.svg",
-          "link": "/attract-investment",
+          "file": "achievement.vue",
           "children": [
             {
               "title": "招商成果",
-              "link": "/attract-investment/achievement",
+              "file": "achievement.vue",
               "data": "config/page/achievement.json"
             },
             {
               "title": "空间布局",
-              "link": "/attract-investment/space",
+              "file": "space.vue",
               "data": "config/page/space.json"
             },
             {
               "title": "产业规划",
-              "link": "/attract-investment/plan",
+              "file": "planing.vue",
               "data": "config/page/plan.json"
             }
           ]

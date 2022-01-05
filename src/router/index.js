@@ -45,7 +45,7 @@ const routes = [
       { path: "/wisdom-operation/environment", component: Environment },
       { path: "/wisdom-operation/fire-control", component: FireControl },
       { path: "/wisdom-operation/security", component: Security },
-      { path: "/wisdom-operation/park", component: Park },
+      { path: "/wisdom-operation/parking", component: Park },
       {
         path: "/attract-investment",
         name: "产业招商",
@@ -54,11 +54,12 @@ const routes = [
       },
       { path: "/attract-investment/achievement", component: Achievement },
       { path: "/attract-investment/space", component: Space },
-      { path: "/attract-investment/plan", component: Plan },
+      { path: "/attract-investment/planing", component: Plan },
     ],
   },
   { path: "*/widget", component: Widget },
   { path: "*/widget/:id", component: Widget },
+  { path: "*", redirect: "/home" },
 ];
 
 const router = new VueRouter({
