@@ -38,12 +38,12 @@
         :dataSource="PM25Data.content"
       ></app-echarts>
 
-      <echarts
+      <app-echarts
         class="top10"
         v-if="VOCData"
         :header="VOCData.header"
         :dataSource="VOCData.content"
-      ></echarts>
+      ></app-echarts>
     </aside>
   </article>
 </template>
