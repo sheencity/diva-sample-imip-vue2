@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="switcher" :class="{ 'switch-disabled': disabled || !checked }">
+    <div class="switcher" :class="{ "switch-disabled": disabled || !checked }">
       <input type="checkbox" :checked="checked" :disabled="disabled" />
       <div class="slider round" ref="switch"></div>
     </div>
@@ -10,24 +10,24 @@
 <script>
 export default {
   model: {
-    prop: "checked",
-    event: "change",
+    prop: 'checked',
+    event: 'change',
   },
-  props: ["disabled", "checked"],
+  props: ['disabled', 'checked'],
 
   methods: {
     onClick() {
       if (!this.disabled) {
-        this.$emit("change", !this.checked);
-        this.$emit("switch", !this.checked);
+        this.$emit('change', !this.checked);
+        this.$emit('switch', !this.checked);
       }
     },
   },
-  mounted(){
-    this.$refs.switch?.addEventListener('click',()=>{
+  mounted() {
+    this.$refs.switch?.addEventListener('click', () => {
       this.onClick();
-    })
-  }
+    });
+  },
 };
 </script>
 

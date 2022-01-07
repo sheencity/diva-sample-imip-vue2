@@ -1,7 +1,11 @@
 <template>
   <main class="bg">
     <header :key="title">
-      <app-dialog-header :key="title" :title="title" :icon="icon" ></app-dialog-header>
+      <app-dialog-header
+        :key="title"
+        :title="title"
+        :icon="icon"
+      ></app-dialog-header>
     </header>
     <aside>
       <slot></slot>
@@ -10,9 +14,9 @@
 </template>
 
 <script>
-import AppDialogHeader from "./dialog-header";
+import AppDialogHeader from './dialog-header';
 export default {
-  props: ["header"],
+  props: ['header'],
   data() {
     return {
       title: this.header.title,

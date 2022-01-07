@@ -12,21 +12,18 @@
 </template>
 <script>
 export default {
-  props: ["items"],
+  props: ['items'],
   data() {
     return {
       currentIndex: null,
     };
   },
-  created() {},
-  mounted() {},
   methods: {
     switchItem(item, index) {
       this.currentIndex = index;
-      this.$emit("change", { item, index });
+      this.$emit('change', { item, index });
     },
   },
-  destroyed() {},
 };
 </script>
 <style lang="scss" scoped>

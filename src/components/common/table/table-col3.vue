@@ -7,20 +7,20 @@
         <span class="col-3">{{ thead[2].title }}</span>
       </div>
       <div class="container">
-        <div class="main" :style="{ maxHeight: maxItem * 40 + 'px' }">
+        <div class="main" :style="{ maxHeight: maxItem * 40 + "px" }">
           <div
             class="tbody"
-            :class="{ 'item-selected': selectId === item[thead[0].name] }"
-            :style="{ opacity: item[thead[2].name] === '检修' ? 0.3 : 1}"
+            :class="{ "item-selected": selectId === item[thead[0].name] }"
+            :style="{ opacity: item[thead[2].name] === "检修" ? 0.3 : 1 }"
             :key="item[thead[0].name]"
             v-for="(item, index) in dataSource"
-            @click="select(item,index)"
+            @click="select(item, index)"
           >
             <span class="col-1">{{ item[thead[0].name] }}</span>
             <span class="col-2">{{ item[thead[1].name] }}</span>
             <span
               class="col-3"
-              :class="{ 'disabled': item[thead[2].name] === '检修' }"
+              :class="{ disabled: item[thead[2].name] === "检修" }"
               >{{ item[thead[2].name] }}</span
             >
           </div>
@@ -28,37 +28,34 @@
       </div>
     </div>
   </app-dialog>
-  
 </template>
 
 <script>
-import AppDialog from '../dialog/dialog'
+import AppDialog from '../dialog/dialog';
 
 export default {
   props: ['thead', 'dataSource', 'maxItem', 'header'],
   data() {
     return {
       selectId: -1,
-    }
-  },
-  created(){
+    };
   },
   methods: {
-    select(e,index) {
-      if (e[this.thead[2].name] === "检修") return;
+    select(e, index) {
+      if (e[this.thead[2].name] === '检修') return;
       const targetName = e.name;
-      if(e.id !== this.selectId){
+      if (e.id !== this.selectId) {
         this.unselect();
       }
       this.selectId = e.id;
-      this.$emit("select", targetName, e);
+      this.$emit('select', targetName, e);
     },
     unselect() {
-      this.dataSource?.forEach((obj,index) => {
+      this.dataSource?.forEach((obj, index) => {
         // 将其他选中的取消
         const otherName = obj.name;
-        if (this.selectId === obj.id){
-          this.$emit("unselect", otherName, obj);
+        if (this.selectId === obj.id) {
+          this.$emit('unselect', otherName, obj);
         }
       });
     },
@@ -67,13 +64,13 @@ export default {
     this.unselect();
   },
   components: {
-    AppDialog
-  }
+    AppDialog,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.container{
+.container {
   overflow: visible;
   .main {
     width: 330px;
@@ -118,8 +115,8 @@ export default {
   .col-3 {
     color: #00e400;
   }
-  .disabled{
-    color: #FFFF00;
+  .disabled {
+    color: #ffff00;
   }
   &:hover {
     background: rgba(255, 255, 255, 0.1);

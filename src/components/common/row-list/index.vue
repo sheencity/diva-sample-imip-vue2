@@ -5,15 +5,15 @@
         class="rows"
         v-for="(item, index) in rowList"
         :key="item.title"
-        :class="{ 'row-selected': selectedIndex === index, 'disabled': disabled }"
+        :class="{ 'row-selected': selectedIndex === index, disabled: disabled }"
         @click="select(item, index)"
       >
-        <span
-          v-if="item.color"
-          :style="{ background: item.color }"
-        ></span>
+        <span v-if="item.color" :style="{ background: item.color }"></span>
         <div>{{ item.title }}</div>
-        <div v-if="selectedIndex === index && item['child-panel']" class="topFrame-absolute">
+        <div
+          v-if="selectedIndex === index && item['child-panel']"
+          class="topFrame-absolute"
+        >
           <img
             class="topFrame-line"
             src="assets/images/common/row-list/left-line.png"
@@ -41,7 +41,7 @@ import AppDialog from '../dialog/dialog';
 import AppBasicInfo from '../basic-info';
 
 export default {
-  props: ["header", "dataSource", "disabled"],
+  props: ['header', 'dataSource', 'disabled'],
   data() {
     return {
       rowList: [],
@@ -58,7 +58,7 @@ export default {
     },
     closeTopframe() {
       this.selectedIndex = -1;
-    }
+    },
   },
   components: {
     AppDialog,

@@ -1,35 +1,34 @@
 <template>
   <main v-if="data" class="home">
     <div class="home-logo">
-      <img :src="data.logo" alt="logo">
+      <img :src="data.logo" alt="logo" />
     </div>
     <h1 class="home-title">{{ data.title }}</h1>
-    <button @click="login" class="home-button">{{ data.button.text }}</button>
+    <button class="home-button" @click="login">{{ data.button.text }}</button>
   </main>
 </template>
 
 <script>
-import { RenderingStyleMode, Overlay } from "@sheencity/diva-sdk";
 import { Subscription } from 'rxjs';
 import { diva, dataService } from 'services/global';
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       initDivaData: null,
       data: null,
       clientSub: new Subscription(),
-    }
+    };
   },
   methods: {
-    async init(){
+    async init() {
       await this.getConfig();
       this.initScene();
     },
     /**
      * 获取json数据
      */
-    async getConfig(){
+    async getConfig() {
       const { data } = await this.axios.get('config/page/home.json');
       this.initDivaData = data.diva;
       this.data = data.panel['panel-center'];
@@ -43,24 +42,23 @@ export default {
     /**
      * 进入系统
      */
-    login(){
+    login() {
       this.$router.push('/introduction');
-    }
+    },
   },
   created() {
     this.clientSub = dataService.divaClient.subscribe((value) => {
       if (value) this.init();
     });
   },
-  mounted(){},
   destroyed() {
     this.clientSub.unsubscribe();
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.home{
+.home {
   position: absolute;
   z-index: 1;
   width: 100%;
@@ -69,12 +67,12 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .home-logo{
+  .home-logo {
     width: 200px;
     height: 68px;
     margin-bottom: 30px;
   }
-  .home-title{
+  .home-title {
     font-weight: 500;
     font-size: 60px;
     line-height: 82px;
@@ -82,30 +80,33 @@ export default {
     letter-spacing: 0.12em;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
-  .home-button{
+  .home-button {
     pointer-events: all;
     width: 200px;
     height: 60px;
     font-weight: 500;
     font-size: 20px;
     line-height: 27px;
-    color: #FFFFFF;
+    color: #ffffff;
     background: rgba(255, 255, 255, 0.2);
-    border: 2px solid #FFFFFF;
+    border: 2px solid #ffffff;
     border-radius: 4px;
   }
 
-  &::before{
+  &::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(107.71deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 101.14%);
+    background: linear-gradient(
+      107.71deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.2) 101.14%
+    );
     z-index: -2;
   }
 
-
-  &::after{
+  &::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -114,5 +115,4 @@ export default {
     z-index: -1;
   }
 }
-
 </style>

@@ -10,9 +10,9 @@
       </header>
       <aside>
         <div
-          class='pic-container'
-          v-for='camera in item.content.data'
-          :key='camera.text'
+          class="pic-container"
+          v-for="camera in item.content.data"
+          :key="camera.text"
           @click="playCameraTrack(camera)"
         >
           <img :src="camera.image" />
@@ -24,14 +24,14 @@
 </template>
 
 <script>
-import AppDialogHeader from "../dialog/dialog-header";
+import AppDialogHeader from '../dialog/dialog-header';
 
 export default {
-  props: ["dataSource"],
+  props: ['dataSource'],
   methods: {
     playCameraTrack(e) {
-      this.$emit("check", e);
-    }
+      this.$emit('check', e);
+    },
   },
   components: {
     AppDialogHeader,

@@ -3,21 +3,15 @@
     <div class="main">
       <button
         class="resource"
-        :class="{ 'item-selected': selectItem === index }"
+        :class="{ "item-selected": selectItem === index }"
         v-for="(item, index) in dataSource.data"
         :key="item.title"
         @click="select(item, index)"
       >
         <div class="content">
           <div v-if="item.icon">
-            <img
-              v-show="selectItem === index"
-              :src="item.icon.select"
-            />
-            <img
-              v-show="selectItem !== index"
-              :src="item.icon.unselect"
-            />
+            <img v-show="selectItem === index" :src="item.icon.select" />
+            <img v-show="selectItem !== index" :src="item.icon.unselect" />
           </div>
           {{ item.title }}
         </div>
@@ -27,7 +21,7 @@
 </template>
 
 <script>
-import AppDialog from "../dialog/dialog";
+import AppDialog from '../dialog/dialog';
 
 export default {
   props: ["header", "dataSource"],
@@ -39,7 +33,7 @@ export default {
   methods: {
     select(item, index) {
       this.selectItem = index;
-      this.$emit("select", index);
+      this.$emit('select', index);
     },
   },
   components: {

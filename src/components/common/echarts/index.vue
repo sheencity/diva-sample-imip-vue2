@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import * as echarts from "echarts";
-import { merge } from "lodash";
-import AppDialog from "components/common/dialog/dialog";
+import * as echarts from 'echarts';
+import { merge } from 'lodash';
+import AppDialog from 'components/common/dialog/dialog';
 import { echartService } from 'services/global';
 
 export default {
-  props: ["header", "dataSource"],
+  props: ['header', 'dataSource'],
   data() {
     return {
       customStyle: {
-        width: "320px",
-        height: "180px",
+        width: '320px',
+        height: '180px',
       },
       type: this.dataSource.type,
     };
@@ -35,10 +35,9 @@ export default {
   methods: {},
   components: {
     AppDialog,
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>

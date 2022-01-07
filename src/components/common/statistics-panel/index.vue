@@ -13,7 +13,7 @@
           <img :src="item.icon" />
           <div>
             <p>{{ item.title }}</p>
-            <p :style="{ color: item.fontColor || '' }">
+            <p :style="{ color: item.fontColor || "" }">
               {{ item.number }}
             </p>
           </div>
@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import AppDialog from "../dialog/dialog";
+import AppDialog from '../dialog/dialog';
 
 export default {
-  props: ["dataSource"],
+  props: ['dataSource'],
   data() {
     return {
       header: this.dataSource.header,
@@ -41,7 +41,7 @@ export default {
   },
   components: {
     AppDialog,
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -64,7 +64,7 @@ export default {
         position: absolute;
         width: 100%;
         font-size: 36px;
-        font-family: 'Saira';
+        font-family: "Saira";
         font-weight: 700;
         line-height: 20px;
         letter-spacing: 1px;

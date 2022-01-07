@@ -4,7 +4,6 @@
       <div class="preview">
         <div ref="parkPieChart" class="chart"></div>
         <div class="cars-info">剩余车位分析</div>
-
         <div class="truck-space">
           <div class="item">
             <p class="digital">{{ parkGeneralData.total - totalCars }}</p>
@@ -18,7 +17,10 @@
         <hr class="hr" style="margin: 5px 0px 10px 0px" />
         <div class="charge">
           <div class="item">
-            <p class="digital">{{ parkGeneralData.power_rest }}<span>/{{ parkGeneralData.power_total }}</span></p>
+            <p class="digital">
+              {{ parkGeneralData.power_rest
+              }}<span>/{{ parkGeneralData.power_total }}</span>
+            </p>
             <p>
               <img src="assets/images/common/parking-panel/charge-park.svg" />
               充电桩停车位
@@ -26,7 +28,10 @@
           </div>
           <div class="line"></div>
           <div class="item">
-            <p class="digital">{{ parkGeneralData.common_rest }}<span>/{{ parkGeneralData.common_total }}</span></p>
+            <p class="digital">
+              {{ parkGeneralData.common_rest
+              }}<span>/{{ parkGeneralData.common_total }}</span>
+            </p>
             <p>
               <img src="assets/images/common/parking-panel/common-park.svg" />
               普通停车位
@@ -35,16 +40,11 @@
         </div>
       </div>
       <hr class="hr" />
-
       <div class="switch">
         <p>车位使用透视</p>
-        <app-switcher
-          v-model="check"
-          @switch="swit"
-        ></app-switcher>
+        <app-switcher v-model="check" @switch="swit"></app-switcher>
       </div>
       <hr class="hr" style="margin-bottom: 10px" />
-
       <!-- 停车区 -->
       <div class="parking-area">
         <div
@@ -56,7 +56,9 @@
         >
           <div class="free-parks">
             <p>{{ item.title }}</p>
-            <p class="num">{{ item.rest }}<span>/{{ item.total }}</span></p>
+            <p class="num">
+              {{ item.rest }}<span>/{{ item.total }}</span>
+            </p>
           </div>
           <div class="info">占用车位/总数</div>
         </div>
@@ -66,20 +68,20 @@
 </template>
 
 <script>
-import * as echarts from "echarts";
-import AppDialog from "../dialog/dialog";
-import AppSwitcher from "../switcher";
-import { echartService } from "services/global";
+import * as echarts from 'echarts';
+import AppDialog from '../dialog/dialog';
+import AppSwitcher from '../switcher';
+import { echartService } from 'services/global';
 
 export default {
-  props: ["header", "dataSource", "checked"],
+  props: ['header', 'dataSource', 'checked'],
   data() {
     return {
       totalCars: 0,
       parkGeneralData: this.dataSource.general,
       parkAreaData: this.dataSource.data,
       selectedIndex: -1,
-      check: this.checked
+      check: this.checked,
     };
   },
   mounted() {
@@ -91,11 +93,11 @@ export default {
   methods: {
     swit(v) {
       this.selectedIndex = -1;
-      this.$emit("switch", v);
+      this.$emit('switch', v);
     },
     focusParksArea(item, index) {
       this.selectedIndex = index;
-      this.$emit("areaClick", item);
+      this.$emit('areaClick', item);
     },
     initChart() {
       const parkData = this.parkAreaData.map((item) => {
@@ -104,12 +106,12 @@ export default {
       const parkPieChart = echarts.init(this.$refs.parkPieChart);
       const parkPieOption = echartService.getParkingPanelPieChart(parkData);
       parkPieChart.setOption(parkPieOption);
-    }
+    },
   },
   components: {
     AppDialog,
     AppSwitcher,
-  }
+  },
 };
 </script>
 
@@ -213,7 +215,7 @@ export default {
     margin-bottom: 6px;
     padding: 8px;
     border: 1px solid rgba(235, 235, 235, 0.2);
-    div{
+    div {
       pointer-events: none;
     }
     &:hover {
@@ -223,7 +225,7 @@ export default {
       margin: 0;
     }
     &.active {
-      border-color: #00F7FF;
+      border-color: #00f7ff;
       background: rgba(255, 255, 255, 0.1);
     }
     p {
@@ -238,8 +240,8 @@ export default {
       .num {
         font-size: 20px;
         line-height: 20px;
-        font-family: 'Saira';
-        color: #00F7FF;
+        font-family: "Saira";
+        color: #00f7ff;
         font-weight: 500;
         span {
           font-size: 14px;

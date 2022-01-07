@@ -1,12 +1,11 @@
 <template>
   <article v-if="initDivaData" class="space-between">
     <aside class="space-left all">
-      <app-table-mulit-col3 
-        class="top10" 
+      <app-table-mulit-col3
+        class="top10"
         :dataSource="tablePanelData.content.data"
         :maxItem="4"
         @select="select"
-        @unselect="unselect"
       ></app-table-mulit-col3>
     </aside>
     <aside class="space-right all">
@@ -14,11 +13,13 @@
         :header="pieChartData.header"
         :dataSource="pieChartData.content"
       ></echarts>
+
       <echarts
         class="top10"
         :header="lineChartData.header"
         :dataSource="lineChartData.content"
       ></echarts>
+
       <echarts
         class="top10"
         :header="barChartData.header"
@@ -29,14 +30,14 @@
 </template>
 
 <script>
-import { Vector3 } from "@sheencity/diva-sdk-math";
-import { POI } from "@sheencity/diva-sdk";
+import { Vector3 } from '@sheencity/diva-sdk-math';
+import { POI } from '@sheencity/diva-sdk';
 import { diva } from 'services/global';
 import AppTableMulitCol3 from 'components/common/table/table-mulit-col3';
-import Echarts from "components/common/echarts";
+import Echarts from 'components/common/echarts';
 
 export default {
-   data() {
+  data() {
     return {
       initDivaData: null,
       commonConfig: null,
@@ -55,6 +56,24 @@ export default {
   async created() {
     await this.init();
     this.initScene(this.initDivaData.init.scene_name);
+  },
+  async beforeDestroy() {
+    // 组件销毁时重置状态
+    if (this.floorModelGroup) {
+      await diva.drawOutFloor(
+        this.floorModelGroup,
+        true,
+        this.commonConfig.default_floor_index
+      );
+      await Promise.all(
+        Array.from(this.floorModelGroup).map((model) => {
+          model instanceof POI
+            ? Promise.resolve()
+            : model.setRenderingStyleMode('default');
+        })
+      );
+    }
+    clearTimeout(this.cameraSubscription);
   },
   methods: {
     async init() {
@@ -95,9 +114,9 @@ export default {
       const focusCoord = floorCoord.add(
         new Vector3(0, this.commonConfig.default_translate_distance, 0)
       );
-      await diva.client.request("FocusOnCoord", {
+      await diva.client.request('FocusOnCoord', {
         coord: focusCoord.tuple,
-        ...this.commonConfig.floor_focus_param
+        ...this.commonConfig.floor_focus_param,
       });
     },
 
@@ -105,7 +124,9 @@ export default {
      * 获取当前模型组
      */
     async getFloorModelGroup() {
-      const result = await diva.getFloorInfoByName(this.commonConfig.resource_group_name);
+      const result = await diva.getFloorInfoByName(
+        this.commonConfig.resource_group_name
+      );
       return result;
     },
 
@@ -114,46 +135,19 @@ export default {
      * @param name 点击设备名
      * @param e 点击对象
      */
-    async select(name,e){
+    async select(name, e) {
       const { distance, pitch } = e.focus_param;
       const mode = e.render_mode;
-      await this.floorModelGroup.setRenderingStyleMode("default");
+      await this.floorModelGroup.setRenderingStyleMode('default');
       await diva.renderAndFocusOnModelByName(name, distance, pitch, mode);
     },
-    /**
-     * 点击列表获取上次点击事件
-     * @param name 点击设备名
-     * @param e 点击对象
-     */
-    unselect(oldName,e){
-      
-    }
-  },
-  async beforeDestroy(){
-    // 组件销毁时重置状态
-    if (this.floorModelGroup) {
-      await diva.drawOutFloor(
-        this.floorModelGroup,
-        true,
-        this.commonConfig.default_floor_index
-      );
-      await Promise.all(
-        Array.from(this.floorModelGroup).map((model) => {
-          model instanceof POI
-            ? Promise.resolve()
-            : model.setRenderingStyleMode("default");
-        })
-      );
-    }
-    clearTimeout(this.cameraSubscription);
   },
   components: {
     AppTableMulitCol3,
     Echarts,
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

@@ -2,12 +2,12 @@
   <main>
     <div
       class="content"
-      :style="{ height: contentHeight + 'px', overflowY: scroll ? 'hidden' : 'scroll' }"
+      :style="{ height: contentHeight + "px", overflowY: scroll ? "hidden" : "scroll", }"
       @mouseenter="mouseEnterScroll()"
       @mouseleave="mouseLeaveScroll()"
     >
       <div
-        :class="{ scroller: hasTransform, 'scroll-direct': !hasTransform }"
+        :class="{ scroller: hasTransform, "scroll-direct": !hasTransform }"
         :style="{ transform: `translateY(-${step * height}px)` }"
       >
         <slot></slot>
@@ -20,7 +20,7 @@
 // 自动滚动组件
 export default {
   // dataLength: 数据条数  height:每条数据所占高度  contentHeight: 可滚动视区域高度
-  props: ["dataLength", "height", "contentHeight", "scroll"],
+  props: ['dataLength', 'height', 'contentHeight', 'scroll'],
   data() {
     return {
       hasTransform: true,
@@ -50,7 +50,7 @@ export default {
           );
         } else {
           this.step++;
-          this.$emit("roll", this.step);
+          this.$emit('roll', this.step);
         }
       }, 3000);
     },
@@ -59,7 +59,7 @@ export default {
     dataLength() {
       if (this.timer) {
         this.step = 0;
-        clearInterval(this.timer); 
+        clearInterval(this.timer);
       }
       this.isOverHeight();
     },

@@ -1,6 +1,6 @@
 <template>
   <main class="area-bg">
-    <div style="pointer-events: none;">
+    <div style="pointer-events: none">
       <header>
         <p>{{ dataSource.title }}</p>
         <div></div>
@@ -38,7 +38,7 @@
 // 项目介绍模块的生产区和生活区组件
 
 export default {
-  props: ["dataSource",],
+  props: ['dataSource'],
 };
 </script>
 
@@ -46,12 +46,12 @@ export default {
 .area-bg {
   width: 100%;
   border: 1px solid rgba(235, 235, 235, 0.2);
-  padding: .75rem;
-  margin-bottom: .5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
   header {
     p {
       font-weight: 500;
-      font-size: .88rem;
+      font-size: 0.88rem;
       line-height: 1.19rem;
       text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
     }
@@ -73,7 +73,7 @@ export default {
         flex-basis: 0;
       }
       p {
-        font-size: .75rem;
+        font-size: 0.75rem;
         line-height: 1.25rem;
         color: #ebebeb;
       }

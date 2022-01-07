@@ -1,9 +1,9 @@
 <template>
   <app-dialog :header="header">
     <div class="main">
-      <div v-if="dataSource.image" class="image">
+      <div class="image" v-if="dataSource.image">
         <img
-          style="width: 100%;height: 100%;"
+          style="width: 100%; height: 100%"
           v-if="dataSource.image.url"
           :src="dataSource.image.url"
         />
@@ -12,7 +12,11 @@
         {{ dataSource.text[0] }}
       </p>
       <template v-else>
-        <ul v-for="item in dataSource.text" :key="item" class="list">
+        <ul 
+          class="list" 
+          :key="item" 
+          v-for="item in dataSource.text"
+        >
           <li>{{ item }}</li>
         </ul>
       </template>
@@ -26,25 +30,25 @@
 import AppDialog from '../dialog/dialog';
 
 export default {
-  props: ['dataSource','header'],
+  props: ['dataSource', 'header'],
   components: {
-    AppDialog
-  }
-}
+    AppDialog,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.main{
+.main {
   .image {
     width: 100%;
-    margin-bottom: .63rem;
+    margin-bottom: 0.63rem;
   }
   p {
-    font-size: .88rem;
-    letter-spacing: .06rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.06rem;
     color: #ebebeb;
   }
-  .list{
+  .list {
     color: #ebebeb;
     font-size: 14px;
     line-height: 20px;

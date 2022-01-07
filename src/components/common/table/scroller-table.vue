@@ -2,7 +2,11 @@
   <app-dialog :header="header">
     <main :class="'column' + thead.length">
       <div v-if="thead && thead.length > 1" class="thead">
-        <span v-for="(head, index) in thead" :key="index" :class="'col-' + index">
+        <span
+          v-for="(head, index) in thead"
+          :key="index"
+          :class="'col-' + index"
+        >
           {{ head.title }}
         </span>
       </div>
@@ -40,21 +44,19 @@
 </template>
 
 <script>
-import AppDialog from "../dialog/dialog";
-import AppScroller from "../scroller";
+import AppDialog from '../dialog/dialog';
+import AppScroller from '../scroller';
 
 export default {
   props: [
-    "header",
-    "dataSource",
-    "contentHeight",
-    "dataLength",
-    "height",
-    "thead",
-    "autoScroll",
+    'header',
+    'dataSource',
+    'contentHeight',
+    'dataLength',
+    'height',
+    'thead',
+    'autoScroll',
   ],
-  methods: {},
-  mounted() {},
   components: {
     AppDialog,
     AppScroller,

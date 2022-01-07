@@ -1,6 +1,6 @@
 <template>
   <main>
-    <article :style="{ justifyContent: icon ? 'unset' : 'center' }">
+    <article :style="{ justifyContent: icon ? "unset" : "center" }">
       <img v-if="icon" :src="imgURL" />
       <div>{{ title }}</div>
     </article>
@@ -12,15 +12,15 @@
 
 <script>
 export default {
-  props: ["icon", "title", "width"],
+  props: ['icon', 'title', 'width'],
   data() {
     return {
-      imgURL: this.icon ? this.icon : "",
+      imgURL: this.icon ? this.icon : '',
       lineURL: !this.width
         ? this.icon
-        ? "assets/images/common/dialog/dialog-line.png"
-        : "assets/images/common/dialog/dialog-line-double.png"
-        : "assets/images/common/dialog/dialog-line-short.png",
+          ? 'assets/images/common/dialog/dialog-line.png'
+          : 'assets/images/common/dialog/dialog-line-double.png'
+        : 'assets/images/common/dialog/dialog-line-short.png',
     };
   },
 };
