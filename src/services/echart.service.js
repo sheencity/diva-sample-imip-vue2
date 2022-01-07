@@ -11,8 +11,6 @@ export class EchartService {
 
   /**
    * 获取基本柱状图配置
-   * @param dataSource 数据源
-   * @param xAixsRotate x 轴的文本标签是否旋转，当文本内容显示不下的时候启用此项
    */
   getBasicBarOption() {
     return {
@@ -77,10 +75,7 @@ export class EchartService {
   }
 
   /**
-   * 通用柱状图配置
-   * @param dataSource 数据源
-   * @param showValue 是否在柱子顶部显示值
-   * @param showXaxis 是否显示 x 轴的文本
+   * 获取通用柱状图配置
    */
   getUniBarOption() {
     return {
@@ -144,8 +139,7 @@ export class EchartService {
   }
 
   /**
-   * 横向柱状图
-   * @param {{value: number, name: string}[]} dataSource 
+   * 获取横向柱状图配置
    */
   getHorizonBarOption() {
     return {
@@ -211,8 +205,7 @@ export class EchartService {
   }
 
   /**
-   * 多曲线面积图
-   * @param {[]} data 
+   * 获取多曲线面积图配置
    */
   getMutiLineOption() {
     return {
@@ -328,8 +321,7 @@ export class EchartService {
   }
 
   /**
-   * 折柱混合图
-   * @param dataSource 数据源
+   * 获取折柱混合图配置
    */
   getBarLineOption() {
     return {
@@ -461,91 +453,7 @@ export class EchartService {
   }
 
   /**
-   * 获取环形饼图配置
-   * @param dataSource 数据源
-   * @param center 环形图是否居中布局
-   * @param showLegend 是否显示分类
-   * @param isPercent 显示百分比或数值
-   */
-  getRangePieOption(dataSource, center = true, showLegend = true, isPercent = true) {
-    const legend = center
-      ? {
-          show: showLegend,
-          bottom: 0,
-          padding: 0,
-          itemGap: 10,
-          itemWidth: 14,
-          textStyle: {
-            color: '#fff',
-          },
-        }
-      : {
-          type: 'scroll',
-          show: showLegend,
-          orient: 'vertical',
-          top: 20,
-          right: 10,
-          itemGap: 10,
-          itemWidth: 14,
-          textStyle: {
-            color: '#fff',
-          },
-        };
-    const labelFormatter = isPercent
-      ? [`{a|{d} %}`, `{b|{b}}`].join("\n")
-      : [`{a|{c}}`, `{b|{b}}`].join("\n");
-    return {
-      legend: legend,
-      series: [
-        {
-          type: 'pie',
-          radius: ['55%', '75%'],
-          center: center ? ['50%', '50%'] : ['30%', '50%'],
-          avoidLabelOverlap: false,
-          bottom: center ? showLegend ? 20 : null : null,
-          legendHoverLink: false,
-          color: ['#E3F2FD', '#90CAF9', '#42A5F5', '#1E88E5', '#1565C0', '#0D47A1'],
-          itemStyle: {
-            opacity: 0.9,
-          },
-          label: {
-            show: false,
-            position: 'center',
-          },
-          emphasis: {
-            label: {
-              show: true,
-              formatter: labelFormatter,
-              rich: {
-                a: {
-                  fontSize: 12,
-                  color: '#fff',
-                  verticalAlign: 'top',
-                  padding: 4,
-                },
-                b: {
-                  fontSize: 12,
-                  color: '#fff',
-                  verticalAlign: 'bottom',
-                },
-              },
-            },
-          },
-          labelLine: {
-            show: false,
-          },
-          data: dataSource,
-        },
-      ],
-    };
-  }
-
-  /**
    * 获取饼图配置
-   * @param dataSource 数据源
-   * @param center 环形图是否居中布局
-   * @param showLegend 是否显示分类
-   * @param isPercent 显示百分比或数值
    */
    getPieOption() {
     return {
@@ -580,45 +488,7 @@ export class EchartService {
   }
 
   /**
-   * 获取基本南丁格尔玫瑰图配置
-   * @param dataSource 数据源
-   * @param isRose 是否为玫瑰图
-   */
-  getBasicNightingaleOption(dataSource, isRose = true) {
-    if (isRose) dataSource = dataSource.sort((a, b) => a.value - b.value);
-    return {
-      tooltip: {
-        trigger: 'item',
-        position: isRose ? 'right' : null,
-        formatter: isRose ? '{b} : {c} (㎡)' : '{b} : {c} (个)',
-      },
-      series: [
-        {
-          type: 'pie',
-          radius: isRose ? [20, 80] : [60, 80],
-          center: ['50%', '50%'],
-          roseType: isRose ? 'area' : null,
-          color: ['#E3F2FD', '#90CAF9', '#42A5F5', '#1E88E5', '#1565C0', '#0D47A1','#5C6BC0'],
-          itemStyle: isRose ? {
-            borderRadius: 4,
-          } : null,
-          label: {
-            color: '#fff',
-          },
-          labelLine: {
-            length: 10,
-            length2: 10,
-          },
-          data: dataSource,
-        },
-      ],
-    };
-  }
-
-  /**
-   * 时间 * 比例/数量 平滑曲线图
-   * @param dataSource 数据源
-   * @param isPercent y 轴是否表示比例
+   * 获取曲线/折线图配置
    */
   getLineOption() {
     return {
@@ -632,9 +502,6 @@ export class EchartService {
         bottom: 0,
         containLabel: true
       },
-      // dataset: {
-      //   source: dataSource,
-      // },
       xAxis: {
         type: 'category',
         boundaryGap: false,

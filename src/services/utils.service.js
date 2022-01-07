@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
 export class UtilService {
   // 过去 7 天的日期
@@ -17,7 +17,7 @@ export class UtilService {
 
   formatDate(time) {
     if (time.toString().length === 1) {
-      return "0" + time.toString();
+      return '0' + time.toString();
     }
     return time;
   }
@@ -28,7 +28,7 @@ export class UtilService {
   getDate() {
     return new Date(new Date().getTime())
       .toLocaleDateString()
-      .replace(/\//g, "-");
+      .replace(/\//g, '-');
   }
 
   /**

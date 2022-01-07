@@ -1,17 +1,17 @@
-import { Diva, Overlay } from "@sheencity/diva-sdk";
-import { CefAdapter } from "@sheencity/diva-sdk-adapter";
+import { Diva, Overlay } from '@sheencity/diva-sdk';
+import { CefAdapter } from '@sheencity/diva-sdk-adapter';
 import {
   Euler,
   EulerOrder,
   Matrix,
   rad2deg,
   Vector3,
-} from "@sheencity/diva-sdk-math";
+} from '@sheencity/diva-sdk-math';
 
 export class DivaService {
-  /** divaClient */
   /**
-   * @type {import("@sheencity/diva-sdk").DivaClient}
+   * divaClient
+   * @type {import('@sheencity/diva-sdk').DivaClient}
    */
   client;
 
@@ -19,8 +19,8 @@ export class DivaService {
    * @param container (HTMLElement) 视频加载的 dom 元素
    */
   async init(container) {
-    const uri = "http://127.0.0.1:3000";
-    const apiKey = "<replace_your_api_key_here>";
+    const uri = 'http://127.0.0.1:3000';
+    const apiKey = '<replace_your_api_key_here>';
     const adapter = new CefAdapter(container);
     const diva = new Diva({ apiKey, adapter });
     this.client = await diva.init();
@@ -32,7 +32,7 @@ export class DivaService {
    * @param {{}} option 
    */
   async updateEntityPropertyByGroup(group, option) {
-    await this.client?.request("UpdateEntityStatusByGroup", {
+    await this.client?.request('UpdateEntityStatusByGroup', {
       group: group,
       ...option,
     });
@@ -44,7 +44,7 @@ export class DivaService {
    * @param {boolean} visible
    */
   async setEntityVisibleByGroup(group, visible) {
-    await this.client?.request("UpdateEntityStatusByGroup", {
+    await this.client?.request('UpdateEntityStatusByGroup', {
       group: group,
       visible: visible,
     });
@@ -67,7 +67,7 @@ export class DivaService {
    * @param {boolean} visible
    */
   async setEntityVisibleByArray(array, visible) {
-    await this.client.request("UpdateEntityStatusByIds", {
+    await this.client.request('UpdateEntityStatusByIds', {
       ids: array.map((model) => model.id),
       visible: visible,
     });
@@ -98,7 +98,7 @@ export class DivaService {
    * @param {string | string[]} name 一个或多个模型名称
    */
   async getEntitiesByName(name) {
-    const names = typeof name === "string" ? [name] : name;
+    const names = typeof name === 'string' ? [name] : name;
     let models = await Promise.all(
       names.map((name) => this.client.getEntitiesByName(name))
     );
@@ -114,11 +114,11 @@ export class DivaService {
    * @param {[number, number, number]} color rgb 颜色值，各位数值值域 [0, 255]
    */
   async setPoiColorByName(name, color) {
-    const { result } = await this.client.request("GetEntityByName", { name });
-    await this.client.request("UpdateEntityProperty", {
+    const { result } = await this.client.request('GetEntityByName', { name });
+    await this.client.request('UpdateEntityProperty', {
       id: result.id,
-      type: "poi",
-      property: { icon: "camera", color },
+      type: 'poi',
+      property: { icon: 'camera', color },
     });
   }
 
@@ -139,9 +139,9 @@ export class DivaService {
    */
   getModelsFromGroupByCategory(modelGroup, category) {
     const rules = new Map([
-      ["floor", /F/],
-      ["toilet", /toilet/],
-      ["smog", new RegExp("")],
+      ['floor', /F/],
+      ['toilet', /toilet/],
+      ['smog', new RegExp('')],
     ]);
     const rule = rules.get(category);
     let models = [];
@@ -168,7 +168,7 @@ export class DivaService {
    */
   async setModelDefaultRenderModel(name) {
     const model = await this.getEntityByName(name);
-    model.setRenderingStyleMode("default");
+    model.setRenderingStyleMode('default');
   }
 
   /**
@@ -177,9 +177,9 @@ export class DivaService {
    * @param {{mode,color,emission}} option  其他选项
    */
   async setModelRenderingStyleModeById(id, option) {
-    await this.client.request("SetEntityRenderMode", {
-      id: id, //对象标识符，必须全局唯一，建议使用 GUID
-      mode: option.mode, // 指定类型
+    await this.client.request('SetEntityRenderMode', {
+      id: id,
+      mode: option.mode,
       extend: {
         // 覆盖物类型的特有属性
         color: option.color, // 自发光颜色，[r,g,b,a]，颜色范围是0 ~ 255，以 alpha 值设置透明度
@@ -194,9 +194,9 @@ export class DivaService {
    * @param {{*}} option  其他选项
    */
   async updateEntityPropertyById(id, option) {
-    await this.client.request("UpdateEntityProperty", {
-      id: id, //对象标识符，必须全局唯一，建议使用 GUID
-      type: "label", // 指定类型
+    await this.client.request('UpdateEntityProperty', {
+      id: id,
+      type: 'label',
       property: {
         // 覆盖物类型的特有属性
         title: option.title,
@@ -208,7 +208,7 @@ export class DivaService {
   }
 
   /**
-   *
+   * 根据模型名称设置渲染模式并聚焦至该模型
    * @param {*} name
    * @param {*} distance
    * @param {*} pitch
@@ -217,7 +217,7 @@ export class DivaService {
   async renderAndFocusOnModelByName(name, distance, pitch, mode) {
     const model = await this.getEntityByName(name);
     model.setRenderingStyleMode(mode);
-    await this.client.request("FocusOnEntity", {
+    await this.client.request('FocusOnEntity', {
       id: model.id,
       distance,
       pitch,
@@ -242,10 +242,10 @@ export class DivaService {
    */
   async setModelRenderingStyleModeByTitle(model, title) {
     const rules = new Map([
-      ["样式1", "default"],
-      ["样式2", "alarm"],
-      ["样式3", "highlight"],
-      ["default", "default"],
+      ['样式1', 'default'],
+      ['样式2', 'alarm'],
+      ['样式3', 'highlight'],
+      ['default', 'default'],
     ]);
     const mode = rules.get(title);
     model.setRenderingStyleMode(mode);
@@ -278,7 +278,7 @@ export class DivaService {
       try {
         await this._removeTransform(floorModel);
       } catch (e) {
-        console.log("多余的一次清除动作");
+        console.log('多余的一次清除动作');
       }
       await this._resetGroupCoord(floorModel);
     }
@@ -287,7 +287,7 @@ export class DivaService {
     const metadata = [];
     for (const item of group) {
       metadata.push({
-        method: "UpdateEntityStatus",
+        method: 'UpdateEntityStatus',
         params: { id: item.id, coord: item.coord.tuple },
       });
     }
@@ -297,7 +297,7 @@ export class DivaService {
     const metadata = [];
     for (const item of group) {
       metadata.push({
-        method: "RemoveTransformAnimation",
+        method: 'RemoveTransformAnimation',
         params: { id: item.id },
       });
     }
@@ -313,7 +313,7 @@ export class DivaService {
       const coord = translation.add(adjusting);
       const euler = Euler.FromQuaternion(rotation, EulerOrder.UE);
       metadata.push({
-        method: "SetTransformAnimation",
+        method: 'SetTransformAnimation',
         params: {
           id: item.id,
           coord: coord.tuple,

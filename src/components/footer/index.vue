@@ -47,28 +47,28 @@ export default {
         ['achievement.vue','/attract-investment/achievement'],
         ['space.vue','/attract-investment/space'],
         ['planing.vue','/attract-investment/planing'],
-      ])
+      ]),
     };
   },
-  async created(){
+  async created() {
     const { data } = await this.axios.get('config/menu/index.json');
     const menuList = data.menu.data;
     this.filterRoute(menuList);
     this.menuList = menuList;
   },
   methods: {
-    selectRoute(v){
+    selectRoute(v) {
       this.currId = v;
     },
-    filterRoute(list){
-      list.forEach(item => {
+    filterRoute(list) {
+      list.forEach((item) => {
         const route = this.filterMap.get(item.file);
-        if(route) item.link = route;
-        else item.link = '/not-found'
-        if(item.children?.length > 0) return this.filterRoute(item.children)
+        item.link = route || '/not-found';
+
+        if (item.children?.length > 0) return this.filterRoute(item.children);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

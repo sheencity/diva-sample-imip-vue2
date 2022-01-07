@@ -1,8 +1,8 @@
-import { DataService } from "./data.service";
-import { DivaService } from "./diva.service";
-import { EchartService } from "./echart.service";
-import { UtilService } from "./utils.service";
-import { WeatherService } from "./weather.service";
+import { DataService } from './data.service';
+import { DivaService } from './diva.service';
+import { EchartService } from './echart.service';
+import { UtilService } from './utils.service';
+import { WeatherService } from './weather.service';
 
 export const dataService = new DataService();
 export const diva = new DivaService();

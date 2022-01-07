@@ -8,83 +8,42 @@
       <router-link style="height: 20px;" to="/home">
         <img style="margin-right: 25px" src="assets/images/header/home.svg" />
       </router-link>
-      <img style="margin-right: 25px" src="assets/images/header/help.svg" @click="showGuide = true"/>
-      <img v-if="weatherUrl" style="margin-right: 10px" :src="'assets/images/header/weather/' + weatherUrl + '.svg'"/>
+      <img
+        style="margin-right: 25px"
+        src="assets/images/header/help.svg"
+        @click="showGuide = true"
+      >
+      <img
+        style="margin-right: 10px"
+        v-if="weatherUrl"
+        :src="'assets/images/header/weather/' + weatherUrl + '.svg'"
+      >
       <span style="margin-right: 18px">{{ weatherInfo.temp }} ℃</span>
       <img style="margin-right: 8px" src="assets/images/header/time.svg" />
       <span style="margin-right: 19px">{{ date }}</span>
       <img style="margin-right: 9px" src="assets/images/header/date.svg" />
       <span>{{ time }}</span>
     </div>
-    <app-guide v-if="showGuide" @close="closeDialog"></app-guide>
+    <app-guide
+      v-if="showGuide"
+      @close="closeDialog"
+    ></app-guide>
   </header>
 </template>
 
 <script>
-import { utilService, weatherService } from "services/global";
+import { utilService, weatherService } from 'services/global';
 import AppGuide from 'components/guide';
 
 export default {
   data() {
     return {
-      date: "",
-      time: "",
+      date: '',
+      time: '',
       weatherInfo: {},
-      weatherUrl: "",
+      weatherUrl: '',
       showGuide: false,
     };
-  },
-  methods: {
-    async getWeatherInfo() {
-      const url = `${weatherService.baseUrl}?city=500106&key=${weatherService.key}`;
-      const { data } = await this.axios.get(url);
-      this.weatherInfo = {
-        weather: data.lives[0].weather,
-        temp: data.lives[0].temperature,
-      };
-      if (this.weatherInfo.weather === "晴") {
-        this.weatherUrl = "1";
-        return;
-      }
-      if (this.weatherInfo.weather === "晴转多云") {
-        this.weatherUrl = "2";
-        return;
-      }
-      if (this.weatherInfo.weather === "多云") {
-        this.weatherUrl = "3";
-        return;
-      }
-      if (this.weatherInfo.weather === "阴") {
-        this.weatherUrl = "4";
-        return;
-      }
-      if (
-        this.weatherInfo.weather.indexOf("霾") !== -1 ||
-        this.weatherInfo.weather.indexOf("雾") !== -1
-      ) {
-        this.weatherUrl = "5";
-        return;
-      }
-      if (this.weatherInfo.weather.indexOf("雨") !== -1) {
-        this.weatherUrl = "6";
-        return;
-      }
-      if (this.weatherInfo.weather.indexOf("雪") !== -1) {
-        this.weatherUrl = "7";
-        return;
-      }
-      if (
-        this.weatherInfo.weather.indexOf("沙") !== -1 ||
-        this.weatherInfo.weather.indexOf("尘") !== -1
-      ) {
-        this.weatherUrl = "8";
-        return;
-      }
-      this.weatherUrl = "2";
-    },
-    closeDialog(e) {
-      this.showGuide = e;
-    }
   },
   created() {
     this.getWeatherInfo();
@@ -98,6 +57,58 @@ export default {
     setInterval(() => {
       this.time = utilService.getCurrentTime();
     }, 1000);
+  },
+  methods: {
+    async getWeatherInfo() {
+      const url = `${weatherService.baseUrl}?city=500106&key=${weatherService.key}`;
+      const { data } = await this.axios.get(url);
+      this.weatherInfo = {
+        weather: data.lives[0].weather,
+        temp: data.lives[0].temperature,
+      };
+      if (this.weatherInfo.weather === '晴') {
+        this.weatherUrl = '1';
+        return;
+      }
+      if (this.weatherInfo.weather === '晴转多云') {
+        this.weatherUrl = '2';
+        return;
+      }
+      if (this.weatherInfo.weather === '多云') {
+        this.weatherUrl = '3';
+        return;
+      }
+      if (this.weatherInfo.weather === '阴') {
+        this.weatherUrl = '4';
+        return;
+      }
+      if (
+        this.weatherInfo.weather.indexOf('霾') !== -1 ||
+        this.weatherInfo.weather.indexOf('雾') !== -1
+      ) {
+        this.weatherUrl = '5';
+        return;
+      }
+      if (this.weatherInfo.weather.indexOf('雨') !== -1) {
+        this.weatherUrl = '6';
+        return;
+      }
+      if (this.weatherInfo.weather.indexOf('雪') !== -1) {
+        this.weatherUrl = '7';
+        return;
+      }
+      if (
+        this.weatherInfo.weather.indexOf('沙') !== -1 ||
+        this.weatherInfo.weather.indexOf('尘') !== -1
+      ) {
+        this.weatherUrl = '8';
+        return;
+      }
+      this.weatherUrl = '2';
+    },
+    closeDialog(e) {
+      this.showGuide = e;
+    }
   },
   components: {
     AppGuide,
@@ -134,7 +145,7 @@ header {
     display: flex;
     align-items: center;
     font-family: "Saira";
-    img{
+    img {
       width: 1.25rem;
       height: 1.25rem;
     }

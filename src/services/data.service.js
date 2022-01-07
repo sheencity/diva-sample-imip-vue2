@@ -1,12 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 
 export class DataService {
-  // 人视模式
-  selectedMode = {
-    value: 'false',
-    placeholder: '飞行'
-  };
-
   // 天气
   selectedWeather = {
     value: 'sunny', placeholder: '晴天',

@@ -1,17 +1,17 @@
 <template>
-  <div class='container all'>
-    <main class='bg'>
+  <div class="container all">
+    <main class="bg">
       <header>
-        <h3 class='.text-center'>操作指南</h3>
+        <h3 class=".text-center">操作指南</h3>
         <img
-          src='assets/images/common/dialog/dialog-line-double.png'
-          style='display: block'
+          src="assets/images/common/dialog/dialog-line-double.png"
+          style="display: block"
         />
       </header>
       <article>
         <div>
           <ul>
-            <li class='space-between' v-for='item in mouseMetadata' :key='item.key'>
+            <li class="space-between" v-for="item in mouseMetadata" :key="item.key">
               <p>{{ item.key }}</p>
               <p>{{ item.val }}</p>
             </li>
@@ -19,7 +19,7 @@
         </div>
         <div>
           <ul>
-            <li class='space-between' v-for='item in keyboardMetadata' :key='item.key'>
+            <li class="space-between" v-for="item in keyboardMetadata" :key="item.key">
               <p>{{ item.key }}</p>
               <p>{{ item.val }}</p>
             </li>
@@ -27,36 +27,24 @@
         </div>
         <div>
           <ul>
-            <!-- TODO: 人行易触发问题，只能在特定场合提供切换  -->
-            <li v-if="false" class='space-between all'>
-              <p>模式</p>
-              <div>
-                <drop-down
-                  :key='1'
-                  :options='options'
-                  :initvalue='optionInitial'
-                  @select='setSelectedOption'
-                  :disabled='false'
-                >
-                </drop-down>
-              </div>
-            </li>
-            <li class='space-between all' style='margin-top: 18px'>
+            <li class="space-between all" style="margin-top: 18px">
               <p>天气</p>
               <div>
                 <drop-down
-                  :key='2'
-                  :options='weatherList'
-                  :initvalue='weatherInitial'
-                  @select='setSelectedWeather'
-                  :disabled='false'
-                >
-                </drop-down>
+                  :options="weatherList"
+                  :initvalue="weatherInitial"
+                  :disabled="false"
+                  @select="setSelectedWeather"
+                ></drop-down>
               </div>
             </li>
-            <li class='space-between all' style='margin-top: 18px'>
+            <li class="space-between all" style="margin-top: 18px">
               <p>罗盘</p>
-              <app-switcher class="custom-switch" v-model='compass' @switch="swit"></app-switcher>
+              <app-switcher
+                class="custom-switch"
+                v-model="compass"
+                @switch="swit"
+              ></app-switcher>
             </li>
           </ul>
         </div>
@@ -69,7 +57,6 @@
 </template>
 
 <script>
-import { MovementMode } from '@sheencity/diva-sdk';
 import DropDown from 'components/common/dropdown/dropdown';
 import AppSwitcher from 'components/common/switcher';
 import { dataService, diva } from 'services/global.js';
@@ -88,10 +75,6 @@ export default {
         { key: 'W,S,A,D', val: '前，后，左，右' },
         { key: 'Q,E', val: '垂直升降' },
       ],
-      options: [
-        { value: 'false', placeholder: '飞行' },
-        { value: 'true', placeholder: '人视' },
-      ],
       weatherList: [
         { value: 'sunny', placeholder: '晴天' },
         { value: 'overcast', placeholder: '阴天' },
@@ -99,22 +82,17 @@ export default {
         { value: 'smog', placeholder: '雾天' },
         { value: 'snow', placeholder: '雪天' },
       ],
-      optionInitial: {
-        value: 'false', placeholder: '飞行',
-      },
       weatherInitial: {
         value: 'sunny', placeholder: '晴天',
       },
       compass: false,
     };
   },
+  created() {
+    this.weatherInitial = dataService.selectedWeather;
+    this.compass = dataService.compass;
+  },
   methods: {
-    setSelectedOption(item) {
-      dataService.selectedMode = item;
-      diva.client.setMovementMode(
-        item.value === 'true' ? MovementMode.ThirdPerson : MovementMode.Fly
-      );
-    },
     setSelectedWeather(item) {
       dataService.selectedWeather = item;
       diva.client.request('SetWeather', {
@@ -129,19 +107,14 @@ export default {
       this.$emit('close', false);
     },
   },
-  created() {
-    this.optionInitial = dataService.selectedMode;
-    this.weatherInitial = dataService.selectedWeather;
-    this.compass = dataService.compass;
-  },
   components: {
     DropDown,
     AppSwitcher,
-  }
+  },
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .container {
   position: fixed;
   top: 50%;
