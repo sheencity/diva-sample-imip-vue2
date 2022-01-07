@@ -1,14 +1,14 @@
 <template>
   <app-dialog :header="header">
-    <div :key="item.title" v-for="(item,index) in dataSource">
+    <div :key="item.title" v-for="(item, index) in dataSource">
       <div class="prod-area">
         <h3>{{ item.title }}</h3>
       </div>
       <app-card-two-info
         :key="index"
-        v-for="(childItem,index) in item.list"
+        v-for="(childItem, index) in item.list"
         class="area-module"
-        :class="{ 'item-selected': childItem.checked }"
+        :class="{ "item-selected": childItem.checked }"
         :dataSource="childItem.content"
         @click.native="selectItem(childItem)"
       ></app-card-two-info>
@@ -18,59 +18,60 @@
 
 <script>
 import AppDialog from '../common/dialog/dialog';
-import AppCardTwoInfo from '../common/card-two-info'
+import AppCardTwoInfo from '../common/card-two-info';
 export default {
   props: ['header', 'dataSource'],
-  data(){
-    return{}
+  data() {
+    return {};
   },
-  created(){
+  created() {
     this.init();
   },
   methods: {
-    init(){
+    init() {
       this.dataSource.forEach((area) => {
         area.list.forEach((ele) => {
-          this.$set(ele,'checked',false)
-        })
+          this.$set(ele, 'checked', false);
+        });
       });
     },
-    selectItem(e){
+    selectItem(e) {
       this.dataSource.forEach((area) => {
         area.list.forEach((ele) => {
           ele.checked = false;
-        })
+        });
       });
       e.checked = true;
-      this.$emit('select',e);
-    }
+      this.$emit('select', e);
+    },
   },
   components: {
     AppDialog,
-    AppCardTwoInfo
-  }
-}
+    AppCardTwoInfo,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .prod-area,
-  .life-area {
-    h3 {
-      padding-bottom: 0.6rem;
-      font-weight: 500;
-      font-size: 1rem;
-      line-height: 1.38rem;
-      text-align: center;
-      text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
-      background: url("/public/assets/images/router/introduction/title.png") no-repeat 50% 10%;
-    }
+.prod-area,
+.life-area {
+  h3 {
+    padding-bottom: 0.6rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.38rem;
+    text-align: center;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    background: url("/public/assets/images/router/introduction/title.png")
+      no-repeat 50% 10%;
   }
-  .life-area {
-    margin-top: 1rem;
-  }
-  .area-module:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #00f7ff;
-  }
+}
+.life-area {
+  margin-top: 1rem;
+}
+.area-module:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #00f7ff;
+}
 </style>>
 

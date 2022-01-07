@@ -1,12 +1,12 @@
 <template>
   <main class="floor-panel">
-    <app-button-group 
+    <app-button-group
       :items="elevatorData"
       @change="selectElevator"
       ref="elevatorBtn"
     ></app-button-group>
 
-    <app-button-tab 
+    <app-button-tab
       class="top10"
       :header="leftModuleA.header"
       :dataSource="leftModuleA.content"
@@ -43,49 +43,47 @@
       @checked="explodeFloor"
     ></app-switcher-list-panel>
   </main>
-  
 </template>
 
 <script>
-import AppButtonTab from 'components/common/button-tab'
-import AppTableCol3 from 'components/common/table/table-col3'
-import AppScrollerTable from 'components/common/table/scroller-table'
-import AppSwitcherListPanel from 'components/common/switcher-list-panel'
-import AppButtonGroup from 'components/common/button-group'
+import AppButtonTab from 'components/common/button-tab';
+import AppTableCol3 from 'components/common/table/table-col3';
+import AppScrollerTable from 'components/common/table/scroller-table';
+import AppSwitcherListPanel from 'components/common/switcher-list-panel';
+import AppButtonGroup from 'components/common/button-group';
 
 export default {
   props: ['dataSource'],
-  data(){
-    return{
+  data() {
+    return {
       elevatorData: this.dataSource.data,
 
       leftModuleA: this.dataSource['panel-left'][0],
       leftModuleB: this.dataSource['panel-left'][1],
       leftModuleC: this.dataSource['panel-left'][2],
       leftModuleD: this.dataSource['panel-left'][3],
-      
+
       modeIndex: 0,
 
       currentFloor: {
         currFloorScrollTableData: [],
         currFloorTableData: [],
-      } 
-    }
+      },
+    };
   },
-  created(){
-  }, 
+  created() {},
   methods: {
-    selectElevator(e){
+    selectElevator(e) {
       this.currentFloor.currFloorScrollTableData = e.item.companies;
       this.currentFloor.currFloorTableData = e.item.devices;
-      this.$emit('changeElevator',e)
+      this.$emit('changeElevator', e);
     },
     /**
      * 切换模式按钮
      * @param i [number] 按钮索引值
      */
-    switchFloorRendering(i){
-      if(i !== this.modeIndex){
+    switchFloorRendering(i) {
+      if (i !== this.modeIndex) {
         this.currentFloor.currFloorScrollTableData = [];
         this.currentFloor.currFloorTableData = [];
       }
@@ -96,36 +94,35 @@ export default {
     /**
      * 炸开楼层
      */
-    explodeFloor(e){
-      this.$emit('explode',e)
+    explodeFloor(e) {
+      this.$emit('explode', e);
     },
     /**
      * 选择楼层内对应设备
      */
-    selectFloor(name,obj){
-      this.$emit('selectFloor',name,obj);
+    selectFloor(name, obj) {
+      this.$emit('selectFloor', name, obj);
     },
-    unselectFloor(name,obj){
-      this.$emit('unselectFloor',name,obj);
-    }
+    unselectFloor(name, obj) {
+      this.$emit('unselectFloor', name, obj);
+    },
   },
   components: {
     AppButtonTab,
     AppTableCol3,
     AppScrollerTable,
     AppSwitcherListPanel,
-    AppButtonGroup
-  }
-}
+    AppButtonGroup,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .floor-panel {
-    position: relative;
-    ::v-deep .analyse{
-      min-height: 0;
-      padding: 0;
-    }
+.floor-panel {
+  position: relative;
+  ::v-deep .analyse {
+    min-height: 0;
+    padding: 0;
   }
-  
+}
 </style>>
