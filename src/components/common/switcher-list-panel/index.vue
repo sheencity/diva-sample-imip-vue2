@@ -4,7 +4,7 @@
       class="analyse" 
       v-for="item in dataSource"
       :key="item.title" 
-      :style="{ borderColor: item.default ? "#00F7FF" : "", borderStyle: item.border ? "solid" : "unset", }"
+      :style="{ borderColor: item.default ? '#00F7FF' : '', borderStyle: item.border ? 'solid' : 'unset', }"
     >
       <div class="content">
         <span v-if="item.color" class="color" :style="{ background: item.color }"></span>

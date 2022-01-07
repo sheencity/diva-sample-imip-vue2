@@ -1,6 +1,6 @@
 <template>
   <main>
-    <article :style="{ justifyContent: icon ? "unset" : "center" }">
+    <article :style="{ justifyContent: icon ? 'unset' : 'center' }">
       <img v-if="icon" :src="imgURL" />
       <div>{{ title }}</div>
     </article>

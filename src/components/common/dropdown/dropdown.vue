@@ -1,6 +1,6 @@
 <template>
   <a class="select">
-    <p :class="{"select-disabled":disabled}" style="margin: 0;user-select: none;">
+    <p :class="{'select-disabled':disabled}" style="margin: 0;user-select: none;">
       <input 
         readonly
         type="text" 
@@ -13,13 +13,13 @@
       >
         <img 
           class="arrow-down" 
-          :class="{"activity":!hideOptions}" 
+          :class="{'activity':!hideOptions}" 
           width="9" 
           height="6"
-          :src="disabled? "assets/images/common/dropdown/arrow-down-disabled.svg" : "assets/images/common/dropdown/arrow-down.svg"" 
+          :src="disabled? 'assets/images/common/dropdown/arrow-down-disabled.svg' : 'assets/images/common/dropdown/arrow-down.svg'" 
         />
     </p>
-    <ul class="option" :style="{height: (!hideOptions ? "auto":"0px")}">
+    <ul class="option" :style="{height: (!hideOptions ? 'auto':'0px')}">
       <li 
         class="dropdown-item"
         :key="item.value"  

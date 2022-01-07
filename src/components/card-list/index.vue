@@ -8,7 +8,7 @@
         :key="index"
         v-for="(childItem, index) in item.list"
         class="area-module"
-        :class="{ "item-selected": childItem.checked }"
+        :class="{ 'item-selected': childItem.checked }"
         :dataSource="childItem.content"
         @click.native="selectItem(childItem)"
       ></app-card-two-info>

@@ -13,7 +13,7 @@
           <img :src="item.icon" />
           <div>
             <p>{{ item.title }}</p>
-            <p :style="{ color: item.fontColor || "" }">
+            <p :style="{ color: item.fontColor || '' }">
               {{ item.number }}
             </p>
           </div>

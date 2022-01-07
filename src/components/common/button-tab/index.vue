@@ -3,7 +3,7 @@
     <div class="main">
       <button
         class="resource"
-        :class="{ "item-selected": selectItem === index }"
+        :class="{ 'item-selected': selectItem === index }"
         v-for="(item, index) in dataSource.data"
         :key="item.title"
         @click="select(item, index)"

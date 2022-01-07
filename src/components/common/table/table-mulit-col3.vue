@@ -13,24 +13,21 @@
             <span class="col-3">{{ item.thead[2].title }}</span>
           </div>
           <div class="container">
-            <div class="main" :style="{ maxHeight: maxItem * 40 + "px" }">
+            <div class="main" :style="{ maxHeight: maxItem * 40 + 'px' }">
               <div
                 class="tbody"
                 v-for="(ele, index2) in item.tbody"
                 :key="ele[item.thead[0].name]"
-                :class="{ "item-selected": selectId === ele.id }"
+                :class="{ 'item-selected': selectId === ele.id }"
                 @click="selectItem(ele, item)"
-                :style="{
-                  opacity: ele[item.thead[2].name] === "检修" ? 0.3 : 1,
-                }"
+                :style="{ opacity: ele[item.thead[2].name] === '检修' ? 0.3 : 1}"
               >
                 <span class="col-1">{{ ele[item.thead[0].name] }}</span>
                 <span class="col-2">{{ ele[item.thead[1].name] }}</span>
                 <span
                   class="col-3"
-                  :class="{ disabled: ele[item.thead[2].name] === "检修" }"
-                  >{{ ele[item.thead[2].name] }}</span
-                >
+                  :class="{ disabled: ele[item.thead[2].name] === '检修' }"
+                >{{ ele[item.thead[2].name] }}</span>
               </div>
             </div>
           </div>

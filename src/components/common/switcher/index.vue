@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="switcher" :class="{ "switch-disabled": disabled || !checked }">
+    <div class="switcher" :class="{ 'switch-disabled': disabled || !checked }">
       <input type="checkbox" :checked="checked" :disabled="disabled" />
       <div class="slider round" ref="switch"></div>
     </div>

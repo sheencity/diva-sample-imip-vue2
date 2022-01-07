@@ -2,12 +2,12 @@
   <main>
     <div
       class="content"
-      :style="{ height: contentHeight + "px", overflowY: scroll ? "hidden" : "scroll", }"
+      :style="{ height: contentHeight + 'px', overflowY: scroll ? 'hidden' : 'scroll', }"
       @mouseenter="mouseEnterScroll()"
       @mouseleave="mouseLeaveScroll()"
     >
       <div
-        :class="{ scroller: hasTransform, "scroll-direct": !hasTransform }"
+        :class="{ scroller: hasTransform, 'scroll-direct': !hasTransform }"
         :style="{ transform: `translateY(-${step * height}px)` }"
       >
         <slot></slot>

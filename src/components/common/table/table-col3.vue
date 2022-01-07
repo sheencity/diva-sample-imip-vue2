@@ -7,11 +7,11 @@
         <span class="col-3">{{ thead[2].title }}</span>
       </div>
       <div class="container">
-        <div class="main" :style="{ maxHeight: maxItem * 40 + "px" }">
+        <div class="main" :style="{ maxHeight: maxItem * 40 + 'px' }">
           <div
             class="tbody"
-            :class="{ "item-selected": selectId === item[thead[0].name] }"
-            :style="{ opacity: item[thead[2].name] === "检修" ? 0.3 : 1 }"
+            :class="{ 'item-selected': selectId === item[thead[0].name] }"
+            :style="{ opacity: item[thead[2].name] === '检修' ? 0.3 : 1 }"
             :key="item[thead[0].name]"
             v-for="(item, index) in dataSource"
             @click="select(item, index)"
@@ -20,7 +20,7 @@
             <span class="col-2">{{ item[thead[1].name] }}</span>
             <span
               class="col-3"
-              :class="{ disabled: item[thead[2].name] === "检修" }"
+              :class="{ disabled: item[thead[2].name] === '检修' }"
               >{{ item[thead[2].name] }}</span
             >
           </div>
