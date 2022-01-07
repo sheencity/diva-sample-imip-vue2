@@ -1,46 +1,41 @@
 <template>
   <article class="space-between">
     <aside class="space-left all">
-      <template v-if="buttonTabData">
-        <app-button-tab
-          :header="buttonTabData.header"
-          :dataSource="buttonTabData.content"
-          @select="buttonTabChange"
-        >
-        </app-button-tab>
-      </template>
-      <template v-if="rowListData">
-        <app-row-list
-          class="top10"
-          :header="rowListData.header"
-          :dataSource="rowListData.content"
-          :disabled="rowDisabled"
-          :key="rowListData.header.title"
-          @select="rowItemChange"
-        >
-        </app-row-list>
-      </template>
+      <app-button-tab
+        v-if="buttonTabData"
+        :header="buttonTabData.header"
+        :dataSource="buttonTabData.content"
+        @select="buttonTabChange"
+      ></app-button-tab>
+
+      <app-row-list
+        class="top10"
+        v-if="rowListData"
+        :header="rowListData.header"
+        :dataSource="rowListData.content"
+        :disabled="rowDisabled"
+        :key="rowListData.header.title"
+        @select="rowItemChange"
+      ></app-row-list>
     </aside>
     <aside class="space-right all">
-      <template v-if="switcherListData">
-        <app-switcher-list
-          :header="switcherListData.header"
-          :dataSource="switcherListData.content.data"
-          @checked="switcherChange"
-        >
-        </app-switcher-list>
-      </template>
+      <app-switcher-list
+        v-if="switcherListData"
+        :header="switcherListData.header"
+        :dataSource="switcherListData.content.data"
+        @checked="switcherChange"
+      ></app-switcher-list>
     </aside>
   </article>
 </template>
 
 <script>
-import { Overlay } from "@sheencity/diva-sdk";
-import { Vector3 } from "@sheencity/diva-sdk-math";
-import AppButtonTab from "components/common/button-tab";
-import AppRowList from "components/common/row-list";
-import AppSwitcherList from "components/common/switcher-list-panel";
-import { diva } from "services/global";
+import { Overlay } from '@sheencity/diva-sdk';
+import { Vector3 } from '@sheencity/diva-sdk-math';
+import AppButtonTab from 'components/common/button-tab';
+import AppRowList from 'components/common/row-list';
+import AppSwitcherList from 'components/common/switcher-list-panel';
+import { diva } from 'services/global';
 
 export default {
   data() {
@@ -60,15 +55,14 @@ export default {
       animeModelGroup: [],
     };
   },
-  created() {
-    this.axios.get('/config/page/plan.json').then((res) => {
-      this.divaData = res.data.diva;
-      this.buttonTabData = res.data['panel-left'][0];
-      this.rowListData = this.buttonTabData.content.data[0]['target-panel'];
-      this.switcherListData = res.data['panel-right'][0];
+  async created() {
+    const { data } = await this.axios.get('/config/page/plan.json');
+    this.divaData = data.diva;
+    this.buttonTabData = data['panel-left'][0];
+    this.rowListData = this.buttonTabData.content.data[0]['target-panel'];
+    this.switcherListData = data['panel-right'][0];
 
-      this.initScene();
-    });
+    await this.initScene();
   },
   destroyed() {
     diva.setEntityVisibleByGroup(this.currentShowPath, false);
@@ -164,7 +158,7 @@ export default {
         await Promise.all(this.animeModelGroup.map((model) => model.setScale(new Vector3(1, 1, 0.01))));
         await Promise.all(
           this.animeModelGroup.map((model) => {
-            diva.client.request("SetTransformAnimation", {
+            diva.client.request('SetTransformAnimation', {
               id: model.id,
               duration: this.animeDuration,
               scale: [1, 1, 1],
@@ -179,7 +173,7 @@ export default {
     async removeTransformAnimation() {
       await Promise.all(
         this.animeModelGroup.map((model) => {
-          diva.client.request("RemoveTransformAnimation", {
+          diva.client.request('RemoveTransformAnimation', {
             id: model.id,
           });
           model.setScale(new Vector3(1, 1, 1));
@@ -191,7 +185,7 @@ export default {
     AppButtonTab,
     AppRowList,
     AppSwitcherList,
-  }
+  },
 };
 </script>
 

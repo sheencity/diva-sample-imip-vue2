@@ -1,55 +1,49 @@
 <template>
   <article class="space-between">
     <aside class="space-left all">
-      <template v-if="parkingPanelData">
-        <app-parking-panel
-          :header="parkingPanelData.header"
-          :dataSource="parkingPanelData.content"
-          :checked="parkingPanelData.content.analysis.default"
-          @switch="switchChange"
-          @areaClick="areaChange"
-        >
-        </app-parking-panel>
-      </template>
+      <app-parking-panel
+        v-if="parkingPanelData"
+        :header="parkingPanelData.header"
+        :dataSource="parkingPanelData.content"
+        :checked="parkingPanelData.content.analysis.default"
+        @switch="switchChange"
+        @areaClick="areaChange"
+      ></app-parking-panel>
     </aside>
     <aside class="space-right all">
-      <template v-if="echartsPieData">
-        <echarts
-          :header="echartsPieData.header"
-          :dataSource="echartsPieData.content"
-        >
-        </echarts>
-      </template>
-      <template v-if="echartsLineData">
-        <echarts
-          class="top10"
-          :header="echartsLineData.header"
-          :dataSource="echartsLineData.content"
-        >
-        </echarts>
-      </template>
-      <template v-if="textListData">
-        <app-scroller-table
-          class="top10"
-          :header="textListData.header"
-          :dataSource="textListData.content.data"
-          :thead="textListData.content.header"
-          :dataLength="textListData.content.data.length"
-          :autoScroll="textListData.content.scroll"
-          :height="36"
-          :contentHeight="220"
-        >
-        </app-scroller-table>
-      </template>
+      <app-echarts
+        v-if="echartsPieData"
+        :header="echartsPieData.header"
+        :dataSource="echartsPieData.content"
+      ></app-echarts>
+
+      <app-echarts
+        class="top10"
+        v-if="echartsLineData"
+        :header="echartsLineData.header"
+        :dataSource="echartsLineData.content"
+      ></app-echarts>
+
+      <app-scroller-table
+        class="top10"
+        v-if="textListData"
+        :header="textListData.header"
+        :dataSource="textListData.content.data"
+        :thead="textListData.content.header"
+        :dataLength="textListData.content.data.length"
+        :autoScroll="textListData.content.scroll"
+        :height="36"
+        :contentHeight="220"
+      ></app-scroller-table>
     </aside>
   </article>
 </template>
 
 <script>
-import Echarts from "components/common/echarts";
-import AppParkingPanel from "components/common/parking-panel";
-import AppScrollerTable from "components/common/table/scroller-table";
-import { diva } from "services/global";
+import AppEcharts from 'components/common/echarts';
+import AppParkingPanel from 'components/common/parking-panel';
+import AppScrollerTable from 'components/common/table/scroller-table';
+import { diva } from 'services/global';
 
 export default {
   data() {
@@ -63,16 +57,15 @@ export default {
       currentShowPath: new Map(),
     };
   },
-  created() {
-    this.axios.get('/config/page/park.json').then((res) => {
-      this.divaData = res.data.diva;
-      this.parkingPanelData = res.data['panel-left'][0];
-      this.echartsPieData = res.data['panel-right'][0];
-      this.echartsLineData = res.data['panel-right'][1];
-      this.textListData = res.data['panel-right'][2];
+  async created() {
+    const { data } = await this.axios.get('/config/page/park.json');
+    this.divaData = data.diva;
+    this.parkingPanelData = data['panel-left'][0];
+    this.echartsPieData = data['panel-right'][0];
+    this.echartsLineData = data['panel-right'][1];
+    this.textListData = data['panel-right'][2];
 
-      this.initScene();
-    });
+    await this.initScene();
   },
   destroyed() {
     Array.from(this.currentShowPath.values())
@@ -131,8 +124,8 @@ export default {
   components: {
     AppParkingPanel,
     AppScrollerTable,
-    Echarts,
-  }
+    AppEcharts,
+  },
 };
 </script>
 

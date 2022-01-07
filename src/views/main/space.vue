@@ -1,32 +1,27 @@
 <template>
   <article class="space-between">
     <aside class="space-left all">
-      <template v-if="basicInfoData">
-        <app-basic-info
-          class="top10"
-          :header="basicInfoData.header"
-          :dataSource="basicInfoData.content.data"
-        >
-        </app-basic-info>
-      </template>
+      <app-basic-info
+        class="top10"
+        v-if="basicInfoData"
+        :header="basicInfoData.header"
+        :dataSource="basicInfoData.content.data"
+      ></app-basic-info>
     </aside>
     <aside class="space-right all">
-      <template v-if="cameraAlbumData">
-        <app-camera-album
-          :dataSource="cameraAlbumData.content"
-          @check="changeCameraTrack"
-        >
-        </app-camera-album>
-      </template>
+      <app-camera-album
+        v-if="cameraAlbumData"
+        :dataSource="cameraAlbumData.content"
+        @check="changeCameraTrack"
+      ></app-camera-album>
     </aside>
   </article>
 </template>
 
 <script>
-import AppBasicInfo from "components/common/basic-info";
-import AppCameraAlbum from "components/common/camera-album";
-import Echarts from "components/common/echarts";
-import { diva } from "services/global";
+import AppBasicInfo from 'components/common/basic-info';
+import AppCameraAlbum from 'components/common/camera-album';
+import { diva } from 'services/global';
 
 export default {
   data() {
@@ -36,14 +31,13 @@ export default {
       cameraAlbumData: null,
     };
   },
-  created() {
-    this.axios.get('/config/page/space.json').then((res) => {
-      this.divaData = res.data.diva;
-      this.basicInfoData = res.data['panel-left'][0];
-      this.cameraAlbumData = res.data['panel-right'][0];
+  async created() {
+    const { data } = await this.axios.get('/config/page/space.json');
+    this.divaData = data.diva;
+    this.basicInfoData = data['panel-left'][0];
+    this.cameraAlbumData = data['panel-right'][0];
 
-      this.initScene();
-    });
+    this.initScene();
   },
   destroyed() {
     this.reset();
@@ -66,8 +60,7 @@ export default {
   components: {
     AppBasicInfo,
     AppCameraAlbum,
-    Echarts,
-  }
+  },
 };
 </script>
 

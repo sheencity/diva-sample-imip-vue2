@@ -1,65 +1,57 @@
 <template>
   <article class="space-between">
     <aside class="space-left all">
-      <template v-if="deviceListData">
-        <app-table-col3
-          :maxItem="2"
-          :header="deviceListData.header"
-          :thead="deviceListData.content.head"
-          :dataSource="deviceListData.content.data"
-          @select="deviceChange"
-        >
-        </app-table-col3>
-      </template>
-      <template v-if="CH2OData">
-        <echarts
-          class="top10"
-          :header="CH2OData.header"
-          :dataSource="CH2OData.content"
-        >
-        </echarts>
-      </template>
-      <template v-if="CO2Data">
-        <echarts
-          class="top10"
-          :header="CO2Data.header"
-          :dataSource="CO2Data.content"
-        >
-        </echarts>
-      </template>
+      <app-table-col3
+        v-if="deviceListData"
+        :maxItem="2"
+        :header="deviceListData.header"
+        :thead="deviceListData.content.head"
+        :dataSource="deviceListData.content.data"
+        @select="deviceChange"
+      ></app-table-col3>
+
+      <app-echarts
+        class="top10"
+        v-if="CH2OData"
+        :header="CH2OData.header"
+        :dataSource="CH2OData.content"
+      ></app-echarts>
+
+      <app-echarts
+        class="top10"
+        v-if="CO2Data"
+        :header="CO2Data.header"
+        :dataSource="CO2Data.content"
+      ></app-echarts>
     </aside>
     <aside class="space-right all">
-      <template v-if="tempHumiData">
-        <echarts
-          :header="tempHumiData.header"
-          :dataSource="tempHumiData.content"
-        >
-        </echarts>
-      </template>
-      <template v-if="PM25Data">
-        <echarts
-          class="top10"
-          :header="PM25Data.header"
-          :dataSource="PM25Data.content"
-        >
-        </echarts>
-      </template>
-      <template v-if="VOCData">
-        <echarts
-          class="top10"
-          :header="VOCData.header"
-          :dataSource="VOCData.content"
-        >
-        </echarts>
-      </template>
+      <app-echarts
+        v-if="tempHumiData"
+        :header="tempHumiData.header"
+        :dataSource="tempHumiData.content"
+      ></app-echarts>
+
+      <app-echarts
+        class="top10"
+        v-if="PM25Data"
+        :header="PM25Data.header"
+        :dataSource="PM25Data.content"
+      ></app-echarts>
+
+      <echarts
+        class="top10"
+        v-if="VOCData"
+        :header="VOCData.header"
+        :dataSource="VOCData.content"
+      ></echarts>
     </aside>
   </article>
 </template>
 
 <script>
-import Echarts from "components/common/echarts";
-import AppTableCol3 from "components/common/table/table-col3";
-import { diva } from "services/global";
+import AppEcharts from 'components/common/echarts';
+import AppTableCol3 from 'components/common/table/table-col3';
+import { diva } from 'services/global';
 
 export default {
   data() {
@@ -80,18 +72,17 @@ export default {
       deviceId: null,
     };
   },
-  created() {
-    this.axios.get('/config/page/environment.json').then((res) => {
-      this.divaData = res.data.diva;
-      this.deviceListData = res.data['panel-left'][0];
-      this.CH2OData = res.data['panel-left'][1];
-      this.CO2Data = res.data['panel-left'][2];
-      this.tempHumiData = res.data['panel-right'][0];
-      this.PM25Data = res.data['panel-right'][1];
-      this.VOCData = res.data['panel-right'][2];
+  async created() {
+    const { data } = await this.axios.get('/config/page/environment.json');
+    this.divaData = data.diva;
+    this.deviceListData = data['panel-left'][0];
+    this.CH2OData = data['panel-left'][1];
+    this.CO2Data = data['panel-left'][2];
+    this.tempHumiData = data['panel-right'][0];
+    this.PM25Data = data['panel-right'][1];
+    this.VOCData = data['panel-right'][2];
 
-      this.initScene();
-    });
+    await this.initScene();
   },
   async destroyed() {
     if (this.deviceId) {
@@ -143,9 +134,9 @@ export default {
     },
   },
   components: {
-    Echarts,
+    AppEcharts,
     AppTableCol3,
-  }
+  },
 };
 </script>
 

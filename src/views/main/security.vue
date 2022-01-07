@@ -1,14 +1,12 @@
 <template>
   <article class="space-between">
     <aside class="space-left all">
-      <template v-if="buttonTabData">
-        <app-button-tab
-          :header="buttonTabData.header"
-          :dataSource="buttonTabData.content"
-          @select="buttonTabChange"
-        >
-        </app-button-tab>
-      </template>
+      <app-button-tab
+        v-if="buttonTabData"
+        :header="buttonTabData.header"
+        :dataSource="buttonTabData.content"
+        @select="buttonTabChange"
+      ></app-button-tab>
 
       <app-table-col3
         v-if="monitorListData && selectedIndex === 0"
@@ -32,31 +30,28 @@
       </app-switcher-list>
     </aside>
     <aside class="space-right all">
-      <template v-if="abnormalEventsData">
-        <echarts
-          :header="abnormalEventsData.header"
-          :dataSource="abnormalEventsData.content"
-        >
-        </echarts>
-      </template>
-      <template v-if="abnormalAreaData">
-        <echarts
-          class="top10"
-          :header="abnormalAreaData.header"
-          :dataSource="abnormalAreaData.content"
-        >
-        </echarts>
-      </template>
+      <app-echarts
+        v-if="abnormalEventsData"
+        :header="abnormalEventsData.header"
+        :dataSource="abnormalEventsData.content"
+      ></app-echarts>
+
+      <app-echarts
+        class="top10"
+        v-if="abnormalAreaData"
+        :header="abnormalAreaData.header"
+        :dataSource="abnormalAreaData.content"
+      ></app-echarts>
     </aside>
   </article>
 </template>
 
 <script>
-import Echarts from "components/common/echarts";
-import AppButtonTab from "components/common/button-tab";
-import AppSwitcherList from "components/common/switcher-list-panel";
-import AppTableCol3 from "components/common/table/table-col3";
-import { diva } from "services/global";
+import AppEcharts from 'components/common/echarts';
+import AppButtonTab from 'components/common/button-tab';
+import AppSwitcherList from 'components/common/switcher-list-panel';
+import AppTableCol3 from 'components/common/table/table-col3';
+import { diva } from 'services/global';
 
 export default {
   data() {
@@ -104,26 +99,25 @@ export default {
       },
     };
   },
-  created() {
-    this.axios.get('/config/page/security.json').then((res) => {
-      this.divaData = res.data.diva;
-      this.buttonTabData = res.data['panel-left'][0];
-      this.monitorListData = res.data['panel-left'][1];
-      this.trafficListData = res.data['panel-left'][2];
-      this.abnormalEventsData = res.data['panel-right'][0];
-      this.abnormalAreaData = res.data['panel-right'][1];
+  async created() {
+    const { data } = await this.axios.get('/config/page/security.json');
+    this.divaData = data.diva;
+    this.buttonTabData = data['panel-left'][0];
+    this.monitorListData = data['panel-left'][1];
+    this.trafficListData = data['panel-left'][2];
+    this.abnormalEventsData = data['panel-right'][0];
+    this.abnormalAreaData = data['panel-right'][1];
 
-      this.initScene();
-    });
+    await this.initScene();
   },
   async destroyed() {
     this.destroyWidget();
     this.setMonitorPoiVisibility(false);
     this.monitorsPoi?.forEach((poi) => {
-      poi.removeEventListener("click", this.monitorPoiClickListener);
+      poi.removeEventListener('click', this.monitorPoiClickListener);
     });
     this.monitors?.forEach((model) => {
-      model.removeEventListener("click", this.monitorClickListener);
+      model.removeEventListener('click', this.monitorClickListener);
     });
     await Promise.all(this.divaData.init.locked.group
       .map((group) => diva.updateEntityPropertyByGroup(group, { locked: false })));
@@ -137,6 +131,7 @@ export default {
       await Promise.all(this.divaData.init.locked.group
         .map((group) => diva.updateEntityPropertyByGroup(group, { locked: true })));
     },
+
     // 获取聚焦和弹窗的参数信息
     getOptions() {
       this.monitorListData.content.diva.action.forEach((action) => {
@@ -144,6 +139,7 @@ export default {
         if (action.name === 'set_web_widget') this.options.widget = action.param;
       });
     },
+
     // 获取摄像机和摄像机POI的对应信息
     async getBasicInfo() {
       const monitorList = this.monitorListData.content.data;
@@ -154,27 +150,30 @@ export default {
       Array.from(this.monitorsPoi).map((poi) => {
         const modelName = monitorList.find((data) => data.diva.poi[0].name === poi.name).diva.model[0].name;
         this.monitorsPoiMap.set(poi.id, modelName);
-        poi.addEventListener("click", this.monitorPoiClickListener);
+        poi.addEventListener('click', this.monitorPoiClickListener);
       });
       this.monitors.forEach((model) => {
         const data = monitorList.find((data) => data.diva.model[0].name === model.name);
         this.monitorsIdMap.set(model.id, data?.id || null);
       });
     },
+
     // 聚焦至摄像机
     async focusMonitor(name) {
       this.destroyWidget();
       const camera = diva.getEntityFromGroup(this.monitors, name);
-      if (!camera) throw new Error("未获取到当前摄像机模型");
+      if (!camera) throw new Error('未获取到当前摄像机模型');
       this.setSelectedMonitor(camera);
       await diva.focusOnModelByName(camera.name, this.options.focus.distance, this.options.focus.pitch);
       await this.setMonitorPoiVisibility(false);
 
-      camera?.addEventListener("click", this.monitorClickListener);
+      camera?.addEventListener('click', this.monitorClickListener);
     },
+
+    // 设置当前选中的摄像机
     setSelectedMonitor(model) {
       this.deviceId = model.id;
-      const name = model.name || "";
+      const name = model.name || '';
       const selected = this.monitorListData.content.data.find((data) => data.diva.model[0].name === name);
       const selectedId = selected?.id || -1;
       this.$refs.monitorTable.selectId = selectedId;
@@ -190,6 +189,7 @@ export default {
         await this.monitorsPoi?.setVisibility(visible);
       }
     },
+
     // 销毁弹窗
     async destroyWidget() {
       if (this.deviceId) {
@@ -200,6 +200,7 @@ export default {
         }
       }
     },
+
     // 交通流线
     async setTrafficVisibility() {
       await Promise.all(
@@ -208,6 +209,7 @@ export default {
         )
       );
     },
+
     // 信息类型按钮切换
     buttonTabChange(index) {
       this.selectedIndex = index;
@@ -221,6 +223,7 @@ export default {
         this.setTrafficVisibility();
       }
     },
+
     // 摄像机列表点击切换
     monitorChange(name, e) {
       this.focusMonitor(e.diva.model[0].name);
@@ -231,7 +234,7 @@ export default {
     },
   },
   components: {
-    Echarts,
+    AppEcharts,
     AppButtonTab,
     AppSwitcherList,
     AppTableCol3,
