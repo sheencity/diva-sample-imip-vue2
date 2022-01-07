@@ -26,34 +26,39 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      divaData: null,
+      initDivaData: null,
       basicInfoData: null,
       cameraAlbumData: null,
     };
   },
   async created() {
-    const { data } = await this.axios.get('/config/page/space.json');
-    this.divaData = data.diva;
-    this.basicInfoData = data['panel-left'][0];
-    this.cameraAlbumData = data['panel-right'][0];
-
+    await this.getConfig();
     this.initScene();
   },
   destroyed() {
     this.reset();
   },
   methods: {
-    initScene() {
-      diva?.client?.applyScene(this.divaData.init.scene_name);
+    async getConfig(){
+      const { data } = await this.axios.get('/config/page/space.json');
+      this.initDivaData = data.diva;
+      this.basicInfoData = data['panel-left'][0];
+      this.cameraAlbumData = data['panel-right'][0];
     },
+
+    initScene() {
+      diva?.client?.applyScene(this.initDivaData.init.scene_name);
+    },
+
     changeCameraTrack(e) {
       this.reset();
       if (e.diva.scene_name) diva.client.applyScene(e.diva.scene_name);
       else if (e.diva.camera_track_name) diva.client.playCameraTrack(e.diva.camera_track_name);
     },
+    
     reset() {
       diva.client?.stopCameraTrack();
-      this.divaData?.destroy?.group
+      this.initDivaData?.destroy?.group
         .forEach((group) => diva.setEntityVisibleByGroup(group, false));
     }
   },

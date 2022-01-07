@@ -60,7 +60,7 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      divaData: null,
+      initDivaData: null,
       statisticsData: null,
       basicInfoData: null,
       textListData: null,
@@ -70,20 +70,26 @@ export default {
     };
   },
   async created() {
-    const { data } = await this.axios.get('/config/page/achievement.json');
-    this.divaData = data.diva;
-    this.statisticsData = data['panel-left'][0];
-    this.basicInfoData = data['panel-left'][1];
-    this.textListData = data['panel-left'][2];
-    this.ringPieData = data['panel-right'][0];
-    this.basicBarData = data['panel-right'][1];
-    this.horBarData = data['panel-right'][2];
-
-    this.initScene();
+    this.init();
   },
   methods: {
+    async init(){
+      // 获取 json 配置数据
+      await this.getConfig();
+      this.initScene();
+    },
+    async getConfig(){
+      const { data } = await this.axios.get('/config/page/achievement.json');
+      this.initDivaData = data.diva;
+      this.statisticsData = data['panel-left'][0];
+      this.basicInfoData = data['panel-left'][1];
+      this.textListData = data['panel-left'][2];
+      this.ringPieData = data['panel-right'][0];
+      this.basicBarData = data['panel-right'][1];
+      this.horBarData = data['panel-right'][2];
+    },
     initScene() {
-      diva?.client?.applyScene(this.divaData.init.scene_name);
+      diva?.client?.applyScene(this.initDivaData.init.scene_name);
     },
   },
   components: {

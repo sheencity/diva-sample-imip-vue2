@@ -67,7 +67,7 @@ export default {
   methods: {
     async init() {
       await this.getConfig();
-      this.initScene(this.initDivaData.init.scene_name);
+      this.initScene();
       // 为楼体区块添加点击事件
       this.addModelListener();
     },
@@ -83,8 +83,8 @@ export default {
     /**
      * 初始化场景
      */
-    initScene(name) {
-      diva.client?.applyScene(name);
+    initScene() {
+      diva.client?.applyScene(this.initDivaData.init.scene_name);
     },
     /**
      * 选择区域聚焦
@@ -231,9 +231,9 @@ export default {
      */
     async addEvent(e) {
       const model = await diva.client.getEntityById(e.target);
-      let name = model.name;
       const group = model.group;
       const nameList = group.split('楼栋');
+      let name = model.name;
       if (nameList[1].includes('#')) {
         name = '产业园区/楼栋/' + nameList[1].split('/')[1];
       }

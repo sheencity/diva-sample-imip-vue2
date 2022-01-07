@@ -40,7 +40,7 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      divaData: null,
+      initDivaData: null,
       buttonTabData: null,
       rowListData: null,
       switcherListData: null,
@@ -56,29 +56,36 @@ export default {
     };
   },
   async created() {
-    const { data } = await this.axios.get('/config/page/plan.json');
-    this.divaData = data.diva;
-    this.buttonTabData = data['panel-left'][0];
-    this.rowListData = this.buttonTabData.content.data[0]['target-panel'];
-    this.switcherListData = data['panel-right'][0];
-
-    await this.initScene();
+    this.init();
   },
   destroyed() {
     diva.setEntityVisibleByGroup(this.currentShowPath, false);
     this.removeTransformAnimation();
   },
   methods: {
+    async init(){
+      await this.getConfig();
+      this.initScene();
+    },
+
+    async getConfig(){
+      const { data } = await this.axios.get('/config/page/plan.json');
+      this.initDivaData = data.diva;
+      this.buttonTabData = data['panel-left'][0];
+      this.rowListData = this.buttonTabData.content.data[0]['target-panel'];
+      this.switcherListData = data['panel-right'][0];
+    },
+    
     // 初始化场景
     async initScene() {
       this.currentShowPath = this.buttonTabData.content.data[0].diva.init.group;
-      await diva.client?.applyScene(this.divaData.init.scene_name);
+      await diva.client?.applyScene(this.initDivaData.init.scene_name);
       await diva.setEntityVisibleByGroup(this.currentShowPath, true);
     },
 
     // 重置状态
     async reset() {
-      await diva.client?.applyScene(this.divaData.init.scene_name);
+      await diva.client?.applyScene(this.initDivaData.init.scene_name);
       await diva.setEntityVisibleByGroup(this.currentShowPath, false);
       this.switcherListData.content.data
         .forEach((item) => item.default = false);

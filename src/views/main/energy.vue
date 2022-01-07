@@ -59,8 +59,6 @@ export default {
   },
   async created() {
     await this.init();
-    this.initScene(this.initDivaData.init.scene_name);
-    this.divaParam = this.getDivaParam();
   },
   beforeDestroy() {
     this.resetPOI();
@@ -68,6 +66,8 @@ export default {
   methods: {
     async init() {
       await this.getConfig();
+      this.initScene();
+      this.getDivaParam();
     },
     async getConfig() {
       const { data } = await this.axios.get('config/page/energy.json');
@@ -77,12 +77,8 @@ export default {
       this.pieChartsData = data['panel-left'][2];
       this.switchPanelData = data['panel-right'][0];
     },
-    /**
-     * 初始化场景
-     * @param[string] e
-     */
-    initScene(name) {
-      diva.client?.applyScene(name);
+    initScene() {
+      diva.client?.applyScene(this.initDivaData.init.scene_name);
     },
     /**
      * 选择能耗类型资源种类
@@ -91,7 +87,7 @@ export default {
     selectResources(e) {
       this.currCategoryIndex = e;
       this.getCurrCategoryData();
-      this.divaParam = this.getDivaParam();
+      this.getDivaParam();
       if (this.POIChecked) {
         const { minValue, maxValue } = this.ruleNum(this.divaParam);
         this.divaParam.minValue = minValue;
@@ -176,9 +172,7 @@ export default {
      * 获取 DIVA 行为参数
      */
     getDivaParam() {
-      const { param } =
-        this.buttonTabData.content.data[this.currCategoryIndex].diva.action[0];
-      return param;
+      this.divaParam = this.buttonTabData.content.data[this.currCategoryIndex].diva.action[0];
     },
     /**
      * 获取 POI
@@ -186,8 +180,7 @@ export default {
      * @returns 获取到的 POI 列表
      */
     async getPOI(group) {
-      const POIList = await diva.client.getModelGroupByGroupPath(group);
-      return POIList;
+      return await diva.client.getModelGroupByGroupPath(group);
     },
     /**
      * 计算渐变色

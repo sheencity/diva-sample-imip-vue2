@@ -56,7 +56,7 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      divaData: null,
+      initDivaData: null,
       deviceListData: null,
       CH2OData: null,
       CO2Data: null,
@@ -73,16 +73,7 @@ export default {
     };
   },
   async created() {
-    const { data } = await this.axios.get('/config/page/environment.json');
-    this.divaData = data.diva;
-    this.deviceListData = data['panel-left'][0];
-    this.CH2OData = data['panel-left'][1];
-    this.CO2Data = data['panel-left'][2];
-    this.tempHumiData = data['panel-right'][0];
-    this.PM25Data = data['panel-right'][1];
-    this.VOCData = data['panel-right'][2];
-
-    await this.initScene();
+    await this.init();
   },
   async destroyed() {
     if (this.deviceId) {
@@ -94,10 +85,24 @@ export default {
     }
   },
   methods: {
+    async init(){
+      await this.getConfig();
+      await this.initScene();
+      await this.getDeviceInfo();
+    },
+    async getConfig(){
+      const { data } = await this.axios.get('/config/page/environment.json');
+      this.initDivaData = data.diva;
+      this.deviceListData = data['panel-left'][0];
+      this.CH2OData = data['panel-left'][1];
+      this.CO2Data = data['panel-left'][2];
+      this.tempHumiData = data['panel-right'][0];
+      this.PM25Data = data['panel-right'][1];
+      this.VOCData = data['panel-right'][2];
+    },
     // 初始化场景
     async initScene() {
-      await diva.client?.applyScene(this.divaData.init.scene_name);
-      this.getDeviceInfo();
+      await diva.client?.applyScene(this.initDivaData.init.scene_name);
     },
     // 获取设备信息
     async getDeviceInfo() {

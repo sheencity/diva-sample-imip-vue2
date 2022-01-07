@@ -55,7 +55,6 @@ export default {
   },
   async created() {
     await this.init();
-    this.initScene(this.initDivaData.init.scene_name);
   },
   async beforeDestroy() {
     // 组件销毁时重置状态
@@ -78,7 +77,7 @@ export default {
   methods: {
     async init() {
       await this.getConfig();
-      this.commonConfig = this.initDivaData.common;
+      this.initScene();
     },
     async getConfig() {
       const { data } = await this.axios.get('config/page/firecontrol.json');
@@ -87,13 +86,14 @@ export default {
       this.pieChartData = data['panel-right'][0];
       this.lineChartData = data['panel-right'][1];
       this.barChartData = data['panel-right'][2];
+      this.commonConfig = this.initDivaData.common;
     },
     /**
      * 初始化场景
      * @param[string] e
      */
-    async initScene(name) {
-      await diva.client?.applyScene(name);
+    async initScene() {
+      await diva.client?.applyScene(this.initDivaData.init.scene_name);
       this.cameraSubscription = setTimeout(() => {
         this.initSceneEffect();
       }, 1500);

@@ -82,12 +82,10 @@ export default {
     async init() {
       await this.getConfig();
       this.initScene(this.initDivaData.init.scene_name);
-      this.switchFloorRendering(
-        this.floorPanelData['panel-left'][0].content.data[0]
-      );
-      this.floorConfig =
-        this.floorPanelData['floor-btn-group'].diva.action[0].param;
+      this.switchFloorRendering(this.floorPanelData['panel-left'][0].content.data[0]);
+      this.floorConfig = this.floorPanelData['floor-btn-group'].diva.action[0].param;
     },
+    
     async getConfig() {
       const { data } = await this.axios.get('config/page/office.json');
       this.initDivaData = data.diva;
@@ -97,9 +95,7 @@ export default {
       this.basicLineData = data['panel-right'][2];
       this.groupName = data.diva.common.group_name;
       this.currentFloor.mode = data.diva.common.default_mode;
-      this.floorsModelGroup = await diva.client?.getModelGroupByGroupPath(
-        this.groupName
-      );
+      this.floorsModelGroup = await diva.client?.getModelGroupByGroupPath(this.groupName);
     },
     /**
      * 初始化场景

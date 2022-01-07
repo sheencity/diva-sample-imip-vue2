@@ -56,7 +56,7 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      divaData: null,
+      initDivaData: null,
       buttonTabData: null,
       monitorListData: null,
       trafficListData: null,
@@ -100,15 +100,9 @@ export default {
     };
   },
   async created() {
-    const { data } = await this.axios.get('/config/page/security.json');
-    this.divaData = data.diva;
-    this.buttonTabData = data['panel-left'][0];
-    this.monitorListData = data['panel-left'][1];
-    this.trafficListData = data['panel-left'][2];
-    this.abnormalEventsData = data['panel-right'][0];
-    this.abnormalAreaData = data['panel-right'][1];
+    
 
-    await this.initScene();
+    await this.init();
   },
   async destroyed() {
     this.destroyWidget();
@@ -119,16 +113,29 @@ export default {
     this.monitors?.forEach((model) => {
       model.removeEventListener('click', this.monitorClickListener);
     });
-    await Promise.all(this.divaData.init.locked.group
+    await Promise.all(this.initDivaData.init.locked.group
       .map((group) => diva.updateEntityPropertyByGroup(group, { locked: false })));
   },
   methods: {
+    async init(){
+      await this.getConfig();
+      this.initScene();
+    },
+    async getConfig(){
+      const { data } = await this.axios.get('/config/page/security.json');
+      this.initDivaData = data.diva;
+      this.buttonTabData = data['panel-left'][0];
+      this.monitorListData = data['panel-left'][1];
+      this.trafficListData = data['panel-left'][2];
+      this.abnormalEventsData = data['panel-right'][0];
+      this.abnormalAreaData = data['panel-right'][1];
+    },
     // 初始化场景
     async initScene() {
       await this.getBasicInfo();
       this.buttonTabChange(0);
       this.getOptions();
-      await Promise.all(this.divaData.init.locked.group
+      await Promise.all(this.initDivaData.init.locked.group
         .map((group) => diva.updateEntityPropertyByGroup(group, { locked: true })));
     },
 

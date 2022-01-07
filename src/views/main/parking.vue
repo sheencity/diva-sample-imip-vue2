@@ -48,7 +48,7 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      divaData: null,
+      initDivaData: null,
       parkingPanelData: null,
       echartsPieData: null,
       echartsLineData: null,
@@ -58,25 +58,32 @@ export default {
     };
   },
   async created() {
-    const { data } = await this.axios.get('/config/page/park.json');
-    this.divaData = data.diva;
-    this.parkingPanelData = data['panel-left'][0];
-    this.echartsPieData = data['panel-right'][0];
-    this.echartsLineData = data['panel-right'][1];
-    this.textListData = data['panel-right'][2];
-
-    await this.initScene();
+    await this.init();
   },
   destroyed() {
     Array.from(this.currentShowPath.values())
       .forEach((path) => diva.setEntityVisibleByGroup(path, false));
   },
   methods: {
+    async init(){
+      await this.getConfig();
+      this.initScene();
+    },
+
+    async getConfig(){
+      const { data } = await this.axios.get('/config/page/park.json');
+      this.initDivaData = data.diva;
+      this.parkingPanelData = data['panel-left'][0];
+      this.echartsPieData = data['panel-right'][0];
+      this.echartsLineData = data['panel-right'][1];
+      this.textListData = data['panel-right'][2];
+    },
+
     // 初始化场景
     async initScene() {
       this.getBasicInfo();
 
-      await diva.client?.applyScene(this.divaData.init.scene_name);
+      await diva.client?.applyScene(this.initDivaData.init.scene_name);
       await diva.setEntityVisibleByGroup(this.currentShowPath.get('carsPath'), true);
 
       // 计算场景模型中的汽车数量
@@ -86,23 +93,26 @@ export default {
           models.filter((entity) => entity.group.match(item.title)).length || item.rest;
       });
     },
+
     // 获取需要设置显示隐藏的路径信息
     getBasicInfo() {
-      const carsPath = this.divaData.init.model
+      const carsPath = this.initDivaData.init.model
         .map((model) => model.group)[0];
       const areaPath = this.parkingPanelData.content.analysis.diva.model
         .map((model) => model.group)[0];
       this.currentShowPath.set('carsPath', carsPath);
       this.currentShowPath.set('areaPath', areaPath);
     },
+
     // 车位使用透视开关
     switchChange(v) {
-      diva.client?.applyScene(this.divaData.init.scene_name, {
+      diva.client?.applyScene(this.initDivaData.init.scene_name, {
         camera: true,
         visibility: false,
       });
       diva.setEntityVisibleByGroup(this.currentShowPath.get('areaPath'), v);
     },
+    
     // 停车区点击聚焦和显示对应体块
     async areaChange(e) {
       await diva.setEntityVisibleByGroup(this.currentShowPath.get('areaPath'), false);
