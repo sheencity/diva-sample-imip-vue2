@@ -79,7 +79,9 @@ export default {
       this.textListData = data['panel-right'][2];
     },
 
-    // 初始化场景
+    /**
+     * 初始化场景
+     */
     async initScene() {
       this.getBasicInfo();
 
@@ -94,7 +96,9 @@ export default {
       });
     },
 
-    // 获取需要设置显示隐藏的路径信息
+    /**
+     * 获取需要设置显示隐藏的路径信息
+     */
     getBasicInfo() {
       const carsPath = this.initDivaData.init.model
         .map((model) => model.group)[0];
@@ -104,7 +108,9 @@ export default {
       this.currentShowPath.set('areaPath', areaPath);
     },
 
-    // 车位使用透视开关
+    /**
+     * 车位使用透视开关
+     */
     switchChange(v) {
       diva.client?.applyScene(this.initDivaData.init.scene_name, {
         camera: true,
@@ -113,7 +119,9 @@ export default {
       diva.setEntityVisibleByGroup(this.currentShowPath.get('areaPath'), v);
     },
     
-    // 停车区点击聚焦和显示对应体块
+    /**
+     * 停车区点击聚焦和显示对应体块
+     */
     async areaChange(e) {
       await diva.setEntityVisibleByGroup(this.currentShowPath.get('areaPath'), false);
       const focusOption = this.parkingPanelData.content.diva.action

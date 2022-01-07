@@ -100,11 +100,15 @@ export default {
       this.PM25Data = data['panel-right'][1];
       this.VOCData = data['panel-right'][2];
     },
-    // 初始化场景
+    /**
+     * 初始化场景
+     */
     async initScene() {
       await diva.client?.applyScene(this.initDivaData.init.scene_name);
     },
-    // 获取设备信息
+    /**
+     * 获取设备信息
+     */
     async getDeviceInfo() {
       this.deviceListData.content.data.forEach(async (item) => {
         const model = await diva.getEntityByName(item.diva.model[0].name);
@@ -112,7 +116,9 @@ export default {
         model?.addEventListener('click', this.setWebWidget);
       });
     },
-    // 点击设备弹出弹窗
+    /**
+     * 点击设备弹出弹窗
+     */
     async setWebWidget(e) {
       this.deviceId = e.target;
       const equipmentId = this.deviceMap.get(e.target);
@@ -129,7 +135,9 @@ export default {
         },
       });
     },
-    // 点击设备列表聚焦至设备
+    /**
+     * 点击设备列表聚焦至设备
+     */
     deviceChange(name, e) {
       const focusOption = this.deviceListData.content.diva.action
         .filter((action) => action.name === 'focus')[0]

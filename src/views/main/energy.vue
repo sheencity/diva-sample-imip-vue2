@@ -82,7 +82,7 @@ export default {
     },
     /**
      * 选择能耗类型资源种类
-     * @param[number] e
+     * @param {number} e
      */
     selectResources(e) {
       this.currCategoryIndex = e;
@@ -97,7 +97,7 @@ export default {
     },
     /**
      * POI 显示隐藏开关
-     * @param[Object] e
+     * @param e
      */
     async checked(e) {
       if (e.title === 'POI') {
@@ -176,7 +176,7 @@ export default {
     },
     /**
      * 获取 POI
-     * @param[string] POI路径
+     * @param {String} group POI路径
      * @returns 获取到的 POI 列表
      */
     async getPOI(group) {

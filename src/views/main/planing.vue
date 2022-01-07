@@ -76,14 +76,18 @@ export default {
       this.switcherListData = data['panel-right'][0];
     },
     
-    // 初始化场景
+    /**
+     * 初始化场景
+     */
     async initScene() {
       this.currentShowPath = this.buttonTabData.content.data[0].diva.init.group;
       await diva.client?.applyScene(this.initDivaData.init.scene_name);
       await diva.setEntityVisibleByGroup(this.currentShowPath, true);
     },
 
-    // 重置状态
+    /**
+     * 重置状态
+     */
     async reset() {
       await diva.client?.applyScene(this.initDivaData.init.scene_name);
       await diva.setEntityVisibleByGroup(this.currentShowPath, false);
@@ -91,7 +95,9 @@ export default {
         .forEach((item) => item.default = false);
     },
 
-    // 开关切换
+    /**
+     * 开关切换
+     */
     switcherChange(e) {
       diva.client.applyScene(this.switcherListData.content.diva.init.scene_name, {
         camera: true,
@@ -100,7 +106,9 @@ export default {
       diva.setEntityVisibleByName(e.diva.model[0].name, e.default);
     },
 
-    // 按钮组切换
+    /**
+     * 按钮组切换
+     */
     async buttonTabChange(index) {
       await this.reset();
       this.selectedBtnTabIndex = index;
@@ -111,7 +119,9 @@ export default {
       diva.setEntityVisibleByGroup(this.currentShowPath, true);
     },
 
-    // 条目点击切换，聚焦至对应体块
+    /**
+     * 条目点击切换，聚焦至对应体块
+     */
     rowItemChange(item, index) {
       if (this.selectedBtnTabIndex === 2) {
         this.rowDisabled = true;
@@ -136,7 +146,9 @@ export default {
       diva.focusOnModelByName(name, focusOption.distance, focusOption.pitch);
     },
 
-    // 大于索引值的条目中的模型将会被隐藏
+    /**
+     * 大于索引值的条目中的模型将会被隐藏
+     */
     showFloorsByIndex(i) {
       this.rowListData.content.data.forEach((item, index) => {
         if (index < i) this.setFloorsVisibility(item.diva.model, true);
@@ -151,7 +163,9 @@ export default {
       }));
     },
 
-    // 设置生长动画
+    /**
+     * 设置生长动画
+     */
     async setTransformAnimation(models) {
       this.animeModelGroup.length = 0;
       const totalModels = await Promise.all(models.map((model) => {
@@ -176,7 +190,9 @@ export default {
       }
     },
 
-    // 移除位移动画，重置模型的缩放
+    /**
+     * 移除位移动画，重置模型的缩放
+     */
     async removeTransformAnimation() {
       await Promise.all(
         this.animeModelGroup.map((model) => {

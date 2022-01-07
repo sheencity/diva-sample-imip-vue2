@@ -90,7 +90,6 @@ export default {
     },
     /**
      * 初始化场景
-     * @param[string] e
      */
     async initScene() {
       await diva.client?.applyScene(this.initDivaData.init.scene_name);

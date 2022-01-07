@@ -130,7 +130,9 @@ export default {
       this.abnormalEventsData = data['panel-right'][0];
       this.abnormalAreaData = data['panel-right'][1];
     },
-    // 初始化场景
+    /**
+     * 初始化场景
+     */
     async initScene() {
       await this.getBasicInfo();
       this.buttonTabChange(0);
@@ -139,7 +141,9 @@ export default {
         .map((group) => diva.updateEntityPropertyByGroup(group, { locked: true })));
     },
 
-    // 获取聚焦和弹窗的参数信息
+    /**
+     * 获取聚焦和弹窗的参数信息
+     */
     getOptions() {
       this.monitorListData.content.diva.action.forEach((action) => {
         if (action.name === 'focus') this.options.focus = action.param;
@@ -147,7 +151,9 @@ export default {
       });
     },
 
-    // 获取摄像机和摄像机POI的对应信息
+    /**
+     * 获取摄像机和摄像机POI的对应信息
+     */
     async getBasicInfo() {
       const monitorList = this.monitorListData.content.data;
       const { group, poi } = this.monitorListData.content.diva.init;
@@ -165,7 +171,9 @@ export default {
       });
     },
 
-    // 聚焦至摄像机
+    /**
+     * 聚焦至摄像机
+     */
     async focusMonitor(name) {
       this.destroyWidget();
       const camera = diva.getEntityFromGroup(this.monitors, name);
@@ -177,7 +185,9 @@ export default {
       camera?.addEventListener('click', this.monitorClickListener);
     },
 
-    // 设置当前选中的摄像机
+    /**
+     * 设置当前选中的摄像机
+     */
     setSelectedMonitor(model) {
       this.deviceId = model.id;
       const name = model.name || '';
@@ -186,18 +196,24 @@ export default {
       this.$refs.monitorTable.selectId = selectedId;
     },
 
-    // 设置摄像机显示/隐藏
+    /**
+     * 设置摄像机显示/隐藏
+     */
     async setMonitorVisibility(visible) {
       await this.monitors.setVisibility(visible);
     },
-    // 设置摄像机 POI 显示/隐藏
+    /**
+     * 设置摄像机 POI 显示/隐藏
+     */
     async setMonitorPoiVisibility(visible) {
       if (this.monitorsPoi) {
         await this.monitorsPoi?.setVisibility(visible);
       }
     },
 
-    // 销毁弹窗
+    /**
+     * 销毁弹窗
+     */
     async destroyWidget() {
       if (this.deviceId) {
         try {
@@ -208,7 +224,9 @@ export default {
       }
     },
 
-    // 交通流线
+    /**
+     * 交通流线
+     */
     async setTrafficVisibility() {
       await Promise.all(
         this.trafficListData.content.data.map((item) =>
@@ -217,7 +235,9 @@ export default {
       );
     },
 
-    // 信息类型按钮切换
+    /**
+     * 信息类型按钮切换
+     */
     buttonTabChange(index) {
       this.selectedIndex = index;
       const sceneName = this.buttonTabData.content.data[index].diva.init.scene_name;
@@ -231,11 +251,15 @@ export default {
       }
     },
 
-    // 摄像机列表点击切换
+    /**
+     * 摄像机列表点击切换
+     */
     monitorChange(name, e) {
       this.focusMonitor(e.diva.model[0].name);
     },
-    // 交通流线开关
+    /**
+     * 交通流线开关
+     */
     switchChange(e) {
       diva.setEntityVisibleByName(e.diva.model[0].name, e.default);
     },
