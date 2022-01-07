@@ -9,22 +9,22 @@
       ></app-table-mulit-col3>
     </aside>
     <aside class="space-right all">
-      <echarts
+      <app-echarts
         :header="pieChartData.header"
         :dataSource="pieChartData.content"
-      ></echarts>
+      ></app-echarts>
 
-      <echarts
+      <app-echarts
         class="top10"
         :header="lineChartData.header"
         :dataSource="lineChartData.content"
-      ></echarts>
+      ></app-echarts>
 
-      <echarts
+      <app-echarts
         class="top10"
         :header="barChartData.header"
         :dataSource="barChartData.content"
-      ></echarts>
+      ></app-echarts>
     </aside>
   </article>
 </template>
@@ -34,7 +34,7 @@ import { Vector3 } from '@sheencity/diva-sdk-math';
 import { POI } from '@sheencity/diva-sdk';
 import { diva } from 'services/global';
 import AppTableMulitCol3 from 'components/common/table/table-mulit-col3';
-import Echarts from 'components/common/echarts';
+import AppEcharts from 'components/common/echarts';
 
 export default {
   data() {
@@ -144,7 +144,7 @@ export default {
   },
   components: {
     AppTableMulitCol3,
-    Echarts,
+    AppEcharts,
   },
 };
 </script>

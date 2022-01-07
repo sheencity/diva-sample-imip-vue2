@@ -10,6 +10,7 @@
     </div>
   </article>
 </template>
+
 <script>
 export default {
   props: ['items'],
@@ -26,6 +27,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 article {
   position: absolute;

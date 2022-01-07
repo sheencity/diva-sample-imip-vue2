@@ -35,8 +35,6 @@
 </template>
 
 <script>
-// 项目介绍模块的生产区和生活区组件
-
 export default {
   props: ['dataSource'],
 };

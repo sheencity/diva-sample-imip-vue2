@@ -34,9 +34,9 @@ export default {
   },
   components: {
     AppDialog,
-    AppSwitcher
-  }
-}
+    AppSwitcher,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

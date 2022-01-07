@@ -23,8 +23,8 @@
 </template>
 
 <script>
-// 智慧运营里面的类似表格的组件
 import AppScroller from '../scroller/index';
+
 export default {
   props: ['data', 'contentHeight', 'dataLength', 'height', 'thead'],
   components: {

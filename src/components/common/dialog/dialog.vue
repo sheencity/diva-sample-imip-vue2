@@ -15,6 +15,7 @@
 
 <script>
 import AppDialogHeader from './dialog-header';
+
 export default {
   props: ['header'],
   data() {

@@ -2,7 +2,7 @@
   <main v-if="dataSource && dataSource.length > 0">
     <div
       :key="item.id"
-      v-for="(item, index1) in dataSource"
+      v-for="item in dataSource"
       style="margin-bottom: 0.625rem"
     >
       <div class="top10">
@@ -16,7 +16,7 @@
             <div class="main" :style="{ maxHeight: maxItem * 40 + 'px' }">
               <div
                 class="tbody"
-                v-for="(ele, index2) in item.tbody"
+                v-for="ele in item.tbody"
                 :key="ele[item.thead[0].name]"
                 :class="{ 'item-selected': selectId === ele.id }"
                 @click="selectItem(ele, item)"

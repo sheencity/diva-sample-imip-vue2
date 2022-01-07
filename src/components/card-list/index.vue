@@ -1,6 +1,6 @@
 <template>
   <app-dialog :header="header">
-    <div :key="item.title" v-for="(item, index) in dataSource">
+    <div :key="item.title" v-for="item in dataSource">
       <div class="prod-area">
         <h3>{{ item.title }}</h3>
       </div>
@@ -19,6 +19,7 @@
 <script>
 import AppDialog from '../common/dialog/dialog';
 import AppCardTwoInfo from '../common/card-two-info';
+
 export default {
   props: ['header', 'dataSource'],
   data() {

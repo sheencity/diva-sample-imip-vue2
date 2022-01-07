@@ -63,7 +63,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss">
 :host.multi {
   a.select {

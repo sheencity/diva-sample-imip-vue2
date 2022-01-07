@@ -27,6 +27,7 @@
 
 <script>
 import AppDialog from '../common/dialog/dialog';
+
 export default {
   props: ['header', 'dataSource'],
   data() {
