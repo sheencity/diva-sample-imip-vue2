@@ -41,25 +41,19 @@ export default {
   methods: {
     getStructuredData() {
       let param = {};
+      let num = 0;
       this.dataSource.forEach((item, index) => {
-        switch (index % 2) {
-          case 0: {
-            const { title, value, unit } = item;
-            param.left = { title, value, unit };
-            break;
-          }
-          case 1: {
-            const { title, value, unit } = item;
-            param.right = { title, value, unit };
-            break;
-          }
-        }
-        if (Object.keys(param).length === 2) {
+        const { title, value, unit } = item;
+        index % 2 === 0
+          ? (param.left = { title, value, unit })
+          : (param.right = { title, value, unit });
+        num = Object.keys(param).length;
+        if (num === 2) {
           this.basicData.push(param);
           param = {};
         }
       });
-      if (Object.keys(param).length === 1) {
+      if (num === 1) {
         this.basicData.push(param);
         param = {};
       }
