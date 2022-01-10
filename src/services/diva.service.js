@@ -66,8 +66,7 @@ export class DivaService {
    * @returns
    */
   async getFloorInfoByName(path) {
-    const result = await this.client.getModelGroupByGroupPath(path);
-    return result;
+    return await this.client.getModelGroupByGroupPath(path);;
   } 
 
   /**
