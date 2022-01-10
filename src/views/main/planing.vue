@@ -169,8 +169,8 @@ export default {
     async setTransformAnimation(models) {
       this.animeModelGroup.length = 0;
       const totalModels = await Promise.all(models.map((model) => {
-        if (model.name) return diva.client.getEntitiesByName(model.name);
-        if (model.group) return diva.client.getEntitiesByGroupPath(model.group);
+        if (model.name) return diva.getEntityByName(model.name);
+        if (model.group) return diva.getFloorInfoByName(model.group);
       }));
       // 只取当前模型组内的楼层模型
       this.animeModelGroup = this.animeModelGroup.concat(totalModels.flat().filter((model) => !(model instanceof Overlay)));

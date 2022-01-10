@@ -53,8 +53,8 @@ export default {
     },
     changeCameraTrack(e) {
       this.reset();
-      if (e.diva.scene_name) diva.client.applyScene(e.diva.scene_name);
-      else if (e.diva.camera_track_name) diva.client.playCameraTrack(e.diva.camera_track_name);
+      if (e.diva.scene_name) diva.applySceneByName(e.diva.scene_name);
+      else if (e.diva.camera_track_name) diva.playCameraTrack(e.diva.camera_track_name);
     },
     reset() {
       diva.client?.stopCameraTrack();

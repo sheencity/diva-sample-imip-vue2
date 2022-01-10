@@ -18,7 +18,7 @@
 
 <script>
 import AppDialog from '../common/dialog/dialog';
-import AppCardPanel from '../common/card-two-info';
+import AppCardPanel from '../common/card-panel';
 
 export default {
   props: ['header', 'dataSource'],

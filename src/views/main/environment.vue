@@ -107,7 +107,7 @@ export default {
      */
     async initDeviceInfo() {
       this.deviceList.content.data.forEach(async (item) => {
-        const model = await diva.getEntityByName(item.diva.model[0].name);
+        const [model] = await diva.getEntityByName(item.diva.model[0].name);
         this.deviceMap.set(model.id, item.id);
         model?.addEventListener('click', this.setWebWidget);
       });

@@ -90,7 +90,7 @@ export default {
      * 初始化场景
      */
     async initScene() {
-      await diva.client?.applyScene(this.divaParams.init.scene_name);
+      diva.applySceneByName(this.divaParams.init.scene_name);
       this.cameraSubscription = setTimeout(() => {
         this.initSceneEffect();
       }, 1500);
@@ -111,7 +111,7 @@ export default {
       const focusCoord = floorCoord.add(
         new Vector3(0, this.commonConfig.default_translate_distance, 0)
       );
-      await diva.client.request('FocusOnCoord', {
+      await diva.focusOnCoord({
         coord: focusCoord.tuple,
         ...this.commonConfig.floor_focus_param,
       });

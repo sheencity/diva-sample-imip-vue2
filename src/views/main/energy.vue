@@ -76,7 +76,7 @@ export default {
       [ this.switchPanel ] = data['panel-right'];
     },
     initScene() {
-      diva.client?.applyScene(this.divaParams.init.scene_name);
+      diva.applySceneByName(this.divaParams.init.scene_name);
     },
     /**
      * 选择能耗类型资源种类
@@ -164,7 +164,7 @@ export default {
      * @returns 获取到的 POI 列表
      */
     async getPOI(group) {
-      return await diva.client.getModelGroupByGroupPath(group);
+      return await diva.getFloorInfoByName(group);
     },
     /**
      * 计算渐变色

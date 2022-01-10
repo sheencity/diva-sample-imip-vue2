@@ -218,7 +218,7 @@ export class DivaService {
    * @returns
    */
   async getEntityByName(name) {
-    return ((await this.client.getEntitiesByName(name)) || [])[0];
+    return await this.client.getEntitiesByName(name);
   }
 
   /**
@@ -226,7 +226,7 @@ export class DivaService {
    * @param {*} name
    */
   async setModelDefaultRenderModel(name) {
-    const model = await this.getEntityByName(name);
+    const [model] = await this.getEntityByName(name);
     model.setRenderingStyleMode('default');
   }
 
@@ -274,7 +274,7 @@ export class DivaService {
    * @param {*} mode
    */
   async renderAndFocusOnModelByName(name, distance, pitch, mode) {
-    const model = await this.getEntityByName(name);
+    const [model] = await this.getEntityByName(name);
     model.setRenderingStyleMode(mode);
     await this.client.request('FocusOnEntity', {
       id: model.id,
@@ -290,7 +290,7 @@ export class DivaService {
    * @param {number} pitch 角度
    */
   async focusOnModelByName(name, distance, pitch) {
-    const model = await this.getEntityByName(name);
+    const [model] = await this.getEntityByName(name);
     model?.focus(distance, (pitch * Math.PI) / 180);
   }
 
@@ -390,5 +390,29 @@ export class DivaService {
     await Promise.all(
       data.map((request) => this.client?.batchRequest(request))
     );
+  }
+  /**
+   * 聚焦至坐标
+   */
+  async focusOnCoord(param){
+    await this.client.request('FocusOnCoord', param);
+  }
+  /**
+   * 通过id获取模型
+   */
+  async getEntityById(id){
+    return await this.client.getEntityById(id);
+  }
+  /**
+   * 设置叠色高亮模式渲染样式
+   */
+  async setHighlightStyle(param){
+    await this.client.request('SetHighlightStyle',param);
+  }
+  /**
+   * 通过名称播放漫游轨
+   */
+  async playCameraTrack(param){
+    await this.client.playCameraTrack(param)
   }
 }

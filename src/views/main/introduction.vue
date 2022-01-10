@@ -87,7 +87,7 @@ export default {
      * 初始化场景
      */
     initScene() {
-      diva.client?.applyScene(this.divaParams.init.scene_name);
+      diva.applySceneByName(this.divaParams.init.scene_name);
     },
     /**
      * 选择区域聚焦
@@ -116,7 +116,7 @@ export default {
         floorArray.push(model);
       }
       for (const p of poiList) {
-        const [poi] = await diva.client.getEntitiesByName(p.name);
+        const [poi] = await diva.getEntityByName(p.name);
         POIArray.push(poi);
       }
       return { floor: floorArray, POI: POIArray };
@@ -158,10 +158,7 @@ export default {
       this.floorList.forEach((floor) => {
         this.setRenderingStyle(floor, true, RenderingStyleMode.Highlight)
       });
-      await diva.client.request(
-        'SetHighlightStyle',
-        this.cardListAction[0].param
-      );
+      await diva.setHighlightStyle(this.cardListAction[0].param);
     },
     /**
      * 设置楼体渲染样式
@@ -204,7 +201,7 @@ export default {
      * 实体添加的click事件
      */
     async modelClickEvent(e) {
-      const model = await diva.client.getEntityById(e.target);
+      const model = await diva.getEntityById(e.target);
       const group = model.group;
       const nameList = group.split('楼栋');
       let name = model.name;
@@ -235,13 +232,13 @@ export default {
       }
     },
     async getEntitiesByName(name){
-      return await diva.client.getEntitiesByName(name);
+      return await diva.getEntityByName(name);
     },
     /**
      * 通过路径获取模型组
      */
     async getModelGroupByGroupPath(path){
-      return await diva.client.getModelGroupByGroupPath(path);
+      return await diva.getFloorInfoByName(path);
     }
   },
   components: {

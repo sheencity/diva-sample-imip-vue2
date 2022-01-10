@@ -93,13 +93,13 @@ export default {
       [ this.staPanel, this.basicPie, this.basicLine ] = data['panel-right'];
       this.groupName = data.diva.common.group_name;
       this.currentFloor.mode = data.diva.common.default_mode;
-      this.floorsModelGroup = await diva.client?.getModelGroupByGroupPath(this.groupName);
+      this.floorsModelGroup = await diva.getFloorInfoByName(this.groupName);
     },
     /**
      * 初始化场景
      */
     initScene(name) {
-      diva.client?.applyScene(name);
+      diva.applySceneByName(name);
     },
     /**
      * 切换电梯按钮楼层
@@ -123,7 +123,7 @@ export default {
       const floorBoundingInfo =
         await this.currentFloor.modelGroup.getBoundingInfo();
       const floorCoord = floorBoundingInfo.boundingBox.center;
-      await diva.client.request('FocusOnCoord', {
+      await diva.focusOnCoord({
         coord: floorCoord.tuple,
         ...this.floorConfig,
       });
@@ -140,7 +140,7 @@ export default {
       await this.resetFloorMode();
       this.clearCurrentFloorInfo();
       this.currentFloor.mode = e.title;
-      await diva.client?.applyScene(sceneName, {
+      await diva.applySceneByName(sceneName, {
         camera: true,
         visibility: false,
       });
