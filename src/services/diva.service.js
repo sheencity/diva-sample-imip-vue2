@@ -36,28 +36,86 @@ export class DivaService {
   }
 
   /**
-   * 设置弹窗
-   * @param {string} id 实体 ID
-   * @param {string} url 链接
-   * @param {{}} options 弹窗配置
+   * 从模型组中取到指定名称的模型，无匹配返回 null
+   * @param {TypedGroup<Model>} group
+   * @param {string} name
    */
-  async createWedWdiget(id, url, options) {
-    await this.client.request('CreateWebWidget', {
-      entityId: id,
-      widget: {
-        url,
-        ...options,
-      },
-    });
+  getEntityFromGroup(group, name) {
+    const models = Array.from(group);
+    return models.find((model) => model.name === name) ?? null;
   }
 
   /**
-   * 销毁弹窗
-   * @param {string} id 实体 ID
+   * 按序返回指定名称的所有模型
+   * @param {string | string[]} name 一个或多个模型名称
    */
-  async destroyWedWidget(id) {
-    await this.client.request('DestroyWebWidget', {
-      entityId: id,
+  async getEntitiesByName(name) {
+    const names = typeof name === 'string' ? [name] : name;
+    let models = await Promise.all(
+      names.map((name) => this.client.getEntitiesByName(name))
+    );
+    models = models.flat();
+    return names.map(
+      (name) => models.find((model) => model.name === name) ?? null
+    );
+  }
+  
+  /**
+   * 通过 groupPath 来获取楼层所有模型信息
+   * @param {*} path
+   * @returns
+   */
+  async getFloorInfoByName(path) {
+    const result = await this.client.getModelGroupByGroupPath(path);
+    return result;
+  } 
+
+  /**
+   * 在 ModelGroup 中根据分类名称来获取对应的模型信息
+   * @param {*} modelGroup
+   * @param {*} category
+   */
+  getModelsFromGroupByCategory(modelGroup, category) {
+    const rules = new Map([
+      ['floor', /F/],
+      ['toilet', /toilet/],
+      ['smog', new RegExp('')],
+    ]);
+    const rule = rules.get(category);
+    let models = [];
+    modelGroup.forEach((model) => {
+      if (rule.test(model.name)) {
+        models.push(model);
+      }
+    });
+    return models;
+  }
+
+  /**
+   * 通过名称来获取实体
+   * @param {*} name
+   * @returns
+   */
+  async getEntityByName(name) {
+    return await this.client.getEntitiesByName(name);
+  }
+
+  /**
+   * 通过id获取模型
+   */
+  async getEntityById(id){
+    return await this.client.getEntityById(id);
+  }
+
+  /**
+   * 根据模型组设置显示隐藏
+   * @param {string} group
+   * @param {boolean} visible
+   */
+    async setEntityVisibleByGroup(group, visible) {
+    await this.client?.request('UpdateEntityStatusByGroup', {
+      group: group,
+      visible: visible,
     });
   }
 
@@ -72,40 +130,6 @@ export class DivaService {
       id: id,
       duration: duration,
       ...options,
-    });
-  }
-
-  /**
-   * 移除实体的位移动画
-   * @param {string} id 实体 ID
-   */
-  async removeTransformAnimation(id) {
-    await this.client.request('RemoveTransformAnimation', {
-      id: id,
-    });
-  }
-
-  /**
-   * 根据模型组更新模型
-   * @param {string} group 
-   * @param {{}} option 
-   */
-  async updateEntityPropertyByGroup(group, option) {
-    await this.client?.request('UpdateEntityStatusByGroup', {
-      group: group,
-      ...option,
-    });
-  }
-
-  /**
-   * 根据模型组设置显示隐藏
-   * @param {string} group
-   * @param {boolean} visible
-   */
-  async setEntityVisibleByGroup(group, visible) {
-    await this.client?.request('UpdateEntityStatusByGroup', {
-      group: group,
-      visible: visible,
     });
   }
 
@@ -143,31 +167,6 @@ export class DivaService {
   }
 
   /**
-   * 从模型组中取到指定名称的模型，无匹配返回 null
-   * @param {TypedGroup<Model>} group
-   * @param {string} name
-   */
-  getEntityFromGroup(group, name) {
-    const models = Array.from(group);
-    return models.find((model) => model.name === name) ?? null;
-  }
-
-  /**
-   * 按序返回指定名称的所有模型
-   * @param {string | string[]} name 一个或多个模型名称
-   */
-  async getEntitiesByName(name) {
-    const names = typeof name === 'string' ? [name] : name;
-    let models = await Promise.all(
-      names.map((name) => this.client.getEntitiesByName(name))
-    );
-    models = models.flat();
-    return names.map(
-      (name) => models.find((model) => model.name === name) ?? null
-    );
-  }
-
-  /**
    * 通过设置 poi 名称设置其背景颜色
    * @param {string} name poi 的名称
    * @param {[number, number, number]} color rgb 颜色值，各位数值值域 [0, 255]
@@ -179,46 +178,6 @@ export class DivaService {
       type: 'poi',
       property: { icon: 'camera', color },
     });
-  }
-
-  /**
-   * 通过 groupPath 来获取楼层所有模型信息
-   * @param {*} path
-   * @returns
-   */
-  async getFloorInfoByName(path) {
-    const result = await this.client.getModelGroupByGroupPath(path);
-    return result;
-  }
-
-  /**
-   * 在 ModelGroup 中根据分类名称来获取对应的模型信息
-   * @param {*} modelGroup
-   * @param {*} category
-   */
-  getModelsFromGroupByCategory(modelGroup, category) {
-    const rules = new Map([
-      ['floor', /F/],
-      ['toilet', /toilet/],
-      ['smog', new RegExp('')],
-    ]);
-    const rule = rules.get(category);
-    let models = [];
-    modelGroup.forEach((model) => {
-      if (rule.test(model.name)) {
-        models.push(model);
-      }
-    });
-    return models;
-  }
-
-  /**
-   * 通过名称来获取实体
-   * @param {*} name
-   * @returns
-   */
-  async getEntityByName(name) {
-    return await this.client.getEntitiesByName(name);
   }
 
   /**
@@ -244,6 +203,60 @@ export class DivaService {
         color: option.color, // 自发光颜色，[r,g,b,a]，颜色范围是0 ~ 255，以 alpha 值设置透明度
         emission: option.emission,
       },
+    });
+  }
+  /**
+   * 设置叠色高亮模式渲染样式
+   */
+  async setHighlightStyle(param){
+    await this.client.request('SetHighlightStyle',param);
+  }
+
+  /**
+   * 设置弹窗
+   * @param {string} id 实体 ID
+   * @param {string} url 链接
+   * @param {{}} options 弹窗配置
+   */
+  async createWedWdiget(id, url, options) {
+    await this.client.request('CreateWebWidget', {
+      entityId: id,
+      widget: {
+        url,
+        ...options,
+      },
+    });
+  }
+
+  /**
+   * 销毁弹窗
+   * @param {string} id 实体 ID
+   */
+  async destroyWedWidget(id) {
+    await this.client.request('DestroyWebWidget', {
+      entityId: id,
+    });
+  }
+
+  /**
+   * 移除实体的位移动画
+   * @param {string} id 实体 ID
+   */
+  async removeTransformAnimation(id) {
+    await this.client.request('RemoveTransformAnimation', {
+      id: id,
+    });
+  }
+
+  /**
+   * 根据模型组更新模型
+   * @param {string} group 
+   * @param {{}} option 
+   */
+  async updateEntityPropertyByGroup(group, option) {
+    await this.client?.request('UpdateEntityStatusByGroup', {
+      group: group,
+      ...option,
     });
   }
 
@@ -299,6 +312,7 @@ export class DivaService {
    * @param {*} model
    * @param {*} title
    */
+
   async setModelRenderingStyleModeByTitle(model, title) {
     const rules = new Map([
       ['样式1', 'default'],
@@ -314,6 +328,7 @@ export class DivaService {
     if (!array.length) return [];
     return [array.slice(0, size), ...this.chuck(array.slice(size), size)];
   }
+
   /**
    * 控制楼层抽屉拉出
    * @param {TypedGroup<Model>} floorModel 楼层模型组
@@ -326,7 +341,6 @@ export class DivaService {
     //   floorModel,
     //   this.explodeState ? new Vector3(0, 0, index * 250) : new Vector3()
     // );
-
     if (!bool) {
       await this._translate(
         new Vector3(0, 3500, 0),
@@ -342,6 +356,7 @@ export class DivaService {
       await this._resetGroupCoord(floorModel);
     }
   }
+
   async _resetGroupCoord(group) {
     const metadata = [];
     for (const item of group) {
@@ -362,6 +377,7 @@ export class DivaService {
     }
     await this._batchRequest(metadata);
   }
+
   async _translate(delta, group, adjusting) {
     const metadata = [];
     const matrix = Matrix.Translation(delta);
@@ -385,30 +401,21 @@ export class DivaService {
     }
     await this._batchRequest(metadata);
   }
+
   async _batchRequest(metadata) {
     const data = this.chuck(metadata, 50);
     await Promise.all(
       data.map((request) => this.client?.batchRequest(request))
     );
   }
+
   /**
    * 聚焦至坐标
    */
   async focusOnCoord(param){
     await this.client.request('FocusOnCoord', param);
   }
-  /**
-   * 通过id获取模型
-   */
-  async getEntityById(id){
-    return await this.client.getEntityById(id);
-  }
-  /**
-   * 设置叠色高亮模式渲染样式
-   */
-  async setHighlightStyle(param){
-    await this.client.request('SetHighlightStyle',param);
-  }
+
   /**
    * 通过名称播放漫游轨
    */
