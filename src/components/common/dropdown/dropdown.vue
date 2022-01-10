@@ -33,12 +33,11 @@
 
 <script>
 export default {
-  props: ['options', 'initvalue', 'disabled'],
-
+  props: ['options', 'value', 'disabled'],
   data() {
     return {
       hideOptions: true,
-      initial: this.initvalue
+      initial: this.value
     }
   },
   methods: {

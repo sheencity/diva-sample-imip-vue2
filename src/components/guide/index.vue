@@ -32,7 +32,7 @@
               <div>
                 <drop-down
                   :options="weatherList"
-                  :initvalue="weatherInitial"
+                  :value="weatherInitial"
                   :disabled="false"
                   @select="setSelectedWeather"
                 ></drop-down>

@@ -51,12 +51,15 @@ export default {
     };
   },
   async created() {
-    const { data } = await this.axios.get('config/menu/index.json');
-    const menuList = data.menu.data;
-    this.filterRoute(menuList);
-    this.menuList = menuList;
+    await this.initMenu();
   },
   methods: {
+    async initMenu() {
+      const { data } = await this.axios.get('config/menu/index.json');
+      const menuList = data.menu.data;
+      this.filterRoute(menuList);
+      this.menuList = menuList;
+    },
     selectRoute(v) {
       this.currId = v;
     },

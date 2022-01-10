@@ -25,7 +25,7 @@
           >
             <div class="closeBtn">
               <img
-                @click.stop="closeTopframe()"
+                @click.stop="closeTopFrame()"
                 src="assets/images/common/row-list/close.svg"
               />
             </div>
@@ -44,19 +44,16 @@ export default {
   props: ['header', 'dataSource', 'disabled'],
   data() {
     return {
-      rowList: [],
+      rowList: this.dataSource.data,
       selectedIndex: -1,
     };
-  },
-  created() {
-    this.rowList = this.dataSource.data;
   },
   methods: {
     select(item, index) {
       this.selectedIndex = index;
       this.$emit('select', item, index);
     },
-    closeTopframe() {
+    closeTopFrame() {
       this.selectedIndex = -1;
     },
   },

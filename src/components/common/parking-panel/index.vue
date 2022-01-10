@@ -42,7 +42,7 @@
       <hr class="hr" />
       <div class="switch">
         <p>车位使用透视</p>
-        <app-switcher v-model="check" @switch="swit"></app-switcher>
+        <app-switcher v-model="check" @switch="onChange"></app-switcher>
       </div>
       <hr class="hr" style="margin-bottom: 10px" />
       <!-- 停车区 -->
@@ -91,7 +91,7 @@ export default {
     this.initChart();
   },
   methods: {
-    swit(v) {
+    onChange(v) {
       this.selectedIndex = -1;
       this.$emit('switch', v);
     },

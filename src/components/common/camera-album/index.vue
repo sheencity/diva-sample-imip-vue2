@@ -13,7 +13,7 @@
           class="pic-container"
           v-for="camera in item.content.data"
           :key="camera.text"
-          @click="playCameraTrack(camera)"
+          @click="onChange(camera)"
         >
           <img :src="camera.image" />
           <span>{{ camera.text }}</span>
@@ -29,7 +29,7 @@ import AppDialogHeader from '../dialog/dialog-header';
 export default {
   props: ['dataSource'],
   methods: {
-    playCameraTrack(e) {
+    onChange(e) {
       this.$emit('check', e);
     },
   },

@@ -22,17 +22,21 @@ export default {
     };
   },
   mounted() {
-    const chart = echarts.init(this.$refs.echarts);
-    let mergeOpt;
-    if (this.type) {
-      const option = echartService.echartsMap.get(this.type)();
-      mergeOpt = merge(option, this.dataSource.option);
-    } else {
-      mergeOpt = this.dataSource.option;
-    }
-    chart.setOption(mergeOpt);
+    this.initChart();
   },
-  methods: {},
+  methods: {
+    initChart() {
+      const chart = echarts.init(this.$refs.echarts);
+      let mergeOpt;
+      if (this.type) {
+        const option = echartService.echartsMap.get(this.type)();
+        mergeOpt = merge(option, this.dataSource.option);
+      } else {
+        mergeOpt = this.dataSource.option;
+      }
+      chart.setOption(mergeOpt);
+    }
+  },
   components: {
     AppDialog,
   },

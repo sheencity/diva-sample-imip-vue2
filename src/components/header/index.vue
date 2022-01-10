@@ -43,23 +43,32 @@ export default {
       weatherInfo: {},
       weatherUrl: '',
       showGuide: false,
+      weatherTimer: null,
+      timer: null,
     };
   },
   created() {
-    this.getWeatherInfo();
-    // 每15分钟获取一次天气
-    setInterval(() => {
-      this.getWeatherInfo();
-    }, 1000 * 60 * 15);
-
-    this.date = utilService.getDate();
-    this.time = utilService.getCurrentTime();
-    setInterval(() => {
-      this.time = utilService.getCurrentTime();
-    }, 1000);
+    this.init();
+  },
+  destroyed() {
+    this.weatherTimer = null;
+    this.timer = null;
   },
   methods: {
-    async getWeatherInfo() {
+    init() {
+      this.initWeatherInfo();
+      // 每15分钟获取一次天气
+      this.weatherTimer = setInterval(() => {
+        this.initWeatherInfo();
+      }, 1000 * 60 * 15);
+
+      this.date = utilService.getDate();
+      this.time = utilService.getCurrentTime();
+      this.timer = setInterval(() => {
+        this.time = utilService.getCurrentTime();
+      }, 1000);
+    },
+    async initWeatherInfo() {
       const url = `${weatherService.baseUrl}?city=500106&key=${weatherService.key}`;
       const { data } = await this.axios.get(url);
       this.weatherInfo = {
