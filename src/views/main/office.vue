@@ -81,7 +81,7 @@ export default {
   methods: {
     async init() {
       await this.initConfig();
-      this.initScene(this.divaParams.init.scene_name);
+      await this.initScene(this.divaParams.init.scene_name);
       this.switchFloorRendering(this.floorPanel['panel-left'][0].content.data[0]);
       this.floorConfig = this.floorPanel['floor-btn-group'].diva.action[0].param;
     },
@@ -98,8 +98,8 @@ export default {
     /**
      * 初始化场景
      */
-    initScene(name) {
-      diva.applySceneByName(name);
+    async initScene(name) {
+      await diva.applySceneByName(name);
     },
     /**
      * 切换电梯按钮楼层

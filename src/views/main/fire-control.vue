@@ -77,7 +77,7 @@ export default {
   methods: {
     async init() {
       await this.initConfig();
-      this.initScene();
+      await this.initScene();
     },
     async initConfig() {
       const { data } = await this.axios.get('config/page/firecontrol.json');
@@ -90,7 +90,7 @@ export default {
      * 初始化场景
      */
     async initScene() {
-      diva.applySceneByName(this.divaParams.init.scene_name);
+      await diva.applySceneByName(this.divaParams.init.scene_name);
       this.cameraSubscription = setTimeout(() => {
         this.initSceneEffect();
       }, 1500);

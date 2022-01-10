@@ -66,7 +66,7 @@ export default {
   methods: {
     async init() {
       await this.initConfig();
-      this.initScene();
+      await this.initScene();
       this.setDivaParam();
     },
     async initConfig() {
@@ -75,8 +75,8 @@ export default {
       [ this.buttonTab, this.barCharts, this.pieCharts ] = data['panel-left'];
       [ this.switchPanel ] = data['panel-right'];
     },
-    initScene() {
-      diva.applySceneByName(this.divaParams.init.scene_name);
+    async initScene() {
+      await diva.applySceneByName(this.divaParams.init.scene_name);
     },
     /**
      * 选择能耗类型资源种类

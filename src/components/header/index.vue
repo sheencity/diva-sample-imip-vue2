@@ -51,8 +51,8 @@ export default {
     this.init();
   },
   destroyed() {
-    this.weatherTimer = null;
-    this.timer = null;
+    clearInterval(this.weatherTimer);
+    clearInterval(this.timer);
   },
   methods: {
     init() {

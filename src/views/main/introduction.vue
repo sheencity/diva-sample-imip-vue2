@@ -72,7 +72,7 @@ export default {
   methods: {
     async init() {
       await this.initConfig();
-      this.initScene();
+      await this.initScene();
       // 为楼体区块添加点击事件
       this.addModelListener();
     },
@@ -86,8 +86,8 @@ export default {
     /**
      * 初始化场景
      */
-    initScene() {
-      diva.applySceneByName(this.divaParams.init.scene_name);
+    async initScene() {
+      await diva.applySceneByName(this.divaParams.init.scene_name);
     },
     /**
      * 选择区域聚焦
