@@ -1,29 +1,29 @@
 <template>
-  <article v-if="initDivaData" class="space-between">
+  <article v-if="divaParams" class="space-between">
     <aside class="space-left all">
-      <app-table-mulit-col3
+      <app-table-multi-col3
         class="top10"
-        :dataSource="tablePanelData.content.data"
+        :dataSource="tablePanel.content.data"
         :maxItem="4"
         @select="select"
-      ></app-table-mulit-col3>
+      ></app-table-multi-col3>
     </aside>
     <aside class="space-right all">
       <app-echarts
-        :header="pieChartData.header"
-        :dataSource="pieChartData.content"
+        :header="pieChart.header"
+        :dataSource="pieChart.content"
       ></app-echarts>
 
       <app-echarts
         class="top10"
-        :header="lineChartData.header"
-        :dataSource="lineChartData.content"
+        :header="lineChart.header"
+        :dataSource="lineChart.content"
       ></app-echarts>
 
       <app-echarts
         class="top10"
-        :header="barChartData.header"
-        :dataSource="barChartData.content"
+        :header="barChart.header"
+        :dataSource="barChart.content"
       ></app-echarts>
     </aside>
   </article>
@@ -33,18 +33,18 @@
 import { Vector3 } from '@sheencity/diva-sdk-math';
 import { POI } from '@sheencity/diva-sdk';
 import { diva } from 'services/global';
-import AppTableMulitCol3 from 'components/common/table/table-mulit-col3';
+import AppTableMultiCol3 from 'components/common/table/table-multi-col3';
 import AppEcharts from 'components/common/echarts';
 
 export default {
   data() {
     return {
-      initDivaData: null,
+      divaParams: null,
       commonConfig: null,
-      tablePanelData: null,
-      pieChartData: null,
-      lineChartData: null,
-      barChartData: null,
+      tablePanel: null,
+      pieChart: null,
+      lineChart: null,
+      barChart: null,
       /**
        * @type {import("@sheencity/diva-sdk").TypedGroup}
        */
@@ -76,23 +76,21 @@ export default {
   },
   methods: {
     async init() {
-      await this.getConfig();
+      await this.initConfig();
       this.initScene();
     },
-    async getConfig() {
+    async initConfig() {
       const { data } = await this.axios.get('config/page/firecontrol.json');
-      this.initDivaData = data.diva;
-      this.tablePanelData = data['panel-left'][0];
-      this.pieChartData = data['panel-right'][0];
-      this.lineChartData = data['panel-right'][1];
-      this.barChartData = data['panel-right'][2];
-      this.commonConfig = this.initDivaData.common;
+      this.divaParams = data.diva;
+      [ this.tablePanel ] = data['panel-left'];
+      [ this.pieChart, this.lineChart, this.barChart ] = data['panel-right'];
+      this.commonConfig = this.divaParams.common;
     },
     /**
      * 初始化场景
      */
     async initScene() {
-      await diva.client?.applyScene(this.initDivaData.init.scene_name);
+      await diva.client?.applyScene(this.divaParams.init.scene_name);
       this.cameraSubscription = setTimeout(() => {
         this.initSceneEffect();
       }, 1500);
@@ -142,7 +140,7 @@ export default {
     },
   },
   components: {
-    AppTableMulitCol3,
+    AppTableMultiCol3,
     AppEcharts,
   },
 };

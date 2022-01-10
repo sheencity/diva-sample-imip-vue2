@@ -1,32 +1,32 @@
 <template>
-  <article v-if="initDivaData" class="space-between">
+  <article v-if="divaParams" class="space-between">
     <aside class="space-left all">
       <app-button-tab
         class="top10"
-        :header="buttonTabData.header"
-        :dataSource="buttonTabData.content"
+        :header="buttonTab.header"
+        :dataSource="buttonTab.content"
         @select="selectResources"
       ></app-button-tab>
 
       <app-echarts
         class="top10"
         :key="currCategoryIndex + 'bar'"
-        :header="barChartsData[currCategoryIndex].header"
-        :dataSource="barChartsData[currCategoryIndex].content"
+        :header="barCharts[currCategoryIndex].header"
+        :dataSource="barCharts[currCategoryIndex].content"
       ></app-echarts>
 
       <app-echarts
         class="top10"
         :key="currCategoryIndex + 'pie'"
-        :header="pieChartsData[currCategoryIndex].header"
-        :dataSource="pieChartsData[currCategoryIndex].content"
+        :header="pieCharts[currCategoryIndex].header"
+        :dataSource="pieCharts[currCategoryIndex].content"
       ></app-echarts>
     </aside>
     <aside class="space-right all">
       <app-switcher-list-panel
         class="top10"
-        :header="switchPanelData.header"
-        :dataSource="switchPanelData.content.data"
+        :header="switchPanel.header"
+        :dataSource="switchPanel.content.data"
         @checked="checked"
       ></app-switcher-list-panel>
     </aside>
@@ -44,11 +44,11 @@ import AppEcharts from 'components/common/echarts';
 export default {
   data() {
     return {
-      initDivaData: null,
-      buttonTabData: null,
-      barChartsData: null,
-      pieChartsData: null,
-      switchPanelData: null,
+      divaParams: null,
+      buttonTab: null,
+      barCharts: null,
+      pieCharts: null,
+      switchPanel: null,
 
       currCategoryIndex: 0,
       currCategoryData: [],
@@ -65,20 +65,18 @@ export default {
   },
   methods: {
     async init() {
-      await this.getConfig();
+      await this.initConfig();
       this.initScene();
-      this.getDivaParam();
+      this.setDivaParam();
     },
-    async getConfig() {
+    async initConfig() {
       const { data } = await this.axios.get('config/page/energy.json');
-      this.initDivaData = data.diva;
-      this.buttonTabData = data['panel-left'][0];
-      this.barChartsData = data['panel-left'][1];
-      this.pieChartsData = data['panel-left'][2];
-      this.switchPanelData = data['panel-right'][0];
+      this.divaParams = data.diva;
+      [ this.buttonTab, this.barCharts, this.pieCharts ] = data['panel-left'];
+      [ this.switchPanel ] = data['panel-right'];
     },
     initScene() {
-      diva.client?.applyScene(this.initDivaData.init.scene_name);
+      diva.client?.applyScene(this.divaParams.init.scene_name);
     },
     /**
      * 选择能耗类型资源种类
@@ -86,8 +84,8 @@ export default {
      */
     selectResources(e) {
       this.currCategoryIndex = e;
-      this.getCurrCategoryData();
-      this.getDivaParam();
+      this.setCurrCategoryData();
+      this.setDivaParam();
       if (this.POIChecked) {
         const { minValue, maxValue } = this.ruleNum(this.divaParam);
         this.divaParam.minValue = minValue;
@@ -101,8 +99,7 @@ export default {
      */
     async checked(e) {
       if (e.title === 'POI') {
-        this.getCurrCategoryData();
-        this.currCategoryData = this.buttonTabData.content.data[this.currCategoryIndex].data;
+        this.setCurrCategoryData();
         this.POIList = await this.getPOI(e.diva.resource.group);
         if (e.default) {
           this.POIChecked = true;
@@ -162,19 +159,6 @@ export default {
       this.POIList.setVisibility(true);
     },
     /**
-     * 获取当前 POI 资源种类数据
-     */
-    getCurrCategoryData() {
-      this.currCategoryData =
-        this.buttonTabData.content.data[this.currCategoryIndex].data;
-    },
-    /**
-     * 获取 DIVA 行为参数
-     */
-    getDivaParam() {
-      this.divaParam = this.buttonTabData.content.data[this.currCategoryIndex].diva.action[0];
-    },
-    /**
      * 获取 POI
      * @param {String} group POI路径
      * @returns 获取到的 POI 列表
@@ -195,21 +179,31 @@ export default {
       const green = new Vector3(51, 154, 0);
       const yellow = new Vector3(255, 184, 0);
       const red = new Vector3(218, 31, 0);
+      let R,G,B;
       if (ratio < 0.5) {
-        const [R, G, B] = green.lerpTo(yellow, ratio * 2).tuple;
-        return [parseInt(R), parseInt(G), B];
+        [R, G, B] = green.lerpTo(yellow, ratio * 2).tuple;
       } else {
-        const [R, G, B] = yellow.lerpTo(red, ratio * 2 - 1).tuple;
-        return [parseInt(R), parseInt(G), B];
+        [R, G, B] = yellow.lerpTo(red, ratio * 2 - 1).tuple;
       }
+      return [parseInt(R), parseInt(G), B];
     },
     /**
      * 清空POI
      */
+        /**
+     * 获取当前 POI 资源种类数据
+     */
+    setCurrCategoryData() {
+      this.currCategoryData = this.buttonTab.content.data[this.currCategoryIndex].data;
+    },
+    /**
+     * 获取 DIVA 行为参数
+     */
+    setDivaParam() {
+      this.divaParam = this.buttonTab.content.data[this.currCategoryIndex].diva.action[0];
+    },
     resetPOI() {
-      if (this.POIList) {
-        this.POIList.setVisibility(false);
-      }
+      if (this.POIList) this.POIList.setVisibility(false);
     },
   },
   components: {

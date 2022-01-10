@@ -16,7 +16,7 @@
   "panel-left": [
     {
       "content": {
-        "type": "table-mulit-col3",
+        "type": "table-multi-col3",
         "data": [
           {
             "header": {

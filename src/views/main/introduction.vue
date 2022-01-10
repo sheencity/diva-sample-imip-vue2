@@ -1,29 +1,29 @@
 <template>
-  <article v-if="initDivaData" class="space-between">
+  <article v-if="divaParams" class="space-between">
     <aside class="space-left all">
       <app-basic-info
         class="top10"
-        :header="basicInfoData.header"
-        :dataSource="basicInfoData.content.data"
+        :header="basicInfo.header"
+        :dataSource="basicInfo.content.data"
       ></app-basic-info>
 
       <app-card-table
         class="top10"
-        :header="cardTableData.header"
-        :dataSource="cardTableData.content.data"
+        :header="cardTable.header"
+        :dataSource="cardTable.content.data"
       ></app-card-table>
 
       <app-echarts
         class="top10"
-        :header="roseChartsData.header"
-        :dataSource="roseChartsData.content"
+        :header="roseCharts.header"
+        :dataSource="roseCharts.content"
       ></app-echarts>
     </aside>
     <aside class="space-right all">
       <app-card-list
         class="top10"
-        :header="cardListData.header"
-        :dataSource="cardListData.content.data"
+        :header="cardList.header"
+        :dataSource="cardList.content.data"
         @select="selectArea"
       ></app-card-list>
     </aside>
@@ -41,16 +41,22 @@ import AppEcharts from 'components/common/echarts';
 export default {
   data() {
     return {
-      initDivaData: null,
-      basicInfoData: null,
-      cardTableData: null,
-      roseChartsData: null,
-      cardListData: null,
+      divaParams: null,
+      basicInfo: null,
+      cardTable: null,
+      roseCharts: null,
+      cardList: null,
 
       cardListAction: [],
-      POIList: [],
+      poiList: [],
       floorList: [],
       modelEventList: [],
+
+      typeMap: new Map([
+        ['name', this.getEntitiesByName],
+        ['group', this.getModelGroupByGroupPath],
+        ['block', this.getEntitiesByName],
+      ])
     };
   },
   created() {
@@ -59,32 +65,29 @@ export default {
 
   beforeDestroy() {
     this.modelEventList?.forEach((model) => {
-      model.removeEventListener('click', this.addEvent);
+      model.removeEventListener('click', this.modelClickEvent);
     });
     this.setFloorReset();
   },
-  destroyed() {},
   methods: {
     async init() {
-      await this.getConfig();
+      await this.initConfig();
       this.initScene();
       // 为楼体区块添加点击事件
       this.addModelListener();
     },
-    async getConfig() {
+    async initConfig() {
       const { data } = await this.axios.get('config/page/introduction.json');
-      this.initDivaData = data.diva;
-      this.basicInfoData = data['panel-left'][0];
-      this.cardTableData = data['panel-left'][1];
-      this.roseChartsData = data['panel-left'][2];
-      this.cardListData = data['panel-right'][0];
-      this.cardListAction = this.cardListData.content.diva.action;
+      [ this.basicInfo, this.cardTable, this.roseCharts ] = data['panel-left'];
+      [ this.cardList ] = data['panel-right'];
+      this.divaParams = data.diva;
+      this.cardListAction = this.cardList.content.diva.action;
     },
     /**
      * 初始化场景
      */
     initScene() {
-      diva.client?.applyScene(this.initDivaData.init.scene_name);
+      diva.client?.applyScene(this.divaParams.init.scene_name);
     },
     /**
      * 选择区域聚焦
@@ -97,61 +100,7 @@ export default {
       this.floorList = [];
       this.setRendering(e.diva);
     },
-    /**
-     * 渲染实体，显示POI
-     * @param v POI和楼体信息
-     */
-    async setRendering(v) {
-      const floorList = v.models;
-      const POIList = v.poi;
-      const { floor, POI } = await this.getFloorPOI(floorList, POIList);
-      this.floorList = floor;
-      this.POIList = POI;
-      // 显示POI并聚焦
-      this.POIList.forEach((p) => {
-        p?.setVisibility(true);
-        p?.focus(
-          this.cardListAction[1].param.distance,
-          this.cardListAction[1].param.pitch
-        );
-      });
-      // 楼层高亮
-      this.floorList.forEach((f) => {
-        if (f.get_type === 'group') {
-          f.setRenderingStyleMode(RenderingStyleMode.Highlight);
-        } else if (f.get_type === 'block') {
-          f[0].setVisibility(true);
-        } else {
-          f[0].setRenderingStyleMode(RenderingStyleMode.Highlight);
-        }
-      });
-      await diva.client.request(
-        'SetHighlightStyle',
-        this.cardListAction[0].param
-      );
-    },
-    /**
-     * 清除楼体样式
-     */
-    setFloorReset() {
-      if (this.POIList.length > 0) {
-        this.POIList.forEach((p) => {
-          p.setVisibility(false);
-        });
-      }
-      if (this.floorList.length > 0) {
-        this.floorList.forEach((floor) => {
-          if (floor.get_type === 'group') {
-            floor.setRenderingStyleMode(RenderingStyleMode.Default);
-          } else if (floor.get_type === 'block') {
-            floor[0].setVisibility(false);
-          } else {
-            floor[0].setRenderingStyleMode(RenderingStyleMode.Default);
-          }
-        });
-      }
-    },
-    /**
+     /**
      * 获取POI 和 楼体
      * @param floorList 楼体列表形参
      * @param poiList POI列表形参
@@ -161,28 +110,10 @@ export default {
       const POIArray = [];
       for (const floor of floorList) {
         const key = Object.keys(floor)[0];
-        switch (key) {
-          case 'name': {
-            const model = await diva.client.getEntitiesByName(floor.name);
-            model.get_type = 'name';
-            floorArray.push(model);
-            break;
-          }
-          case 'group': {
-            const typedGroup = await diva.client.getModelGroupByGroupPath(
-              floor.group
-            );
-            typedGroup.get_type = 'group';
-            floorArray.push(typedGroup);
-            break;
-          }
-          case 'block': {
-            const model = await diva.client.getEntitiesByName(floor.block);
-            model.get_type = 'block';
-            floorArray.push(model);
-            break;
-          }
-        }
+        const fun = this.typeMap.get(key);
+        const model = await fun(floor[key]);
+        model.get_type = key;
+        floorArray.push(model);
       }
       for (const p of poiList) {
         const [poi] = await diva.client.getEntitiesByName(p.name);
@@ -190,37 +121,80 @@ export default {
       }
       return { floor: floorArray, POI: POIArray };
     },
+     /**
+     * 获取点击对象
+     */
+    getEventTarget(name) {
+      let target = null;
+      this.cardList.content.data.forEach((area) => {
+        area.list.forEach((item) => {
+          item.diva.models.forEach((floor) => {
+            const key = Object.keys(floor)[0];
+            if (name === floor[key]) {
+              target = item;
+            }
+          });
+        });
+      });
+      return target;
+    },
+    /**
+     * 渲染实体，显示POI
+     * @param v POI和楼体信息
+     */
+    async setRendering(v) {
+      const floorList = v.models;
+      const poiList = v.poi;
+      const { floor, POI } = await this.getFloorPOI(floorList, poiList);
+      const { distance, pitch } = this.cardListAction[1].param;
+      this.floorList = floor;
+      this.poiList = POI;
+      // 显示POI并聚焦
+      this.poiList.forEach((p) => {
+        p?.setVisibility(true);
+        p?.focus(distance, pitch);
+      });
+      // 楼层高亮
+      this.floorList.forEach((floor) => {
+        this.setRenderingStyle(floor, true, RenderingStyleMode.Highlight)
+      });
+      await diva.client.request(
+        'SetHighlightStyle',
+        this.cardListAction[0].param
+      );
+    },
+    /**
+     * 设置楼体渲染样式
+     * @param model 模型
+     * @param {boolean} param 参数选项
+     * @param visibility 是否显示体块
+     */
+    setRenderingStyle(model,visibility, param){
+      if (model.get_type === 'group') {
+        model.setRenderingStyleMode(param);
+      } else if (model.get_type === 'block') {
+        model[0].setVisibility(visibility);
+      } else {
+        model[0].setRenderingStyleMode(param);
+      }
+    },
     /**
      * 为楼体添加点击事件
      */
     addModelListener() {
-      this.cardListData.content.data.forEach((area) => {
+      this.cardList.content.data.forEach((area) => {
         area.list.forEach((item) => {
           item.diva.models.forEach(async (floor) => {
             const key = Object.keys(floor)[0];
-            switch (key) {
-              case 'name': {
-                const [model] = await diva.client.getEntitiesByName(floor.name);
-                this.modelEventList.push(model);
-                model.addEventListener('click', this.addEvent);
-                break;
-              }
-              case 'group': {
-                const typedGroup = await diva.client.getModelGroupByGroupPath(
-                  floor.group
-                );
-                this.modelEventList.push(typedGroup);
-                typedGroup.addEventListener('click', this.addEvent);
-                break;
-              }
-              case 'block': {
-                const [model] = await diva.client.getEntitiesByName(
-                  floor.block
-                );
-                this.modelEventList.push(model);
-                model.addEventListener('click', this.addEvent);
-                break;
-              }
+            const fun = this.typeMap.get(key);
+            const model = await fun(floor[key]);
+            if(model instanceof Array){
+              const [m] = model;
+              this.modelEventList.push(m);
+              m.addEventListener('click', this.modelClickEvent);
+            }else{
+              this.modelEventList.push(model);
+              model.addEventListener('click', this.modelClickEvent);
             }
           });
         });
@@ -229,7 +203,7 @@ export default {
     /**
      * 实体添加的click事件
      */
-    async addEvent(e) {
+    async modelClickEvent(e) {
       const model = await diva.client.getEntityById(e.target);
       const group = model.group;
       const nameList = group.split('楼栋');
@@ -243,22 +217,32 @@ export default {
       }
     },
     /**
-     * 获取点击对象
+     * 通过名称获取实体
      */
-    getEventTarget(name) {
-      let target = null;
-      this.cardListData.content.data.forEach((area) => {
-        area.list.forEach((item) => {
-          item.diva.models.forEach((floor) => {
-            const key = Object.keys(floor)[0];
-            if (name === floor[key]) {
-              target = item;
-            }
-          });
+      /**
+     * 清除楼体样式
+     */
+    setFloorReset() {
+      if (this.poiList.length > 0) {
+        this.poiList.forEach((p) => {
+          p.setVisibility(false);
         });
-      });
-      return target;
+      }
+      if (this.floorList.length > 0) {
+        this.floorList.forEach((floor) => {
+          this.setRenderingStyle(floor, false, RenderingStyleMode.Default)
+        });
+      }
     },
+    async getEntitiesByName(name){
+      return await diva.client.getEntitiesByName(name);
+    },
+    /**
+     * 通过路径获取模型组
+     */
+    async getModelGroupByGroupPath(path){
+      return await diva.client.getModelGroupByGroupPath(path);
+    }
   },
   components: {
     AppBasicInfo,

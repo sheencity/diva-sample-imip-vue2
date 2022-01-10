@@ -4,21 +4,21 @@
       <div class="prod-area">
         <h3>{{ item.title }}</h3>
       </div>
-      <app-card-two-info
+      <app-card-panel
         :key="index"
         v-for="(childItem, index) in item.list"
         class="area-module"
         :class="{ 'item-selected': childItem.checked }"
         :dataSource="childItem.content"
         @click.native="selectItem(childItem)"
-      ></app-card-two-info>
+      ></app-card-panel>
     </div>
   </app-dialog>
 </template>
 
 <script>
 import AppDialog from '../common/dialog/dialog';
-import AppCardTwoInfo from '../common/card-two-info';
+import AppCardPanel from '../common/card-two-info';
 
 export default {
   props: ['header', 'dataSource'],
@@ -48,7 +48,7 @@ export default {
   },
   components: {
     AppDialog,
-    AppCardTwoInfo,
+    AppCardPanel,
   },
 };
 </script>

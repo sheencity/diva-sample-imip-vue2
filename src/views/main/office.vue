@@ -1,9 +1,9 @@
 <template>
-  <article v-if="initDivaData" class="space-between">
+  <article v-if="divaParams" class="space-between">
     <aside class="space-left all">
       <app-floor-panel
         class="top10"
-        :dataSource="floorPanelData"
+        :dataSource="floorPanel"
         @changeElevator="changeElevator"
         @explode="explodeFloor"
         @switchMode="switchFloorRendering"
@@ -14,19 +14,19 @@
     <aside class="space-right all">
       <app-statistics-panel
         class="top10"
-        :dataSource="staPanelData"
+        :dataSource="staPanel"
       ></app-statistics-panel>
 
       <app-echarts
         class="top10"
-        :header="basicPieData.header"
-        :dataSource="basicPieData.content"
+        :header="basicPie.header"
+        :dataSource="basicPie.content"
       ></app-echarts>
 
       <app-echarts
         class="top10"
-        :header="basicLineData.header"
-        :dataSource="basicLineData.content"
+        :header="basicLine.header"
+        :dataSource="basicLine.content"
       ></app-echarts>
     </aside>
   </article>
@@ -46,11 +46,11 @@ export default {
        * @type {import("@sheencity/diva-sdk").TypedGroup}
        */
       floorsModelGroup: null,
-      initDivaData: null,
-      floorPanelData: null,
-      staPanelData: null,
-      basicPieData: null,
-      basicLineData: null,
+      divaParams: null,
+      floorPanel: null,
+      staPanel: null,
+      basicPie: null,
+      basicLine: null,
       groupName: '',
 
       explodeState: false, // 楼层是否炸开
@@ -80,19 +80,17 @@ export default {
   },
   methods: {
     async init() {
-      await this.getConfig();
-      this.initScene(this.initDivaData.init.scene_name);
-      this.switchFloorRendering(this.floorPanelData['panel-left'][0].content.data[0]);
-      this.floorConfig = this.floorPanelData['floor-btn-group'].diva.action[0].param;
+      await this.initConfig();
+      this.initScene(this.divaParams.init.scene_name);
+      this.switchFloorRendering(this.floorPanel['panel-left'][0].content.data[0]);
+      this.floorConfig = this.floorPanel['floor-btn-group'].diva.action[0].param;
     },
     
-    async getConfig() {
+    async initConfig() {
       const { data } = await this.axios.get('config/page/office.json');
-      this.initDivaData = data.diva;
-      this.floorPanelData = data['panel-left'][0];
-      this.staPanelData = data['panel-right'][0];
-      this.basicPieData = data['panel-right'][1];
-      this.basicLineData = data['panel-right'][2];
+      this.divaParams = data.diva;
+      [ this.floorPanel ] = data['panel-left'];
+      [ this.staPanel, this.basicPie, this.basicLine ] = data['panel-right'];
       this.groupName = data.diva.common.group_name;
       this.currentFloor.mode = data.diva.common.default_mode;
       this.floorsModelGroup = await diva.client?.getModelGroupByGroupPath(this.groupName);
@@ -157,7 +155,7 @@ export default {
      */
     async selectFloor(name, device) {
       this.deviceConfig =
-        this.floorPanelData['panel-left'][1].content.diva.action;
+        this.floorPanel['panel-left'][1].content.diva.action;
       const mode = this.deviceConfig[0].name;
       const { distance, pitch } = this.deviceConfig[1].param;
       if (device.category === '楼梯') {
