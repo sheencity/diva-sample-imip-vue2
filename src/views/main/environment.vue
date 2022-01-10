@@ -2,11 +2,11 @@
   <article class="space-between">
     <aside class="space-left all">
       <app-table-col3
-        v-if="deviceListData"
+        v-if="deviceList"
         :maxItem="2"
-        :header="deviceListData.header"
-        :thead="deviceListData.content.head"
-        :dataSource="deviceListData.content.data"
+        :header="deviceList.header"
+        :thead="deviceList.content.head"
+        :dataSource="deviceList.content.data"
         @select="deviceChange"
       ></app-table-col3>
 
@@ -56,8 +56,8 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      initDivaData: null,
-      deviceListData: null,
+      divaParams: null,
+      deviceList: null,
       CH2OData: null,
       CO2Data: null,
       tempHumiData: null,
@@ -78,39 +78,35 @@ export default {
   async destroyed() {
     if (this.deviceId) {
       try {
-        await diva.client.request('DestroyWebWidget', { entityId: this.deviceId });
+        await diva.destroyWedWidget(this.deviceId);
       } catch (err) {
         console.warn(err);
       }
     }
   },
   methods: {
-    async init(){
-      await this.getConfig();
+    async init() {
+      await this.initConfig();
       await this.initScene();
-      await this.getDeviceInfo();
+      await this.initDeviceInfo();
     },
-    async getConfig(){
+    async initConfig() {
       const { data } = await this.axios.get('/config/page/environment.json');
-      this.initDivaData = data.diva;
-      this.deviceListData = data['panel-left'][0];
-      this.CH2OData = data['panel-left'][1];
-      this.CO2Data = data['panel-left'][2];
-      this.tempHumiData = data['panel-right'][0];
-      this.PM25Data = data['panel-right'][1];
-      this.VOCData = data['panel-right'][2];
+      this.divaParams = data.diva;
+      [this.deviceList, this.CH2OData, this.CO2Data] = data['panel-left'];
+      [this.tempHumiData, this.PM25Data, this.VOCData] = data['panel-right'];
     },
     /**
      * 初始化场景
      */
     async initScene() {
-      await diva.client?.applyScene(this.initDivaData.init.scene_name);
+      await diva.applySceneByName(this.divaParams.init.scene_name);
     },
     /**
      * 获取设备信息
      */
-    async getDeviceInfo() {
-      this.deviceListData.content.data.forEach(async (item) => {
+    async initDeviceInfo() {
+      this.deviceList.content.data.forEach(async (item) => {
         const model = await diva.getEntityByName(item.diva.model[0].name);
         this.deviceMap.set(model.id, item.id);
         model?.addEventListener('click', this.setWebWidget);
@@ -122,28 +118,22 @@ export default {
     async setWebWidget(e) {
       this.deviceId = e.target;
       const equipmentId = this.deviceMap.get(e.target);
-      const widgetOption = this.deviceListData.content.diva.action
+      const widgetOption = this.deviceList.content.diva.action
         .filter((action) => action.name === 'set_web_widget')[0]
         .param;
       
       const url = `${window.location.origin}/#/pop-up/environment/widget/${equipmentId}`;
-      diva.client.request('CreateWebWidget', {
-        entityId: e.target,
-        widget: {
-          url,
-          ...widgetOption,
-        },
-      });
+      diva.createWedWdiget(e.target, url, widgetOption);
     },
     /**
      * 点击设备列表聚焦至设备
      */
     deviceChange(name, e) {
-      const focusOption = this.deviceListData.content.diva.action
+      const { distance, pitch } = this.deviceList.content.diva.action
         .filter((action) => action.name === 'focus')[0]
         .param;
       const modelName = e.diva.model[0].name;
-      diva.focusOnModelByName(modelName, focusOption.distance, focusOption.pitch);
+      diva.focusOnModelByName(modelName, distance, pitch);
     },
   },
   components: {

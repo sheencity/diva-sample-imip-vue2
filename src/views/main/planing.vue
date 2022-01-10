@@ -2,27 +2,27 @@
   <article class="space-between">
     <aside class="space-left all">
       <app-button-tab
-        v-if="buttonTabData"
-        :header="buttonTabData.header"
-        :dataSource="buttonTabData.content"
+        v-if="buttonTab"
+        :header="buttonTab.header"
+        :dataSource="buttonTab.content"
         @select="buttonTabChange"
       ></app-button-tab>
 
       <app-row-list
         class="top10"
-        v-if="rowListData"
-        :header="rowListData.header"
-        :dataSource="rowListData.content"
+        v-if="rowList"
+        :header="rowList.header"
+        :dataSource="rowList.content"
         :disabled="rowDisabled"
-        :key="rowListData.header.title"
+        :key="rowList.header.title"
         @select="rowItemChange"
       ></app-row-list>
     </aside>
     <aside class="space-right all">
       <app-switcher-list
-        v-if="switcherListData"
-        :header="switcherListData.header"
-        :dataSource="switcherListData.content.data"
+        v-if="switcherList"
+        :header="switcherList.header"
+        :dataSource="switcherList.content.data"
         @checked="switcherChange"
       ></app-switcher-list>
     </aside>
@@ -40,10 +40,10 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      initDivaData: null,
-      buttonTabData: null,
-      rowListData: null,
-      switcherListData: null,
+      divaParams: null,
+      buttonTab: null,
+      rowList: null,
+      switcherList: null,
       selectedBtnTabIndex: 0,
       // 当前显示的模型组路径
       currentShowPath: null,
@@ -56,32 +56,32 @@ export default {
     };
   },
   async created() {
-    this.init();
+    await this.init();
   },
   destroyed() {
     diva.setEntityVisibleByGroup(this.currentShowPath, false);
     this.removeTransformAnimation();
   },
   methods: {
-    async init(){
-      await this.getConfig();
-      this.initScene();
+    async init() {
+      await this.initConfig();
+      await this.initScene();
     },
 
-    async getConfig(){
+    async initConfig() {
       const { data } = await this.axios.get('/config/page/plan.json');
-      this.initDivaData = data.diva;
-      this.buttonTabData = data['panel-left'][0];
-      this.rowListData = this.buttonTabData.content.data[0]['target-panel'];
-      this.switcherListData = data['panel-right'][0];
+      this.divaParams = data.diva;
+      [this.buttonTab] = data['panel-left'];
+      this.rowList = this.buttonTab.content.data[0]['target-panel'];
+      [this.switcherList] = data['panel-right'];
     },
     
     /**
      * 初始化场景
      */
     async initScene() {
-      this.currentShowPath = this.buttonTabData.content.data[0].diva.init.group;
-      await diva.client?.applyScene(this.initDivaData.init.scene_name);
+      this.currentShowPath = this.buttonTab.content.data[0].diva.init.group;
+      await diva.applySceneByName(this.divaParams.init.scene_name);
       await diva.setEntityVisibleByGroup(this.currentShowPath, true);
     },
 
@@ -89,9 +89,9 @@ export default {
      * 重置状态
      */
     async reset() {
-      await diva.client?.applyScene(this.initDivaData.init.scene_name);
+      await diva.applySceneByName(this.divaParams.init.scene_name);
       await diva.setEntityVisibleByGroup(this.currentShowPath, false);
-      this.switcherListData.content.data
+      this.switcherList.content.data
         .forEach((item) => item.default = false);
     },
 
@@ -99,7 +99,7 @@ export default {
      * 开关切换
      */
     switcherChange(e) {
-      diva.client.applyScene(this.switcherListData.content.diva.init.scene_name, {
+      diva.applySceneByName(this.switcherList.content.diva.init.scene_name, {
         camera: true,
         visibility: false,
       });
@@ -112,8 +112,8 @@ export default {
     async buttonTabChange(index) {
       await this.reset();
       this.selectedBtnTabIndex = index;
-      this.currentShowPath = this.buttonTabData.content.data[index].diva.init.group;
-      this.rowListData = this.buttonTabData.content.data[index]['target-panel'];
+      this.currentShowPath = this.buttonTab.content.data[index].diva.init.group;
+      this.rowList = this.buttonTab.content.data[index]['target-panel'];
       // 分期规划
       if (index === 2) return;
       diva.setEntityVisibleByGroup(this.currentShowPath, true);
@@ -125,12 +125,12 @@ export default {
     rowItemChange(item, index) {
       if (this.selectedBtnTabIndex === 2) {
         this.rowDisabled = true;
-        this.animeDuration = this.rowListData.content.diva.action
+        this.animeDuration = this.rowList.content.diva.action
           .filter((action) => action.name === 'animation')[0]
           .param
           .duration;
 
-        diva.client?.applyScene(this.rowListData.content.diva.init.scene_name, {
+        diva.applySceneByName(this.rowList.content.diva.init.scene_name, {
           camera: true,
           visibility: false,
         });
@@ -139,18 +139,18 @@ export default {
         setTimeout(() => this.rowDisabled = false, this.animeDuration * 1000 + 200);
         return;
       }
-      const focusOption = this.rowListData.content.diva.action
+      const { distance, pitch } = this.rowList.content.diva.action
         .filter((action) => action.name === 'focus')[0]
         .param;
       const name = item.diva.model.map((model) => model.name)[0];
-      diva.focusOnModelByName(name, focusOption.distance, focusOption.pitch);
+      diva.focusOnModelByName(name, distance, pitch);
     },
 
     /**
      * 大于索引值的条目中的模型将会被隐藏
      */
     showFloorsByIndex(i) {
-      this.rowListData.content.data.forEach((item, index) => {
+      this.rowList.content.data.forEach((item, index) => {
         if (index < i) this.setFloorsVisibility(item.diva.model, true);
         else this.setFloorsVisibility(item.diva.model, false);
       });
@@ -179,10 +179,8 @@ export default {
         await Promise.all(this.animeModelGroup.map((model) => model.setScale(new Vector3(1, 1, 0.01))));
         await Promise.all(
           this.animeModelGroup.map((model) => {
-            diva.client.request('SetTransformAnimation', {
-              id: model.id,
-              duration: this.animeDuration,
-              scale: [1, 1, 1],
+            diva.setTransformAnimation(model.id, this.animeDuration, {
+              scale: new Vector3(1, 1, 1),
             });
           })
         );
@@ -196,9 +194,7 @@ export default {
     async removeTransformAnimation() {
       await Promise.all(
         this.animeModelGroup.map((model) => {
-          diva.client.request('RemoveTransformAnimation', {
-            id: model.id,
-          });
+          diva.removeTransformAnimation(model.id);
           model.setScale(new Vector3(1, 1, 1));
         })
       );

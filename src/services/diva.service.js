@@ -27,6 +27,65 @@ export class DivaService {
   }
 
   /**
+   * 应用指定场景名称的场景
+   * @param name 场景名称
+   * @param options 应用场景选项(可选)
+   */
+  async applySceneByName(name, options) {
+    await this.client?.applyScene(name, options);
+  }
+
+  /**
+   * 设置弹窗
+   * @param {string} id 实体 ID
+   * @param {string} url 链接
+   * @param {{}} options 弹窗配置
+   */
+  async createWedWdiget(id, url, options) {
+    await this.client.request('CreateWebWidget', {
+      entityId: id,
+      widget: {
+        url,
+        ...options,
+      },
+    });
+  }
+
+  /**
+   * 销毁弹窗
+   * @param {string} id 实体 ID
+   */
+  async destroyWedWidget(id) {
+    await this.client.request('DestroyWebWidget', {
+      entityId: id,
+    });
+  }
+
+  /**
+   * 设置实体的位移动画
+   * @param {string} id 实体 ID
+   * @param {number} duration 动画持续时间
+   * @param {{ coord?: Vector3, rotation?: Vector3, scale?: Vector3 }} options
+   */
+  async setTransformAnimation(id, duration, options) {
+    await this.client.request('SetTransformAnimation', {
+      id: id,
+      duration: duration,
+      ...options,
+    });
+  }
+
+  /**
+   * 移除实体的位移动画
+   * @param {string} id 实体 ID
+   */
+  async removeTransformAnimation(id) {
+    await this.client.request('RemoveTransformAnimation', {
+      id: id,
+    });
+  }
+
+  /**
    * 根据模型组更新模型
    * @param {string} group 
    * @param {{}} option 

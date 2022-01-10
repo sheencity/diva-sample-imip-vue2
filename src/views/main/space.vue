@@ -3,15 +3,15 @@
     <aside class="space-left all">
       <app-basic-info
         class="top10"
-        v-if="basicInfoData"
-        :header="basicInfoData.header"
-        :dataSource="basicInfoData.content.data"
+        v-if="basicInfo"
+        :header="basicInfo.header"
+        :dataSource="basicInfo.content.data"
       ></app-basic-info>
     </aside>
     <aside class="space-right all">
       <app-camera-album
-        v-if="cameraAlbumData"
-        :dataSource="cameraAlbumData.content"
+        v-if="cameraAlbum"
+        :dataSource="cameraAlbum.content"
         @check="changeCameraTrack"
       ></app-camera-album>
     </aside>
@@ -26,39 +26,39 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      initDivaData: null,
-      basicInfoData: null,
-      cameraAlbumData: null,
+      divaParams: null,
+      basicInfo: null,
+      cameraAlbum: null,
     };
   },
   async created() {
-    await this.getConfig();
-    this.initScene();
+    await this.init();
   },
   destroyed() {
     this.reset();
   },
   methods: {
-    async getConfig(){
+    async init() {
+      await this.initConfig();
+      await this.initScene();
+    },
+    async initConfig() {
       const { data } = await this.axios.get('/config/page/space.json');
-      this.initDivaData = data.diva;
-      this.basicInfoData = data['panel-left'][0];
-      this.cameraAlbumData = data['panel-right'][0];
+      this.divaParams = data.diva;
+      [this.basicInfo] = data['panel-left'];
+      [this.cameraAlbum] = data['panel-right'];
     },
-
-    initScene() {
-      diva?.client?.applyScene(this.initDivaData.init.scene_name);
+    async initScene() {
+      await diva.applySceneByName(this.divaParams.init.scene_name);
     },
-
     changeCameraTrack(e) {
       this.reset();
       if (e.diva.scene_name) diva.client.applyScene(e.diva.scene_name);
       else if (e.diva.camera_track_name) diva.client.playCameraTrack(e.diva.camera_track_name);
     },
-    
     reset() {
       diva.client?.stopCameraTrack();
-      this.initDivaData?.destroy?.group
+      this.divaParams?.destroy?.group
         .forEach((group) => diva.setEntityVisibleByGroup(group, false));
     }
   },

@@ -2,48 +2,48 @@
   <article class="space-between">
     <aside class="space-left all">
       <app-statistics-panel
-        v-if="statisticsData"
-        :dataSource="statisticsData"
+        v-if="statistics"
+        :dataSource="statistics"
       ></app-statistics-panel>
 
       <app-basic-info
         class="top10"
-        v-if="basicInfoData"
-        :header="basicInfoData.header"
-        :dataSource="basicInfoData.content.data"
+        v-if="basicInfo"
+        :header="basicInfo.header"
+        :dataSource="basicInfo.content.data"
       ></app-basic-info>
 
       <app-scroller-table
         class="top10"
-        v-if="textListData"
-        :header="textListData.header"
-        :dataSource="textListData.content.data"
-        :thead="textListData.content.header"
-        :dataLength="textListData.content.data.length"
-        :autoScroll="textListData.content.scroll"
+        v-if="textList"
+        :header="textList.header"
+        :dataSource="textList.content.data"
+        :thead="textList.content.header"
+        :dataLength="textList.content.data.length"
+        :autoScroll="textList.content.scroll"
         :height="36"
         :contentHeight="220"
       ></app-scroller-table>
     </aside>
     <aside class="space-right all">
       <app-echarts
-        v-if="ringPieData"
-        :header="ringPieData.header"
-        :dataSource="ringPieData.content"
+        v-if="ringPie"
+        :header="ringPie.header"
+        :dataSource="ringPie.content"
       ></app-echarts>
 
       <app-echarts
         class="top10"
-        v-if="basicBarData"
-        :header="basicBarData.header"
-        :dataSource="basicBarData.content"
+        v-if="basicBar"
+        :header="basicBar.header"
+        :dataSource="basicBar.content"
       ></app-echarts>
 
       <app-echarts
         class="top10"
-        v-if="horBarData"
-        :header="horBarData.header"
-        :dataSource="horBarData.content"
+        v-if="horBar"
+        :header="horBar.header"
+        :dataSource="horBar.content"
       ></app-echarts>
     </aside>
   </article>
@@ -60,13 +60,13 @@ import { diva } from 'services/global';
 export default {
   data() {
     return {
-      initDivaData: null,
-      statisticsData: null,
-      basicInfoData: null,
-      textListData: null,
-      ringPieData: null,
-      basicBarData: null,
-      horBarData: null
+      divaParams: null,
+      statistics: null,
+      basicInfo: null,
+      textList: null,
+      ringPie: null,
+      basicBar: null,
+      horBar: null
     };
   },
   async created() {
@@ -74,22 +74,17 @@ export default {
   },
   methods: {
     async init(){
-      // 获取 json 配置数据
-      await this.getConfig();
-      this.initScene();
+      await this.initConfig();
+      await this.initScene();
     },
-    async getConfig(){
+    async initConfig() {
       const { data } = await this.axios.get('/config/page/achievement.json');
-      this.initDivaData = data.diva;
-      this.statisticsData = data['panel-left'][0];
-      this.basicInfoData = data['panel-left'][1];
-      this.textListData = data['panel-left'][2];
-      this.ringPieData = data['panel-right'][0];
-      this.basicBarData = data['panel-right'][1];
-      this.horBarData = data['panel-right'][2];
+      this.divaParams = data.diva;
+      [this.statistics, this.basicInfo, this.textList] = data['panel-left'];
+      [this.ringPie, this.basicBar, this.horBar] = data['panel-right'];
     },
-    initScene() {
-      diva?.client?.applyScene(this.initDivaData.init.scene_name);
+    async initScene() {
+      await diva.applySceneByName(this.divaParams.init.scene_name);
     },
   },
   components: {
