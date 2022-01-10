@@ -43,20 +43,14 @@ export default {
       let param = {};
       let num = 0;
       this.dataSource.forEach((item, index) => {
-        const { title, value, unit } = item;
-        index % 2 === 0
-          ? (param.left = { title, value, unit })
-          : (param.right = { title, value, unit });
+        index % 2 === 0 ? param.left = item : param.right = item;
         num = Object.keys(param).length;
         if (num === 2) {
           this.basicData.push(param);
           param = {};
         }
       });
-      if (num === 1) {
-        this.basicData.push(param);
-        param = {};
-      }
+      if (num === 1) this.basicData.push(param);
     },
   },
   components: {

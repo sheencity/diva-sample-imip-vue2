@@ -217,7 +217,7 @@ export class DivaService {
    * @param {string} url 链接
    * @param {{}} options 弹窗配置
    */
-  async createWedWdiget(id, url, options) {
+  async createWedWidget(id, url, options) {
     await this.client.request('CreateWebWidget', {
       entityId: id,
       widget: {

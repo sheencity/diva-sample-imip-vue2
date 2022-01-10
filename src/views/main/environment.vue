@@ -123,7 +123,7 @@ export default {
         .param;
       
       const url = `${window.location.origin}/#/pop-up/environment/widget/${equipmentId}`;
-      diva.createWedWdiget(e.target, url, widgetOption);
+      diva.createWedWidget(e.target, url, widgetOption);
     },
     /**
      * 点击设备列表聚焦至设备

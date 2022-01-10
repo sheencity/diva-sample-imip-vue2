@@ -83,7 +83,7 @@ export default {
         this.deviceId = e.target;
         const equipmentId = this.monitorsIdMap.get(e.target);
         const url = `${window.location.origin}/#/pop-up/monitoring/widget/${equipmentId}`;
-        diva.createWedWdiget(e.target, url, this.options.widget);
+        diva.createWedWidget(e.target, url, this.options.widget);
       },
       // 摄像机POI 点击事件
       monitorPoiClickListener: (e) => {
