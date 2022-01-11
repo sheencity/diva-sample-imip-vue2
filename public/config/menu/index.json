@@ -5,18 +5,18 @@
         {
           "title": "项目介绍",
           "icon": "assets/images/footer/1.svg",
-          "file": "introduction.vue",
+          "view": "introduction",
           "data": "config/page/introduction.json",
           "children": []
         },
         {
           "title": "碳中和",
           "icon": "assets/images/footer/2.svg",
-          "file": "energy.vue",
+          "view": "energy",
           "children": [
             {
               "title": "能源",
-              "file": "energy.vue",
+              "view": "energy",
               "data": "config/page/energy.json"
             }
           ]
@@ -24,31 +24,31 @@
         {            
           "title": "智慧运营",
           "icon": "assets/images/footer/3.svg",
-          "file": "office.vue",
+          "view": "office",
           "children": [
             {
               "title": "办公",
-              "file": "office.vue",
+              "view": "office",
               "data": "config/page/office.json"
             },
             {
               "title": "环境",
-              "file": "environment.vue",
+              "view": "environment",
               "data": "config/page/environment.json"
             },
             {
               "title": "消防",
-              "file": "fire-control.vue",
+              "view": "fire-control",
               "data": "config/page/firecontrol.json"
             },
             {
               "title": "安保",
-              "file": "security.vue",
+              "view": "security",
               "data": "config/page/security.json"
             },
             {
               "title": "停车",
-              "file": "parking.vue",
+              "view": "parking",
               "data": "config/page/park.json"
             }
           ]
@@ -56,21 +56,21 @@
         {            
           "title": "产业招商",
           "icon": "assets/images/footer/4.svg",
-          "file": "achievement.vue",
+          "view": "achievement",
           "children": [
             {
               "title": "招商成果",
-              "file": "achievement.vue",
+              "view": "achievement",
               "data": "config/page/achievement.json"
             },
             {
               "title": "空间布局",
-              "file": "space.vue",
+              "view": "space",
               "data": "config/page/space.json"
             },
             {
               "title": "产业规划",
-              "file": "planing.vue",
+              "view": "planing",
               "data": "config/page/plan.json"
             }
           ]

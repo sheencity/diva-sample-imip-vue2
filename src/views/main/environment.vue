@@ -91,7 +91,7 @@ export default {
       await this.initDeviceInfo();
     },
     async initConfig() {
-      const { data } = await this.axios.get('/config/page/environment.json');
+      const { data } = await this.axios.get('config/page/environment.json');
       this.divaParams = data.diva;
       [this.deviceList, this.CH2OData, this.CO2Data] = data['panel-left'];
       [this.tempHumiData, this.PM25Data, this.VOCData] = data['panel-right'];

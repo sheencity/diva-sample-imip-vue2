@@ -114,7 +114,7 @@ export default {
       await this.initScene();
     },
     async initConfig() {
-      const { data } = await this.axios.get('/config/page/security.json');
+      const { data } = await this.axios.get('config/page/security.json');
       this.divaParams = data.diva;
       [this.buttonTab, this.monitorList, this.trafficList] = data['panel-left'];
       [this.abnormalEvents, this.abnormalArea] = data['panel-right'];

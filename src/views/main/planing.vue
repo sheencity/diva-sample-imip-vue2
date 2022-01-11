@@ -69,7 +69,7 @@ export default {
     },
 
     async initConfig() {
-      const { data } = await this.axios.get('/config/page/plan.json');
+      const { data } = await this.axios.get('config/page/plan.json');
       this.divaParams = data.diva;
       [this.buttonTab] = data['panel-left'];
       this.rowList = this.buttonTab.content.data[0]['target-panel'];

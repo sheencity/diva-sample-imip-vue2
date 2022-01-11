@@ -71,7 +71,7 @@ export default {
     },
 
     async initConfig() {
-      const { data } = await this.axios.get('/config/page/park.json');
+      const { data } = await this.axios.get('config/page/park.json');
       this.divaParams = data.diva;
       [this.parkingPanel] = data['panel-left'];
       [this.echartsPie, this.echartsLine, this.textList] = data['panel-right'];

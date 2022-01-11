@@ -78,7 +78,7 @@ export default {
       await this.initScene();
     },
     async initConfig() {
-      const { data } = await this.axios.get('/config/page/achievement.json');
+      const { data } = await this.axios.get('config/page/achievement.json');
       this.divaParams = data.diva;
       [this.statistics, this.basicInfo, this.textList] = data['panel-left'];
       [this.ringPie, this.basicBar, this.horBar] = data['panel-right'];

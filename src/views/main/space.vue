@@ -43,7 +43,7 @@ export default {
       await this.initScene();
     },
     async initConfig() {
-      const { data } = await this.axios.get('/config/page/space.json');
+      const { data } = await this.axios.get('config/page/space.json');
       this.divaParams = data.diva;
       [this.basicInfo] = data['panel-left'];
       [this.cameraAlbum] = data['panel-right'];

@@ -5,7 +5,7 @@
         <router-link 
           :to="item.link"
           class="route all"
-          :class="{'route-selected': currId === index}"
+          :class="{'route-selected': currentIndex === index}"
           :key="item.title" 
           v-for="(item, index) in menuList"  
           @click.native="selectRoute(index)"
@@ -35,18 +35,18 @@ export default {
   data() {
     return {
       menuList: [],
-      currId: 0,
+      currentIndex: 0,
       filterMap: new Map([
-        ['introduction.vue','/introduction'],
-        ['energy.vue','/carbon-neutral/energy'],
-        ['office.vue','/wisdom-operation/office'],
-        ['environment.vue','/wisdom-operation/environment'],
-        ['fire-control.vue','/wisdom-operation/fire-control'],
-        ['security.vue','/wisdom-operation/security'],
-        ['parking.vue','/wisdom-operation/parking'],
-        ['achievement.vue','/attract-investment/achievement'],
-        ['space.vue','/attract-investment/space'],
-        ['planing.vue','/attract-investment/planing'],
+        ['introduction','/introduction'],
+        ['energy','/carbon-neutral/energy'],
+        ['office','/wisdom-operation/office'],
+        ['environment','/wisdom-operation/environment'],
+        ['fire-control','/wisdom-operation/fire-control'],
+        ['security','/wisdom-operation/security'],
+        ['parking','/wisdom-operation/parking'],
+        ['achievement','/attract-investment/achievement'],
+        ['space','/attract-investment/space'],
+        ['planing','/attract-investment/planing'],
       ]),
     };
   },
@@ -60,12 +60,12 @@ export default {
       this.filterRoute(menuList);
       this.menuList = menuList;
     },
-    selectRoute(v) {
-      this.currId = v;
+    selectRoute(index) {
+      this.currentIndex = index;
     },
     filterRoute(list) {
       list.forEach((item) => {
-        const route = this.filterMap.get(item.file);
+        const route = this.filterMap.get(item.view);
         item.link = route || '/not-found';
 
         if (item.children?.length > 0) return this.filterRoute(item.children);

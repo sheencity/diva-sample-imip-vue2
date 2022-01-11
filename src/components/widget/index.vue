@@ -84,7 +84,7 @@ export default {
   methods: {
     // 获取环境设备数据
     async getEnvData() {
-      const { data } = await this.axios.get('/config/page/environment.json');
+      const { data } = await this.axios.get('config/page/environment.json');
       const deviceList = data['panel-left'][0].content.data;
       const deviceData = deviceList
         .filter((ele) => ele.id === this.$route.params.id)[0]
@@ -180,7 +180,7 @@ export default {
     },
     // 获取监控数据
     async getMonData() {
-      const { data } = await this.axios.get('/config/page/security.json');
+      const { data } = await this.axios.get('config/page/security.json');
       const monitorList = data['panel-left'][1].content.data;
       this.monData = monitorList
         .filter((mon) => mon.id === this.$route.params.id)[0];
