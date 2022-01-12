@@ -200,7 +200,7 @@ export default {
      * 获取 DIVA 行为参数
      */
     setDivaParam() {
-      this.divaParam = this.buttonTab.content.data[this.currCategoryIndex].diva.action[0];
+      this.divaParam = this.buttonTab.content.data[this.currCategoryIndex].diva.action[0].param;
     },
     resetPOI() {
       if (this.POIList) this.POIList.setVisibility(false);

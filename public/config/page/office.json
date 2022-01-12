@@ -43,9 +43,9 @@
                     "name": "highlight-isolate",
                     "description": "高亮孤立，被选中物体不高亮",
                     "param": {
-                      "color": "#001D77",
-                      "strength": 3,
-                      "speed": 0.0
+                      "color": [0,29,119],
+                      "emission": 3,
+                      "speed": 0
                     }
                   }]
                 }

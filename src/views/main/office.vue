@@ -202,11 +202,13 @@ export default {
      * 设置高亮效果
      */
     async setHighlightMode(floorModelGroup) {
+      console.log(this.emissionOptions)
       this.floorsModelGroup.forEach(async (modelGroup) => {
-        await modelGroup.setRenderingStyleMode(
+        await diva.renderEmissionModelById(
+          modelGroup.id,
           RenderingStyleMode.Emission,
           this.emissionOptions
-        );
+        )
       });
       await floorModelGroup.setRenderingStyleMode(RenderingStyleMode.Default);
     },

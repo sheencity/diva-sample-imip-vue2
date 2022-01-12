@@ -296,6 +296,13 @@ export class DivaService {
   }
 
   /**
+   * 根据模型id设置自发光渲染模式
+   */
+  async renderEmissionModelById(id, mode, extend ){
+    await this.client.request('SetEntityRenderMode', { id, mode, extend })
+  }
+
+  /**
    * 根据模型名称聚焦至模型
    * @param {string} name
    * @param {number} distance 距离（cm）
