@@ -1,5 +1,5 @@
 <template>
-  <main class="device-bg">
+  <main ref="device" class="device-bg">
     <header>
       <app-dialog-header
         :key="title"
@@ -188,6 +188,9 @@ export default {
     },
   },
   mounted() {
+    // 将用于显示 diva 的dom删除
+    const divaDom = this.$refs.device.previousSibling;
+    divaDom.parentNode.removeChild(divaDom);
     const url = this.$route.path;
     const pathList =  url.split('/');
     const len = pathList.length;
