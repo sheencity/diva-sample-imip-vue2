@@ -1,5 +1,5 @@
 <template>
-  <main class="device-bg">
+  <main ref="device" class="device-bg">
     <header>
       <app-dialog-header
         :key="title"
@@ -188,11 +188,13 @@ export default {
     },
   },
   mounted() {
+    // 将用于显示 diva 的dom删除
+    const divaDom = this.$refs.device.previousSibling;
+    divaDom.parentNode.removeChild(divaDom);
     const url = this.$route.path;
     const pathList =  url.split('/');
     const len = pathList.length;
     this.type = this.$route.params.id ? pathList[len - 3] : pathList[len - 2];
-
     switch (this.type) {
       case 'environment':{     //  【环境】设备弹框
         this.title = '监测数据';

@@ -111,7 +111,7 @@ export default {
     position: absolute;
     width: 100%;
     height: 100vh;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(4px);
     z-index: -1;
   }
 }

@@ -1,5 +1,5 @@
 import { Diva, Overlay } from '@sheencity/diva-sdk';
-import { CefAdapter } from '@sheencity/diva-sdk-adapter';
+import { WebRtcAdapter } from '@sheencity/diva-sdk-adapter';
 import {
   Euler,
   EulerOrder,
@@ -21,7 +21,7 @@ export class DivaService {
   async init(container) {
     const uri = 'http://127.0.0.1:3000';
     const apiKey = '<replace_your_api_key_here>';
-    const adapter = new CefAdapter(container);
+    const adapter = new WebRtcAdapter(container, uri);
     const diva = new Diva({ apiKey, adapter });
     this.client = await diva.init();
   }
