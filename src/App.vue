@@ -6,19 +6,51 @@
 </template>
 <script>
 import { diva, dataService } from 'services/global';
+import { Subject } from 'rxjs';
+  import { debounceTime } from "rxjs/operators";
 
 export default {
+  data(){
+    return {
+      changeResolution: new Subject(),
+    }
+  },
   async mounted() {
-    if (this.$refs.backendContainer) {
-      await diva.init(this.$refs.backendContainer);
+    const backendContainer = this.$refs.backendContainer;
+    if (backendContainer) {
+      await diva.init(backendContainer);
+      this.updateResolution();
+      const resizeObserver = new ResizeObserver(() => {
+        this.changeResolution.next(true);
+      });
+      resizeObserver.observe(backendContainer);
+      this.changeResolution
+        .pipe(debounceTime(200))
+        .subscribe(this.updateResolution);
+      // 通知其他组件 diva.clent 可用了
       if (diva.client) dataService._diva.next(true);
     }
   },
+  methods: {
+    /**
+     * 设置 diva 分辨率随浏览器窗口改变
+     */
+    updateResolution() {
+      const width = this.$refs.backendContainer.clientWidth;
+      const height = this.$refs.backendContainer.clientHeight;
+      diva.client.setResolution({
+        width,
+        height,
+      });
+    },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
   .backend-container{
+     width: 100%;
+     height: 100%;
      position: absolute;
      top: 0;
      left: 0;
