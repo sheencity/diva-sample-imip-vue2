@@ -16,7 +16,7 @@
           :class="{'activity':!hideOptions}" 
           width="9" 
           height="6"
-          :src="disabled? 'assets/images/common/dropdown/arrow-down-disabled.svg' : 'assets/images/common/dropdown/arrow-down.svg'" 
+          :src="disabled? 'assets/images/icon/arrow-down-disabled.svg' : 'assets/images/icon/arrow-down.svg'" 
         />
     </p>
     <ul class="option" :style="{height: (!hideOptions ? 'auto':'0px')}">

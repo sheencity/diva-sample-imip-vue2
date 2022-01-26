@@ -21,7 +21,7 @@
           {
             "header": {
               "title": "烟雾报警",
-              "icon": "assets/images/common/dialog/route3/3-1.svg"
+              "icon": "assets/images/icon/alarm-smog.svg"
             },
             "thead": [
               { "name": "id", "title": "编号" },
@@ -83,7 +83,7 @@
           {
             "header": {
               "title": "烟雾报警",
-              "icon": "assets/images/common/dialog/route3/3-2.svg"
+              "icon": "assets/images/icon/alarm-fire.svg"
             },
             "thead": [
               { "name": "id", "title": "编号" },
@@ -169,7 +169,7 @@
           {
             "header": {
               "title": "烟雾报警",
-              "icon": "assets/images/common/dialog/route3/3-3.svg"
+              "icon": "assets/images/icon/alarm-escape.svg"
             },
             "thead": [
               { "name": "id", "title": "编号" },
@@ -212,7 +212,7 @@
     {
       "header": {
         "title": "消防警报",
-        "icon": "assets/images/common/dialog/route3/3-4.svg"
+        "icon": "assets/images/icon/alarm-bell.svg"
       },
       "content": {
         "type": "echarts-pie",
@@ -234,7 +234,7 @@
     {
       "header": {
         "title": "报警趋势分析",
-        "icon": "assets/images/common/dialog/route3/3-4.svg"
+        "icon": "assets/images/icon/alarm-bell.svg"
       },
       "content": {
         "type": "echarts-line",
@@ -265,7 +265,7 @@
     {
       "header": {
         "title": "区域报警分析",
-        "icon": "assets/images/common/dialog/route3/3-4.svg"
+        "icon": "assets/images/icon/alarm-bell.svg"
       },
       "content": {
         "type": "echarts-bar",

@@ -8,7 +8,7 @@
     {
       "header": {
         "title": "设备清单",
-        "icon": "assets/images/common/dialog/route3/2-1.svg"
+        "icon": "assets/images/icon/disk.svg"
       },
       "content": {
         "type": "clickable-list",
@@ -84,7 +84,7 @@
     {
       "header": {
         "title": "甲醛（mg/m³）",
-        "icon": "assets/images/common/dialog/route3/2-2.svg"
+        "icon": "assets/images/icon/multi-circle.svg"
       },
       "content": {
         "type": "echarts-bar",
@@ -106,7 +106,7 @@
     {
       "header": {
         "title": "二氧化碳（PPM）",
-        "icon": "assets/images/common/dialog/route3/2-3.svg"
+        "icon": "assets/images/icon/co2.svg"
       },
       "content": {
         "type": "echarts-line",
@@ -135,7 +135,7 @@
     {
       "header": {
         "title": "温湿度",
-        "icon": "assets/images/common/dialog/route3/2-4.svg"
+        "icon": "assets/images/icon/temperature.svg"
       },
       "content": {
         "type": "echarts-bar-line",
@@ -181,7 +181,7 @@
     {
       "header": {
         "title": "PM2.5（μg/m³）",
-        "icon": "assets/images/common/dialog/route3/2-5.svg"
+        "icon": "assets/images/icon/pm2.5.svg"
       },
       "content": {
         "type": "echarts-line",
@@ -209,7 +209,7 @@
     {
       "header": {
         "title": "VOC（mg/m³）",
-        "icon": "assets/images/common/dialog/route3/2-6.svg"
+        "icon": "assets/images/icon/VOC.svg"
       },
       "content": {
         "type": "echarts-bar",

@@ -9,7 +9,7 @@
       ></app-button-tab>
 
       <app-row-list
-        class="top10"
+        class="card-mt"
         v-if="rowList"
         :header="rowList.header"
         :dataSource="rowList.content"

@@ -7,14 +7,14 @@
       ></app-statistics-panel>
 
       <app-basic-info
-        class="top10"
+        class="card-mt"
         v-if="basicInfo"
         :header="basicInfo.header"
         :dataSource="basicInfo.content.data"
       ></app-basic-info>
 
       <app-scroller-table
-        class="top10"
+        class="card-mt"
         v-if="textList"
         :header="textList.header"
         :dataSource="textList.content.data"
@@ -33,14 +33,14 @@
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         v-if="basicBar"
         :header="basicBar.header"
         :dataSource="basicBar.content"
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         v-if="horBar"
         :header="horBar.header"
         :dataSource="horBar.content"

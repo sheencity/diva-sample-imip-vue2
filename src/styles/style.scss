@@ -71,13 +71,9 @@ p {
   flex-direction: column;
   flex-shrink: 0;
 
-  .top10:first-child {
-    margin-top: 0px !important;
-  }
-
-  // 每个子元素（类名为top10）上外边距都设为10px
-  .top10:nth-child(n) {
-    margin-top: 0.625rem;
+  // 每个 panel 面板，除了第一个 card 组件，每个外边距都为 10px
+  .card-mt:not(:first-child) {
+    margin-top: 10px;
   }
 }
 

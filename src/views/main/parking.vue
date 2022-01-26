@@ -18,14 +18,14 @@
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         v-if="echartsLine"
         :header="echartsLine.header"
         :dataSource="echartsLine.content"
       ></app-echarts>
 
       <app-scroller-table
-        class="top10"
+        class="card-mt"
         v-if="textList"
         :header="textList.header"
         :dataSource="textList.content.data"

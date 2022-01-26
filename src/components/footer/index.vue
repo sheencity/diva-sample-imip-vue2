@@ -96,7 +96,7 @@ footer {
       content: "";
       width: 11.25rem;
       height: 3rem;
-      background: url("/public/assets/images/footer/button-bg.png") no-repeat;
+      background: url("/public/assets/images/theme/button-bg.png") no-repeat;
       background-size: 100% 100%;
       z-index: -1;
     }
@@ -125,14 +125,14 @@ footer {
       }
       &:hover {
         &::before {
-          background: url("/public/assets/images/footer/button-hover.png");
+          background: url("/public/assets/images/theme/button-hover.png");
           background-size: 100% 100%;
         }
       }
     }
     .route-selected {
       &::before {
-        background: url("/public/assets/images/footer/button-hover.png");
+        background: url("/public/assets/images/theme/button-hover.png");
         background-size: 100% 100%;
       }
 
@@ -165,7 +165,7 @@ footer {
       }
       &:hover {
         &::before {
-          background: url("/public/assets/images/footer/button-hover-child.png") no-repeat;
+          background: url("/public/assets/images/theme/button-hover-child.png") no-repeat;
           background-size: 100% 100%;
         }
       }
@@ -176,13 +176,13 @@ footer {
       content: "";
       width: 7.5rem;
       height: 2rem;
-      background: url("/public/assets/images/footer/button-bg-child.png") no-repeat;
+      background: url("/public/assets/images/theme/button-bg-child.png") no-repeat;
       background-size: 100% 100%;
       z-index: -1;
     }
     .child-route-selected {
       &::before {
-        background: url("/public/assets/images/footer/button-hover-child.png");
+        background: url("/public/assets/images/theme/button-hover-child.png");
         background-size: 100% 100%;
       }
     }

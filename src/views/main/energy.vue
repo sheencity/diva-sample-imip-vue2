@@ -2,21 +2,21 @@
   <article v-if="divaParams" class="space-between">
     <aside class="space-left all">
       <app-button-tab
-        class="top10"
+        class="card-mt"
         :header="buttonTab.header"
         :dataSource="buttonTab.content"
         @select="selectResources"
       ></app-button-tab>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         :key="currCategoryIndex + 'bar'"
         :header="barCharts[currCategoryIndex].header"
         :dataSource="barCharts[currCategoryIndex].content"
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         :key="currCategoryIndex + 'pie'"
         :header="pieCharts[currCategoryIndex].header"
         :dataSource="pieCharts[currCategoryIndex].content"
@@ -24,7 +24,7 @@
     </aside>
     <aside class="space-right all">
       <app-switcher-list-panel
-        class="top10"
+        class="card-mt"
         :header="switchPanel.header"
         :dataSource="switchPanel.content.data"
         @checked="checked"

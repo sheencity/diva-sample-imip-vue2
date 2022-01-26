@@ -4,14 +4,14 @@
       "data": [
         {
           "title": "项目介绍",
-          "icon": "assets/images/footer/1.svg",
+          "icon": "assets/images/icon/building-03.svg",
           "view": "introduction",
           "data": "config/page/introduction.json",
           "children": []
         },
         {
           "title": "碳中和",
-          "icon": "assets/images/footer/2.svg",
+          "icon": "assets/images/icon/plants.svg",
           "view": "energy",
           "children": [
             {
@@ -23,7 +23,7 @@
         },
         {            
           "title": "智慧运营",
-          "icon": "assets/images/footer/3.svg",
+          "icon": "assets/images/icon/operation.svg",
           "view": "office",
           "children": [
             {
@@ -55,7 +55,7 @@
         },
         {            
           "title": "产业招商",
-          "icon": "assets/images/footer/4.svg",
+          "icon": "assets/images/icon/collabrate.svg",
           "view": "achievement",
           "children": [
             {

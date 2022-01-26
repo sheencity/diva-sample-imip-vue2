@@ -5,7 +5,7 @@
       v-for="item in dataSource"
       style="margin-bottom: 0.625rem"
     >
-      <div class="top10">
+      <div class="card-mt">
         <app-dialog :header="item.header">
           <div class="thead">
             <span class="col-1">{{ item.thead[0].title }}</span>
