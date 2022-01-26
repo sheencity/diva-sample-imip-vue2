@@ -36,7 +36,7 @@
             "data": [
               {
                 "text": "南北景观中轴",
-                "image": "assets/images/theme/1.png",
+                "image": "assets/images/theme/camera-1.png",
                 "diva": {
                   "camera_track_name": "南北景观中轴"
                 }
@@ -53,21 +53,21 @@
             "data": [
               {
                 "text": "厂前区中心开敞空间",
-                "image": "assets/images/theme/2.png",
+                "image": "assets/images/theme/camera-2.png",
                 "diva": {
                   "camera_track_name": "厂前区节点"
                 }
               },
               {
                 "text": "厂区中心广场",
-                "image": "assets/images/theme/3.png",
+                "image": "assets/images/theme/camera-3.png",
                 "diva": {
                   "camera_track_name": "中心广场节点"
                 }
               },
               {
                 "text": "东广场入口",
-                "image": "assets/images/theme/4.png",
+                "image": "assets/images/theme/camera-4.png",
                 "diva": {
                   "camera_track_name": "东广场入口节点"
                 }
@@ -84,14 +84,14 @@
             "data": [
               {
                 "text": "生产区车流闭环",
-                "image": "assets/images/theme/5.png",
+                "image": "assets/images/theme/camera-5.png",
                 "diva": {
                   "camera_track_name": "生产区车流闭环"
                 }
               },
               {
                 "text": "厂前区车流闭环",
-                "image": "assets/images/theme/6.png",
+                "image": "assets/images/theme/camera-6.png",
                 "diva": {
                   "camera_track_name": "厂前区车流闭环"
                 }
