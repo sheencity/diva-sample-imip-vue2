@@ -14,7 +14,7 @@
         "type": "basic-info",
         "data": {
           "image": {
-            "url": "assets/images/theme/content.png"
+            "url": "assets/images/data/content.png"
           },
           "text": ["智能制造产业园是智能化、科技化，管理成本更低，生产自动化程度更高的制造类园区。"]
         }
