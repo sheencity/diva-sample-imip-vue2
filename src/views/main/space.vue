@@ -2,7 +2,7 @@
   <article class="space-between">
     <aside class="space-left all">
       <app-basic-info
-        class="top10"
+        class="card-mt"
         v-if="basicInfo"
         :header="basicInfo.header"
         :dataSource="basicInfo.content.data"

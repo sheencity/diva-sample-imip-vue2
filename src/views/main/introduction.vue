@@ -2,26 +2,26 @@
   <article v-if="divaParams" class="space-between">
     <aside class="space-left all">
       <app-basic-info
-        class="top10"
+        class="card-mt"
         :header="basicInfo.header"
         :dataSource="basicInfo.content.data"
       ></app-basic-info>
 
       <app-card-table
-        class="top10"
+        class="card-mt"
         :header="cardTable.header"
         :dataSource="cardTable.content.data"
       ></app-card-table>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         :header="roseCharts.header"
         :dataSource="roseCharts.content"
       ></app-echarts>
     </aside>
     <aside class="space-right all">
       <app-card-list
-        class="top10"
+        class="card-mt"
         :header="cardList.header"
         :dataSource="cardList.content.data"
         @select="selectArea"

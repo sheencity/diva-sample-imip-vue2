@@ -11,14 +11,14 @@
       ></app-table-col3>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         v-if="CH2OData"
         :header="CH2OData.header"
         :dataSource="CH2OData.content"
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         v-if="CO2Data"
         :header="CO2Data.header"
         :dataSource="CO2Data.content"
@@ -32,14 +32,14 @@
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         v-if="PM25Data"
         :header="PM25Data.header"
         :dataSource="PM25Data.content"
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         v-if="VOCData"
         :header="VOCData.header"
         :dataSource="VOCData.content"

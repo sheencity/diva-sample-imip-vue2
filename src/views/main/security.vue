@@ -11,7 +11,7 @@
       <app-table-col3
         v-if="monitorList && selectedIndex === 0"
         ref="monitorTable"
-        class="top10"
+        class="card-mt"
         :maxItem="7"
         :header="monitorList.header"
         :thead="monitorList.content.head"
@@ -22,7 +22,7 @@
 
       <app-switcher-list
         v-if="trafficList && selectedIndex === 1"
-        class="top10"
+        class="card-mt"
         :header="trafficList.header"
         :dataSource="trafficList.content.data"
         @checked="switchChange"
@@ -37,7 +37,7 @@
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         v-if="abnormalArea"
         :header="abnormalArea.header"
         :dataSource="abnormalArea.content"

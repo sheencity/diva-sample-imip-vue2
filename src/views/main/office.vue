@@ -2,7 +2,7 @@
   <article v-if="divaParams" class="space-between">
     <aside class="space-left all">
       <app-floor-panel
-        class="top10"
+        class="card-mt"
         :dataSource="floorPanel"
         @changeElevator="changeElevator"
         @explode="explodeFloor"
@@ -13,18 +13,18 @@
     </aside>
     <aside class="space-right all">
       <app-statistics-panel
-        class="top10"
+        class="card-mt"
         :dataSource="staPanel"
       ></app-statistics-panel>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         :header="basicPie.header"
         :dataSource="basicPie.content"
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         :header="basicLine.header"
         :dataSource="basicLine.content"
       ></app-echarts>

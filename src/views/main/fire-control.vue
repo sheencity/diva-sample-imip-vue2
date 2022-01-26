@@ -2,7 +2,7 @@
   <article v-if="divaParams" class="space-between">
     <aside class="space-left all">
       <app-table-multi-col3
-        class="top10"
+        class="card-mt"
         :dataSource="tablePanel.content.data"
         :maxItem="4"
         @select="select"
@@ -15,13 +15,13 @@
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         :header="lineChart.header"
         :dataSource="lineChart.content"
       ></app-echarts>
 
       <app-echarts
-        class="top10"
+        class="card-mt"
         :header="barChart.header"
         :dataSource="barChart.content"
       ></app-echarts>

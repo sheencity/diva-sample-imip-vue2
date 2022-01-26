@@ -7,14 +7,14 @@
     ></app-button-group>
 
     <app-button-tab
-      class="top10"
+      class="card-mt"
       :header="leftModuleA.header"
       :dataSource="leftModuleA.content"
       @select="switchFloorRendering"
     ></app-button-tab>
 
     <app-table-col3
-      class="top10"
+      class="card-mt"
       v-show="currentFloor.currFloorTableData.length"
       :maxItem="4"
       :header="leftModuleB.header"
@@ -25,7 +25,7 @@
     ></app-table-col3>
 
     <app-scroller-table
-      class="top10"
+      class="card-mt"
       v-show="currentFloor.currFloorScrollTableData.length"
       :header="leftModuleC.header"
       :thead="leftModuleC.content.header"
@@ -37,7 +37,7 @@
     ></app-scroller-table>
 
     <app-switcher-list-panel
-      class="top10"
+      class="card-mt"
       :header="leftModuleD.header"
       :dataSource="leftModuleD.content.data"
       @checked="explodeFloor"
