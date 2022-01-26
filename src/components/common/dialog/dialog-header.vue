@@ -18,9 +18,9 @@ export default {
       imgURL: this.icon ? this.icon : '',
       lineURL: !this.width
         ? this.icon
-          ? 'assets/images/common/dialog/dialog-line.png'
-          : 'assets/images/common/dialog/dialog-line-double.png'
-        : 'assets/images/common/dialog/dialog-line-short.png',
+          ? 'assets/images/theme/line-normal.png'
+          : 'assets/images/theme/line-double.png'
+        : 'assets/images/theme/line-short.png',
     };
   },
 };

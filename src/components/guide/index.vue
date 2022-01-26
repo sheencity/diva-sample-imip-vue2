@@ -4,7 +4,7 @@
       <header>
         <h3 class=".text-center">操作指南</h3>
         <img
-          src="assets/images/common/dialog/dialog-line-double.png"
+          src="assets/images/theme/line-double.png"
           style="display: block"
         />
       </header>
