@@ -8,13 +8,13 @@
     {
       "header": {
         "title": "项目介绍",
-        "icon": "assets/images/common/dialog/route1/1.svg"
+        "icon": "assets/images/icon/building-01.svg"
       },
       "content": {
         "type": "basic-info",
         "data": {
           "image": {
-            "url": "assets/images/router/introduction/home.png"
+            "url": "assets/images/data/content.png"
           },
           "text": ["智能制造产业园是智能化、科技化，管理成本更低，生产自动化程度更高的制造类园区。"]
         }
@@ -23,7 +23,7 @@
     {
       "header": {
         "title": "基本信息",
-        "icon": "assets/images/common/dialog/route1/2.svg"
+        "icon": "assets/images/icon/info-01.svg"
       },
       "content": {
         "type": "card-table",
@@ -42,7 +42,7 @@
     {
       "header": {
         "title": "建筑分区",
-        "icon": "assets/images/common/dialog/route1/3.svg"
+        "icon": "assets/images/icon/depart.svg"
       },
       "content": {
         "type": "echarts-pie",
@@ -76,7 +76,7 @@
     {
       "header": {
           "title": "产业布局",
-          "icon": "assets/images/common/dialog/route1/4.svg"
+          "icon": "assets/images/icon/ruler-pen.svg"
       },
       "content": {
         "type": "card-list",
@@ -109,7 +109,7 @@
                 "type": "card-panel",
                 "content": {
                   "title": "自动机械产品制造区",
-                  "icon": "assets/images/router/introduction/area1.svg",
+                  "icon": "assets/images/icon/item-machine.svg",
                   "info_left": { 
                     "title": "建筑面积", "value": "60,000", "unit": "m²"
                   },
@@ -130,7 +130,7 @@
                 "type": "card-panel",
                 "content": {
                   "title": "医疗器械设备智造区",
-                  "icon": "assets/images/router/introduction/area2.svg",
+                  "icon": "assets/images/icon/item-medical.svg",
                   "info_left": { 
                     "title": "建筑面积", "value": "38,520", "unit": "m²"
                   },
@@ -152,7 +152,7 @@
                 "type": "card-panel",
                 "content": {
                   "title": "工业创意产品生产区",
-                  "icon": "assets/images/router/introduction/area3.svg",
+                  "icon": "assets/images/icon/item-creative.svg",
                   "info_left": { 
                     "title": "建筑面积", "value": "90,140", "unit": "m²"
                   },
@@ -178,7 +178,7 @@
                 "type": "card-panel",
                 "content": {
                   "title": "工业互联网研发区",
-                  "icon": "assets/images/router/introduction/area4.svg",
+                  "icon": "assets/images/icon/item-web.svg",
                   "info_left": { 
                     "title": "建筑面积", "value": "50,310", "unit": "m²"
                   },
@@ -200,7 +200,7 @@
                 "type": "card-panel",
                 "content": {
                   "title": "人工智能研发区",
-                  "icon": "assets/images/router/introduction/area5.svg",
+                  "icon": "assets/images/icon/item-ai.svg",
                   "info_left": { 
                     "title": "建筑面积", "value": "27,050", "unit": "m²"
                   },
@@ -226,7 +226,7 @@
                 "type": "card-panel",
                 "content": {
                   "title": "配套住宿区",
-                  "icon": "assets/images/router/introduction/area6.svg",
+                  "icon": "assets/images/icon/item-bed.svg",
                   "info_left": { 
                     "title": "建筑面积", "value": "60,000", "unit": "m²"
                   }
@@ -244,7 +244,7 @@
                 "type": "card-panel",
                 "content": {
                   "title": "餐饮休闲区",
-                  "icon": "assets/images/router/introduction/area7.svg",
+                  "icon": "assets/images/icon/item-food.svg",
                   "info_left": { 
                     "title": "建筑面积", "value": "8,300", "unit": "m²"
                   }
