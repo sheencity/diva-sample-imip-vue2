@@ -6,22 +6,22 @@
     </div>
     <div class="tool">
       <router-link style="height: 20px;" to="/home">
-        <img style="margin-right: 25px" src="assets/images/header/home.svg" />
+        <img style="margin-right: 25px" src="assets/images/icon/home.svg" />
       </router-link>
       <img
         style="margin-right: 25px"
-        src="assets/images/header/help.svg"
+        src="assets/images/icon/help.svg"
         @click="showGuide = true"
       >
       <img
         style="margin-right: 10px"
         v-if="weatherUrl"
-        :src="'assets/images/header/weather/' + weatherUrl + '.svg'"
+        :src="'assets/images/icon/weather-' + weatherUrl + '.svg'"
       >
       <span style="margin-right: 18px">{{ weatherInfo.temp }} ℃</span>
-      <img style="margin-right: 8px" src="assets/images/header/time.svg" />
+      <img style="margin-right: 8px" src="assets/images/icon/time.svg" />
       <span style="margin-right: 19px">{{ date }}</span>
-      <img style="margin-right: 9px" src="assets/images/header/date.svg" />
+      <img style="margin-right: 9px" src="assets/images/icon/date.svg" />
       <span>{{ time }}</span>
     </div>
     <app-guide
@@ -76,44 +76,44 @@ export default {
         temp: data.lives[0].temperature,
       };
       if (this.weatherInfo.weather === '晴') {
-        this.weatherUrl = '1';
+        this.weatherUrl = 'sun';
         return;
       }
       if (this.weatherInfo.weather === '晴转多云') {
-        this.weatherUrl = '2';
+        this.weatherUrl = 'suncloud';
         return;
       }
       if (this.weatherInfo.weather === '多云') {
-        this.weatherUrl = '3';
+        this.weatherUrl = 'cloud';
         return;
       }
       if (this.weatherInfo.weather === '阴') {
-        this.weatherUrl = '4';
+        this.weatherUrl = 'overcast';
         return;
       }
       if (
         this.weatherInfo.weather.indexOf('霾') !== -1 ||
         this.weatherInfo.weather.indexOf('雾') !== -1
       ) {
-        this.weatherUrl = '5';
+        this.weatherUrl = 'fog';
         return;
       }
       if (this.weatherInfo.weather.indexOf('雨') !== -1) {
-        this.weatherUrl = '6';
+        this.weatherUrl = 'rain';
         return;
       }
       if (this.weatherInfo.weather.indexOf('雪') !== -1) {
-        this.weatherUrl = '7';
+        this.weatherUrl = 'snow';
         return;
       }
       if (
         this.weatherInfo.weather.indexOf('沙') !== -1 ||
         this.weatherInfo.weather.indexOf('尘') !== -1
       ) {
-        this.weatherUrl = '8';
+        this.weatherUrl = 'dust';
         return;
       }
-      this.weatherUrl = '2';
+      this.weatherUrl = 'cloud';
     },
     closeDialog(e) {
       this.showGuide = e;
@@ -132,7 +132,7 @@ header {
   margin-bottom: 1.88rem;
   display: flex;
   justify-content: center;
-  background: url("/public/assets/images/header/header.png") no-repeat bottom;
+  background: url("/public/assets/images/theme/header.png") no-repeat bottom;
   background-size: contain;
   .sheentity-logo {
     position: absolute;

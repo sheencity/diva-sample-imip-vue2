@@ -203,7 +203,7 @@ export default {
       }
       case 'monitoring':{    //    【监控】设备弹框
         this.getMonData();
-        this.icon = 'assets/images/common/dialog/device-dialog/monitoring.svg';
+        this.icon = 'assets/images/icon/monitor.svg';
         break;
       }
     };
