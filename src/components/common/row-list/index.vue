@@ -26,7 +26,7 @@
             <div class="closeBtn">
               <img
                 @click.stop="closeTopFrame()"
-                src="public/assets/images/icon/close.svg"
+                src="assets/images/icon/close.svg"
               />
             </div>
           </app-basic-info>
@@ -114,6 +114,7 @@ export default {
     position: absolute;
     right: 10px;
     top: 10px;
+    pointer-events: all;
     img {
       padding: 0 5px;
       cursor: pointer;
