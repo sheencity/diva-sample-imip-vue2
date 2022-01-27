@@ -74,6 +74,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  & > * {
+    pointer-events: none;
+  }
   &.disabled {
     opacity: 0.5;
     pointer-events: none;
