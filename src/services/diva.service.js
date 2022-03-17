@@ -1,5 +1,5 @@
 import { Diva, Overlay } from '@sheencity/diva-sdk';
-import { CefAdapter } from '@sheencity/diva-sdk-adapter';
+import { CefAdapter } from '@sheencity/diva-sdk-core';
 import {
   Euler,
   EulerOrder,
