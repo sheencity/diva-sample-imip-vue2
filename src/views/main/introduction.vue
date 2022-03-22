@@ -1,6 +1,6 @@
 <template>
   <article v-if="divaParams" class="space-between">
-    <aside class="space-left all">
+    <aside class="space-left all" @mouseup="stopEvent($event)">
       <app-basic-info
         class="card-mt"
         :header="basicInfo.header"
@@ -19,7 +19,7 @@
         :dataSource="roseCharts.content"
       ></app-echarts>
     </aside>
-    <aside class="space-right all">
+    <aside class="space-right all" @mouseup="stopEvent($event)">
       <app-card-list
         class="card-mt"
         :header="cardList.header"
@@ -70,6 +70,10 @@ export default {
     this.setFloorReset();
   },
   methods: {
+    stopEvent(evt) {
+      evt.stopPropagation();
+      evt.preventDefault();
+    },
     async init() {
       await this.initConfig();
       await this.initScene();

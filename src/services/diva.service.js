@@ -19,11 +19,13 @@ export class DivaService {
    * @param container (HTMLElement) 视频加载的 dom 元素
    */
   async init(container) {
-    const uri = 'http://127.0.0.1:3000';
-    const apiKey = '<replace_your_api_key_here>';
-    const adapter = new CefAdapter(container);
-    const diva = new Diva({ apiKey, adapter });
+    console.log({ container });
+    const apiKey = "<replace_your_api_key_here>";
+    const diva = new Diva({ mode: "embedded", apiKey, container });
+
+    console.log("diva is", diva);
     this.client = await diva.init();
+    console.log("client is", this.client);
   }
 
   /**
@@ -126,8 +128,8 @@ export class DivaService {
    */
   async setTransformAnimation(id, duration, options) {
     await this.client.request('SetTransformAnimation', {
-      id: id,
-      duration: duration,
+      id,
+      duration,
       ...options,
     });
   }
