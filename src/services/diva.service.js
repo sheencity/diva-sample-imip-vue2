@@ -1,5 +1,5 @@
 import { Diva, Overlay } from '@sheencity/diva-sdk';
-import { CefAdapter } from '@sheencity/diva-sdk-core';
+import { CefAdapter, WebRtcAdapter } from '@sheencity/diva-sdk-core';
 import {
   Euler,
   EulerOrder,
@@ -16,16 +16,23 @@ export class DivaService {
   client;
 
   /**
+   * @type {import('@sheencity/diva-sdk-core').CefAdapter | import('@sheencity/diva-sdk-core').WebRtcAdapter}
+   */
+  adapter;
+
+  /**
    * @param container (HTMLElement) 视频加载的 dom 元素
    */
   async init(container) {
     console.log({ container });
-    const apiKey = "<replace_your_api_key_here>";
-    const diva = new Diva({ mode: "embedded", apiKey, container });
-
-    console.log("diva is", diva);
+    const apiKey = '<replace_your_api_key_here>';
+    this.adapter = /Mars/.test(globalThis.navigator.userAgent)
+      ? new CefAdapter(container) // 使用内嵌模式
+      : new WebRtcAdapter(container, new URL('ws://127.0.0.1:3000')); // 使用云渲染模式
+    const diva = new Diva({ apiKey, adapter: this.adapter });
+    console.log('diva is', diva);
     this.client = await diva.init();
-    console.log("client is", this.client);
+    console.log('client is', this.client);
   }
 
   /**
