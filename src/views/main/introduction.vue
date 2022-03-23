@@ -205,6 +205,7 @@ export default {
      * 实体添加的click事件
      */
     async modelClickEvent(e) {
+      if (e.detail.button !== 0) return;
       const model = await diva.getEntityById(e.target);
       const group = model.group;
       const nameList = group.split('楼栋');

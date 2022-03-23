@@ -116,13 +116,16 @@ export default {
      * 点击设备弹出弹窗
      */
     async setWebWidget(e) {
+      if (e.detail.button !== 0) return;
       this.deviceId = e.target;
       const equipmentId = this.deviceMap.get(e.target);
       const widgetOption = this.deviceList.content.diva.action
         .filter((action) => action.name === 'set_web_widget')[0]
         .param;
       
-      const url = `${window.location.origin}/#/pop-up/environment/widget/${equipmentId}`;
+      const url = window.location.pathname !== '/'
+        ? `${window.location.origin}${window.location.pathname}#/pop-up/environment/widget/${equipmentId}`
+        : `${window.location.origin}/#/pop-up/environment/widget/${equipmentId}`;
       diva.createWedWidget(e.target, url, widgetOption);
     },
     /**
