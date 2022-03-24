@@ -1,6 +1,6 @@
 <template>
   <article v-if="divaParams" class="space-between">
-    <aside class="space-left all" @mouseup="stopEvent($event)">
+    <aside class="space-left all">
       <app-basic-info
         class="card-mt"
         :header="basicInfo.header"
@@ -19,7 +19,7 @@
         :dataSource="roseCharts.content"
       ></app-echarts>
     </aside>
-    <aside class="space-right all" @mouseup="stopEvent($event)">
+    <aside class="space-right all">
       <app-card-list
         class="card-mt"
         :header="cardList.header"
@@ -65,15 +65,11 @@ export default {
 
   beforeDestroy() {
     this.modelEventList?.forEach((model) => {
-      model.removeEventListener('click', this.modelClickEvent);
+      model.removeEventListener('mousedown', this.modelClickEvent);
     });
     this.setFloorReset();
   },
   methods: {
-    stopEvent(evt) {
-      evt.stopPropagation();
-      evt.preventDefault();
-    },
     async init() {
       await this.initConfig();
       await this.initScene();
@@ -189,13 +185,13 @@ export default {
             const key = Object.keys(floor)[0];
             const fun = this.typeMap.get(key);
             const model = await fun(floor[key]);
-            if(model instanceof Array){
+            if (model instanceof Array) {
               const [m] = model;
               this.modelEventList.push(m);
-              m.addEventListener('click', this.modelClickEvent);
-            }else{
+              m.addEventListener('mousedown', this.modelClickEvent);
+            } else {
               this.modelEventList.push(model);
-              model.addEventListener('click', this.modelClickEvent);
+              model.addEventListener('mousedown', this.modelClickEvent);
             }
           });
         });
