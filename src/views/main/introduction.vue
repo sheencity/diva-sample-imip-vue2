@@ -94,11 +94,21 @@ export default {
      * @param e 区域信息
      */
     selectArea(e) {
+      this.resetState();
+      e.checked = true;
       // 楼梯恢复原样
       this.setFloorReset();
       this.POIlist = [];
       this.floorList = [];
       this.setRendering(e.diva);
+    },
+    /**
+     * 重置右侧列表高亮状态
+     */
+    resetState() {
+      this.cardList.content.data.forEach((area) => {
+        area.list.forEach((ele) => ele.checked = false);
+      });
     },
      /**
      * 获取POI 和 楼体
