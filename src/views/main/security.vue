@@ -80,9 +80,12 @@ export default {
       },
       // 摄像机点击事件
       monitorClickListener: (e) => {
+        if (e.detail.button !== 0) return;
         this.deviceId = e.target;
         const equipmentId = this.monitorsIdMap.get(e.target);
-        const url = `${window.location.origin}/#/pop-up/monitoring/widget/${equipmentId}`;
+        const url = window.location.pathname !== '/'
+         ? `${window.location.origin}${window.location.pathname}#/pop-up/monitoring/widget/${equipmentId}`
+         : `${window.location.origin}/#/pop-up/monitoring/widget/${equipmentId}`;
         diva.createWedWidget(e.target, url, this.options.widget);
       },
       // 摄像机POI 点击事件

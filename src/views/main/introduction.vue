@@ -65,7 +65,7 @@ export default {
 
   beforeDestroy() {
     this.modelEventList?.forEach((model) => {
-      model.removeEventListener('click', this.modelClickEvent);
+      model.removeEventListener('mousedown', this.modelClickEvent);
     });
     this.setFloorReset();
   },
@@ -94,11 +94,21 @@ export default {
      * @param e 区域信息
      */
     selectArea(e) {
+      this.resetState();
+      e.checked = true;
       // 楼梯恢复原样
       this.setFloorReset();
       this.POIlist = [];
       this.floorList = [];
       this.setRendering(e.diva);
+    },
+    /**
+     * 重置右侧列表高亮状态
+     */
+    resetState() {
+      this.cardList.content.data.forEach((area) => {
+        area.list.forEach((ele) => ele.checked = false);
+      });
     },
      /**
      * 获取POI 和 楼体
@@ -185,13 +195,13 @@ export default {
             const key = Object.keys(floor)[0];
             const fun = this.typeMap.get(key);
             const model = await fun(floor[key]);
-            if(model instanceof Array){
+            if (model instanceof Array) {
               const [m] = model;
               this.modelEventList.push(m);
-              m.addEventListener('click', this.modelClickEvent);
-            }else{
+              m.addEventListener('mousedown', this.modelClickEvent);
+            } else {
               this.modelEventList.push(model);
-              model.addEventListener('click', this.modelClickEvent);
+              model.addEventListener('mousedown', this.modelClickEvent);
             }
           });
         });
@@ -201,6 +211,7 @@ export default {
      * 实体添加的click事件
      */
     async modelClickEvent(e) {
+      if (e.detail.button !== 0) return;
       const model = await diva.getEntityById(e.target);
       const group = model.group;
       const nameList = group.split('楼栋');

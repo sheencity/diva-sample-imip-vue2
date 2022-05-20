@@ -179,8 +179,10 @@ export default {
         await Promise.all(this.animeModelGroup.map((model) => model.setScale(new Vector3(1, 1, 0.01))));
         await Promise.all(
           this.animeModelGroup.map((model) => {
+            const { x, y, z } = model.position;
             diva.setTransformAnimation(model.id, this.animeDuration, {
-              scale: new Vector3(1, 1, 1),
+              scale: [1, 1, 1],
+              position: [x, y, z],
             });
           })
         );
