@@ -56,8 +56,10 @@ export default {
 
 <style lang="scss" scoped>
   .backend-container{
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
+    top: -1px;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
   }
 </style>
