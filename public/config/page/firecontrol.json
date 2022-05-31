@@ -82,7 +82,7 @@
           },
           {
             "header": {
-              "title": "烟雾报警",
+              "title": "灭火设施",
               "icon": "assets/images/icon/alarm-fire.svg"
             },
             "thead": [
@@ -168,7 +168,7 @@
           },
           {
             "header": {
-              "title": "烟雾报警",
+              "title": "安全通道",
               "icon": "assets/images/icon/alarm-escape.svg"
             },
             "thead": [
