@@ -5,10 +5,9 @@
   </main>
 </template>
 <script>
-import { WebRtcAdapter } from '@sheencity/diva-sdk-core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { diva, dataService } from 'services/global';
+import { diva, dataService } from './services/global';
 
 export default {
   data() {
@@ -44,7 +43,7 @@ export default {
   },
   methods: {
     updateResolution() {
-      if (diva.adapter instanceof WebRtcAdapter) {
+      if (!diva.isEmbeddedMode()) {
         const width = this.backendContainer.clientWidth;
         const height = this.backendContainer.clientHeight;
         diva.client.setResolution({ width, height });
