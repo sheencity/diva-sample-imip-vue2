@@ -1,0 +1,739 @@
+{
+  "diva": {
+		"init": {
+			"scene_name": "主楼分析B"
+		},
+    "common": {
+      "group_name": "/产业园区/楼栋/1#",
+      "default_mode": "高亮"
+    }
+	},
+	"panel-left": [
+    {
+      "type": "floor-panel",
+      "floor-btn-group": {
+        "type": "btn-group",
+        "diva": {
+          "action": [{
+            "name": "focus",
+            "description": "点击后聚焦至楼层",
+            "param": {
+              "distance": 8000,
+              "pitch": -45
+            }
+          }]
+        }
+      },
+      "panel-left": [
+        {
+          "header": {
+            "icon": "assets/images/icon/item-04.svg",
+            "title": "楼层分析模式"
+          },
+          "content": {
+            "type": "button-tab",
+            "data": [
+              {
+                "title": "高亮",
+                "diva": {
+                  "init": {
+                    "scene_name": "主楼分析B"
+                  },
+                  "action": [{
+                    "name": "highlight-isolate",
+                    "description": "高亮孤立，被选中物体不高亮",
+                    "param": {
+                      "color": [0,29,119],
+                      "emission": 3,
+                      "speed": 0
+                    }
+                  }]
+                }
+              },
+              {            
+                "title": "独立",
+                "diva": {
+                  "init": {
+                    "scene_name": "主楼分析B"
+                  },
+                  "action": [{
+                    "name": "hide-isolate",
+                    "description": "隐藏孤立，被选中物体不隐藏"
+                  }]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "description": "自动绑定楼层数据",
+          "header": {
+            "icon": "assets/images/icon/settings-01.svg",
+            "title": "楼层配套"
+          },
+          "content": {
+            "type": "table-col3",
+            "diva": {
+              "action": [
+                {
+                  "name": "alarm",
+                  "description": "点击后目标物体红色闪烁",
+                  "category": "楼梯"
+                },
+                {
+                  "name": "focus",
+                  "description": "点击后聚焦至楼体/洗手间等楼层配套",
+                  "param": {
+                    "distance": 2500,
+                    "pitch": -60
+                  }
+                }
+              ]
+            },
+            "head": [
+              { "name": "id", "title": "编号" },
+              { "name": "category", "title": "类别" },
+              { "name": "status", "title": "状态" }
+            ],
+            "data": "devices"
+          }
+        },
+        {
+          "description": "自动绑定楼层数据",
+          "header": {
+            "icon": "assets/images/icon/items-02.svg",
+            "title": "入驻企业"
+          },
+          "content": {
+            "type": "scroller-table",
+            "scroll": true,
+            "header": [
+              { "name": "room", "title": "房间" },
+              { "name": "name", "title": "入驻企业" }
+            ],
+            "data": "companies"
+          }
+        },
+        {
+          "header": {
+            "icon": "assets/images/icon/option.svg",
+            "title": "楼宇控制"
+          },
+          "content": {
+            "type": "switcher-list-panel",
+            "data": [
+              {
+                "title": "楼宇拆分",
+                "default": false,
+                "diva": {
+                  "action": [{
+                    "name": "explode",
+                    "param": {
+                      "spacing": 100,
+                      "eachHeight": 100,
+                      "duration": 1
+                    }
+                  }]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "data": [
+        {
+          "name": "18F",
+          "devices": [],
+          "companies": []
+        },
+        {
+          "name": "17F",
+          "devices": [
+            {
+              "id": "WF171",
+              "name": "POI卫生间17F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF172",
+              "name": "POI卫生间17F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "SF171",
+              "name": "17Fs9",
+              "category": "楼梯",
+              "status": "正常"
+            },
+            {
+              "id": "SF172",
+              "name": "17Fs10",
+              "category": "楼梯",
+              "status": "正常"
+            }
+          ],
+          "companies": [
+            { "room": "1701", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1702", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1703", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1704", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1705", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "16F",
+          "devices": [
+            {
+              "id": "WF161",
+              "name": "POI卫生间16F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF162",
+              "name": "POI卫生间16F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "SF161",
+              "name": "16Fs9",
+              "category": "楼梯",
+              "status": "正常"
+            },
+            {
+              "id": "SF162",
+              "name": "16Fs10",
+              "category": "楼梯",
+              "status": "正常"
+            }
+          ],
+          "companies": [
+            { "room": "1601", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1602", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1603", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1604", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1605", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "15F",
+          "devices": [
+            {
+              "id": "WF151",
+              "name": "POI卫生间15F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF152",
+              "name": "POI卫生间15F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "SF151",
+              "name": "15Fs9",
+              "category": "楼梯",
+              "status": "正常"
+            },
+            {
+              "id": "SF152",
+              "name": "15Fs10",
+              "category": "楼梯",
+              "status": "正常"
+            }
+          ],
+          "companies": [
+            { "room": "1501", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1502", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1503", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1504", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1505", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "14F",
+          "devices": [
+            {
+              "id": "WF141",
+              "name": "POI卫生间14F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF142",
+              "name": "POI卫生间14F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "SF141",
+              "name": "14Fs9",
+              "category": "楼梯",
+              "status": "正常"
+            },
+            {
+              "id": "SF142",
+              "name": "14Fs10",
+              "category": "楼梯",
+              "status": "正常"
+            }
+          ],
+          "companies": [
+            { "room": "1401", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1402", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1403", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1404", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1405", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "13F",
+          "devices": [
+            {
+              "id": "WF131",
+              "name": "POI卫生间13F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "SF131",
+              "name": "13Fs9",
+              "category": "楼梯",
+              "status": "正常"
+            },
+            {
+              "id": "SF132",
+              "name": "13Fs10",
+              "category": "楼梯",
+              "status": "正常"
+            }
+          ],
+          "companies": [
+            { "room": "1301", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1302", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1303", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1304", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1305", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "12F",
+          "devices": [
+            {
+              "id": "WF121",
+              "name": "POI卫生间12F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "SF121",
+              "name": "12Fs9",
+              "category": "楼梯",
+              "status": "正常"
+            },
+            {
+              "id": "SF122",
+              "name": "12Fs10",
+              "category": "楼梯",
+              "status": "正常"
+            }
+          ],
+          "companies": [
+            { "room": "1201", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1202", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1203", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1204", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1205", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "11F",
+          "devices": [
+            {
+              "id": "WF111",
+              "name": "POI卫生间11F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "SF111",
+              "name": "11Fs9",
+              "category": "楼梯",
+              "status": "正常"
+            },
+            {
+              "id": "SF112",
+              "name": "11Fs10",
+              "category": "楼梯",
+              "status": "正常"
+            }
+          ],
+          "companies": [
+            { "room": "1101", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1102", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1103", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1104", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1105", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "10F",
+          "devices": [
+            {
+              "id": "WF101",
+              "name": "POI卫生间10F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF102",
+              "name": "POI卫生间10F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "SF101",
+              "name": "10Fs9",
+              "category": "楼梯",
+              "status": "正常"
+            },
+            {
+              "id": "SF102",
+              "name": "10Fs10",
+              "category": "楼梯",
+              "status": "正常"
+            }
+          ],
+          "companies": [
+            { "room": "1001", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1002", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1003", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1004", "name": "XXXXXXXXX 有限公司" },
+            { "room": "1005", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "9F",
+          "devices": [
+            {
+              "id": "WF091",
+              "name": "POI卫生间9F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF092",
+              "name": "POI卫生间9F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            { "id": "SF091", "name": "9Fs9", "category": "楼梯", "status": "正常" },
+            { "id": "SF092", "name": "9Fs10", "category": "楼梯", "status": "正常" }
+          ],
+          "companies": [
+            { "room": "0901", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0902", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0903", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0904", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0905", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "8F",
+          "devices": [
+            {
+              "id": "WF081",
+              "name": "POI卫生间8F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF082",
+              "name": "POI卫生间8F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            { "id": "SF081", "name": "8Fs9", "category": "楼梯", "status": "正常" },
+            { "id": "SF082", "name": "8Fs10", "category": "楼梯", "status": "正常" }
+          ],
+          "companies": [
+            { "room": "0801", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0802", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0803", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0804", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0805", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "7F",
+          "devices": [
+            {
+              "id": "WF071",
+              "name": "POI卫生间7F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF072",
+              "name": "POI卫生间7F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            { "id": "SF071", "name": "7Fs9", "category": "楼梯", "status": "正常" },
+            { "id": "SF072", "name": "7Fs10", "category": "楼梯", "status": "正常" }
+          ],
+          "companies": [
+            { "room": "0701", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0702", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0703", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0704", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0705", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "6F",
+          "devices": [
+            {
+              "id": "WF061",
+              "name": "POI卫生间6F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF062",
+              "name": "POI卫生间6F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            { "id": "SF061", "name": "6Fs9", "category": "楼梯", "status": "正常" },
+            { "id": "SF062", "name": "6Fs10", "category": "楼梯", "status": "正常" }
+          ],
+          "companies": [
+            { "room": "0601", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0602", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0603", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0604", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0605", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "5F",
+          "devices": [
+            {
+              "id": "WF051",
+              "name": "POI卫生间5F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF052",
+              "name": "POI卫生间5F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            { "id": "SF051", "name": "5Fs9", "category": "楼梯", "status": "正常" },
+            { "id": "SF052", "name": "5Fs10", "category": "楼梯", "status": "正常" }
+          ],
+          "companies": [
+            { "room": "0501", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0502", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0503", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0504", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0505", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "4F",
+          "devices": [
+            {
+              "id": "WF041",
+              "name": "POI卫生间4F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF042",
+              "name": "POI卫生间4F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            { "id": "SF041", "name": "4Fs9", "category": "楼梯", "status": "正常" },
+            { "id": "SF042", "name": "4Fs10", "category": "楼梯", "status": "正常" }
+          ],
+          "companies": [
+            { "room": "0401", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0402", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0403", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0404", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0405", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "3F",
+          "devices": [
+            {
+              "id": "WF031",
+              "name": "POI卫生间3F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF032",
+              "name": "POI卫生间3F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            { "id": "SF031", "name": "3Fs4", "category": "楼梯", "status": "正常" },
+            { "id": "SF032", "name": "3Fs9", "category": "楼梯", "status": "正常" },
+            { "id": "SF033", "name": "3Fs10", "category": "楼梯", "status": "正常" }
+          ],
+          "companies": [
+            { "room": "0301", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0302", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0303", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0304", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0305", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "2F",
+          "devices": [
+            {
+              "id": "WF021",
+              "name": "POI卫生间2F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF022",
+              "name": "POI卫生间2F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            { "id": "SF021", "name": "2Fs1", "category": "楼梯", "status": "正常" },
+            { "id": "SF022", "name": "2Fs4", "category": "楼梯", "status": "正常" },
+            { "id": "SF023", "name": "2Fs7", "category": "楼梯", "status": "正常" },
+            { "id": "SF024", "name": "2Fs8", "category": "楼梯", "status": "正常" },
+            { "id": "SF025", "name": "2Fs9", "category": "楼梯", "status": "正常" },
+            { "id": "SF026", "name": "2Fs10", "category": "楼梯", "status": "正常" }
+          ],
+          "companies": [
+            { "room": "0201", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0202", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0203", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0204", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0205", "name": "XXXXXXXXX 有限公司" }
+          ]
+        },
+        {
+          "name": "1F",
+          "devices": [
+            {
+              "id": "WF011",
+              "name": "POI卫生间1F01",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            {
+              "id": "WF012",
+              "name": "POI卫生间1F02",
+              "category": "卫生间",
+              "status": "正常"
+            },
+            { "id": "SF011", "name": "1Fs1", "category": "楼梯", "status": "正常" },
+            { "id": "SF012", "name": "1Fs2", "category": "楼梯", "status": "正常" },
+            { "id": "SF013", "name": "1Fs3", "category": "楼梯", "status": "正常" },
+            { "id": "SF014", "name": "1Fs4", "category": "楼梯", "status": "正常" },
+            { "id": "SF015", "name": "1Fs5", "category": "楼梯", "status": "正常" },
+            { "id": "SF016", "name": "1Fs6", "category": "楼梯", "status": "正常" },
+            { "id": "SF017", "name": "1Fs7", "category": "楼梯", "status": "正常" },
+            { "id": "SF018", "name": "1Fs8", "category": "楼梯", "status": "正常" },
+            { "id": "SF019", "name": "1Fs9", "category": "楼梯", "status": "正常" },
+            { "id": "SF010", "name": "1Fs10", "category": "楼梯", "status": "正常" }
+          ],
+          "companies": [
+            { "room": "0101", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0102", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0103", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0104", "name": "XXXXXXXXX 有限公司" },
+            { "room": "0105", "name": "XXXXXXXXX 有限公司" }
+          ]
+        }
+      ]
+    }
+  ],
+  "panel-right": [
+    {
+      "header": {
+        "title": "入楼人员统计",
+        "icon": "assets/images/icon/items-03.svg"
+			},
+			"content": {
+        "type": "statistic-panel",
+        "data": [
+          {
+            "icon": "assets/images/icon/frame-people.svg",
+            "title": "当前楼内",
+            "number": "1,425"
+          },
+      
+          {
+            "icon": "assets/images/icon/frame-person.svg",
+            "title": "今日入楼",
+            "number": "1,256"
+          },
+          {
+            "icon": "assets/images/icon/frame-person-clock.svg",
+            "title": "今日访客",
+            "number": "127"
+          },
+          {
+            "icon": "assets/images/icon/frame-person-temperature.svg",
+            "title": "防疫检测异常",
+            "number": "3",
+            "fontColor": "#ff4848"
+          }
+        ]
+      }
+    },
+    {
+      "header": {
+        "title": "入楼人员分析",
+        "icon": "assets/images/icon/people.svg"
+			},
+			"content": {
+        "type": "echarts-pie",
+        "option": {
+          "series": [{
+            "data": [
+              { "value": 126, "name": "访客" },
+              { "value": 1023, "name": "入驻企业" },
+              { "value": 230, "name": "物业管理" }
+            ]
+          }]          
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "入楼分时统计",
+        "icon": "assets/images/icon/clock-01.svg"
+			},
+			"content": {
+        "type": "echarts-line",
+        "option": {
+          "xAxis": {
+            "data": ["08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00"]
+          },
+          "series": [{
+            "data": [327,475,110,42,164,245,122,42,54,142,94,24,18]
+          }]          
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "diva": {
+    "init": {
+      "scene_name": "主楼分析A"
+    }
+  },
+  "panel-left": [
+    {
+      "header": {
+        "title": "设备清单",
+        "icon": "assets/images/icon/disk.svg"
+      },
+      "content": {
+        "type": "clickable-list",
+        "diva": {
+          "action": [
+            {
+              "name": "focus",
+              "description": "点击后聚焦至监测设备",
+              "param": {
+                "distance": 200,
+                "pitch": -20
+              }
+            },
+            {
+              "name": "set_web_widget",
+              "description": "点击监测设备后设置弹窗",
+              "param": {
+                "width": 380,
+                "height": 420,
+                "position": "left",
+                "angle": 25,
+                "transparent": true,
+                "closable": true,
+                "dismissable": false,
+                "mouseInput": false,
+                "keyboardInput": false,
+                "line": {
+                  "visible": true,
+                  "color": [0, 60, 62],
+                  "horizontalLineLength": 50,
+                  "verticalLineLength": 250,
+                  "connectorVisible": true
+                }
+              }
+            }
+          ]
+        },
+        "head": [
+          { "name": "id", "title": "编号" },
+          { "name": "category", "title": "类别" },
+          { "name": "status", "title": "状态" }
+        ],
+        "data": [
+          {
+            "id": "MEF901",
+            "category": "监测设备",
+            "status": "正常",
+            "diva": {
+              "model": [{ "name": "环境监测设备" }]
+            },
+            "data": {
+              "CH2O": 0.008,
+              "CO2": 435,
+              "DeviceID": "MEF901",
+              "HUMI": 55.5,
+              "ID": "83222",
+              "PM25": 52,
+              "TEMP": 16.2,
+              "VOC": 0.296
+            }
+          },
+          {
+            "id": "MEF902",
+            "category": "监测设备",
+            "status": "检修",
+            "diva": {
+              "model": [{ "name": "环境监测引导文字" }]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "header": {
+        "title": "甲醛（mg/m³）",
+        "icon": "assets/images/icon/multi-circle.svg"
+      },
+      "content": {
+        "type": "echarts-bar",
+        "option": {
+          "dataset": {
+            "source": [
+              ["12/20", 0.016],
+              ["12/21", 0.02],
+              ["12/22", 0.014],
+              ["12/23", 0.011],
+              ["12/24", 0.01],
+              ["12/25", 0.009],
+              ["12/26", 0.01]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "二氧化碳（PPM）",
+        "icon": "assets/images/icon/co2.svg"
+      },
+      "content": {
+        "type": "echarts-line",
+        "option": {
+          "dataset": {
+            "source": [
+              ["12/20", 454.448],
+              ["12/21", 443.221],
+              ["12/22", 420.696],
+              ["12/23", 406.69],
+              ["12/24", 460.549],
+              ["12/25", 455.971],
+              ["12/26", 425.875]
+            ]
+          },
+          "series": [
+            {
+              "showSymbol": true
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "panel-right": [
+    {
+      "header": {
+        "title": "温湿度",
+        "icon": "assets/images/icon/temperature.svg"
+      },
+      "content": {
+        "type": "echarts-bar-line",
+        "option": {
+          "xAxis": [{
+            "data": ["12/20", "12/21", "12/22", "12/23", "12/24", "12/25", "12/26"]
+          }],
+          "yAxis": [
+            {
+              "name": "%",
+              "splitLine": {
+                "show": true
+              }
+            },
+            {
+              "name": "℃",
+              "splitLine": {
+                "show": false
+              }
+            }
+          ],
+          "series": [
+            {
+              "name": "平均湿度",
+              "data": [55.418, 55.272, 56.078, 53.062, 61.752, 63.773, 69.096]
+            },
+            {
+              "name": "最低温度",
+              "data": [23.5, 23.0, 23.0, 18.6, 20.8, 21.3, 20.2]
+            },
+            {
+              "name": "平均温度",
+              "data": [25.621, 25.452, 24.564, 22.571, 22.569, 22.523, 22.437]
+            },
+            {
+              "name": "最高温度",
+              "data": [27.7, 26.3, 25.6, 23.3, 23.6, 24.8, 23.7]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "PM2.5（μg/m³）",
+        "icon": "assets/images/icon/pm2.5.svg"
+      },
+      "content": {
+        "type": "echarts-line",
+        "option": {
+          "dataset": {
+            "source": [
+              ["12/20", 31.204],
+              ["12/21", 35.281],
+              ["12/22", 18.085],
+              ["12/23", 15.662],
+              ["12/24", 35.963],
+              ["12/25", 41.743],
+              ["12/26", 43.687]
+            ]
+          },
+          "series": [
+            {
+              "areaStyle": null,
+              "showSymbol": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "VOC（mg/m³）",
+        "icon": "assets/images/icon/VOC.svg"
+      },
+      "content": {
+        "type": "echarts-bar",
+        "option": {
+          "dataset": {
+            "source": [
+              ["12/20", 0.31],
+              ["12/21", 0.886],
+              ["12/22", 0.465],
+              ["12/23", 0.348],
+              ["12/24", 1.6],
+              ["12/25", 2.645],
+              ["12/26", 1.006]
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

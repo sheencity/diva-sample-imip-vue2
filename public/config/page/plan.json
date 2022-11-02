@@ -1,0 +1,392 @@
+{
+  "diva": {
+    "init": {
+      "scene_name": "标线鸟瞰"
+    }
+  },
+  "panel-left": [
+    {
+      "header": {
+        "title": "产业配置",
+        "icon": "assets/images/icon/settings-02.svg"
+      },
+      "content": {
+        "type": "button-tab",
+        "data": [
+          {
+            "title": "产业链条",
+            "diva": {
+              "init": {
+                "group": "功能辅助/产业链条"
+              }
+            },
+            "target-panel": {
+              "header": {
+                "title": "产业链条",
+                "icon": "assets/images/icon/circle-links.svg"
+              },
+              "content": {
+                "type": "row-list",
+                "diva": {
+                  "action": [
+                    {
+                      "name": "focus",
+                      "param": {
+                        "distance": 25000,
+                        "pitch": -60
+                      }
+                    }
+                  ]
+                },
+                "data": [
+                  {
+                    "color": "#639DF3",
+                    "title": "拼装/加工/检测调试",
+                    "diva": {
+                      "model": [
+                        { "name": "拼装加工检测调试" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "拼装/加工/检测调试"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["高端装备、医疗器械、核心零部件、汽车电子等基础原材料在上游完成生产制造拼装加工，并配备检测调试设备，为新型显示、新能源汽车、增材制造、智能仪表和控制系统提供检测调试条件。"]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "color": "#EF7272",
+                    "title": "中试/检测调试",
+                    "diva": {
+                      "model": [
+                        { "name": "中试&检测调试" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "中试/检测调试"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["为生物医药、高性能集成电路、轻型制造、机器人产业、智能网络等高端科研产业，提供中试基地，配套新型显示、增材制造、医疗器械等检测调试条件，为中下游系统集成生产线，从上游原材料和中游拼装加工，结合智能化管理软件，为用户打造完整的生产线。"]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "color": "#F1F160",
+                    "title": "其他配套",
+                    "diva": {
+                      "model": [
+                        { "name": "宿舍" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "其他配套"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["完善的餐饮休闲区和配套宿舍区，为企业入驻办公提供优质的食宿条件。"]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "title": "建筑用途",
+            "diva": {
+              "init": {
+                "group": "功能辅助/建筑用途"
+              }
+            },
+            "target-panel": {
+              "header": {
+                "title": "建筑用途",
+                "icon": "assets/images/icon/building-02.svg"
+              },
+              "content": {
+                "type": "row-list",
+                "diva": {
+                  "action": [
+                    {
+                      "name": "focus",
+                      "param": {
+                        "distance": 25000,
+                        "pitch": -60
+                      }
+                    }
+                  ]
+                },
+                "data": [
+                  {
+                    "color": "#f45d57",
+                    "title": "餐厅",
+                    "diva": {
+                      "model": [
+                        { "name": "主楼餐厅体块" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "餐厅"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["8300㎡，营养综合餐厅，可容纳4000人同时就餐。"]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "color": "#a2f4ac",
+                    "title": "宿舍",
+                    "diva": {
+                      "model": [
+                        { "name": "宿舍体块" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "宿舍"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["宿舍分为50㎡的2人间和85㎡的4人间两种户型规格。可容纳6500人入住。"]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "color": "#f7c173",
+                    "title": "孵化楼",
+                    "diva": {
+                      "model": [
+                        { "name": "孵化楼体块" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "孵化楼"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["200-800㎡灵动户型设计，自由组合，科学分区，满足企业功能需求，适合中小型企业，智能消防淋雨系统到户，让企业安心无忧运营。"]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "color": "#e0e388",
+                    "title": "展厅信息会议中心",
+                    "diva": {
+                      "model": [
+                        { "name": "展厅体块" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "展厅信息会议中心"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["2000㎡开放式空间，可容纳400人同时与会的专业会议中心。"]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "color": "#abeef7",
+                    "title": "科研楼",
+                    "diva": {
+                      "model": [
+                        { "name": "科研楼体块" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "科研楼"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["500-1348平米专业实验室户型结构，人性化设计，配套设施完善，专业舒适。"]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "color": "#7956e0",
+                    "title": "标准化车间",
+                    "diva": {
+                      "model": [
+                        { "name": "标准车间B体块" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "标准化车间"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["标准厂房设计，首层层高8.4，人货分流的设计，适合仓储、研发、生产、研发办公、灵动设计，有利于企业进行长远布局。"]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "color": "#ffa2ea",
+                    "title": "动力中心",
+                    "diva": {
+                      "model": [
+                        { "name": "动力中心体块" }
+                      ]
+                    },
+                    "child-panel": {
+                      "header": {
+                        "title": "动力中心"
+                      },
+                      "content": {
+                        "type": "basic-info",
+                        "data": {
+                          "text": ["配电室、换热站等综合动力管理调控中心。"]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "title": "分期规划",
+            "diva": {
+              "init": {
+                "group": "功能辅助/分期规划"
+              }
+            },
+            "target-panel": {
+              "header": {
+                "title": "分期规划",
+                "icon": "assets/images/icon/levels.svg"
+              },
+              "content": {
+                "type": "row-list",
+                "diva": {
+                  "init": {
+                    "scene_name": "鸟瞰"
+                  },
+                  "action": [
+                    {
+                      "name": "animation",
+                      "description": "点击后触发对应楼栋的生长动画",
+                      "param": {
+                        "duration": 2
+                      }
+                    }
+                  ]
+                },
+                "data": [
+                  {
+                    "title": "一期规划",
+                    "diva": {
+                      "model": [
+                        { "name": "3#" },
+                        { "name": "4#" }
+                      ]
+                    }
+                  },
+                  {
+                    "title": "二期规划",
+                    "diva": {
+                      "model": [
+                        { "name": "2#" },
+                        { "name": "13#" },
+                        { "group": "产业园区/楼栋/1#" }
+                      ]
+                    }
+                  },
+                  {
+                    "title": "三期规划",
+                    "diva": {
+                      "model": [
+                        { "name": "5#车间" },
+                        { "name": "动力中心" },
+                        { "name": "6#车间" },
+                        { "name": "6#餐厅" },
+                        { "name": "5-6连廊" },
+                        { "name": "7#" },
+                        { "name": "8#" },
+                        { "name": "9#" },
+                        { "name": "10#" },
+                        { "name": "11#" },
+                        { "name": "12#" }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "panel-right": [
+    {
+      "header": {
+        "title": "建筑红线",
+        "icon": "assets/images/icon/item-05.svg"
+      },
+      "content": {
+        "type": "switch-list",
+        "diva": {
+          "init": {
+            "scene_name": "标线鸟瞰"
+          }
+        },
+        "data": [
+          {
+            "color": "#EED189",
+            "title": "建筑退让线",
+            "default": false,
+            "diva": {
+              "model": [{ "name": "建筑退让线" }]
+            }
+          },
+          {
+            "color": "#FE9C85",
+            "title": "出让土地红线",
+            "default": false,
+            "diva": {
+              "model": [{ "name": "出让土地红线" }]
+            }
+          },
+          {
+            "color": "#FF00F8",
+            "title": "规划用地红线",
+            "default": false,
+            "diva": {
+              "model": [{ "name": "规划用地红线" }]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
