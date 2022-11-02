@@ -1,0 +1,105 @@
+@import url('https://fonts.cdnfonts.com/css/digital-numbers');
+@import url('https://fonts.loli.net/css2?family=Saira:wght@500&display=swap');
+
+:root {
+  font-size: 16px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "微软雅黑";
+  color: #fff;
+  font-size: 14px;
+  user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  outline: none;
+}
+
+span,
+p {
+  padding: 0;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.all {
+  pointer-events: all;
+}
+
+// 每个路由页面的两侧布局
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+// 每个路由页面的左右侧布局
+.space-left,
+.space-right {
+  height: 100%;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  .top10:first-child {
+    margin-top: 0px !important;
+  }
+
+  // 每个子元素（类名为top10）上外边距都设为10px
+  .top10:nth-child(n) {
+    margin-top: 0.625rem;
+  }
+}
+
+.item-selected {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #00f7ff !important;
+}
+
+.bg {
+  width: 360px;
+  background: rgba(4, 14, 29, 0.6);
+  border-radius: 2px;
+  padding: 16px 20px 20px 20px;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  width: 3px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+  

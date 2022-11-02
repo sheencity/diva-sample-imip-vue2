@@ -1,0 +1,262 @@
+{
+  "diva": {
+    "init": {
+      "scene_name": "鸟瞰",
+      "locked": {
+        "group": ["产业园区"]
+      }
+    }
+  },
+  "panel-left": [
+    {
+      "header": {
+        "title": "信息类型",
+        "icon": "assets/images/icon/security.svg"
+      },
+      "content": {
+        "type": "button-tab",
+        "data": [
+          {
+            "title": "实时监控",
+            "icon": {
+              "unselect": "assets/images/icon/monitor-white.svg",
+              "select": "assets/images/icon/monitor.svg"
+            },
+            "diva": {
+              "init": {
+                "scene_name": "鸟瞰"
+              }
+            }
+          },
+          {
+            "title": "交通流线",
+            "icon": {
+              "unselect": "assets/images/icon/traffic-white.svg",
+              "select": "assets/images/icon/traffic.svg"
+            },
+            "diva": {
+              "init": {
+                "scene_name": "鸟瞰"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "header": {
+        "title": "设备清单",
+        "icon": "assets/images/icon/monitor-20.svg"
+      },
+      "content": {
+        "type": "clickable-list",
+        "diva": {
+          "init": {
+            "group": "功能辅助/实时监控/摄像机",
+            "poi": "功能辅助/实时监控/POI摄像机"
+          },
+          "action": [
+            {
+              "name": "focus",
+              "description": "点击后聚焦至摄像头",
+              "param": {
+                "distance": 500,
+                "pitch": 15
+              }
+            },
+            {
+              "name": "set_web_widget",
+              "description": "点击摄像头后设置弹窗",
+              "param": {
+                "width": 380,
+                "height": 365,
+                "position": "left",
+                "angle": 25,
+                "transparent": true,
+                "closable": true,
+                "dismissable": false,
+                "mouseInput": false,
+                "keyboardInput": false,
+                "line": {
+                  "visible": true,
+                  "color": [0, 60, 62],
+                  "horizontalLineLength": 50,
+                  "verticalLineLength": 250,
+                  "connectorVisible": true
+                }
+              }
+            }
+          ]
+        },
+        "head": [
+          { "name": "id", "title": "编号" },
+          { "name": "category", "title": "类别" },
+          { "name": "status", "title": "状态" }
+        ],
+        "data": [
+          {
+            "id": "CA001",
+            "category": "球式摄像机",
+            "status": "正常",
+            "videoPath": "assets/videos/monitoring/CA001.mp4",
+            "diva": {
+              "model": [{ "name": "球式摄像机01" }],
+              "poi": [{ "name": "POI摄像机01" }]
+            }
+          },
+          {
+            "id": "CA002",
+            "category": "球式摄像机",
+            "status": "正常",
+            "videoPath": "assets/videos/monitoring/CA002.mp4",
+            "diva": {
+              "model": [{ "name": "球式摄像机04" }],
+              "poi": [{ "name": "POI摄像机04" }]
+            }
+          },
+          {
+            "id": "CA003",
+            "category": "球式摄像机",
+            "status": "正常",
+            "videoPath": "assets/videos/monitoring/CA003.mp4",
+            "diva": {
+              "model": [{ "name": "球式摄像机07" }],
+              "poi": [{ "name": "POI摄像机07" }]
+            }
+          },
+          {
+            "id": "CA004",
+            "category": "球式摄像机",
+            "status": "正常",
+            "videoPath": "assets/videos/monitoring/CA004.mp4",
+            "diva": {
+              "model": [{ "name": "球式摄像机12" }],
+              "poi": [{ "name": "POI摄像机12" }]
+            }
+          },
+          {
+            "id": "CA005",
+            "category": "球式摄像机",
+            "status": "正常",
+            "videoPath": "assets/videos/monitoring/CA005.mp4",
+            "diva": {
+              "model": [{ "name": "球式摄像机15" }],
+              "poi": [{ "name": "POI摄像机15" }]
+            }
+          },
+          {
+            "id": "CA006",
+            "category": "枪式摄像机",
+            "status": "正常",
+            "videoPath": "assets/videos/monitoring/CA006.mp4",
+            "diva": {
+              "model": [{ "name": "枪式摄像机05" }],
+              "poi": [{ "name": "POI摄像机05" }]
+            }
+          },
+          {
+            "id": "CA007",
+            "category": "枪式摄像机",
+            "status": "正常",
+            "videoPath": "assets/videos/monitoring/CA007.mp4",
+            "diva": {
+              "model": [{ "name": "枪式摄像机09" }],
+              "poi": [{ "name": "POI摄像机09" }]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "header": {
+        "title": "交通路线",
+        "icon": "assets/images/icon/route.svg"
+      },
+      "content": {
+        "type": "switch-list",
+        "data": [
+          {
+            "color": "#FFA499",
+            "title": "货运/卡车流线规划",
+            "default": true,
+            "diva": {
+              "model": [{ "name": "货运卡车流线" }]
+            }
+          },
+          {
+            "color": "#4FDAFF",
+            "title": "办公/小车流线规划",
+            "default": true,
+            "diva": {
+              "model": [{ "name": "办公小型汽车流线" }]
+            }
+          },
+          {
+            "color": "#B4DE86",
+            "title": "人行流线规划",
+            "default": true,
+            "diva": {
+              "model": [{ "name": "人行流线" }]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "panel-right": [
+    {
+      "header": {
+        "title": "异常事件分析",
+        "icon": "assets/images/icon/alarm-bell.svg"
+      },
+      "content": {
+        "type": "echarts-multi-line",
+        "option": {
+          "xAxis": {
+            "data": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
+          },
+          "series": [
+            {
+              "name": "安保相关",
+              "data": [0, 4, 8, 6, 12, 7, 8, 9, 6, 4, 2, 1]
+            },
+            {
+              "name": "人员违规",
+              "data": [10, 12, 14, 12, 15, 12, 10, 18, 12, 11, 6, 4]
+            },
+            {
+              "name": "高空抛物",
+              "data": [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0]
+            },
+            {
+              "name": "其他事件",
+              "data": [0, 2, 3, 2, 4, 2, 4, 6, 4, 4, 4, 2]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "异常区域分析",
+        "icon": "assets/images/icon/alarm-bell.svg"
+      },
+      "content": {
+        "type": "echarts-pie",
+        "option": {
+          "dataset": {
+            "source": [
+              ["自动机械产品智造区", 9],
+              ["医疗器械设备智造区", 5],
+              ["工业创意产品生产区", 20],
+              ["工业互联网研发区", 16],
+              ["人工智能研发区", 13],
+              ["配套住宿区", 13],
+              ["餐饮休闲区", 24]
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "diva": {
+    "init": {
+      "scene_name": "鸟瞰"
+    },
+    "destroy": {
+      "group": ["功能辅助/交通流线"]
+    }
+  },
+  "panel-left": [
+    {
+      "header": {
+        "title": "空间布局",
+        "icon": "assets/images/icon/layout.svg"
+      },
+      "content": {
+        "type": "basic-info",
+        "data": {
+          "text": [
+            "园区布局结构呈“一轴三点两环”。整个园区由南北景观中轴一分为二，优化制造空间和研发区域。三点，厂前区中心开敞空间，东入口广场，厂区中心广场，三个广场点阵结合，加强休闲区域的联系。两环，生产区车流闭环和厂前区车流闭环，减少园区内交通安全隐患，规范园区管理，优化用户体验。"
+          ]
+        }
+      }
+    }
+  ],
+  "panel-right": [
+    {
+      "type": "camera-album",
+      "content": [
+        {
+          "header": {
+            "title": "一轴",
+            "icon": "assets/images/icon/rect-axis.svg"
+          },
+          "content": {
+            "data": [
+              {
+                "text": "南北景观中轴",
+                "image": "assets/images/data/camera-1.png",
+                "diva": {
+                  "camera_track_name": "南北景观中轴"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "header": {
+            "title": "三点",
+            "icon": "assets/images/icon/rect-3points.svg"
+          },
+          "content": {
+            "data": [
+              {
+                "text": "厂前区中心开敞空间",
+                "image": "assets/images/data/camera-2.png",
+                "diva": {
+                  "camera_track_name": "厂前区节点"
+                }
+              },
+              {
+                "text": "厂区中心广场",
+                "image": "assets/images/data/camera-3.png",
+                "diva": {
+                  "camera_track_name": "中心广场节点"
+                }
+              },
+              {
+                "text": "东广场入口",
+                "image": "assets/images/data/camera-4.png",
+                "diva": {
+                  "camera_track_name": "东广场入口节点"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "header": {
+            "title": "两环",
+            "icon": "assets/images/icon/rect-2parts.svg"
+          },
+          "content": {
+            "data": [
+              {
+                "text": "生产区车流闭环",
+                "image": "assets/images/data/camera-5.png",
+                "diva": {
+                  "camera_track_name": "生产区车流闭环"
+                }
+              },
+              {
+                "text": "厂前区车流闭环",
+                "image": "assets/images/data/camera-6.png",
+                "diva": {
+                  "camera_track_name": "厂前区车流闭环"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

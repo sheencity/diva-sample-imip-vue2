@@ -1,0 +1,17 @@
+{
+	"diva": {
+		"init": {
+			"scene_name": "首页"
+		}
+	},
+  "panel": {
+    "panel-center": {
+      "type": "coverpage",
+      "logo": "assets/images/data/logo.png",
+      "title": "智能制造产业园数字孪生平台",
+      "button" : {
+        "text" : "进入系统"
+      }
+    }
+  }
+}
