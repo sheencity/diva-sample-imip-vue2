@@ -1,0 +1,210 @@
+{
+  "diva": {
+		"init": {
+			"scene_name": "鸟瞰",
+      "model": [{ "group": "停车场/车辆" }]
+		}
+	},
+  "panel-left": [
+    {
+      "header": {
+        "title": "车位概况",
+        "icon": "assets/images/icon/circle-parking.svg"
+			},
+			"content": {
+        "type": "parking-panel",
+        "general": {
+          "total": 551,
+          "power_rest": 38,
+          "power_total": 156,
+          "common_rest": 79,
+          "common_total": 400
+        },
+        "analysis": {
+          "name": "车位使用透视",
+          "default": false,
+          "diva": {
+            "model": [{ "group": "停车场/分区" }]
+          }
+        },
+        "diva": {
+          "action": [
+            {
+              "name": "focus",
+              "param": {
+                "distance": 25000,
+                "pitch": -60
+              }
+            }
+          ]
+        },
+        "data": [
+          {
+            "title": "主楼停车区",
+            "rest": 37,
+            "total": 102,
+            "diva": {
+              "model": [
+                { "name": "主楼停车区" },
+                { "group": "停车场/分区/主楼停车区" }
+              ]
+            }
+          },
+          {
+            "title": "中央停车区",
+            "rest": 40,
+            "total": 40,
+            "diva": {
+              "model": [{ "name": "中央停车区" }]
+            }
+          },
+          {
+            "title": "北停车区",
+            "rest": 0,
+            "total": 110,
+            "diva": {
+              "model": [{ "name": "北停车区" }]
+            }
+          },
+          {
+            "title": "西停车区",
+            "rest": 12,
+            "total": 131,
+            "diva": {
+              "model": [{ "name": "西停车区" }]
+            }
+          },
+          {
+            "title": "东停车区",
+            "rest": 28,
+            "total": 160,
+            "diva": {
+              "model": [{ "name": "东停车区" }]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "panel-right": [
+    {
+      "header": {
+        "title": "停车时长",
+        "icon": "assets/images/icon/clock-01.svg"
+			},
+			"content": {
+        "type": "echarts-pie",
+        "option": {
+          "dataset": {
+            "source": [
+              { "value": 133, "name": "1小时以下" },
+              { "value": 44, "name": "1~8小时" },
+              { "value": 87, "name": "8~16小时" },
+              { "value": 86, "name": "16小时以上" }
+            ]
+          }         
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "车位使用饱和率",
+        "icon": "assets/images/icon/chart-line-02.svg"
+			},
+			"content": {
+        "type": "echarts-line",
+        "option": {
+          "dataset": {
+            "source": [
+              ["08:00", 50],
+              ["09:00", 81],
+              ["10:00", 91],
+              ["11:00", 82],
+              ["12:00", 64],
+              ["13:00", 24],
+              ["14:00", 22],
+              ["15:00", 42],
+              ["16:00", 54],
+              ["17:00", 42],
+              ["18:00", 64],
+              ["19:00", 24],
+              ["20:00", 18]
+            ]
+          }      
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "车辆出入记录",
+        "icon": "assets/images/icon/info-02.svg"
+			},
+      "content": {
+        "type": "text-list",
+        "scroll": false,
+        "header": [
+          { "name": "plate_number", "title": "车牌" },
+          { "name": "start_time", "title": "驶入时间" },
+          { "name": "end_time", "title": "驶离时间" },
+          { "name": "type", "title": "类型" }
+        ],
+        "data": [
+          {
+            "plate_number": "京AXXXX1",
+            "start_time": "08:03",
+            "end_time": "11:25",
+            "type": "访客"
+          },
+          {
+            "plate_number": "京AXXXX4",
+            "start_time": "08:40",
+            "end_time": "10:20",
+            "type": "访客"
+          },
+          {
+            "plate_number": "京AXXXX1",
+            "start_time": "08:52",
+            "end_time": "12:09",
+            "type": "访客"
+          },
+          {
+            "plate_number": "京AXXXX2",
+            "start_time": "09:12",
+            "end_time": "12:21",
+            "type": "访客"
+          },
+          {
+            "plate_number": "京AXXXX5",
+            "start_time": "09:27",
+            "end_time": "11:10",
+            "type": "访客"
+          },
+          {
+            "plate_number": "京AXXXX2",
+            "start_time": "10:16",
+            "end_time": "12:18",
+            "type": "访客"
+          },
+          {
+            "plate_number": "京AXXXX8",
+            "start_time": "11:40",
+            "end_time": "17:20",
+            "type": "访客"
+          },
+          {
+            "plate_number": "京AXXXX9",
+            "start_time": "11:53",
+            "end_time": "18:32",
+            "type": "访客"
+          },
+          {
+            "plate_number": "京AXXXX2",
+            "start_time": "12:02",
+            "end_time": "21:01",
+            "type": "访客"
+          }
+        ]
+      }
+    }
+  ]
+}

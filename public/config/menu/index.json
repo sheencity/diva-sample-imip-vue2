@@ -1,0 +1,80 @@
+{
+    "menu": {
+      "type": "menu-group-bottom",
+      "data": [
+        {
+          "title": "项目介绍",
+          "icon": "assets/images/icon/building-03.svg",
+          "view": "introduction",
+          "data": "config/page/introduction.json",
+          "children": []
+        },
+        {
+          "title": "碳中和",
+          "icon": "assets/images/icon/plants.svg",
+          "view": "energy",
+          "children": [
+            {
+              "title": "能源",
+              "view": "energy",
+              "data": "config/page/energy.json"
+            }
+          ]
+        },
+        {            
+          "title": "智慧运营",
+          "icon": "assets/images/icon/operation.svg",
+          "view": "office",
+          "children": [
+            {
+              "title": "办公",
+              "view": "office",
+              "data": "config/page/office.json"
+            },
+            {
+              "title": "环境",
+              "view": "environment",
+              "data": "config/page/environment.json"
+            },
+            {
+              "title": "消防",
+              "view": "fire-control",
+              "data": "config/page/firecontrol.json"
+            },
+            {
+              "title": "安保",
+              "view": "security",
+              "data": "config/page/security.json"
+            },
+            {
+              "title": "停车",
+              "view": "parking",
+              "data": "config/page/park.json"
+            }
+          ]
+        },
+        {            
+          "title": "产业招商",
+          "icon": "assets/images/icon/collabrate.svg",
+          "view": "achievement",
+          "children": [
+            {
+              "title": "招商成果",
+              "view": "achievement",
+              "data": "config/page/achievement.json"
+            },
+            {
+              "title": "空间布局",
+              "view": "space",
+              "data": "config/page/space.json"
+            },
+            {
+              "title": "产业规划",
+              "view": "planing",
+              "data": "config/page/plan.json"
+            }
+          ]
+        }
+      ]
+    }
+  }

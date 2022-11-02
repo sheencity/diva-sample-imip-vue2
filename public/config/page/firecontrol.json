@@ -1,0 +1,293 @@
+{
+  "diva": {
+		"init": {
+			"scene_name": "主楼分析C"
+		},
+    "common": {
+      "resource_group_name": "/产业园区/楼栋/1#/9F",
+      "default_floor_index": 9,
+      "default_translate_distance": 3500,
+      "floor_focus_param": {
+        "pitch": -45,
+        "distance": 8000
+      }
+    }
+	},
+  "panel-left": [
+    {
+      "content": {
+        "type": "table-multi-col3",
+        "data": [
+          {
+            "header": {
+              "title": "烟雾报警",
+              "icon": "assets/images/icon/alarm-smog.svg"
+            },
+            "thead": [
+              { "name": "id", "title": "编号" },
+              { "name": "category", "title": "类别" },
+              { "name": "status", "title": "状态" },
+              { "name": "name", "title": "资源名称" }
+            ],
+            "tbody": [
+              {
+                "id": "SA001",
+                "category": "感烟火灾探测器",
+                "name": "感烟火灾探测器01",
+                "status": "正常",
+                "path": "烟雾报警",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              },
+              {
+                "id": "SA002",
+                "category": "感烟火灾探测器",
+                "name": "感烟火灾探测器02",
+                "status": "正常",
+                "path": "烟雾报警",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              },
+              {
+                "id": "SA003",
+                "category": "感烟火灾探测器",
+                "name": "感烟火灾探测器03",
+                "status": "正常",
+                "path": "烟雾报警",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              },
+              {
+                "id": "SA004",
+                "category": "感烟火灾探测器",
+                "name": "感烟火灾探测器04",
+                "status": "正常",
+                "path": "烟雾报警",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              }
+            ]
+          },
+          {
+            "header": {
+              "title": "灭火设施",
+              "icon": "assets/images/icon/alarm-fire.svg"
+            },
+            "thead": [
+              { "name": "id", "title": "编号" },
+              { "name": "category", "title": "类别" },
+              { "name": "status", "title": "状态" },
+              { "name": "name", "title": "资源名称" }
+            ],
+            "tbody": [
+              {
+                "id": "FE001",
+                "category": "室内消防栓箱",
+                "name": "室内组合消火栓箱01",
+                "status": "正常",
+                "path": "灭火设施",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              },
+              {
+                "id": "FE002",
+                "category": "悬挂干粉灭火器",
+                "name": "悬挂干粉灭火器01",
+                "status": "正常",
+                "path": "灭火设施",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              },
+              {
+                "id": "FE003",
+                "category": "消防喷淋头",
+                "name": "消防喷淋头01",
+                "status": "正常",
+                "path": "灭火设施",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -20
+                },
+                "render_mode": "alarm"
+              },
+              {
+                "id": "FE004",
+                "category": "手提灭火器",
+                "name": "手提灭火器01",
+                "status": "正常",
+                "path": "灭火设施",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              },
+              {
+                "id": "FE005",
+                "category": "手提灭火器",
+                "name": "手提灭火器02",
+                "status": "正常",
+                "path": "灭火设施",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              },
+              {
+                "id": "FE006",
+                "category": "灭火器箱",
+                "name": "灭火器箱01",
+                "status": "正常",
+                "path": "灭火设施",
+                "focus_param": {
+                  "distance": 350,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              }
+            ]
+          },
+          {
+            "header": {
+              "title": "安全通道",
+              "icon": "assets/images/icon/alarm-escape.svg"
+            },
+            "thead": [
+              { "name": "id", "title": "编号" },
+              { "name": "category", "title": "类别" },
+              { "name": "status", "title": "状态" },
+              { "name": "name", "title": "资源名称" }
+            ],
+            "tbody": [
+              {
+                "id": "SF091",
+                "category": "安全通道",
+                "name": "9Fs9",
+                "status": "正常",
+                "path": "安全通道",
+                "focus_param": {
+                  "distance": 1500,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              },
+              {
+                "id": "SF092",
+                "category": "安全通道",
+                "name": "9Fs10",
+                "status": "正常",
+                "path": "安全通道",
+                "focus_param": {
+                  "distance": 1500,
+                  "pitch": -70
+                },
+                "render_mode": "alarm"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "panel-right": [
+    {
+      "header": {
+        "title": "消防警报",
+        "icon": "assets/images/icon/alarm-bell.svg"
+      },
+      "content": {
+        "type": "echarts-pie",
+        "option": {
+          "tooltip": {
+            "formatter": "{b} : {c} (个)"
+          },
+          "series": [{
+            "radius": [60, 80],
+            "data": [
+              { "name": "处理中", "value": 1 },
+              { "name": "待处理", "value": 2 },
+              { "name": "已处理", "value": 12 }
+            ]
+          }]
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "报警趋势分析",
+        "icon": "assets/images/icon/alarm-bell.svg"
+      },
+      "content": {
+        "type": "echarts-line",
+        "option": {
+          "dataset": {
+            "source": [
+              ["一月", 4],
+              ["二月", 10],
+              ["三月", 6],
+              ["四月", 12],
+              ["五月", 18],
+              ["六月", 20],
+              ["七月", 14],
+              ["八月", 10],
+              ["九月", 12],
+              ["十月", 7],
+              ["十一月", 9],
+              ["十二月", 6]
+            ]
+          },
+          "series": [{
+            "smooth": false,
+            "showSymbol": true
+          }]
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "区域报警分析",
+        "icon": "assets/images/icon/alarm-bell.svg"
+      },
+      "content": {
+        "type": "echarts-bar",
+        "option": {
+          "dataset": {
+            "source": [
+              ["自动机械产品智造区", 9],
+              ["医疗器械设备智造区", 5],
+              ["工业创意产品生产区", 20],
+              ["工业互联网研发区", 16],
+              ["人工智能研发区", 13],
+              ["配套住宿区", 13],
+              ["餐饮休闲区", 24]
+            ]
+          },
+          "xAxis": {
+            "axisLabel": {
+              "show": false
+            }
+          }
+        }
+      }
+    }
+  ]
+}

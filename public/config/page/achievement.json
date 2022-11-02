@@ -1,0 +1,153 @@
+{
+  "diva": {
+    "init": {
+      "scene_name": "左侧鸟瞰"
+    }
+  },
+  "panel-left": [
+    {
+      "header": {
+        "title": "园区企业",
+        "icon": "assets/images/icon/building-02.svg"
+      },
+      "content": {
+        "type": "statistic-panel",
+        "data": [
+          {
+            "title": "国家高新技术企业",
+            "number": "108",
+            "fontColor": "#00F7FF"
+          },
+          {
+            "title": "通过ISO认证企业",
+            "number": "232",
+            "fontColor": "#04CD98"
+          },
+          {
+            "icon": "assets/images/icon/frame-building.svg",
+            "title": "企业总数",
+            "number": "493"
+          },
+          {
+            "icon": "assets/images/icon/frame-person.svg",
+            "title": "人员总数",
+            "number": "11,384"
+          }
+        ]
+      }
+    },
+    {
+      "header": {
+        "title": "扶持政策",
+        "icon": "assets/images/icon/policy.svg"
+      },
+      "content": {
+        "type": "basic-info",
+        "data": {
+          "text": [
+            "入驻园区，享地方税收优惠政策，专项产业发展扶持政策。",
+            "园区支持力度大，政策长期稳定，多年企业服务经验，申报流程快捷。",
+            "入园流程一步到位，为企业提供“保姆式”落户服务，线上企业操作+线下园区代办，免费提供注册地址，办公场地，企业落户无忧。"
+          ]
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "知名企业",
+        "icon": "assets/images/icon/items-02.svg"
+      },
+      "content": {
+        "type": "text-list",
+        "scroll": true,
+        "header": [
+          { "name": "company_name", "title": "企业名称" },
+          { "name": "company_area", "title": "入驻区域" },
+          { "name": "type", "title": "类型" }
+        ],
+        "data": [
+          { "company_name": "XXXXXXX有限公司", "company_area": "机械制造", "type": "机床" },
+          { "company_name": "XXXXXXX有限公司", "company_area": "机械制造", "type": "仪器" },
+          { "company_name": "XXXXXXX有限公司", "company_area": "工业互联网", "type": "XR" },
+          { "company_name": "XXXXXXX有限公司", "company_area": "工业互联网", "type": "IoT" },
+          { "company_name": "XXXXXXX有限公司", "company_area": "人工智能", "type": "AI" },
+          { "company_name": "XXXXXXX有限公司", "company_area": "医疗器械", "type": "医疗" },
+          { "company_name": "XXXXXXX有限公司", "company_area": "医疗器械", "type": "医疗" }
+        ]
+      }
+    }
+  ],
+  "panel-right": [
+    {
+      "header": {
+        "title": "企业规模",
+        "icon": "assets/images/icon/info-03.svg"
+      },
+      "content": {
+        "type": "echarts-pie",
+        "option": {
+          "tooltip": {
+            "formatter": "{b} : {c} (个)"
+          },
+          "series": [{
+            "radius": [60, 80],
+            "data": [
+              { "value": 32, "name": "大型" },
+              { "value": 87, "name": "中型" },
+              { "value": 133, "name": "小型" },
+              { "value": 244, "name": "微型" }
+            ]
+          }]
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "入驻企业行业类别",
+        "icon": "assets/images/icon/building-02.svg"
+      },
+      "content": {
+        "type": "echarts-basic-bar",
+        "option": {
+          "xAxis": {
+            "axisLabel": {
+              "rotate": 10,
+              "fontSize": 10,
+              "margin": 14,
+              "align": "center"
+            }
+          },
+          "dataset": {
+            "source": [
+              ["工业互联网", 227],
+              ["机械制造", 82],
+              ["人工智能", 54],
+              ["生物技术", 42],
+              ["医疗器械", 64],
+              ["其他", 24]
+            ]
+          }       
+        }
+      }
+    },
+    {
+      "header": {
+        "title": "人才引进",
+        "icon": "assets/images/icon/edu.svg"
+      },
+      "content": {
+        "type": "echarts-hor-bar",
+        "option": {
+          "dataset": {
+            "source": [
+              ["博士", 569],
+              ["硕士", 1708],
+              ["本科", 5692],
+              ["其他", 3415]
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
